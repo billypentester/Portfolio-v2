@@ -3,19 +3,107 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #4A90E2;
+  --background: #FFFFFF;
+  --surface: #F5F5F5;
+  --text: #333333;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --primary: #4A90E2;
+  --background: #1A1A1A;
+  --surface: #2C2C2C;
+  --text: #E0E0E0;
+}
+
+@layer components {
+  .custom-container {
+    @apply container w-10/12 mx-auto;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+
+
+.bg-background {
+  background-color: var(--background);
+}
+
+.bg-surface {
+  background-color: var(--surface);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-shadow {
+  box-shadow: 0 0 10px var(--primary);
+}
+
+.text-primary {
+  color: var(--text);
+}
+
+.text-secondary, .link-secondary {
+  color: var(--primary);
+}
+
+.text-baseline {
+  color: var(--background)
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  min-height: 4rem;
+  width: 100%;
+}
+
+.nav-link {
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text)
+}
+
+.nav-link:hover {
+  color: #fff;
+  padding: 0.5rem 2rem;
+  background-color: var(--primary);
+  border-radius: 6rem;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
+  cursor: pointer;
+  background-color: var(--primary);
+  color: var(--background)
+}
+
+.btn-inverse {
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
+  cursor: pointer;
+  background-color: var(--background);
+  color: var(--primary)
+}
+
+.btn:hover {
+  box-shadow: 0 0 10px var(--primary);
+}
+
+input, textarea {
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--text);
+  outline: none;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--background);
+  opacity: 0.2;
 }
