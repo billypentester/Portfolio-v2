@@ -2,7 +2,10 @@ import TransSection from '../layouts/TransSection'
 import { edu, cert } from '../data/config'
 import Image from 'next/image'
 
-const WorkCard = ({title, image}) => {
+const WorkCard = ({title, image}: {
+  title: string;
+  image: any
+}) => {
   return (
       <div>
           <Image src={image} alt={title} className="rounded-lg shadow-xl cursor-pointer h-60 object-cover" loading="lazy" />

@@ -7,16 +7,18 @@ import Work from "@/components/work";
 import Expertise from "@/components/expertise";
 import Education from "@/components/education";
 import Contact from "@/components/contact";
+import Client from "@/components/clients";
 
 export default function Home() {
   return (
     <>
-      <div className="custom-container">
-        <Navbar />
+      <Navbar />
+      <div className="custom-container mt-36">
         <Hero />
         <Services />
         <Work />
         <Experience />
+        <Client />
         <Expertise />
         <Education />
         <Contact />

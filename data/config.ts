@@ -23,6 +23,13 @@ import IT from '@/assets/images/publications/it.webp'
 import predict from '@/assets/images/publications/predict.webp'
 import master from '@/assets/images/publications/master.webp'
 
+import KFC from '@/assets/images/clients/kfc.png'
+import Dominos from '@/assets/images/clients/dominos.png'
+import PizzaHut from '@/assets/images/clients/pizzahut.png'
+import CrustCulture from '@/assets/images/clients/crustculture.png'
+import halla from '@/assets/images/clients/halla.png'
+import kyochon from '@/assets/images/clients/kyochon.png'
+
 const herolinks = [
     {
         name: 'email',
@@ -162,6 +169,39 @@ const edu = [
     }
 ]
 
+const clients = [
+    {
+        id: 1,
+        name: 'KFC',
+        image: KFC
+    },
+    {
+        id: 2,
+        name: 'Dominos',
+        image: Dominos,
+    },
+    {
+        id: 3,
+        name: 'PizzaHut',
+        image: PizzaHut
+    },
+    {
+        id: 4,
+        name: 'Crust Culture',
+        image: CrustCulture
+    },
+    {
+        id: 5,
+        name: 'Halla Shawarma',
+        image: halla
+    },
+    {
+        id: 6,
+        name: 'Kyochon',
+        image: kyochon
+    }
+]
+
 const cert = [
     {
       title: 'Certified Network Security Specialist',
@@ -259,5 +299,5 @@ const publications = [
     }
 ]
 
-export { urls, expertise, edu, cert, work, publications, Profile, herolinks, experience }
+export { urls, expertise, edu, cert, work, publications, Profile, herolinks, experience, clients }
 

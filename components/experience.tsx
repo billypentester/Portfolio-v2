@@ -17,11 +17,11 @@ const Experience = () => {
                                 </div>
                                 <div className="w-full">
                                     <div className="flex justify-between mb-2">
-                                        <h1 className='text-2xl font-semibold'> {item.title} </h1>
-                                        <h1 className='text-lg font-medium hidden sm:block'> {item.duration} </h1>
+                                        <h1 className='text-2xl font-semibold text-baseline'> {item.title} </h1>
+                                        <h1 className='text-lg font-medium hidden sm:block text-baseline'> {item.duration} </h1>
                                     </div>
-                                    <h1 className='text-xl font-medium'> {item.company} </h1>
-                                    <h1 className='text-lg'> {item.location} </h1>
+                                    <h1 className='text-xl font-medium text-baseline'> {item.company} </h1>
+                                    <h1 className='text-lg text-baseline'> {item.location} </h1>
                                 </div>  
                             </div>
                             {

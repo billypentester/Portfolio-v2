@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --primary: #4A90E2;
-  --background: #FFFFFF;
-  --surface: #F5F5F5;
-  --text: #333333;
+  /* color */
+  --primary:  #66372e;
+  --background: #dcdcdc;
+  --surface:  #e6ceca;
+  --text: #2c1213;
+
+  --border-radius: 1rem;
 }
 
 .dark {
@@ -14,6 +17,8 @@
   --background: #1A1A1A;
   --surface: #2C2C2C;
   --text: #E0E0E0;
+
+  --border-radius: 1rem;
 }
 
 @layer components {
@@ -21,7 +26,6 @@
     @apply container w-10/12 mx-auto;
   }
 }
-
 
 
 .bg-background {
@@ -71,13 +75,13 @@
   color: #fff;
   padding: 0.5rem 2rem;
   background-color: var(--primary);
-  border-radius: 6rem;
-  box-shadow: 0 0 10px var(--primary);
+  border-radius: var(--border-radius);
+  /* box-shadow: 0 0 10px var(--primary); */
 }
 
 .btn {
   padding: 0.5rem 1rem;
-  border-radius: 5rem;
+  border-radius: var(--border-radius);
   cursor: pointer;
   background-color: var(--primary);
   color: var(--background)
@@ -85,25 +89,33 @@
 
 .btn-inverse {
   padding: 0.5rem 1rem;
-  border-radius: 5rem;
+  border-radius: var(--border-radius);
   cursor: pointer;
   background-color: var(--background);
   color: var(--primary)
 }
 
 .btn:hover {
-  box-shadow: 0 0 10px var(--primary);
+  box-shadow: 0 0 2px var(--primary);
 }
 
 input, textarea {
   padding: 0.8rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--text);
+  border: none;
   outline: none;
+  border-radius: var(--border-radius);
 }
 
 .divider {
   height: 1px;
   background-color: var(--background);
   opacity: 0.2;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
 }

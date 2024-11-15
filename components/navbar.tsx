@@ -4,36 +4,41 @@ export default function Navbar() {
 
   return (
 
-    <nav className="w-full p-5">
-        <div className="flex items-center">
-            <div className="w-1/5">
-                <a href='https://www.linkedin.com/in/billypentester' className="text-xl font-bold text-secondary">billypentester</a>
-            </div>
-            <div className="flex-1 bg-surface rounded-full shadow-sm">
-                <ul className="flex p-1">
-                    <li className="nav-link">
-                        <a href='#services'>Services</a>
-                    </li>
-                    <li className="nav-link">
-                        <a href='#work'>Work</a>
-                    </li>
-                    <li className="nav-link">
-                        <a href='#experience'>Experience</a>
-                    </li>
-                    <li className="nav-link">
-                        <a href='#expertise'>Expertise</a>
-                    </li>
-                    <li className="nav-link">
-                        <a href='#education'>Education</a>
-                    </li>
-                    <li className="nav-link">
-                        <a href='#contact'>Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <div className="w-1/5">
-                <div className="flex justify-end">
-                    <button className="btn">Resume</button>
+    <nav className=" fixed top-0 left-0 z-40 w-full backdrop-blur-xl">
+        <div className="custom-container p-5">
+            <div className="flex items-center">
+                <div className="w-1/5">
+                    <a href='https://www.linkedin.com/in/billypentester' className="text-xl font-bold text-secondary">billypentester</a>
+                </div>
+                <div className="flex-1 bg-surface rounded-2xl shadow-sm">
+                    <ul className="flex p-1">
+                        <li className="nav-link">
+                            <a href='#services'>Services</a>
+                        </li>
+                        <li className="nav-link">
+                            <a href='#work'>Work</a>
+                        </li>
+                        <li className="nav-link">
+                            <a href='#experience'>Experience</a>
+                        </li>
+                        <li className="nav-link">
+                            <a href='#expertise'>Expertise</a>
+                        </li>
+                        <li className="nav-link">
+                            <a href='#education'>Education</a>
+                        </li>
+                        <li className="nav-link">
+                            <a href='#contact'>Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div className="w-1/5">
+                    <div className="flex justify-end">
+                        <a className="btn flex gap-2 items-center" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-user"><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M15 18a3 3 0 1 0-6 0"/><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><circle cx="12" cy="13" r="2"/></svg>
+                            <span>Resume</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
