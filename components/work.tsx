@@ -1,6 +1,18 @@
 import TransSection from '@/layouts/TransSection'
 import Image from 'next/image'
 
+const structuredData = (data: any) => {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "author": "Bilal Ahmad",
+        // "contentRating": "Mature",
+        "image": data.image,
+        "name": data.title,
+    }
+    return jsonLd
+}
+
 const WorkCard = ({title, image}: { title: string, image: any }) => {
     return (
         <div>
@@ -14,6 +26,12 @@ const Work = ({ work }: any) => {
 
     return (
         <TransSection id="work" title="Work I've done">
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(work)) }}
+            />
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-10">
                 {
                     work.map((work: any, index: number) => (

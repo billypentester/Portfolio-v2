@@ -1,6 +1,5 @@
 import ColorSection from "../layouts/ColorSection"
 import Icons from "@/utils/SkillIcon"
-import { expertise } from '../data/config'
 import React from "react"
 
 const Services = ({ expertise }: any) => {

@@ -28,294 +28,277 @@ import Dominos from '@/assets/images/clients/dominos.png'
 import PizzaHut from '@/assets/images/clients/pizzahut.png'
 import CrustCulture from '@/assets/images/clients/crustculture.png'
 import halla from '@/assets/images/clients/halla.png'
-import kyochon from '@/assets/images/clients/kyochon.png'
 
-const herolinks = [
-    {
-        name: 'email',
-        url: 'mailto:bilalsheikh2500@gmail.com'
+const data = {
+    first_name: 'Bilal',
+    last_name: 'Sheikh',
+    identity_keyword: 'billypentester',
+    seo: {
+        title: 'Bilal Ahmad: Software Engineer | Full Stack Web Developer | Security Expert',
+        description: 'Hi, I\'m a skilled freelancer with 2 years of experience, offering services in full-stack web, database, and blockchain development. Let\'s bring your vision to life! 🚀'
     },
-    {
-        name: 'whatsapp',
-        url: 'https://wa.me/923324187624?text=Hi%20Bilal%2C%20I%20want%20to%20hire%20you%20for%20my%20project'
-    },
-    {
-        name: 'linkedin',
-        url: 'https://www.linkedin.com/in/billypentester/'
-    },
-    {
-        name: 'messenger',
-        url: 'https://messenger.com/t/billypentester'
-    }
-]
+    profile_pic: Profile,
+    socialLinks: [
+        {
+            name: 'email',
+            url: 'mailto:bilalsheikh2500@gmail.com'
+        },
+        {
+            name: 'whatsapp',
+            url: 'https://wa.me/923324187624?text=Hi%20Bilal%2C%20I%20want%20to%20hire%20you%20for%20my%20project'
+        },
+        {
+            name: 'linkedin',
+            url: 'https://www.linkedin.com/in/billypentester/'
+        },
+        {
+            name: 'messenger',
+            url: 'https://messenger.com/t/billypentester'
+        }
+    ],
+    services: [
+        {
+            title: 'Full Stack Development',
+            description: 'I design and build beautiful websites using ReactJS, NextJS, TailwindCSS, and other modern technologies.',
+            icon: 'web'
+        },
+        {
+            title: 'Database Development',
+            description: 'I develop and maintain databases using MongoDB, MySQL, and other modern technologies.',
+            icon: 'database'
+        },
+        {
+            title: 'Blockchain Development',
+            description: 'I develop and maintain blockchain applications using Ethereum, Solidity, and other modern technologies.',
+            icon: 'blockchain'
+        }
+    ],
+    edu: [
+        {
+          id: 1,
+          title: 'Bachelor in Computer Science',
+          university: 'COMSATS University Islamabad',
+          startDate: '2019',
+          endDate: '2023',
+          city: 'Lahore',
+          image: COMSATS
+        },
+        {
+          id: 2,
+          title: 'Intermediate in Computer Science',
+          university: 'Punjab Group of Colleges',
+          startDate: '2017',
+          endDate: '2019',
+          city: 'Lahore',
+          image: PGC
+        }
+    ],
+    clients: [
+        {
+            id: 1,
+            name: 'KFC',
+            image: KFC
+        },
+        {
+            id: 2,
+            name: 'Dominos',
+            image: Dominos,
+        },
+        {
+            id: 3,
+            name: 'PizzaHut',
+            image: PizzaHut
+        },
+        {
+            id: 4,
+            name: 'Crust Culture',
+            image: CrustCulture
+        },
+        {
+            id: 5,
+            name: 'Halla Shawarma',
+            image: halla
+        }
+    ],
+    cert: [
+        {
+          title: 'Certified Network Security Specialist',
+          image: cnss
+        },
+        {
+          title: 'Develop Applications with GCP',
+          image: develop
+        },
+        {
+          title: 'Advance Peneration Testing',
+          image: pentesting
+        },
+        {
+          title: 'Remote Work Certification',
+          image: remote
+        }
+    ],
+    expertise: [
+        {
+            title: 'Frontend',
+            skills: [
+                {
+                    name: 'react',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'vue',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'tailwind',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'redux',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'typescript',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'nextjs',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'sass',
+                    viewBox: '0 -32 256 256'
+                }
+            ]
+        },
+        {
+            title: 'Backend',
+            skills: [
+                {
+                    name: 'nodejs',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'expressjs',
+                    viewBox: '0 0 24 24'
+                },
+                {
+                    name: 'firebase',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'kafka',
+                    viewBox: '-78.5 0 413 413'
+                },
+                {
+                    name: 'jest',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'graphql',
+                    viewBox: '0 0 32 32'
+                }
+            ]
+        },
+        {
+            title: 'Database',
+            skills: [
+                {
+                    name: 'mysql',
+                    viewBox: '0 0 24 24'
+                },
+                {
+                    name: 'postgresql',
+                    viewBox: '-4 0 264 264'
+                },
+                {
+                    name: 'mongodb',
+                    viewBox: '0 0 32 32'
+                },
+                {
+                    name: 'redis',
+                    viewBox: '0 -18 256 256'
+                }
+            ]
+        }
+    ],
+    work: [
+        {
+            title: 'TutorHub',
+            image: TutorHub,
+        },
+        {
+            title: 'Decenteralized Exchange',
+            image: DEX,
+        },
+        {
+            title: 'Car Part Ecommerce',
+            image: Car,
+        },
+        {
+            title: 'Bus Link',
+            image: Bus,
+        },
+        {
+            title: 'Covid Tracker',
+            image: Covid,
+        },
+        {
+            title: 'Weather App',
+            image: Weather,
+        },
+        {
+            title: 'Wallet Authenticator',
+            image: Wallet,
+        },
+        {
+            title: 'Personality Prediction',
+            image: Personality,
+        }
+    ],
+    experience : [
+        {
+            id: 'e1',
+            title: 'Software Engineer',
+            company: 'Simplex Technology Solutions',
+            location: 'Lahore',
+            duration: 'Sep 2023 - Present',
+            logo: Simplex
+        },
+        {
+            id: 'e2',
+            title: 'MERN Developer',
+            company: 'Fiverr',
+            location: 'Remote',
+            duration: 'Sep 2022 - Sep 2023',
+            logo: Fiverr
+        }
+    ],
+    publications: [
+        {
+          title: 'Predict your personality',
+          description: 'How does one assess your personality based on a survey or interview question?',
+          link: 'https://medium.com/mlearning-ai/predict-your-personality-f2c5d3701dc3',
+          image: predict,
+          tags: ['ML', 'AI']
+        },
+        {
+          title: 'Ultimate 10 Stages to Master Backend Development',
+          description: "A step-by-step guide to getting a job as a good backend developer",
+          link: "https://billypentester.medium.com/ultimate-10-stages-to-master-backend-development-f6f65f22a327",
+          image: master,
+          tags: ['JS', 'Backend']
+        },
+        {
+          title: 'Ethics and the IT Professional',
+          description: 'Why ethics are important to follow? ',
+          link: "https://billypentester.medium.com/ethics-and-the-it-professional-8b108a4f0ee",
+          image: IT,
+          tags: ['ethics', 'IT']
+        }
+    ]    
+}
 
-const services = [
-    {
-        title: 'Full Stack Development',
-        description: 'I design and build beautiful websites using ReactJS, NextJS, TailwindCSS, and other modern technologies.',
-        icon: 'web'
-    },
-    {
-        title: 'Database Development',
-        description: 'I develop and maintain databases using MongoDB, MySQL, and other modern technologies.',
-        icon: 'database'
-    },
-    {
-        title: 'Blockchain Development',
-        description: 'I develop and maintain blockchain applications using Ethereum, Solidity, and other modern technologies.',
-        icon: 'blockchain'
-    }
-]
-
-const expertise = [
-    {
-        title: 'Frontend',
-        skills: [
-            {
-                name: 'react',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'vue',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'tailwind',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'redux',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'typescript',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'nextjs',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'sass',
-                viewBox: '0 -32 256 256'
-            }
-        ]
-    },
-    {
-        title: 'Backend',
-        skills: [
-            {
-                name: 'nodejs',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'expressjs',
-                viewBox: '0 0 24 24'
-            },
-            {
-                name: 'firebase',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'kafka',
-                viewBox: '-78.5 0 413 413'
-            },
-            {
-                name: 'jest',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'graphql',
-                viewBox: '0 0 32 32'
-            }
-        ]
-    },
-    {
-        title: 'Database',
-        skills: [
-            {
-                name: 'mysql',
-                viewBox: '0 0 24 24'
-            },
-            {
-                name: 'postgresql',
-                viewBox: '-4 0 264 264'
-            },
-            {
-                name: 'mongodb',
-                viewBox: '0 0 32 32'
-            },
-            {
-                name: 'redis',
-                viewBox: '0 -18 256 256'
-            }
-        ]
-    }
-]
-
-const urls = [
-    {
-        name: 'email',
-        url: 'mailto:mailto:bilalsheikh2500@gmail.com'
-    },
-    {
-        name: 'whatsapp',
-        url: 'https://wa.me/923324187624?text=Hi%20Bilal%2C%20I%20want%20to%20hire%20you%20for%20my%20project'
-    },
-    {
-        name: 'linkedin',
-        url: 'https://www.linkedin.com/in/billypentester/'
-    }
-]
-
-const edu = [
-    {
-      id: 1,
-      title: 'Bachelor in Computer Science',
-      university: 'COMSATS University Islamabad',
-      date: '2019 - 2023',
-      city: 'Lahore',
-      image: COMSATS
-    },
-    {
-      id: 2,
-      title: 'Intermediate in Computer Science',
-      university: 'Punjab Group of Colleges',
-      date: '2017 - 2019',
-      city: 'Lahore',
-      image: PGC
-    }
-]
-
-const clients = [
-    {
-        id: 1,
-        name: 'KFC',
-        image: KFC
-    },
-    {
-        id: 2,
-        name: 'Dominos',
-        image: Dominos,
-    },
-    {
-        id: 3,
-        name: 'PizzaHut',
-        image: PizzaHut
-    },
-    {
-        id: 4,
-        name: 'Crust Culture',
-        image: CrustCulture
-    },
-    {
-        id: 5,
-        name: 'Halla Shawarma',
-        image: halla
-    },
-    // {
-    //     id: 6,
-    //     name: 'Kyochon',
-    //     image: kyochon
-    // }
-]
-
-const cert = [
-    {
-      title: 'Certified Network Security Specialist',
-      image: cnss
-    },
-    {
-      title: 'Develop Applications with GCP',
-      image: develop
-    },
-    {
-      title: 'Advance Peneration Testing',
-      image: pentesting
-    },
-    {
-      title: 'Remote Work Certification',
-      image: remote
-    }
-]
-
-const work = [
-    {
-        title: 'TutorHub',
-        image: TutorHub,
-    },
-    {
-        title: 'Decenteralized Exchange',
-        image: DEX,
-    },
-    {
-        title: 'Car Part Ecommerce',
-        image: Car,
-    },
-    {
-        title: 'Bus Link',
-        image: Bus,
-    },
-    {
-        title: 'Covid Tracker',
-        image: Covid,
-    },
-    {
-        title: 'Weather App',
-        image: Weather,
-    },
-    {
-        title: 'Wallet Authenticator',
-        image: Wallet,
-    },
-    {
-        title: 'Personality Prediction',
-        image: Personality,
-    }
-]
-
-const experience = [
-    {
-        id: 'e1',
-        title: 'Software Engineer',
-        company: 'Simplex Technology Solutions',
-        location: 'Lahore',
-        duration: 'Sep 2023 - Present',
-        logo: Simplex
-    },
-    {
-        id: 'e2',
-        title: 'MERN Developer',
-        company: 'Fiverr',
-        location: 'Remote',
-        duration: 'Sep 2022 - Sep 2023',
-        logo: Fiverr
-    }
-]
-
-const publications = [
-    {
-      title: 'Predict your personality',
-      description: 'How does one assess your personality based on a survey or interview question?',
-      link: 'https://medium.com/mlearning-ai/predict-your-personality-f2c5d3701dc3',
-      image: predict,
-      tags: ['ML', 'AI']
-    },
-    {
-      title: 'Ultimate 10 Stages to Master Backend Development',
-      description: "A step-by-step guide to getting a job as a good backend developer",
-      link: "https://billypentester.medium.com/ultimate-10-stages-to-master-backend-development-f6f65f22a327",
-      image: master,
-      tags: ['JS', 'Backend']
-    },
-    {
-      title: 'Ethics and the IT Professional',
-      description: 'Why ethics are important to follow? ',
-      link: "https://billypentester.medium.com/ethics-and-the-it-professional-8b108a4f0ee",
-      image: IT,
-      tags: ['ethics', 'IT']
-    }
-]
-
-export { urls, expertise, edu, cert, work, publications, Profile, herolinks, experience, clients, services }
+export { data }
 

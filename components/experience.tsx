@@ -1,12 +1,27 @@
 import React from 'react'
 import ColorSection from '../layouts/ColorSection'
-import { experience } from './../data/config'
 import Image from 'next/image'
+
+const structuredData = (data: any) => {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "legalName": data.company,
+        "location": data.location,
+    }
+    return jsonLd
+}
 
 const Experience = ({ experience }: any) => {
 
     return (
         <ColorSection id='experience' title='My Experience'>
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(experience)) }}
+            />
+
             <div key="woo" className="grid grid-cols-1 gap-2 my-10">
                 {
                     experience.map((item: any, index: number) => (

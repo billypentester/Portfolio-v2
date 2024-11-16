@@ -8,7 +8,7 @@
   --background: #ecfdf5;
   --surface:  #a7f3d0;
   --text: #022c22;
-  --border-radius: 1rem;
+  --border-radius: 1.5rem;
 }
 
 .dark {
@@ -19,11 +19,11 @@
   --border-radius: 1rem;
 }
 
-@layer components {
+/* @layer components {
   .custom-container {
     @apply container w-10/12 mx-auto;
   }
-}
+} */
 
 html {
   scroll-behavior: smooth;
@@ -32,6 +32,19 @@ html {
 
 .bg-background {
   background-color: var(--background);
+}
+
+.custom-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
+.page-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  margin-top: 9rem;
 }
 
 .bg-surface {
@@ -58,6 +71,13 @@ html {
   color: var(--background)
 }
 
+.nav-list {
+  background-color: var(--surface);
+  box-shadow: 0 0 1px var(--primary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--surface);
+}
+
 .navbar {
   display: flex;
   align-items: center;
@@ -67,22 +87,28 @@ html {
 }
 
 .nav-link {
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.5rem;
   cursor: pointer;
   text-decoration: none;
   color: var(--text)
 }
 
-.nav-link:hover {
+.nav-active {
   color: #fff;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.5rem;
   background-color: var(--primary);
   border-radius: var(--border-radius);
-  /* box-shadow: 0 0 10px var(--primary); */
+}
+
+.nav-link:hover {
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--primary);
+  border-radius: var(--border-radius);
 }
 
 .btn {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   border-radius: var(--border-radius);
   cursor: pointer;
   background-color: var(--primary);
@@ -181,4 +207,37 @@ input, textarea {
   border: 2px solid var(--surface);
   padding: 1px;
   box-shadow: 0px 1px 10px 0px var(--primary)
+}
+
+
+/* media queries */
+
+@media screen and (min-width: 640px) {
+  .page-container {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .page-container {
+    width: 85%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .page-container {
+    width: 83.333333%;
+  }
+  /* .nav-link {
+    padding: 0.5rem 1rem;
+  }
+  .nav-active {
+    padding: 0.5rem 1rem;
+  }
+  .nav-link:hover {
+    padding: 0.5rem 1rem;
+  }
+  .btn {
+    padding: 0.5rem 1rem;
+  } */
 }

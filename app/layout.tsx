@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import localFont from "next/font/local";
 import { Inter } from 'next/font/google'
 import "./globals.css";
+import { data } from '@/data/config'
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -22,11 +23,12 @@ const fontOptions = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Bilal Ahmad: Software Engineer | Full Stack Web Developer | Security Expert",
-  description: "Hi, I'm a skilled freelancer with 2 years of experience, offering services in full-stack web, database, and blockchain development. Let's bring your vision to life! 🚀",
+  title: data.seo.title,
+  description: data.seo.description,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+
   return (
     <html lang="en" className="light">
       <body className={`${fontOptions.className} antialiased bg-background`}>

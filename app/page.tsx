@@ -8,23 +8,26 @@ import Expertise from "@/components/expertise";
 import Education from "@/components/education";
 import Contact from "@/components/contact";
 import Client from "@/components/clients";
-import { herolinks, Profile, services, work, experience, clients, expertise, edu, cert, urls } from '@/data/config'
+import { data } from '@/data/config'
 
 export default function Home() {
+
+  const { cert, socialLinks, clients, edu, experience, first_name, profile_pic, services, work, expertise, identity_keyword } = data
+
   return (
     <>
-      <Navbar />
-      <div className="custom-container mt-36">
-        <Hero heroLinks={herolinks} profilePic={Profile} />
+      <Navbar identity_keyword={identity_keyword} />
+      <div className="page-container">
+        <Hero heroLinks={socialLinks} profilePic={profile_pic as any} first_name={first_name} />
         <Services services={services} />
         <Work work={work} />
         <Experience experience={experience} />
         <Client clients={clients} />
         <Expertise expertise={ expertise } />
         <Education edu={edu} cert={cert} />
-        <Contact urls={urls} />
+        <Contact urls={socialLinks} />
       </div>
-      <Footer />
+      <Footer identity_keyword={identity_keyword} />
     </>
   );
 }

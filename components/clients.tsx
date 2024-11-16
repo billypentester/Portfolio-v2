@@ -1,13 +1,26 @@
 import TransSection from '../layouts/TransSection'
-import { clients } from '../data/config'
 import Image from 'next/image'
 
-
+const structuredData = (data: any) => {
+  const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": data.name,
+      "logo": data.image,
+  }
+  return jsonLd
+}
 
 const Education = ({ clients }: any) => {
 
   return (
     <TransSection id="clients" title={'Who I\'ve Worked With'}>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(clients)) }}
+      />
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 my-10 place-items-center">
         {
           clients.map((client: any) => {

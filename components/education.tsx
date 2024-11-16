@@ -29,7 +29,7 @@ const Education = ({ edu, cert }: any) => {
                   <div className="w-full sm:w-2/3">
                     <h3 className="text-lg sm:text-2xl font-semibold text-primary">{item.university}</h3>
                     <p className="mt-3 text-lg text-primary">{item.title}</p>
-                    <p className="mt-1 text-primary">{item.date}</p>
+                    <p className="mt-1 text-primary">{item.startDate} - {item.endDate}</p>
                   </div>
                 </div>
               </div>
