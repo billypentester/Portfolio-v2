@@ -26,16 +26,10 @@ export const metadata: Metadata = {
   description: "Hi, I'm a skilled freelancer with 2 years of experience, offering services in full-stack web, database, and blockchain development. Let's bring your vision to life! 🚀",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="light">
-      <body
-        className={`${fontOptions.className} antialiased bg-background`}
-      >
+      <body className={`${fontOptions.className} antialiased bg-background`}>
         {children}
       </body>
     </html>

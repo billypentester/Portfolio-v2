@@ -3,13 +3,13 @@ import ColorSection from '../layouts/ColorSection'
 import { experience } from './../data/config'
 import Image from 'next/image'
 
-const Experience = () => {
+const Experience = ({ experience }: any) => {
 
     return (
         <ColorSection id='experience' title='My Experience'>
             <div key="woo" className="grid grid-cols-1 gap-2 my-10">
                 {
-                    experience.map((item, index) => (
+                    experience.map((item: any, index: number) => (
                         <React.Fragment key={item.id}>
                             <div className="flex flex-1 flex-col sm:flex-row justify-between my-1">
                                 <div className="me-5 mb-5 sm:mb-0">

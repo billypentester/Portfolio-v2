@@ -1,5 +1,4 @@
 import TransSection from '../layouts/TransSection'
-import { edu, cert } from '../data/config'
 import Image from 'next/image'
 
 const WorkCard = ({title, image}: {
@@ -14,13 +13,13 @@ const WorkCard = ({title, image}: {
   )
 }
 
-const Education = () => {
+const Education = ({ edu, cert }: any) => {
 
   return (
     <TransSection id="education" title={'My Education'}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10">
         {
-          edu.map((item) => {
+          edu.map((item: any) => {
             return(
               <div key={item.id} className="bg-surface shadow-lg rounded-lg px-10 py-10">
                 <div className="flex flex-col sm:flex-row">
@@ -40,7 +39,7 @@ const Education = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-content-center place-items-start gap-5 my-10">
         {
-          cert.map((work, index) => (
+          cert.map((work: any, index: number) => (
               <WorkCard key={index} title={work.title} image={work.image} />
           ))
         }

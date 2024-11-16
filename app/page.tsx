@@ -8,20 +8,21 @@ import Expertise from "@/components/expertise";
 import Education from "@/components/education";
 import Contact from "@/components/contact";
 import Client from "@/components/clients";
+import { herolinks, Profile, services, work, experience, clients, expertise, edu, cert, urls } from '@/data/config'
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <div className="custom-container mt-36">
-        <Hero />
-        <Services />
-        <Work />
-        <Experience />
-        <Client />
-        <Expertise />
-        <Education />
-        <Contact />
+        <Hero heroLinks={herolinks} profilePic={Profile} />
+        <Services services={services} />
+        <Work work={work} />
+        <Experience experience={experience} />
+        <Client clients={clients} />
+        <Expertise expertise={ expertise } />
+        <Education edu={edu} cert={cert} />
+        <Contact urls={urls} />
       </div>
       <Footer />
     </>

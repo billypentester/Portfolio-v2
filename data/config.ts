@@ -49,6 +49,24 @@ const herolinks = [
     }
 ]
 
+const services = [
+    {
+        title: 'Full Stack Development',
+        description: 'I design and build beautiful websites using ReactJS, NextJS, TailwindCSS, and other modern technologies.',
+        icon: 'web'
+    },
+    {
+        title: 'Database Development',
+        description: 'I develop and maintain databases using MongoDB, MySQL, and other modern technologies.',
+        icon: 'database'
+    },
+    {
+        title: 'Blockchain Development',
+        description: 'I develop and maintain blockchain applications using Ethereum, Solidity, and other modern technologies.',
+        icon: 'blockchain'
+    }
+]
+
 const expertise = [
     {
         title: 'Frontend',
@@ -195,11 +213,11 @@ const clients = [
         name: 'Halla Shawarma',
         image: halla
     },
-    {
-        id: 6,
-        name: 'Kyochon',
-        image: kyochon
-    }
+    // {
+    //     id: 6,
+    //     name: 'Kyochon',
+    //     image: kyochon
+    // }
 ]
 
 const cert = [
@@ -299,5 +317,5 @@ const publications = [
     }
 ]
 
-export { urls, expertise, edu, cert, work, publications, Profile, herolinks, experience, clients }
+export { urls, expertise, edu, cert, work, publications, Profile, herolinks, experience, clients, services }
 

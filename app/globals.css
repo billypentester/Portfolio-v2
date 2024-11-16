@@ -4,20 +4,18 @@
 
 :root {
   /* color */
-  --primary:  #66372e;
-  --background: #dcdcdc;
-  --surface:  #e6ceca;
-  --text: #2c1213;
-
+  --primary:  #10b981;
+  --background: #ecfdf5;
+  --surface:  #a7f3d0;
+  --text: #022c22;
   --border-radius: 1rem;
 }
 
 .dark {
-  --primary: #4A90E2;
-  --background: #1A1A1A;
-  --surface: #2C2C2C;
-  --text: #E0E0E0;
-
+  --primary: #10b981;
+  --background: #022c22;
+  --surface: #047857;
+  --text: #ecfdf5;
   --border-radius: 1rem;
 }
 
@@ -25,6 +23,10 @@
   .custom-container {
     @apply container w-10/12 mx-auto;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 
@@ -118,4 +120,65 @@ input, textarea {
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--primary);
+}
+
+.client-logo {
+  transition: all 0.3s;
+  cursor: pointer;
+  /* filter: grayscale(100%); */
+}
+
+.client-logo:hover {
+  transform: scale(1.1);
+  /* filter: grayscale(0%); */
+}
+
+.client-logo:hover img {
+  /* -webkit-filter: drop-shadow(5px 5px 5px var(--primary));
+  filter: drop-shadow(5px 5px 5px var(--primary)); */
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3)) 
+          drop-shadow(-5px -5px 5px rgba(255, 255, 255, 0.2));
+}
+
+/* Custom CSS for Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltip-content {
+  position: absolute;
+  bottom: 115%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--background);
+  box-shadow: 0 0 1px var(--text);
+  color: var(--text);
+  padding: 4px 10px;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  z-index: 1;
+}
+
+.tooltip-bottom .tooltip-content {
+  top: 115%;
+  bottom: auto;
+}
+
+.tooltip:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  outline: 1px solid green;
+  border: 2px solid var(--surface);
+  padding: 1px;
+  box-shadow: 0px 1px 10px 0px var(--primary)
 }

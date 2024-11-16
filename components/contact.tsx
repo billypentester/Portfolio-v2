@@ -1,11 +1,22 @@
+'use client'
 import Icons from '@/utils/Icon'
-import { urls } from '../data/config';
 import ColorSection from "../layouts/ColorSection"
 
-const Contact = () => {
+const Contact = ({ urls }: any) => {
 
   const capitalized = (str: any) => {
     return str.charAt(0).toUpperCase() + str.slice(1)
+  }
+
+  const contactData = (e: any) => {
+    e.preventDefault()
+    const form = e.target
+    const data = new FormData(form)
+    const name = data.get('name')
+    const email = data.get('Email')
+    const message = data.get('Message')
+    console.log(name, email, message)
+    form.reset()
   }
 
   return (
@@ -20,18 +31,21 @@ const Contact = () => {
             </p>
             <div className="flex items-center space-x-5 my-8">
               {
-                  urls.map((url) => (
-                      <button name={capitalized(url.name)} data-tip={capitalized(url.name)} key={url.name} className='tooltip tooltip-bottom bg-background hover:bg-secondary text-secondary hover:text-neutral p-3 rounded-full shadow-md shadow-secondary transition duration-500 ease-in-out'>
+                  urls.map((url: any) => (
+                      <button name={capitalized(url.name)} key={url.name} className='tooltip tooltip-bottom bg-background hover:bg-secondary text-secondary hover:text-neutral p-3 rounded-full shadow-md shadow-secondary transition duration-500 ease-in-out'>
                           <a href={url.url} target="_blank">
                               <Icons type={url.name} paint="h-6 w-6"/>
                           </a>
+                          <div className="tooltip-content">
+                            {capitalized(url.name)}
+                          </div>
                       </button>
                   ))
               }
             </div>
         </div>
         <div className="w-full md:w-3/5">
-          <form>
+          <form onSubmit={contactData}>
             <div className="flex flex-col space-y-5">
               <div className="flex sm:space-x-5 space-y-5 sm:space-y-0 flex-col sm:flex-row">
                 <input id="name" type="text" name="name" placeholder="Name*" className="w-full shadow-lg" />
