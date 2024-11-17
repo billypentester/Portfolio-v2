@@ -46,7 +46,7 @@ export default function Navbar({ identity_keyword }: any) {
 
     return (
         <>
-            <nav className={`fixed top-0 left-0 z-40 w-full bg-background ${isScrolled ? 'shadow-sm' : 'shadow-none'}`}>
+            <nav className={`fixed top-0 left-0 z-40 w-full bg-background ${isScrolled ? 'navbar-shadow' : 'shadow-none'}`}>
                 <div className="p-5 custom-container">
                     <div className="flex items-center justify-between xl:gap-5">
                         <button onClick={()=>setNavOpen(value => !value)} className="text-xl font-bold text-secondary block xl:hidden">
@@ -86,8 +86,8 @@ export default function Navbar({ identity_keyword }: any) {
                         </div>
                         <div className="flex-1 xl:flex-none">
                             <div className="flex justify-end">
-                                <a className="btn flex gap-2 items-center" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-user">
+                                <a className="btn" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-user mr-2">
                                         <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
                                         <path d="M15 18a3 3 0 1 0-6 0"/>
                                         <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/>

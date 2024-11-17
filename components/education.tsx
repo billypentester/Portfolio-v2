@@ -7,8 +7,8 @@ const WorkCard = ({title, image}: {
 }) => {
   return (
       <div>
-          <Image src={image} alt={title} className="rounded-lg shadow-xl cursor-pointer h-60 object-cover" loading="lazy" />
-          <h1 className="text-lg font-medium m-3 text-primary"> {title} </h1>
+          <Image src={image} alt={title} className="rounded-lg shadow-lg cursor-pointer h-48 object-cover" loading="lazy" />
+          <h5 className="text-sm font-medium m-3 text-primary"> {title} </h5>
       </div>
   )
 }
@@ -21,15 +21,15 @@ const Education = ({ edu, cert }: any) => {
         {
           edu.map((item: any) => {
             return(
-              <div key={item.id} className="bg-surface shadow-lg rounded-lg px-10 py-10">
+              <div key={item.id} className="bg-surface shadow-lg rounded-lg p-10">
                 <div className="flex flex-col sm:flex-row">
                   <div className="w-full sm:w-1/3 mb-4 sm:mb-0">
                     <Image src={item.image} alt={item.title} className="w-32 h-32" loading="lazy" />
                   </div>
                   <div className="w-full sm:w-2/3">
-                    <h3 className="text-lg sm:text-2xl font-semibold text-primary">{item.university}</h3>
-                    <p className="mt-3 text-lg text-primary">{item.title}</p>
-                    <p className="mt-1 text-primary">{item.startDate} - {item.endDate}</p>
+                    <h2 className="text-lg sm:text-2xl font-semibold text-primary">{item.university}</h2>
+                    <h3 className="mt-3 text-lg text-primary">{item.title}</h3>
+                    <h4 className="mt-1 text-primary">{item.startDate} - {item.endDate}</h4>
                   </div>
                 </div>
               </div>
