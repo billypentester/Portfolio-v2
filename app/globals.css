@@ -4,26 +4,21 @@
 
 :root {
   /* color */
-  --primary:  #10b981;
-  --background: #ecfdf5;
-  --surface:  #a7f3d0;
-  --text: #022c22;
-  --border-radius: 1.5rem;
+  --primary:  #4A90E2;
+  --background: #F0F4F8;
+  --surface:  #E1E8ED ;
+  --text: #2D3748;
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  --border-radius: 1rem
 }
 
 .dark {
-  --primary: #10b981;
-  --background: #022c22;
-  --surface: #047857;
-  --text: #ecfdf5;
-  --border-radius: 1rem;
+  --primary: #4A90E2;
+  --background: #1A202C;
+  --surface: #2D3748;
+  --text: #E2E8F0 ;
+  --border-radius: 1rem
 }
-
-/* @layer components {
-  .custom-container {
-    @apply container w-10/12 mx-auto;
-  }
-} */
 
 html {
   scroll-behavior: smooth;
@@ -71,9 +66,14 @@ html {
   color: var(--background)
 }
 
+.section-block {
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
 .nav-list {
   background-color: var(--surface);
-  box-shadow: 0 0 1px var(--primary);
+  /* box-shadow: 0 0 1px var(--text); */
   border-radius: var(--border-radius);
   border: 1px solid var(--surface);
 }
@@ -191,6 +191,11 @@ input, textarea {
   z-index: 1;
 }
 
+.tooltip-secondary .tooltip-content {
+  background-color: var(--primary) !important;
+  color: var(--background) !important;
+}
+
 .tooltip-bottom .tooltip-content {
   top: 115%;
   bottom: auto;
@@ -203,10 +208,15 @@ input, textarea {
 
 .profile-pic {
   border-radius: 50%;
-  outline: 1px solid green;
+  outline: 1px solid var(--primary);
   border: 2px solid var(--surface);
   padding: 1px;
   box-shadow: 0px 1px 10px 0px var(--primary)
+}
+
+input, textarea {
+  background: var(--background);
+  color: var(--text);
 }
 
 

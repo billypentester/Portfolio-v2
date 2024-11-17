@@ -31,11 +31,15 @@ import halla from '@/assets/images/clients/halla.png'
 
 const data = {
     first_name: 'Bilal',
-    last_name: 'Sheikh',
+    last_name: 'Ahmad',
     identity_keyword: 'billypentester',
     seo: {
         title: 'Bilal Ahmad: Software Engineer | Full Stack Web Developer | Security Expert',
-        description: 'Hi, I\'m a skilled freelancer with 2 years of experience, offering services in full-stack web, database, and blockchain development. Let\'s bring your vision to life! 🚀'
+        description: 'Hi, I\'m a skilled freelancer with 2 years of experience, offering services in full-stack web, database, and blockchain development. Let\'s bring your vision to life! 🚀',
+        keywords: "Full Stack Web Developer, Web Application Developer, Frontend Development, Backend Development, JavaScript Developer, ReactJS, Node.js, HTML5, CSS3, Responsive Web Design, RESTful APIs, Database Management, UI/UX Design, Cross-Browser Compatibility, Performance Optimization, Web Security, Git Version Control, Agile Development, Mobile-First Development, Server-side scripting, MySQL, MongoDB, Code Quality, Software Architecture, Cloud Computing, DevOps, E-commerce Development, Custom Web Solutions",
+        robots: "index, follow",
+        site_name: 'Bilal Ahmad',
+        url: 'https://work.billypentester.vercel.app'
     },
     profile_pic: Profile,
     socialLinks: [
@@ -263,7 +267,9 @@ const data = {
             title: 'Software Engineer',
             company: 'Simplex Technology Solutions',
             location: 'Lahore',
-            duration: 'Sep 2023 - Present',
+            startTime: "2023-09-01",
+            endTime: '2024-11-17',
+            currentlyWorking: true,
             logo: Simplex
         },
         {
@@ -271,7 +277,9 @@ const data = {
             title: 'MERN Developer',
             company: 'Fiverr',
             location: 'Remote',
-            duration: 'Sep 2022 - Sep 2023',
+            startTime: 'Sep 2022',
+            endTime: 'Sep 2023',
+            currentlyWorking: false,
             logo: Fiverr
         }
     ],

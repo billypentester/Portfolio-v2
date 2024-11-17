@@ -59,7 +59,7 @@ export default function Navbar({ identity_keyword }: any) {
                         <div className="mx-2 xl:m-0">
                             <button onClick={()=>scrollToTop()} className="text-xl font-bold text-secondary">{identity_keyword}</button>
                         </div>
-                        <div className="flex-1 bg-surface nav-list shadow-sm hidden xl:block xl:flex-none">
+                        <div className="flex-1 bg-surface nav-list hidden xl:block xl:flex-none">
                             <ul className="flex p-1 gap-2">
                                 <li className={`nav-link ${activeTab == "services" ? "nav-active" : ""}`} onClick={() => handleScroll('services')}>
                                     <span>Services</span>

@@ -16,7 +16,7 @@ const structuredData = (data: any) => {
 const WorkCard = ({title, image}: { title: string, image: any }) => {
     return (
         <div>
-            <Image src={image} alt={title} className="rounded-lg shadow-xl cursor-pointer opacity-70 hover:opacity-90" loading="lazy" width={400} height={400} />
+            <Image src={image} alt={title} className="rounded-lg shadow-lg cursor-pointer opacity-90" loading="lazy" width={400} height={400} />
             <h2 className="text-lg text-primary font-medium m-3"> {title} </h2>
         </div>
     )
