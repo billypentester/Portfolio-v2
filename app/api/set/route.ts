@@ -1,6 +1,6 @@
 import fs from "fs"
 
-export async function POST(req: any, res: Response) {
+export async function POST(req: any) {
 
     if (req.method !== "POST") {
         return Response.json({ error: "method not allowed" }, { status: 405 })
