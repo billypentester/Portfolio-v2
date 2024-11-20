@@ -1,6 +1,6 @@
 import fs from "fs"
 
-export async function POST(req: any) {
+export async function POST(req: Request) {
 
     if (req.method !== "POST") {
         return Response.json({ error: "method not allowed" }, { status: 405 })
@@ -8,15 +8,17 @@ export async function POST(req: any) {
     
     // handle form data
     const formData = await req.formData()
-    const file = formData.get("file")
+    const file: any = formData.get("file")
 
-    // read json file
-    const json = await file.text()
-    const data = JSON.parse(json)
-    console.log(data)
+    if(file) {
+         // read json file
+        const json = await file.text()
+        const data = JSON.parse(json)
+        console.log(data)
 
-    // replace json in theme file
-    fs.writeFileSync("data/theme.json", JSON.stringify(data, null, 2))
+        // replace json in theme file
+        fs.writeFileSync("data/theme.json", JSON.stringify(data, null, 2))
+    }
 
     return Response.json({ message: "success" }, { status: 200 })
 
