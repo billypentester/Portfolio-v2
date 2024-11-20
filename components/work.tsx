@@ -6,7 +6,6 @@ const structuredData = (data: any) => {
         "@context": "https://schema.org",
         "@type": "CreativeWork",
         "author": "Bilal Ahmad",
-        // "contentRating": "Mature",
         "image": data.image,
         "name": data.title,
     }
@@ -26,16 +25,16 @@ const Work = ({ work }: any) => {
 
     return (
         <TransSection id="work" title="Work I've done">
-
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(work)) }}
-            />
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-10">
                 {
                     work.map((work: any, index: number) => (
-                        <WorkCard key={index} title={work.title} image={work.image} />
+                        <>
+                            <script
+                                type="application/ld+json"
+                                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(work)) }}
+                            />
+                            <WorkCard key={index} title={work.title} image={work.image} />
+                        </>
                     ))
                 }
             </div>

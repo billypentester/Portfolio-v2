@@ -28,15 +28,14 @@ const Experience = ({ experience }: any) => {
     return (
         <ColorSection id='experience' title='My Experience'>
 
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(experience)) }}
-            />
-
             <div className="grid grid-cols-1 gap-2 my-10">
                 {
                     experience.map((item: any, index: number) => (
                         <React.Fragment key={item.id}>
+                             <script
+                                type="application/ld+json"
+                                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(item)) }}
+                            />
                             <div className="flex flex-1 flex-col sm:flex-row justify-between my-1">
                                 <div className="me-5 mb-5 sm:mb-0">
                                     <Image src={item.logo} alt={item.title} className="w-16 rounded-full" width={64} height={64} loading="lazy" />
