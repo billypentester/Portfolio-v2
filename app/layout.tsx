@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { data } from '@/data/config'
+import theme from '@/data/theme.json'
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -42,13 +43,19 @@ export const metadata: Metadata = {
         alt: data.first_name + ' ' + data.last_name + ' Portfolio'
       }
     ]
-  }
+  },
+  icons: [
+    { rel: "icon", url: "/images/favicon.png" }, 
+    { rel: "apple-touch-icon", url: "/images/apple-touch-icon.png" }
+  ]
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
+  const themeClass = theme.current ? theme.current : theme.default
+
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`${themeClass}`}>
       <body className={`${fontOptions.className} antialiased bg-background`}>
         {children}
       </body>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* color */
+  /* default variables */
   --primary:  #4A90E2;
   --background: #F0F4F8;
   --surface:  #E1E8ED ;
@@ -11,8 +11,6 @@
   --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   --rounded-full: 9999px;
-
-  --border-radius: 1rem
 }
 
 .dark {
@@ -20,8 +18,102 @@
   --background: #1A202C;
   --surface: #2D3748;
   --text: #E2E8F0;
+  --shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+}
 
-  --border-radius: 1rem;
+.green-light {
+  --primary: #2ECC71;
+  --background: #F0F4F8;
+  --surface: #E1E8ED;
+  --text: #2D3748;
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.green-dark {
+  --primary: #2ECC71;
+  --background: #1A202C;
+  --surface: #2D3748;
+  --text: #E2E8F0;
+  --shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+}
+
+.purple-light {
+  --primary: #9B59B6;
+  --background: #F0F4F8;
+  --surface: #E1E8ED;
+  --text: #2D3748;
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.purple-dark {
+  --primary: #9B59B6;
+  --background: #1A202C;
+  --surface: #2D3748;
+  --text: #E2E8F0;
+  --shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+}
+
+.red-light {
+  --primary: #E74C3C;
+  --background: #F0F4F8;
+  --surface: #E1E8ED;
+  --text: #2D3748;
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.red-dark {
+  --primary: #E74C3C;
+  --background: #1A202C;
+  --surface: #2D3748;
+  --text: #E2E8F0;
+  --shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+}
+
+.yellow-light {
+  --primary: #F1C40F;
+  --background: #F0F4F8;
+  --surface: #E1E8ED;
+  --text: #2D3748;
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.yellow-dark {
+  --primary: #F1C40F;
+  --background: #1A202C;
+  --surface: #2D3748;
+  --text: #E2E8F0;
+  --shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+}
+
+.pink-light {
+  --primary: #E91E63;
+  --background: #F0F4F8;
+  --surface: #E1E8ED;
+  --text: #2D3748;
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.pink-dark {
+  --primary: #E91E63;
+  --background: #1A202C;
+  --surface: #2D3748;
+  --text: #E2E8F0;
+  --shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+}
+
+.orange-light {
+  --primary: #F39C12;
+  --background: #F0F4F8;
+  --surface: #E1E8ED;
+  --text: #2D3748;
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.orange-dark {
+  --primary: #F39C12;
+  --background: #1A202C;
+  --surface: #2D3748;
+  --text: #E2E8F0;
   --shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
 }
 
@@ -72,7 +164,7 @@ html {
 }
 
 .section-block {
-  border-radius: var(--border-radius);
+  border-radius: 1rem;
   box-shadow: var(--shadow);
 }
 
@@ -182,7 +274,7 @@ html {
   box-shadow: 0 0 1px var(--text);
   color: var(--text);
   padding: 4px 10px;
-  border-radius: var(--border-radius);
+  border-radius: 9999px;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
