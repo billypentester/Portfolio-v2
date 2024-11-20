@@ -6,18 +6,13 @@ export async function POST(req: Request) {
         return Response.json({ error: "method not allowed" }, { status: 405 })
     } 
     
-    // handle form data
-    const formData = await req.formData()
-    const file: any = formData.get("file")
+    const body = await req.json()
 
-    if(file) {
-         // read json file
-        const json = await file.text()
-        const data = JSON.parse(json)
-        console.log(data)
-
-        // replace json in theme file
-        fs.writeFileSync("data/theme.json", JSON.stringify(data, null, 2))
+    if(body?.theme) {
+        const theme = body.theme
+        console.log(theme)
+        const path = process.cwd() + "data/theme.json"
+        fs.writeFileSync(path, JSON.stringify(theme, null, 2))
     }
 
     return Response.json({ message: "success" }, { status: 200 })
