@@ -64,5 +64,4 @@ export default function Icons({ type, paint }: { type: string, paint: string }) 
             <path d={icons[type]?.path}/>
         </svg>
     )
-
 }
