@@ -1,20 +1,8 @@
 import type { Metadata } from "next";
-// import localFont from "next/font/local";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { data } from '@/data/config'
-import theme from '@/data/theme.json'
-
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
+import { fetchTheme } from '@/helpers/db'
 
 const fontOptions = Inter({
   weight: '400',
@@ -50,12 +38,12 @@ export const metadata: Metadata = {
   ]
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-  const themeClass = theme.current ? theme.current : theme.default
+  const themeClass = await fetchTheme().then((data) => { return data })
 
   return (
-    <html lang="en" className={`${themeClass}`}>
+    <html lang="en" className={`${themeClass ? themeClass : "dark"}`}>
       <body className={`${fontOptions.className} antialiased bg-background`}>
         {children}
       </body>
