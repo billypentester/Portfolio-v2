@@ -40,7 +40,8 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-  const themeClass = await fetchTheme().then((data) => { return data })
+  const themeClass = await fetchTheme().then((data) => { return data }).catch((error) => { console.log('error: ', error) })
+  console.log('themeClass: ', themeClass)
 
   return (
     <html lang="en" className={`${themeClass ? themeClass : "dark"}`}>
