@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import "./globals.css";
 import { data } from '@/data/config'
 
+export const dynamic = 'force-dynamic'
+
 const fontOptions = Inter({
   weight: '400',
   style: 'normal',
