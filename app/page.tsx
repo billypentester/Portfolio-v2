@@ -10,7 +10,7 @@ import Contact from "@/components/contact";
 import Client from "@/components/clients";
 import { data } from '@/data/config'
 
-export default function Home() {
+export default async function Home() {
 
   const { cert, socialLinks, clients, edu, experience, first_name, profile_pic, services, work, expertise, identity_keyword } = data
 

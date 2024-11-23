@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { data } from '@/data/config'
-import { fetchTheme } from '@/helpers/db'
 
 const fontOptions = Inter({
   weight: '400',
@@ -40,11 +39,16 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-  const themeClass = await fetchTheme().then((data) => { return data }).catch((error) => { console.log('error: ', error) })
-  console.log('themeClass: ', themeClass)
+  let res = await fetch('https://67422470e4647499008fe63d.mockapi.io/api/config/Theme')
+  let data = await res.json()
+
+  let themeClass = "dark"
+  if(data[0].theme) {
+    themeClass = data[0].theme
+  }
 
   return (
-    <html lang="en" className={`${themeClass ? themeClass : "dark"}`}>
+    <html lang="en" className={themeClass}>
       <body className={`${fontOptions.className} antialiased bg-background`}>
         {children}
       </body>

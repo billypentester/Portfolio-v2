@@ -1,5 +1,6 @@
 import TransSection from '@/layouts/TransSection'
 import Image from 'next/image'
+import React from 'react'
 
 const structuredData = (data: any) => {
     const jsonLd = {
@@ -28,13 +29,13 @@ const Work = ({ work }: any) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-10">
                 {
                     work.map((work: any, index: number) => (
-                        <>
+                        <React.Fragment key={index}>
                             <script
                                 type="application/ld+json"
                                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(work)) }}
                             />
                             <WorkCard key={index} title={work.title} image={work.image} />
-                        </>
+                        </React.Fragment>
                     ))
                 }
             </div>
