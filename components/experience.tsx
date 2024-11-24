@@ -6,8 +6,9 @@ const structuredData = (data: any) => {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "legalName": data.company,
-        "location": data.location,
+        "url": data.url,
+        "logo": data.logo,
+        "name": data.company,
     }
     return jsonLd
 }
@@ -27,18 +28,19 @@ const Experience = ({ experience }: any) => {
 
     return (
         <ColorSection id='experience' title='My Experience'>
-
             <div className="grid grid-cols-1 gap-2 my-10">
                 {
                     experience.map((item: any, index: number) => (
                         <React.Fragment key={item.id}>
-                             <script
+                            <script
                                 type="application/ld+json"
                                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(item)) }}
                             />
                             <div className="flex flex-1 flex-col sm:flex-row justify-between my-1">
                                 <div className="me-5 mb-5 sm:mb-0">
-                                    <Image src={item.logo} alt={item.title} className="w-16 rounded-full" width={64} height={64} loading="lazy" />
+                                    <div className='p-1 bg-text rounded-full w-16 shadow-md'>
+                                        <Image src={item.logo} alt={item.title} className="rounded-full" loading="lazy" />
+                                    </div>
                                 </div>
                                 <div className="w-full">
                                     <div className="flex justify-between mb-2">

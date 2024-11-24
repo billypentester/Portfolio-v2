@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { data } from '@/data/config'
+import { API_URL } from "@/config";
 
 export const dynamic = 'force-dynamic'
 
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-  let res = await fetch('https://67422470e4647499008fe63d.mockapi.io/api/config/Theme')
+  let res = await fetch(API_URL)
   let data = await res.json()
 
   let themeClass = "dark"

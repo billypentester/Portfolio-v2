@@ -145,86 +145,15 @@ const data = {
     expertise: [
         {
             title: 'Frontend',
-            skills: [
-                {
-                    name: 'react',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'vue',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'tailwind',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'redux',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'typescript',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'nextjs',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'sass',
-                    viewBox: '0 -32 256 256'
-                }
-            ]
+            skills: ['react', 'vue', 'tailwind', 'redux', 'typescript', 'nextjs', 'sass']
         },
         {
             title: 'Backend',
-            skills: [
-                {
-                    name: 'nodejs',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'expressjs',
-                    viewBox: '0 0 24 24'
-                },
-                {
-                    name: 'firebase',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'kafka',
-                    viewBox: '-78.5 0 413 413'
-                },
-                {
-                    name: 'jest',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'graphql',
-                    viewBox: '0 0 32 32'
-                }
-            ]
+            skills: ['nodejs', 'expressjs', 'firebase', 'kafka', 'jest', 'graphql']
         },
         {
             title: 'Database',
-            skills: [
-                {
-                    name: 'mysql',
-                    viewBox: '0 0 24 24'
-                },
-                {
-                    name: 'postgresql',
-                    viewBox: '-4 0 264 264'
-                },
-                {
-                    name: 'mongodb',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'redis',
-                    viewBox: '0 -18 256 256'
-                }
-            ]
+            skills: ['mysql', 'postgresql', 'mongodb', 'redis']
         }
     ],
     work: [
@@ -270,7 +199,8 @@ const data = {
             startTime: "2023-09-01",
             endTime: '2024-11-17',
             currentlyWorking: true,
-            logo: Simplex
+            logo: Simplex,
+            url: "https://simplexts.net/"
         },
         {
             id: 'e2',
@@ -280,7 +210,8 @@ const data = {
             startTime: 'Sep 2022',
             endTime: 'Sep 2023',
             currentlyWorking: false,
-            logo: Fiverr
+            logo: Fiverr,
+            url: "https://fiverr.com/"
         }
     ],
     publications: [

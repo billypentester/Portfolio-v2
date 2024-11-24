@@ -126,6 +126,12 @@ html {
   background-color: var(--background);
 }
 
+.mob-nav-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
 .custom-container {
   margin-left: auto;
   margin-right: auto;
@@ -170,7 +176,7 @@ html {
 
 .nav-list {
   background-color: var(--surface);
-  border-radius: 9999px;
+  border-radius: 1rem;
   border: 1px solid var(--surface);
 }
 
@@ -347,6 +353,9 @@ input, textarea {
 @media screen and (min-width: 1280px) {
   .custom-container {
     width: 95%;
+  }
+  .nav-list {
+    border-radius: var(--rounded-full);
   }
 }
 

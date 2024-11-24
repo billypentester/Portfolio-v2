@@ -1,5 +1,5 @@
 'use client'
-import Icons from '@/utils/Icon'
+import Icon from '@/helpers/IconBuilder'
 import ColorSection from "../layouts/ColorSection"
 
 const Contact = ({ urls }: any) => {
@@ -34,7 +34,7 @@ const Contact = ({ urls }: any) => {
                   urls.map((url: any) => (
                       <button name={capitalized(url.name)} key={url.name} className='tooltip tooltip-bottom bg-background hover:bg-secondary text-secondary hover:text-neutral p-3 rounded-full shadow-md shadow-secondary transition duration-500 ease-in-out'>
                           <a href={url.url} target="_blank">
-                              <Icons type={url.name} paint="h-6 w-6"/>
+                              <Icon type={url.name} paint="h-6 w-6"/>
                           </a>
                           <div className="tooltip-content">
                             {capitalized(url.name)}
@@ -53,8 +53,7 @@ const Contact = ({ urls }: any) => {
               </div>
               <textarea id="message" name="Message" className="textarea w-full  shadow-lg resize-none" placeholder="Message*" rows={5}></textarea>
               <button type="submit" className="w-full lg:w-max btn btn-inverse ms-auto">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-send mr-2">
-                    <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+                  <Icon type="contact" paint="h-4 w-4 mr-2" />
                   <span>Let's Connect</span>
               </button>
             </div>

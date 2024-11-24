@@ -1,5 +1,6 @@
 'use client'
 import {  useEffect, useState } from "react"
+import IconBuilder from "@/helpers/IconBuilder";
 
 export default function Navbar({ identity_keyword }: any) {
 
@@ -16,6 +17,16 @@ export default function Navbar({ identity_keyword }: any) {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    // block scroll when nav is open
+
+    useEffect(() => {
+        if(navOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [navOpen]);
 
     const handleScroll = (tab: string) => {
         setActiveTab(tab);
@@ -50,11 +61,7 @@ export default function Navbar({ identity_keyword }: any) {
                 <div className="p-5 custom-container">
                     <div className="flex items-center justify-between xl:gap-5">
                         <button onClick={()=>setNavOpen(value => !value)} className="text-xl font-bold text-secondary block xl:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu">
-                                <line x1="4" x2="20" y1="12" y2="12"/>
-                                <line x1="4" x2="20" y1="6" y2="6"/>
-                                <line x1="4" x2="20" y1="18" y2="18"/>
-                            </svg>
+                            <IconBuilder type="bars" paint="h-5 w-5" />
                         </button>
                         <div className="mx-2 xl:m-0">
                             <button onClick={()=>scrollToTop()} className="text-xl font-bold text-secondary">{identity_keyword}</button>
@@ -87,12 +94,7 @@ export default function Navbar({ identity_keyword }: any) {
                         <div className="flex-1 xl:flex-none">
                             <div className="flex justify-end">
                                 <a className="btn" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-user mr-2">
-                                        <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
-                                        <path d="M15 18a3 3 0 1 0-6 0"/>
-                                        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/>
-                                        <circle cx="12" cy="13" r="2"/>
-                                    </svg>
+                                    <IconBuilder type="file" paint="h-4 w-4 mr-2" />
                                     <span>Resume</span>
                                 </a>
                             </div>
@@ -101,15 +103,14 @@ export default function Navbar({ identity_keyword }: any) {
                 </div>
             </nav>
 
+            {/* Mobile Nav */}
+
             <div className={`fixed top-0 left-0 z-50 w-full h-full backdrop-blur-2xl ${navOpen ? 'block' : 'hidden'}`} style={{ height: '100vh' }}>
-                <div className="px-5 py-8">
+                <div className="px-5 py-8 mob-nav-container">
                     <div className="flex justify-between mb-5">
                         <button onClick={()=>scrollToTop()} className="text-xl font-bold text-secondary">{identity_keyword}</button>
                         <button onClick={()=>setNavOpen(value => !value)} className="text-xl font-bold text-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x">
-                                <line x1="18" x2="6" y1="6" y2="18"/>
-                                <line x1="6" x2="18" y1="6" y2="18"/>
-                            </svg>
+                            <IconBuilder type="close" paint="h-5 w-5" />
                         </button>
                     </div>
                     <div className="flex-1 bg-surface nav-list shadow-sm">

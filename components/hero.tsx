@@ -1,11 +1,23 @@
 import React from 'react'
-import Icons from '@/utils/Icon'
 import Image from 'next/image'
+
+import Icon from '@/helpers/IconBuilder'
 
 interface HeroLinksInterface {
     heroLinks: any,
     profilePic: string,
     first_name: string
+}
+
+const structuredData = () => {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareEngineer",
+        "name": "billypentester",
+        "url": "https://billypentester.vercel.app",
+        "telephone": "923324187624",
+    }
+    return jsonLd
 }
 
 export default function Hero({ heroLinks, profilePic, first_name }: HeroLinksInterface) {
@@ -16,6 +28,10 @@ export default function Hero({ heroLinks, profilePic, first_name }: HeroLinksInt
 
     return (
         <header id="hey" className="my-20 mx-10">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData()) }}
+            />
             <div className="flex items-center justify-between">
                 <div className='me-0 lg:me-2'>
                     <h1 className='text-xl text-primary font-medium'> Hi, I'm <span className='text-secondary font-semibold'>{first_name}</span> </h1>
@@ -27,7 +43,7 @@ export default function Hero({ heroLinks, profilePic, first_name }: HeroLinksInt
                                 heroLinks.map((url: any) => (
                                     <button title={capitalized(url.name)} name={capitalized(url.name)} key={url.name} className='tooltip tooltip-bottom tooltip-secondary bg-primary text-baseline p-3 rounded-full shadow-2xl transition duration-500 ease-in-out'>
                                         <a href={url.url} target="_blank">
-                                            <Icons type={url.name} paint="h-6 w-6" />
+                                            <Icon type={url.name} paint='h-6 w-6' />
                                         </a>
                                         <div className="tooltip-content">
                                             {capitalized(url.name)}

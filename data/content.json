@@ -196,38 +196,38 @@
             ]
         }
     ],
-    work: [
+    "work": [
         {
-            title: 'TutorHub',
-            image: TutorHub,
+            "title": "TutorHub",
+            "image": "TutorHub"
         },
         {
-            title: 'Decenteralized Exchange',
-            image: DEX,
+            "title": "Decenteralized Exchange",
+            "image": "DEX"
         },
         {
-            title: 'Car Part Ecommerce',
-            image: Car,
+            "title": "Car Part Ecommerce",
+            "image": "Car"
         },
         {
-            title: 'Bus Link',
-            image: Bus,
+            "title": "Bus Link",
+            "image": "Bus"
         },
         {
-            title: 'Covid Tracker',
-            image: Covid,
+            "title": "Covid Tracker",
+            "image": "Covid"
         },
         {
-            title: 'Weather App',
-            image: Weather,
+            "title": "Weather App",
+            "image": "Weather"
         },
         {
-            title: 'Wallet Authenticator',
-            image: Wallet,
+            "title": "Wallet Authenticator",
+            "image": "Wallet"
         },
         {
-            title: 'Personality Prediction',
-            image: Personality,
+            "title": "Personality Prediction",
+            "image": "Personality"
         }
     ],
     "experience" : [
