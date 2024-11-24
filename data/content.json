@@ -8,7 +8,7 @@
         "keywords": "Full Stack Web Developer, Web Application Developer, Frontend Development, Backend Development, JavaScript Developer, ReactJS, Node.js, HTML5, CSS3, Responsive Web Design, RESTful APIs, Database Management, UI/UX Design, Cross-Browser Compatibility, Performance Optimization, Web Security, Git Version Control, Agile Development, Mobile-First Development, Server-side scripting, MySQL, MongoDB, Code Quality, Software Architecture, Cloud Computing, DevOps, E-commerce Development, Custom Web Solutions",
         "robots": "index, follow",
         "site_name": "Bilal Ahmad",
-        "url": "https://work.billypentester.vercel.app"
+        "url": "https://billypentester.vercel.app"
     },
     "profile_pic": "/images/profile.webp",
     "socialLinks": [
@@ -113,87 +113,16 @@
     ],
     "expertise": [
         {
-            title: 'Frontend',
-            skills: [
-                {
-                    name: 'react',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'vue',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'tailwind',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'redux',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'typescript',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'nextjs',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'sass',
-                    viewBox: '0 -32 256 256'
-                }
-            ]
+            "title": "Frontend",
+            "skills": ["react", "vue", "nextjs", "typescript", "redux", "tailwind", "sass"]
         },
         {
-            title: 'Backend',
-            skills: [
-                {
-                    name: 'nodejs',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'expressjs',
-                    viewBox: '0 0 24 24'
-                },
-                {
-                    name: 'firebase',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'kafka',
-                    viewBox: '-78.5 0 413 413'
-                },
-                {
-                    name: 'jest',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'graphql',
-                    viewBox: '0 0 32 32'
-                }
-            ]
+            "title": "Backend",
+            "skills": ["nodejs", "nestjs", "firebase", "kafka", "jest", "graphql"]
         },
         {
-            title: 'Database',
-            skills: [
-                {
-                    name: 'mysql',
-                    viewBox: '0 0 24 24'
-                },
-                {
-                    name: 'postgresql',
-                    viewBox: '-4 0 264 264'
-                },
-                {
-                    name: 'mongodb',
-                    viewBox: '0 0 32 32'
-                },
-                {
-                    name: 'redis',
-                    viewBox: '0 -18 256 256'
-                }
-            ]
+            "title": "Database",
+            "skills": ["mysql", "postgresql", "mongodb", "redis"]
         }
     ],
     "work": [

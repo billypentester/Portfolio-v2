@@ -1,10 +1,11 @@
+import { CLIENT_HEADING } from '@/data/constants'
 import TransSection from '../layouts/TransSection'
 import Image from 'next/image'
 
 const Education = ({ clients }: any) => {
 
   return (
-    <TransSection id="clients" title={'Who I\'ve Worked With'}>
+    <TransSection id="clients" title={CLIENT_HEADING}>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10 place-items-center">
         {

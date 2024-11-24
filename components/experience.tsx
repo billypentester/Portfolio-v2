@@ -1,6 +1,7 @@
 import React from 'react'
 import ColorSection from '../layouts/ColorSection'
 import Image from 'next/image'
+import { EXPERIENCE_HEADING } from '@/data/constants'
 
 const structuredData = (data: any) => {
     const jsonLd = {
@@ -27,7 +28,7 @@ const yearDifference = (start: string, end: string) : number => {
 const Experience = ({ experience }: any) => {
 
     return (
-        <ColorSection id='experience' title='My Experience'>
+        <ColorSection id='experience' title={EXPERIENCE_HEADING}>
             <div className="grid grid-cols-1 gap-2 my-10">
                 {
                     experience.map((item: any, index: number) => (

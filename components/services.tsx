@@ -1,5 +1,6 @@
 import ColorSection from '@/layouts/ColorSection'
 import Icon from '@/helpers/IconBuilder'
+import { SERVICE_HEADING } from '@/data/constants'
 
 interface ServicesInterface {
     services: any
@@ -8,7 +9,7 @@ interface ServicesInterface {
 export default function Services({ services }: ServicesInterface) {
 
     return (
-        <ColorSection id="services" title="Services I Offer">
+        <ColorSection id="services" title={SERVICE_HEADING}>
             <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-10 my-10">
                 {
                     services.map((service: any, index: number) => (

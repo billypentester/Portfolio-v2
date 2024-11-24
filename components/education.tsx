@@ -1,3 +1,4 @@
+import { EDUCATION_HEADING } from '@/data/constants';
 import TransSection from '../layouts/TransSection'
 import Image from 'next/image'
 
@@ -16,7 +17,7 @@ const WorkCard = ({title, image}: {
 const Education = ({ edu, cert }: any) => {
 
   return (
-    <TransSection id="education" title={'My Education'}>
+    <TransSection id="education" title={EDUCATION_HEADING}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10">
         {
           edu.map((item: any) => {

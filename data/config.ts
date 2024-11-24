@@ -39,7 +39,7 @@ const data = {
         keywords: "Full Stack Web Developer, Web Application Developer, Frontend Development, Backend Development, JavaScript Developer, ReactJS, Node.js, HTML5, CSS3, Responsive Web Design, RESTful APIs, Database Management, UI/UX Design, Cross-Browser Compatibility, Performance Optimization, Web Security, Git Version Control, Agile Development, Mobile-First Development, Server-side scripting, MySQL, MongoDB, Code Quality, Software Architecture, Cloud Computing, DevOps, E-commerce Development, Custom Web Solutions",
         robots: "index, follow",
         site_name: 'Bilal Ahmad',
-        url: 'https://work.billypentester.vercel.app'
+        url: 'https://billypentester.vercel.app'
     },
     profile_pic: Profile,
     socialLinks: [
@@ -63,18 +63,18 @@ const data = {
     services: [
         {
             title: 'Full Stack Development',
-            description: 'I design and build beautiful websites using ReactJS, NextJS, TailwindCSS, and other modern technologies.',
-            icon: 'web'
+            description: 'I can develop full stack web apps, designing dynamic web applications, building robust backend architectures, handling integrations and creating efficient database systems.',
+            icon: 'fullstack'
         },
         {
-            title: 'Database Development',
-            description: 'I develop and maintain databases using MongoDB, MySQL, and other modern technologies.',
-            icon: 'database'
+            title: 'Security Auditing',
+            description: 'I can perform comprehensive penetration testing, covering everything from reconnaissance and vulnerability assessment to exploitation, detailed reporting, and remediation.',
+            icon: 'security'
         },
         {
-            title: 'Blockchain Development',
-            description: 'I develop and maintain blockchain applications using Ethereum, Solidity, and other modern technologies.',
-            icon: 'blockchain'
+            title: 'Technical SEO',
+            description: 'I provide Technical SEO solutions, optimizing web performance, managing crawling and indexing, adding structured data, designing SEO-friendly site architecture, and integrating GA.',
+            icon: 'seo'
         }
     ],
     edu: [
@@ -145,11 +145,11 @@ const data = {
     expertise: [
         {
             title: 'Frontend',
-            skills: ['react', 'vue', 'tailwind', 'redux', 'typescript', 'nextjs', 'sass']
+            skills: ['react', 'vue', 'nextjs', 'typescript', 'redux', 'tailwind', 'sass']
         },
         {
             title: 'Backend',
-            skills: ['nodejs', 'expressjs', 'firebase', 'kafka', 'jest', 'graphql']
+            skills: ['nodejs', 'nestjs', 'firebase', 'kafka', 'jest', 'graphql']
         },
         {
             title: 'Database',

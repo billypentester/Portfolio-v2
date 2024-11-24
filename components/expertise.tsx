@@ -1,3 +1,4 @@
+import { EXPERTISE_HEADING } from "@/data/constants"
 import ColorSection from "../layouts/ColorSection"
 import Icons from "@/data/SkillIcon"
 import React from "react"
@@ -5,7 +6,7 @@ import React from "react"
 const Services = ({ expertise }: any) => {
 
     return (
-        <ColorSection id="expertise" title="Expertise I have">
+        <ColorSection id="expertise" title={EXPERTISE_HEADING}>
             <div className="grid grid-cols-1 gap-2 my-10">
                 {
                     expertise.map((item: any, index: number) => (

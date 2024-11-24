@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 
 import Icon from '@/helpers/IconBuilder'
+import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/data/constants'
 
 interface HeroLinksInterface {
     heroLinks: any,
@@ -11,11 +12,20 @@ interface HeroLinksInterface {
 
 const structuredData = () => {
     const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareEngineer",
-        "name": "billypentester",
-        "url": "https://billypentester.vercel.app",
+        "@context": "https://schema.org/",
+        "@type": "ProfessionalService",
+        "name": "Software Services",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "393 H1 Johar Town",
+          "addressLocality": "Lahore",
+          "addressRegion": "LHR",
+          "postalCode": "55150",
+          "addressCountry": "PK"
+        },
         "telephone": "923324187624",
+        "priceRange": "$$$",
+        "url": "https://billypentester.vercel.app"
     }
     return jsonLd
 }
@@ -34,10 +44,10 @@ export default function Hero({ heroLinks, profilePic, first_name }: HeroLinksInt
             />
             <div className="flex items-center justify-between">
                 <div className='me-0 lg:me-2'>
-                    <h1 className='text-xl text-primary font-medium'> Hi, I'm <span className='text-secondary font-semibold'>{first_name}</span> </h1>
-                    <h2 className='text-5xl tracking-tight text-primary leading-tight font-semibold my-3'> I design &#38; build simple yet <br /> beautiful websites </h2>
+                    <h1 className='text-xl text-primary font-medium'> {HERO_STARTER} <span className='text-secondary font-semibold'>{first_name}</span> </h1>
+                    <h2 className='text-5xl tracking-tight text-primary leading-tight font-semibold my-3'> {HERO_HEADING_START} <br /> {HERO_HEADING_END} </h2>
                     <div className="flex items-center flex-col sm:flex-row">
-                        <p className='me-5 text-lg text-primary font-medium mb-4 sm:mb-0'> Let's have a chat </p>
+                        <p className='me-5 text-lg text-primary font-medium mb-4 sm:mb-0'> {HERO_CHAT_START} </p>
                         <div className="flex items-center space-x-5">
                             {
                                 heroLinks.map((url: any) => (
