@@ -8,7 +8,7 @@ async function sendContactData(formData: FormData) : Promise<{ status: boolean, 
     message: formData.get('message'),
   }
 
-  const url = "http://localhost:3000/api/contact"
+  const url = `https://billypentester.vercel.app/api/contact`
 
   const response = await fetch(url, {
     method: 'POST',
