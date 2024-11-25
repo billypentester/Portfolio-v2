@@ -9,6 +9,11 @@ import Dialog from './dialog'
 const Contact = ({ urls }: any) => {
 
   const [show, setShow] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [content, setContent] = useState<any>({
+    title: '',
+    description: ''
+  })
 
   const capitalized = (str: any) => {
     return str.charAt(0).toUpperCase() + str.slice(1)
@@ -20,19 +25,32 @@ const Contact = ({ urls }: any) => {
 
   const getContactData = async(e: any) => {
     e.preventDefault()
+    setLoading(true)
     const form = e.target
     const data = new FormData(form)
 
-    const { status } = await sendContactData(data)
+    const { status, message } = await sendContactData(data)
 
     if(status) {
+      setLoading(false)
       form.reset()
+      setContent({
+        title: 'Contact Us',
+        description: message
+      })
       setTimeout(() => {
         handleShow(true)
       }, 100)
     }
     else {
-      console.log('error tost')
+      setLoading(false)
+      setContent({
+        title: 'Contact Us',
+        description: message
+      })
+      setTimeout(() => {
+        handleShow(true)
+      }, 100)
     }
   }
 
@@ -66,12 +84,14 @@ const Contact = ({ urls }: any) => {
             <form onSubmit={getContactData}>
               <div className="flex flex-col space-y-5">
                 <div className="flex sm:space-x-5 space-y-5 sm:space-y-0 flex-col sm:flex-row">
-                  <input id="name" type="text" name="fullname" placeholder="Full Name *" className="w-full shadow-lg" />
+                  <input id="name" type="text" name="name" placeholder="Full Name *" className="w-full shadow-lg" />
                   <input id="email" type="email" name="email" placeholder="Email *" className="w-full shadow-lg" />
                 </div>
-                <textarea id="message" name="message" className="textarea w-full  shadow-lg resize-none" placeholder="Type your message here *" rows={5}></textarea>
+                <textarea id="message" name="message" className="textarea w-full shadow-lg resize-none" placeholder="Type your message here *" rows={5}></textarea>
                 <button type="submit" className="w-full lg:w-max btn btn-inverse ms-auto">
-                    <Icon type="contact" paint="h-4 w-4 mr-2" />
+                    {
+                      loading ? <Icon type="spinner" paint="animate-spin h-4 w-4 mr-2" /> : <Icon type="contact" paint="h-4 w-4 mr-2" />
+                    }
                     <span>Let's Connect</span>
                 </button>
               </div>
@@ -79,7 +99,7 @@ const Contact = ({ urls }: any) => {
           </div>
         </div>
       </ColorSection>  
-      <Dialog show={show} handleShow={handleShow} />
+      <Dialog show={show} handleShow={handleShow} title={content.title} description={content.description} />
 
     </>
   )
