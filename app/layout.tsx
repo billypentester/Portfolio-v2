@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import "./globals.css";
 import { data } from '@/data/config'
 import { API_URL } from "@/config";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export const dynamic = 'force-dynamic'
 
@@ -35,7 +37,7 @@ export const metadata: Metadata = {
     ]
   },
   icons: [
-    { rel: "icon", url: "/images/favicon.png" }, 
+    { rel: "icon", url: "/images/favicon.svg" }, 
     { rel: "apple-touch-icon", url: "/images/apple-touch-icon.png" }
   ]
 };
@@ -43,17 +45,21 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
   let res = await fetch(API_URL)
-  let data = await res.json()
+  const resData = await res.json()
 
   let themeClass = "dark"
-  if(data[0].theme) {
-    themeClass = data[0].theme
+  if(resData[0].theme) {
+    themeClass = resData[0].theme
   }
+
+  const { identity_keyword } = data
 
   return (
     <html lang="en" className={themeClass}>
       <body className={`${fontOptions.className} antialiased bg-background`}>
+        <Navbar identity_keyword={identity_keyword} />
         {children}
+        <Footer identity_keyword={identity_keyword} />
       </body>
     </html>
   );

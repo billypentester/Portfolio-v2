@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import Icon from '@/helpers/IconBuilder'
 import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/data/constants'
+import Link from 'next/link'
 
 interface HeroLinksInterface {
     heroLinks: any,
@@ -30,6 +31,27 @@ const structuredData = () => {
     return jsonLd
 }
 
+const structuredData2 = () => {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Bilal Ahmad",
+            "jobTitle": "Software Engineer",
+            "url": "https://billypentester.vercel.app",
+            "description": "I am a software engineer with a passion for web development and cybersecurity. I have a strong background in computer science and have worked on various projects in the past. I am always looking for new opportunities to learn and grow as a developer.",
+            "image": "https://billypentester.vercel.app/images/profile.webp",
+            "sameAs": [
+                "https://linkedin.com/in/billypentester",
+                "https://github.com/billypentester",
+                "https://twitter.com/billypentester"
+            ]
+        }
+    }
+    return jsonLd
+}
+
 export default function Hero({ heroLinks, profilePic, first_name }: HeroLinksInterface) {
 
     const capitalized = (str: any) => {
@@ -42,6 +64,10 @@ export default function Hero({ heroLinks, profilePic, first_name }: HeroLinksInt
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData()) }}
             />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData2()) }}
+            />
             <div className="flex items-center justify-between">
                 <div className='me-0 lg:me-2'>
                     <h1 className='text-xl text-primary font-medium'> {HERO_STARTER} <span className='text-secondary font-semibold'>{first_name}</span> </h1>
@@ -51,14 +77,14 @@ export default function Hero({ heroLinks, profilePic, first_name }: HeroLinksInt
                         <div className="flex items-center space-x-5">
                             {
                                 heroLinks.map((url: any) => (
-                                    <button title={capitalized(url.name)} name={capitalized(url.name)} key={url.name} className='tooltip tooltip-bottom tooltip-secondary bg-primary text-baseline p-3 rounded-full shadow-2xl transition duration-500 ease-in-out'>
-                                        <a href={url.url} target="_blank">
+                                    <Link href={url.url} key={url.name} target="_blank">
+                                        <button title={capitalized(url.name)} name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-primary text-baseline p-3 rounded-full shadow-2xl transition duration-500 ease-in-out'>
                                             <Icon type={url.name} paint='h-6 w-6' />
-                                        </a>
-                                        <div className="tooltip-content">
-                                            {capitalized(url.name)}
-                                        </div>
-                                    </button>
+                                            <div className="tooltip-content">
+                                                {capitalized(url.name)}
+                                            </div>
+                                        </button>
+                                    </Link>
                                 ))
                             }
                         </div>

@@ -5,6 +5,7 @@ import ColorSection from "../layouts/ColorSection"
 import { CONTACT_DESC, CONTACT_FLAVOUR, CONTACT_HEADING } from '@/data/constants'
 import { sendContactData } from '@/helpers/action'
 import Dialog from './dialog'
+import Link from 'next/link'
 
 const Contact = ({ urls }: any) => {
 
@@ -67,16 +68,16 @@ const Contact = ({ urls }: any) => {
               </p>
               <div className="flex items-center space-x-5 my-8">
                 {
-                    urls.map((url: any) => (
-                        <button name={capitalized(url.name)} key={url.name} className='tooltip tooltip-bottom bg-background hover:bg-secondary text-secondary hover:text-neutral p-3 rounded-full shadow-md shadow-secondary transition duration-500 ease-in-out'>
-                            <a href={url.url} target="_blank">
-                                <Icon type={url.name} paint="h-6 w-6"/>
-                            </a>
-                            <div className="tooltip-content">
-                              {capitalized(url.name)}
-                            </div>
+                  urls.map((url: any) => (
+                      <Link href={url.url} key={url.name} target="_blank">
+                        <button name={capitalized(url.name)} className='tooltip tooltip-bottom bg-background hover:bg-secondary text-secondary hover:text-neutral p-3 rounded-full shadow-md shadow-secondary transition duration-500 ease-in-out'>
+                          <Icon type={url.name} paint="h-6 w-6"/>
+                          <div className="tooltip-content">
+                            {capitalized(url.name)}
+                          </div>
                         </button>
-                    ))
+                      </Link>
+                  ))
                 }
               </div>
           </div>

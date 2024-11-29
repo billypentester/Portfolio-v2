@@ -101,27 +101,32 @@ const data = {
         {
             id: 1,
             name: 'KFC',
-            image: KFC
+            image: KFC,
+            url: "https://www.kfcpakistan.com/"
         },
         {
             id: 2,
             name: 'Dominos',
             image: Dominos,
+            url: "https://www.dominos.com.pk/"
         },
         {
             id: 3,
             name: 'PizzaHut',
-            image: PizzaHut
+            image: PizzaHut,
+            url: "https://www.pizzahut.co.za/"
         },
         {
             id: 4,
             name: 'Crust Culture',
-            image: CrustCulture
+            image: CrustCulture,
+            url: "https://crustculture.com.pk/"
         },
         {
             id: 5,
             name: 'Halla Shawarma',
-            image: halla
+            image: halla,
+            url: "https://www.hallashawarmame.com/"
         }
     ],
     cert: [

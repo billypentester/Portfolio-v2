@@ -1,6 +1,7 @@
 import { CLIENT_HEADING } from '@/data/constants'
 import TransSection from '../layouts/TransSection'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Education = ({ clients }: any) => {
 
@@ -11,9 +12,11 @@ const Education = ({ clients }: any) => {
         {
           clients.map((client: any) => {
             return(
-              <div key={client.id} className="p-10 client-logo">
+              <Link key={client.id} href={client.url} target='_blank'>
+                <div key={client.id} className="p-10 client-logo">
                   <Image src={client.image} alt={client.name} height={'130'} className='object-cover' loading="lazy" />
-              </div>
+                </div>
+              </Link>
             )
           })
         }
