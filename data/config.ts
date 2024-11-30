@@ -34,9 +34,9 @@ const data = {
     last_name: 'Ahmad',
     identity_keyword: 'billypentester',
     seo: {
-        title: 'Bilal Ahmad: Software Engineer | Full Stack Web Developer | Security Expert',
-        description: 'Hi, I\'m a skilled freelancer with 2 years of experience, offering services in full-stack web, database, and blockchain development. Let\'s bring your vision to life! 🚀',
-        keywords: "Full Stack Web Developer, Web Application Developer, Frontend Development, Backend Development, JavaScript Developer, ReactJS, Node.js, HTML5, CSS3, Responsive Web Design, RESTful APIs, Database Management, UI/UX Design, Cross-Browser Compatibility, Performance Optimization, Web Security, Git Version Control, Agile Development, Mobile-First Development, Server-side scripting, MySQL, MongoDB, Code Quality, Software Architecture, Cloud Computing, DevOps, E-commerce Development, Custom Web Solutions",
+        title: 'Bilal Ahmad | Software Engineer, Full Stack Developer, and Security Expert',
+        description: 'Explore Bilal Ahmad\'s portfolio showcasing expertise in full-stack web development, penetration testing, and technical SEO. Offering services in secure application design, robust backend architectures, and web performance optimization.',
+        keywords: "Full-stack developer, penetration testing, technical SEO, web development, software engineer, security auditing, React, Next.js, Node.js, web app design, performance optimization, database systems, cybersecurity solutions, Lahore developers",
         robots: "index, follow",
         site_name: 'Bilal Ahmad',
         url: 'https://billypentester.vercel.app'
