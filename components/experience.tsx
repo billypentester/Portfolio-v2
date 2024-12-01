@@ -39,7 +39,7 @@ const Experience = ({ experience }: any) => {
                             />
                             <div className="flex flex-1 flex-col sm:flex-row justify-between my-1">
                                 <div className="me-5 mb-5 sm:mb-0">
-                                    <div className='p-1 bg-text rounded-full w-16 shadow-md'>
+                                    <div className='p-1 bg-white rounded-full w-16 shadow-md'>
                                         <Image src={item.logo} alt={item.title} className="rounded-full" loading="lazy" />
                                     </div>
                                 </div>

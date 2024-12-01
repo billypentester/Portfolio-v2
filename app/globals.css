@@ -9,8 +9,7 @@
   --surface:  #E1E8ED ;
   --text: #2D3748;
   --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-  --rounded-full: 9999px;
+  --hover: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
@@ -19,6 +18,7 @@
   --surface: #2D3748;
   --text: #E2E8F0;
   --shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+  --hover: rgba(255, 255, 255, 0.1);
 }
 
 .green-light {
@@ -205,14 +205,14 @@ html {
 
 .nav-link:hover {
   color: var(--text);
-  background-color: rgb(255, 255, 255, 0.1);
-  border-radius: var(--rounded-full);
+  background-color: var(--hover);
+  border-radius: 9999px;
 }
 
 .nav-active {
   color: var(--text) !important;
   background-color: var(--primary) !important;
-  border-radius: var(--rounded-full);
+  border-radius: 9999px;
 }
 
 .btn {
@@ -222,7 +222,7 @@ html {
   text-decoration: none;
   color: var(--background);
   cursor: pointer;
-  border-radius: var(--rounded-full);
+  border-radius: 9999px;
   padding: 0.6rem 1.5rem;
   transition: 0.3s;
   background-color: var(--primary);
@@ -383,7 +383,7 @@ input, textarea {
     width: 95%;
   }
   .nav-list {
-    border-radius: var(--rounded-full);
+    border-radius: 9999px;
   }
 }
 
