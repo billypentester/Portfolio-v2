@@ -26,7 +26,7 @@ const structuredData = () => {
         },
         "telephone": "923324187624",
         "priceRange": "$$$",
-        "url": "https://billypentester.pk"
+        "url": "https://www.billypentester.pk"
     }
     return jsonLd
 }
@@ -39,9 +39,9 @@ const structuredData2 = () => {
             "@type": "Person",
             "name": "Bilal Ahmad",
             "jobTitle": "Software Engineer",
-            "url": "https://billypentester.pk",
+            "url": "https://www.billypentester.pk",
             "description": "I am a software engineer with a passion for web development and cybersecurity. I have a strong background in computer science and have worked on various projects in the past. I am always looking for new opportunities to learn and grow as a developer.",
-            "image": "https://billypentester.pk/images/profile.webp",
+            "image": "https://www.billypentester.pk/images/profile.webp",
             "sameAs": [
                 "https://linkedin.com/in/billypentester",
                 "https://github.com/billypentester",
