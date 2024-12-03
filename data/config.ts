@@ -45,7 +45,7 @@ const data = {
     socialLinks: [
         {
             name: 'email',
-            url: 'mailto:bilalsheikh2500@gmail.com'
+            url: 'mailto:contact@billypentester.pk'
         },
         {
             name: 'whatsapp',
