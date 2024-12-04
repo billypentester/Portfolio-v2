@@ -55,8 +55,67 @@ export default function Navbar({ identity_keyword }: any) {
         });
     };
 
+    const structuredData = () => {
+        const jsonLd = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement":
+            [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@id": "https://billypentester.pk",
+                        "name": "Home"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item":
+                    {
+                        "@id": "https://billypentester.pk/#services",
+                        "name": "Services"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item":
+                    {
+                        "@id": "https://billypentester.pk/#experience",
+                        "name": "Experience"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "item":
+                    {
+                        "@id": "https://billypentester.pk/#clients",
+                        "name": "Clients"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "item":
+                    {
+                        "@id": "https://billypentester.pk/#contact",
+                        "name": "Contact"
+                    }
+                }
+            ]
+        }
+        return jsonLd
+    }
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData()) }}
+            />
             <nav className={`fixed top-0 left-0 z-40 w-full bg-background ${isScrolled ? 'navbar-shadow' : 'shadow-none'}`}>
                 <div className="p-5 custom-container">
                     <div className="flex items-center justify-between xl:gap-5">

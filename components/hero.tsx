@@ -34,20 +34,17 @@ const structuredData = () => {
 const structuredData2 = () => {
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        "mainEntity": {
-            "@type": "Person",
-            "name": "Bilal Ahmad",
-            "jobTitle": "Software Engineer",
-            "url": "https://billypentester.pk",
-            "description": "I am a software engineer with a passion for web development and cybersecurity. I have a strong background in computer science and have worked on various projects in the past. I am always looking for new opportunities to learn and grow as a developer.",
-            "image": "https://billypentester.pk/images/profile.webp",
-            "sameAs": [
-                "https://linkedin.com/in/billypentester",
-                "https://github.com/billypentester",
-                "https://twitter.com/billypentester"
-            ]
-        }
+        "@type": "Person",
+        "image": "https://billypentester.pk/images/profile.webp",
+        "name": "Bilal Ahmad",
+        "url": "https://billypentester.pk",
+        "jobTitle": "Software Engineer",
+        "description": "I am a software engineer with a passion for web development and cybersecurity. I have a strong background in computer science and have worked on various projects in the past. I am always looking for new opportunities to learn and grow as a developer.",
+        "sameAs": [
+            "https://linkedin.com/in/billypentester",
+            "https://github.com/billypentester",
+            "https://twitter.com/billypentester"
+        ]
     }
     return jsonLd
 }
