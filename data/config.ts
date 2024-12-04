@@ -34,8 +34,8 @@ const data = {
     last_name: 'Ahmad',
     identity_keyword: 'billypentester',
     seo: {
-        title: 'Bilal Ahmad | Software Engineer, Full Stack Developer, and Security Expert',
-        description: 'Explore Bilal Ahmad\'s portfolio showcasing expertise in full-stack web development, penetration testing, and technical SEO. Offering services in secure application design, robust backend architectures, and web performance optimization.',
+        title: 'Bilal Ahmad : Software Engineer | Security Expert',
+        description: 'Get comprehensive services in penetration testing, technical SEO, and full stack development to secure and optimize your online business effectively',
         keywords: "Full-stack developer, penetration testing, technical SEO, web development, software engineer, security auditing, React, Next.js, Node.js, web app design, performance optimization, database systems, cybersecurity solutions, Lahore developers",
         robots: "index, follow",
         site_name: 'Bilal Ahmad',

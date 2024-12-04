@@ -13,7 +13,7 @@ const Services = ({ expertise }: any) => {
                         <React.Fragment key={index} >
                             <div className="flex flex-1 flex-col sm:flex-row justify-between items-center">
                                 <div className="w-full sm:w-1/3 mb-5 sm:mb-0">
-                                    <h1 className='text-xl font-medium my-5 text-baseline'> {item.title} </h1>
+                                    <h3 className='text-xl font-medium my-5 text-baseline'> {item.title} </h3>
                                 </div>
                                 <div className="w-full sm:w-2/3">
                                     <div className='flex flex-wrap flex-1 justify-center sm:justify-end'>

@@ -28,9 +28,9 @@ const Education = ({ edu, cert }: any) => {
                     <Image src={item.image} alt={item.title} className="w-32 h-32" loading="lazy" />
                   </div>
                   <div className="w-full sm:w-2/3">
-                    <h2 className="text-lg sm:text-2xl font-semibold text-primary">{item.university}</h2>
-                    <h3 className="mt-3 text-lg text-primary">{item.title}</h3>
-                    <h4 className="mt-1 text-primary">{item.startDate} - {item.endDate}</h4>
+                    <h3 className="text-lg sm:text-2xl font-semibold text-primary">{item.university}</h3>
+                    <h4 className="mt-3 text-lg text-primary">{item.title}</h4>
+                    <h5 className="mt-1 text-primary">{item.startDate} - {item.endDate}</h5>
                   </div>
                 </div>
               </div>

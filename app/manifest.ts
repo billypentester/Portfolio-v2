@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Developer Portfolio',
     short_name: 'Portfolio',
-    description: 'A developer portfolio template',
+    description: 'Bilal Ahmad Portfolio',
     start_url: '/',
     display: 'standalone',
     background_color: '#fff',
