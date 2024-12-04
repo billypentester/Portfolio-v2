@@ -39,7 +39,10 @@ export const metadata: Metadata = {
   icons: [
     { rel: "icon", url: "/images/favicon.svg" }, 
     { rel: "apple-touch-icon", url: "/images/apple-touch-icon.png" }
-  ]
+  ],
+  alternates: {
+    canonical: data.seo.url
+  }
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

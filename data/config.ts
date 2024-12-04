@@ -39,7 +39,7 @@ const data = {
         keywords: "Full-stack developer, penetration testing, technical SEO, web development, software engineer, security auditing, React, Next.js, Node.js, web app design, performance optimization, database systems, cybersecurity solutions, Lahore developers",
         robots: "index, follow",
         site_name: 'Bilal Ahmad',
-        url: 'https://www.billypentester.pk'
+        url: 'https://billypentester.pk'
     },
     profile_pic: Profile,
     socialLinks: [
