@@ -3,17 +3,6 @@ import ColorSection from '../layouts/ColorSection'
 import Image from 'next/image'
 import { EXPERIENCE_HEADING } from '@/data/constants'
 
-const structuredData = (data: any) => {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "url": data.url,
-        "logo": data.logo,
-        "name": data.company,
-    }
-    return jsonLd
-}
-
 const dateFormatter = (date: string) : string => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' }
     return new Date(date).toLocaleDateString('en-US', options)
@@ -33,11 +22,7 @@ const Experience = ({ experience }: any) => {
                 {
                     experience.map((item: any, index: number) => (
                         <React.Fragment key={item.id}>
-                            <script
-                                type="application/ld+json"
-                                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(item)) }}
-                            />
-                            <div className="flex flex-1 flex-col sm:flex-row justify-between my-1">
+                            <section className="flex flex-1 flex-col sm:flex-row justify-between my-1">
                                 <div className="me-5 mb-5 sm:mb-0">
                                     <div className='p-1 bg-white rounded-full w-16 shadow-md'>
                                         <Image src={item.logo} alt={item.title} className="rounded-full" loading="lazy" />
@@ -52,7 +37,7 @@ const Experience = ({ experience }: any) => {
                                     <h4 className='text-md sm:text-lg text-baseline'> {item.location} </h4>
                                     <h4 className='text-md sm:text-lg font-medium block sm:hidden text-baseline'> {yearDifference(item.startTime, item.currentlyWorking ? Date.now() : item.endTime)} year </h4>
                                 </div>  
-                            </div>
+                            </section>
                             {
                                 index !== experience.length - 1 && <div className="divider"></div>
                             }

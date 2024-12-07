@@ -11,27 +11,7 @@ interface HeroLinksInterface {
     first_name: string
 }
 
-const structuredData = () => {
-    const jsonLd = {
-        "@context": "https://schema.org/",
-        "@type": "ProfessionalService",
-        "name": "Software Services",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "393 H1 Johar Town",
-          "addressLocality": "Lahore",
-          "addressRegion": "LHR",
-          "postalCode": "55150",
-          "addressCountry": "PK"
-        },
-        "telephone": "923324187624",
-        "priceRange": "$$$",
-        "url": "https://billypentester.pk"
-    }
-    return jsonLd
-}
-
-const structuredData2 = () => {
+const structuredData = () => {                
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -60,10 +40,6 @@ export default function Hero({ heroLinks, profilePic, first_name }: HeroLinksInt
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData()) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData2()) }}
             />
             <div className="flex items-center justify-between">
                 <div className='me-0 lg:me-2'>
