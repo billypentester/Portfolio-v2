@@ -11,8 +11,6 @@
   "dependencies": {
     "@next/third-parties": "^15.1.0",
     "@types/nodemailer": "^6.4.17",
-    "lucide": "^0.457.0",
-    "mysql2": "^3.11.4",
     "next": "15.0.3",
     "nodemailer": "^6.9.16",
     "react": "19.0.0-rc-66855b96-20241106",
