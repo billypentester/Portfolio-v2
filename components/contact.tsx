@@ -6,6 +6,7 @@ import { CONTACT_DESC, CONTACT_FLAVOUR, CONTACT_HEADING } from '@/data/constants
 import { sendContactData } from '@/helpers/action'
 import Dialog from './dialog'
 import Link from 'next/link'
+import { sendGTMEvent } from '@next/third-parties/google'
 
 const Contact = ({ urls }: any) => {
 
@@ -24,11 +25,28 @@ const Contact = ({ urls }: any) => {
     setShow(value)
   }
 
+  const contactGTM = ({ name, email, message }: { name: string, email: string, message: string }) => {
+    sendGTMEvent({
+      event: 'contact',
+      value: {
+        name: name,
+        email: email,
+        message: message
+      }
+    })
+  }
+
   const getContactData = async(e: any) => {
     e.preventDefault()
     setLoading(true)
     const form = e.target
     const data = new FormData(form)
+
+    contactGTM({
+      name: data.get('name') as string,
+      email: data.get('email') as string,
+      message: data.get('message') as string
+    })
 
     const { status, message } = await sendContactData(data)
 

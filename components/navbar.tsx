@@ -1,6 +1,7 @@
 'use client'
 import {  useEffect, useState } from "react"
 import IconBuilder from "@/helpers/IconBuilder";
+import { sendGTMEvent } from '@next/third-parties/google'
 
 export default function Navbar({ identity_keyword }: any) {
 
@@ -30,6 +31,7 @@ export default function Navbar({ identity_keyword }: any) {
 
     const handleScroll = (tab: string) => {
         setActiveTab(tab);
+        tabClick(tab);
         if(navOpen) {
             setNavOpen(value => !value);
         }
@@ -54,6 +56,19 @@ export default function Navbar({ identity_keyword }: any) {
             behavior: 'smooth'
         });
     };
+
+    const tabClick = (tab: string) => {
+        sendGTMEvent({
+            event: 'nav_click',
+            value: tab
+        });
+    }
+
+    const resumeClick = () => {
+        sendGTMEvent({
+            event: 'resume_preview'
+        });
+    }
 
     return (
         <>
@@ -93,7 +108,7 @@ export default function Navbar({ identity_keyword }: any) {
                         </div>
                         <div className="flex-1 xl:flex-none">
                             <div className="flex justify-end">
-                                <a className="btn" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                                <a className="btn" href="/resume.pdf" target="_blank" rel="noopener noreferrer" onClick={()=>resumeClick()}>
                                     <IconBuilder type="file" paint="h-4 w-4 mr-2" />
                                     <span>Resume</span>
                                 </a>

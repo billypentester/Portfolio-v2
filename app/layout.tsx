@@ -5,6 +5,7 @@ import { data } from '@/data/config'
 import { API_URL } from "@/config";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { GoogleTagManager } from '@next/third-parties/google'
 
 export const dynamic = 'force-dynamic'
 
@@ -59,6 +60,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return (
     <html lang="en" className={themeClass}>
+      <GoogleTagManager gtmId="GTM-PW2FHLRC" />
       <body className={`${fontOptions.className} antialiased bg-background`}>
         <Navbar identity_keyword={identity_keyword} />
         {children}
