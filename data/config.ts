@@ -28,6 +28,7 @@ import Dominos from '@/assets/images/clients/dominos.png'
 import PizzaHut from '@/assets/images/clients/pizzahut.png'
 import CrustCulture from '@/assets/images/clients/crustculture.png'
 import halla from '@/assets/images/clients/halla.png'
+import Kyochon from '@/assets/images/clients/kyochon.png'
 
 const data = {
     first_name: 'Bilal',
@@ -127,6 +128,12 @@ const data = {
             name: 'Halla Shawarma',
             image: halla,
             url: "https://www.hallashawarmame.com/"
+        },
+        {
+            id: 6,
+            name: 'Kyochon',
+            image: Kyochon,
+            url: "https://www.kyochonme.com/"
         }
     ],
     cert: [

@@ -21,7 +21,7 @@ const Education = ({ clients }: any) => {
         {
           clients.map((client: any) => {
             return(
-              <>
+              <div key={client.id}>
                 <script
                   type="application/ld+json"
                   dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(client)) }}
@@ -31,7 +31,7 @@ const Education = ({ clients }: any) => {
                     <Image src={client.image} alt={client.name} height={'130'} className='object-cover' loading="lazy" />
                   </div>
                 </Link>
-              </>
+              </div>
             )
           })
         }
