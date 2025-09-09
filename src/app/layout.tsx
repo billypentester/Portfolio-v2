@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { data } from '@/src/data/config'
-import { API_URL } from "@/src/config";
+import { APP_THEME } from "@/src/config";
 import Navbar from "@/src/components/navbar";
 import Footer from "@/src/components/footer";
 import Contact from "@/src/components/contact";
@@ -48,18 +48,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-  const res = await fetch(API_URL)
-  const resData = await res.json()
-
-  let themeClass = "dark"
-  if(resData[0].theme) {
-    themeClass = resData[0].theme
-  }
-
   const { identity_keyword } = data
 
   return (
-    <html lang="en" className={themeClass}>
+    <html lang="en" className={APP_THEME}>
       <body className={`${fontOptions.className} antialiased bg-background`}>
         <Navbar identity_keyword={identity_keyword} />
         <div className="page-container">

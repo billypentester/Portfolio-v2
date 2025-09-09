@@ -1,7 +1,5 @@
 'use server'
 
-import { BASE_URL } from "@/src/config"
-
 async function sendContactData(formData: FormData) : Promise<{ status: boolean, message: string }> {
  
   const rawFormData = {
@@ -10,9 +8,9 @@ async function sendContactData(formData: FormData) : Promise<{ status: boolean, 
     message: formData.get('message'),
   }
 
-  const url = `${BASE_URL}/api/contact`
+  const host = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://billypentester.pk'
 
-  const response = await fetch(url, {
+  const response = await fetch(`${host}/api/contact`, {
     method: 'POST',
     body: JSON.stringify(rawFormData),
     headers: {

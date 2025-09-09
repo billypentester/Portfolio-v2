@@ -2,6 +2,8 @@ import cnss from '@/assets/images/certifications/cnss.webp'
 import develop from '@/assets/images/certifications/develop.webp'
 import pentesting from '@/assets/images/certifications/pentesting.webp'
 import remote from '@/assets/images/certifications/remoteWork.webp'
+import GDSC from '@/assets/images/certifications/GDSCCOMSATS.jpg'
+import sqlSoloLearn from '@/assets/images/certifications/sqlSoloLearn.jpg'
 
 import TutorHub from '@/assets/images/projects/tutorhub.webp'
 import DEX from '@/assets/images/projects/dex.webp'
@@ -138,20 +140,28 @@ const data = {
     ],
     cert: [
         {
-          title: 'Certified Network Security Specialist',
-          image: cnss
+            title: 'Certified Network Security Specialist',
+            image: cnss
         },
         {
-          title: 'Develop Applications with GCP',
-          image: develop
+            title: 'Remote Work Certification',
+            image: remote,
         },
         {
-          title: 'Advance Peneration Testing',
-          image: pentesting
+            title: 'Advance Peneration Testing',
+            image: pentesting,
         },
         {
-          title: 'Remote Work Certification',
-          image: remote
+            title: 'Develop Applications with GCP',
+            image: develop,
+        },
+        {
+            title: '',
+            image: GDSC,
+        },
+        {
+            title: '',
+            image: sqlSoloLearn,
         }
     ],
     expertise: [
