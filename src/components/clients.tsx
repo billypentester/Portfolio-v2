@@ -1,8 +1,8 @@
-import { CLIENT_HEADING } from '@/src/data/constants'
+import { CLIENT_HEADING } from '@/src/config/constants'
 import TransSection from '../layouts/TransSection'
 import Image from 'next/image'
 import Link from 'next/link'
-import { data } from '@/src/data/config'
+import { data } from '@/src/config/data'
 
 const Education = () => {
 

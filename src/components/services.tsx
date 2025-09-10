@@ -1,7 +1,7 @@
 import ColorSection from '@/src/layouts/ColorSection'
 import Icon from '@/src/helpers/IconBuilder'
-import { SERVICE_HEADING } from '@/src/data/constants'
-import { data } from '@/src/data/config'
+import { SERVICE_HEADING } from '@/src/config/constants'
+import { data } from '@/src/config/data'
 
 const structuredData = (service: { title: string, description: string }) => {                
     const jsonLd = {

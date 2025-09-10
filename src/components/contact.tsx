@@ -2,11 +2,11 @@
 import { useState } from 'react'
 import Icon from '@/src/helpers/IconBuilder'
 import ColorSection from "../layouts/ColorSection"
-import { CONTACT_DESC, CONTACT_FLAVOUR, CONTACT_HEADING } from '@/src/data/constants'
+import { CONTACT_DESC, CONTACT_FLAVOUR, CONTACT_HEADING } from '@/src/config/constants'
 import { sendContactData } from '@/src/helpers/action'
 import Dialog from './dialog'
 import Link from 'next/link'
-import { data } from '@/src/data/config'
+import { data } from '@/src/config/data'
 
 const Contact = () => {
 

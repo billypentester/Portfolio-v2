@@ -43,6 +43,14 @@ export interface experienceInterface {
     url: string
 }
 
+export interface projectsInterface {
+    title: string;
+    description: string;
+    tags: Array<string>;
+    image: StaticImageData;
+    url: string;
+}
+
 export interface DataInterface {
     first_name: string;
     last_name: string;
@@ -52,6 +60,7 @@ export interface DataInterface {
     services: servicesInterface[];
     profile_pic: StaticImageData;
     experience: experienceInterface[];
+    projects: projectsInterface[];
     expertise: Array<{
         title: string,
         skills: Array<string>

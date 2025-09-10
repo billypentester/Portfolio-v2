@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
-import { emailTemplate } from '@/src/data/template';
+import { emailTemplate } from '@/src/config/template';
 
 const transport = nodemailer.createTransport({
     service: 'gmail',

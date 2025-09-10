@@ -1,8 +1,8 @@
-import { EXPERTISE_HEADING } from "@/src/data/constants"
+import { EXPERTISE_HEADING } from "@/src/config/constants"
 import ColorSection from "../layouts/ColorSection"
-import Icons from "@/src/data/SkillIcon"
+import Icons from "@/src/config/SkillIcon"
 import React from "react"
-import { data } from "@/src/data/config"
+import { data } from "@/src/config/data"
 
 const Services = () => {
 

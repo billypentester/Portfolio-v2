@@ -1,7 +1,7 @@
-import { EDUCATION_HEADING } from '@/src/data/constants';
+import { EDUCATION_HEADING } from '@/src/config/constants';
 import TransSection from '../layouts/TransSection'
 import Image from 'next/image'
-import { data } from '@/src/data/config'
+import { data } from '@/src/config/data'
 
 const WorkCard = ({title, image}: {
   title: string;

@@ -1,8 +1,8 @@
 import React from 'react'
 import ColorSection from '../layouts/ColorSection'
 import Image from 'next/image'
-import { EXPERIENCE_HEADING } from '@/src/data/constants'
-import { data } from '@/src/data/config'
+import { EXPERIENCE_HEADING } from '@/src/config/constants'
+import { data } from '@/src/config/data'
 
 const dateFormatter = (date: string) : string => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' }

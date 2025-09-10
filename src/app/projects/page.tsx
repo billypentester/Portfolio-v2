@@ -1,5 +1,8 @@
+import { data } from '@/src/config/data'
+import { projectsInterface } from '@/src/interface'
 import { Metadata } from 'next'
 import React from 'react'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
     title: 'Projects | Bilal Ahmad - Full Stack Software Engineer',
@@ -7,6 +10,9 @@ export const metadata: Metadata = {
 }
 
 const page = () => {
+
+  const { projects } = data
+
   return (
     <section>
       <header className="flex flex-col gap-4 mb-20 text-center">
@@ -15,15 +21,36 @@ const page = () => {
         <h2 className="text-primary text-2xl">Turning ideas into real-world solutions</h2>
       </header>
       <main className='my-10'>
-        <div className='w-full'>
-          <div className="grid grid-cols-1 gap-5">
-            {
-              [1,2,3,4,5,6].map((item)=> {
-                return (
-                  <div className='bg-slate-300 h-72 rounded-md'></div>
-                )
-              })
-            }
+        <div className='mx-auto max-w-5xl'>
+          <div className='w-full'>
+            <div className="grid grid-cols-1 gap-5">
+              {
+                projects.map((item: projectsInterface, index: number)=> {
+                  return (
+                    <div key={index} className='h-96 rounded-md bg-secondary'>
+                      <div className='flex h-full p-2 gap-3'>
+                        <div className='w-1/2 p-5 flex flex-col justify-between'>
+                          <div>
+                            <h2 className='text-2xl font-bold text-secondary mb-2'>{item.title}</h2>
+                            <p className='text-primary mb-4'>{item.description}</p>
+                          </div>
+                          <div className='flex flex-wrap gap-2'>
+                            {
+                              item.tags.map((tag: string, idx: number) => (
+                                <span key={idx} className='bg-primary text-white px-3 py-1 rounded-full text-sm'>{tag}</span>
+                              ))
+                            }
+                          </div>
+                        </div>
+                        <div className='w-1/2 h-full'>
+                          <Image src={item.image} alt={item.title} className='w-full h-full object-cover object-left-top rounded-md' />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </div>
           </div>
         </div>
       </main>

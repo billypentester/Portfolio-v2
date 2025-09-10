@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import { data } from '@/src/data/config'
+import { data } from '@/src/config/data'
 import Icon from '@/src/helpers/IconBuilder'
-import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/src/data/constants'
+import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/src/config/constants'
 import Link from 'next/link'
 
 const structuredData = () => {                

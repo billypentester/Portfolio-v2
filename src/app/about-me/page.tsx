@@ -1,5 +1,5 @@
 import IconBuilder from '@/src/helpers/IconBuilder'
-import aboutSchema from '@/src/schema/about'
+import aboutSchema from '@/src/config/schema'
 import { Metadata } from 'next'
 import React from 'react'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { data } from '@/src/data/config'
+import { data } from '@/src/config/data'
 import Image from 'next/image'
 import { Metadata } from 'next'
 

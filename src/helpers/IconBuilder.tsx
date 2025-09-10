@@ -1,4 +1,4 @@
-import { icons } from "@/src/data/Icon"
+import { icons } from "@/src/config/Icon"
 import { IconBuilderInterface } from "../interface"
 
 export default function IconBuilder({ type, paint }: IconBuilderInterface) : JSX.Element {
