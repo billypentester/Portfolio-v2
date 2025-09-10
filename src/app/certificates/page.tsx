@@ -1,6 +1,12 @@
 import React from 'react'
 import { data } from '@/src/data/config'
 import Image from 'next/image'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Certificates | Bilal Ahmad - Software Engineer',
+  description: 'View certifications earned by Bilal Ahmad in software engineering, full-stack development, cloud computing, and security testing. Demonstrating continuous learning and expertise in modern technologies.',
+}
 
 const page = () => {
 

@@ -1,4 +1,10 @@
+import { Metadata } from 'next'
 import React from 'react'
+
+export const metadata: Metadata = {
+    title: 'Projects | Bilal Ahmad - Full Stack Software Engineer',
+    description: 'Explore projects by Bilal Ahmad, a Software Engineer specializing in full-stack development. Featuring web apps, mobile apps, payment integrations, CRMs, and scalable software solutions.',
+}
 
 const page = () => {
   return (

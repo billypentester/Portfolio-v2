@@ -1,6 +1,7 @@
 import { icons } from "@/src/data/Icon"
+import { IconBuilderInterface } from "../interface"
 
-export default function IconBuilder({ type, paint }: IIconBuilder) : JSX.Element {
+export default function IconBuilder({ type, paint }: IconBuilderInterface) : JSX.Element {
     return (
         <svg 
             xmlns="http://www.w3.org/2000/svg" 

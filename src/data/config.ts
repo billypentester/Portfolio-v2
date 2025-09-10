@@ -31,18 +31,63 @@ import PizzaHut from '@/assets/images/clients/pizzahut.png'
 import CrustCulture from '@/assets/images/clients/crustculture.png'
 import halla from '@/assets/images/clients/halla.png'
 import Kyochon from '@/assets/images/clients/kyochon.png'
+import { DataInterface } from '../interface'
 
-const data = {
+const data : DataInterface = {
     first_name: 'Bilal',
     last_name: 'Ahmad',
     identity_keyword: 'billypentester',
     seo: {
-        title: 'Bilal Ahmad : Software Engineer | Security Expert',
-        description: 'Get comprehensive services in penetration testing, technical SEO, and full stack development to secure and optimize your online business effectively',
-        keywords: "Full-stack developer, penetration testing, technical SEO, web development, software engineer, security auditing, React, Next.js, Node.js, web app design, performance optimization, database systems, cybersecurity solutions, Lahore developers",
-        robots: "index, follow",
-        site_name: 'Bilal Ahmad',
-        url: 'https://billypentester.pk'
+        title: "Bilal Ahmad - Software Engineer | Full Stack Developer",
+        description: 'Skilled Software Engineer specializing in full-stack development with expertise in MERN, MEVN, and modern JavaScript frameworks. Experienced in building scalable web apps, mobile apps, and secure software solutions.',
+        keywords: [
+            "Bilal Ahmad",
+            "Bilal Ahmad Software Engineer",
+            "Bilal Ahmad Full Stack Developer",
+            "Software Engineer in Pakistan",
+            "MERN Stack Developer",
+            "MEVN Stack Developer",
+            "Full Stack Web Developer",
+            "React Next.js Developer",
+            "Node.js Backend Engineer",
+            "Web Developer Bilal Ahmad"
+        ],
+        authors: [{ name: 'Bilal Ahmad', url: 'https://billypentester.pk' }],
+        creator: 'Bilal Ahmad',
+        publisher: 'Bilal Ahmad',
+        robots: {
+            index: true,
+            follow: true
+        },
+        openGraph: {
+            title: "Bilal Ahmad - Software Engineer | Full Stack Developer",
+            description: 'Skilled Software Engineer specializing in full-stack development with expertise in MERN, MEVN, and modern JavaScript frameworks. Experienced in building scalable web apps, mobile apps, and secure software solutions.',
+            url: 'https://billypentester.pk',
+            siteName: 'Bilal Ahmad',
+            type: 'website',
+            images: [
+                {
+                    url: 'https://billypentester.pk/portfolio.webp',
+                    width: 1200,
+                    height: 630,
+                    alt: 'Bilal Ahmad - Software Engineer'
+                }
+            ]
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: "Bilal Ahmad - Software Engineer | Full Stack Developer",
+            description: "Bilal Ahmad | Full Stack Developer | MERN, MEVN, Next.js, Node.js",
+            images: ['https://billypentester.pk/portfolio.webp'],
+            creator: '@billypentester'
+        },
+        alternates: {
+            canonical: 'https://billypentester.pk'
+        },
+        icons: [
+            { rel: "icon", url: "/images/favicon.svg" }, 
+            { rel: "apple-touch-icon", url: "/images/apple-touch-icon.png" }
+        ]
     },
     profile_pic: Profile,
     socialLinks: [

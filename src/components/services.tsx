@@ -35,7 +35,7 @@ export default function Services() {
                                 <Icon type={service.icon} paint='h-6 w-6' />
                             </div>
                             <h3 className='text-xl sm:text-2xl font-semibold my-5 text-baseline'> {service.title} </h3>
-                            <p className='text-md sm:text-lg font-medium text-baseline'> {service.description} </p>
+                            <p className='text-md sm:text-lg font-medium text-baseline tracking-wider'> {service.description} </p>
                         </section>
                     ))
                 }

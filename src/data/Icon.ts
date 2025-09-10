@@ -1,6 +1,8 @@
 // these icons are imported from Font Awesome
 
-const icons: IconInterface = {
+import { IconListInterface } from "../interface"
+
+const icons: IconListInterface = {
 
     // Navbar Icons
 

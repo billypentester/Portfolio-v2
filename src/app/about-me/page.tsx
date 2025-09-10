@@ -1,6 +1,12 @@
 import IconBuilder from '@/src/helpers/IconBuilder'
 import aboutSchema from '@/src/schema/about'
+import { Metadata } from 'next'
 import React from 'react'
+
+export const metadata: Metadata = {
+    title: 'About Bilal Ahmad | Software Engineer & Full Stack Developer',
+    description: 'Learn more about Bilal Ahmad, a Software Engineer and Full Stack Developer with expertise in MERN, MEVN, and modern JavaScript frameworks. Passionate about building scalable web, mobile, and desktop applications.',
+}
 
 const page = () => {
     return (
