@@ -27,9 +27,9 @@ const page = () => {
               {
                 projects.map((item: projectsInterface, index: number)=> {
                   return (
-                    <div key={index} className='h-96 rounded-md bg-secondary'>
+                    <div key={index} className='h-96 rounded-md bg-surface shadpow-md hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer'>
                       <div className='flex h-full p-2 gap-3'>
-                        <div className='w-1/2 p-5 flex flex-col justify-between'>
+                        <div className='hidden lg:flex lg:flex-1 p-5 flex-col justify-between'>
                           <div>
                             <h2 className='text-2xl font-bold text-secondary mb-2'>{item.title}</h2>
                             <p className='text-primary mb-4'>{item.description}</p>
@@ -42,8 +42,8 @@ const page = () => {
                             }
                           </div>
                         </div>
-                        <div className='w-1/2 h-full'>
-                          <Image src={item.image} alt={item.title} className='w-full h-full object-cover object-left-top rounded-md' />
+                        <div className='flex-1 h-full'>
+                          <Image src={item.image} alt={item.title} className='w-full h-full object-cover object-left-top rounded-md shadow-md' />
                         </div>
                       </div>
                     </div>

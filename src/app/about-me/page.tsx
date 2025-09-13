@@ -1,5 +1,5 @@
 import IconBuilder from '@/src/helpers/IconBuilder'
-import aboutSchema from '@/src/config/schema'
+import { aboutSchema, profileSchema } from '@/src/config/schema'
 import { Metadata } from 'next'
 import React from 'react'
 
@@ -17,6 +17,12 @@ const page = () => {
                 __html: JSON.stringify(aboutSchema).replace(/</g, '\\u003c'),
                 }}
             />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                __html: JSON.stringify(profileSchema).replace(/</g, '\\u003c'),
+                }}
+            />
             <header className='flex flex-col gap-4 mb-10 text-center'>
                 <h3 className='text-primary text-2xl'>Hello there 👋 I'm</h3>
                 <h1 className='font-bold text-secondary text-5xl'>Bilal Ahmad</h1>
@@ -24,18 +30,18 @@ const page = () => {
             </header>
             <main className='my-10'>
                 <div className='mx-auto max-w-5xl'>
-                    <div className='flex items-center gap-10 mb-10'>          
-                        <img src='/images/about-me.jpeg' alt='Bilal Ahmad' className='w-96 h-96 object-cover rounded-full z-20' />
+                    <div className='flex flex-col lg:flex-row items-center gap-10 mb-10 mx-5 lg:mx-0'>          
+                        <img src='/images/about-me.jpeg' alt='Bilal Ahmad' className='hidden lg:block lg:w-80 lg:h-80 object-cover rounded-full z-20' />
                         <div className='flex flex-col gap-5'>
                             <IconBuilder type='quote' paint='h-10 w-10 text-secondary' />
-                            <p className='text-primary text-xl leading-loose max-w-3xl text-justify'>
+                            <p className='text-primary text-xl leading-relaxed lg:leading-loose max-w-3xl text-justify'>
                                 Full-Stack Software Engineer with 3+ years of experience in designing, developing, and deploying scalable microservices
                                 and robust web applications. Proficient in PostgreSQL, Redis, Node.js, Golang, and React, with a strong understanding
                                 of MVC design patterns for clean code architecture, bug fixing, and documentation.
                             </p>
                         </div>
                     </div>
-                    <div className='mb-10'>
+                    <div className='mb-10 mx-5 lg:mx-0'>
                         <h1 className='bg-primary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
                             Experience
                         </h1>
@@ -60,8 +66,8 @@ const page = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className='mb-10 flex'>
-                        <div className='w-1/2'>
+                    <div className='mb-10 flex flex-col lg:flex-row mx-5 lg:mx-0'>
+                        <div className='flex-1'>
                             <h1 className='bg-primary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
                                 Education
                             </h1>
@@ -82,7 +88,7 @@ const page = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className='w-1/2'>
+                        <div className='flex-1'>
                             <h1 className='bg-primary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
                                 Certificates
                             </h1>
@@ -116,7 +122,7 @@ const page = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='mb-10 flex'>
+                    <div className='mb-10 flex mx-5 lg:mx-0'>
                         <div className='w-1/2'>
                             <h1 className='bg-primary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
                                 Language

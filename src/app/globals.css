@@ -391,3 +391,10 @@ input, textarea {
     width: 83.333%;
   }
 }
+
+.glass-effect {
+  background: rgba(26, 32, 44, 0);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}

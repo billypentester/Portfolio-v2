@@ -1,6 +1,7 @@
 'use client'
 import {  useEffect, useState } from "react"
 import IconBuilder from "@/src/helpers/IconBuilder";
+import Link from "next/link";
 
 export default function Navbar({ identity_keyword }: any) {
 
@@ -55,40 +56,37 @@ export default function Navbar({ identity_keyword }: any) {
         });
     };
 
+    const pages = [
+        { name: 'About', link: '/about-me' },
+        { name: 'Blog', link: '/blogs' },
+        { name: 'Projects', link: '/projects' },
+        { name: 'Contact', link: '#contact' }
+    ]
+
     return (
         <>
-            <nav className={`fixed top-0 left-0 z-40 w-full bg-background ${isScrolled ? 'navbar-shadow' : 'shadow-none'}`}>
+            <nav className={`fixed top-0 left-0 z-40 w-full bg-background ${isScrolled ? 'navbar-shadow glass-effect' : 'shadow-none'}`}>
                 <div className="p-5 custom-container">
                     <div className="flex items-center justify-between xl:gap-5">
                         <button onClick={()=>setNavOpen(value => !value)} className="text-xl font-bold text-secondary block xl:hidden">
                             <IconBuilder type="bars" paint="h-5 w-5" />
                         </button>
                         <div className="mx-2 xl:m-0">
-                            <button onClick={()=>scrollToTop()} className="text-xl font-bold text-secondary">{identity_keyword}</button>
+                            <Link href={'/'}>
+                                <span className="text-xl font-bold text-secondary">{identity_keyword}</span>
+                            </Link>
                         </div>
                         <div className="flex-1 bg-surface nav-list hidden xl:block xl:flex-none">
                             <ul className="flex p-1 gap-2">
-                                <li className={`nav-link ${activeTab == "services" ? "nav-active" : ""}`} onClick={() => handleScroll('services')}>
-                                    <span>Services</span>
-                                </li>
-                                <li className={`nav-link ${activeTab == "work" ? "nav-active" : ""}`} onClick={() => handleScroll('work')}>
-                                    <span>Work</span>
-                                </li>
-                                <li className={`nav-link ${activeTab == "experience" ? "nav-active" : ""}`} onClick={() => handleScroll('experience')}>
-                                    <span>Experience</span>
-                                </li>
-                                <li className={`nav-link ${activeTab == "clients" ? "nav-active" : ""}`} onClick={() => handleScroll('clients')}>
-                                    <span>Clients</span>
-                                </li>
-                                <li className={`nav-link ${activeTab == "expertise" ? "nav-active" : ""}`} onClick={() => handleScroll('expertise')}>
-                                    <span>Expertise</span>
-                                </li>
-                                <li className={`nav-link ${activeTab == "education" ? "nav-active" : ""}`} onClick={() => handleScroll('education')}>
-                                    <span>Education</span>
-                                </li>
-                                <li className={`nav-link ${activeTab == "contact" ? "nav-active" : ""}`} onClick={() => handleScroll('contact')}>
-                                    <span>Contact</span>
-                                </li>
+                                {
+                                    pages.map((page, index) => (
+                                        <Link href={page.link} key={index}>
+                                            <li key={page.name} className="nav-link">
+                                                <span>{page.name}</span>
+                                            </li>
+                                        </Link>
+                                    ))
+                                }
                             </ul>
                         </div>
                         <div className="flex-1 xl:flex-none">
@@ -115,27 +113,15 @@ export default function Navbar({ identity_keyword }: any) {
                     </div>
                     <div className="flex-1 bg-surface nav-list shadow-sm">
                         <ul className="flex p-1 gap-2 flex-col">
-                            <li className={`nav-link ${activeTab == "services" ? "nav-active" : ""}`} onClick={() => handleScroll('services')}>
-                                <span>Services</span>
-                            </li>
-                            <li className={`nav-link ${activeTab == "work" ? "nav-active" : ""}`} onClick={() => handleScroll('work')}>
-                                <span>Work</span>
-                            </li>
-                            <li className={`nav-link ${activeTab == "experience" ? "nav-active" : ""}`} onClick={() => handleScroll('experience')}>
-                                <span>Experience</span>
-                            </li>
-                            <li className={`nav-link ${activeTab == "clients" ? "nav-active" : ""}`} onClick={() => handleScroll('clients')}>
-                                <span>Clients</span>
-                            </li>
-                            <li className={`nav-link ${activeTab == "expertise" ? "nav-active" : ""}`} onClick={() => handleScroll('expertise')}>
-                                <span>Expertise</span>
-                            </li>
-                            <li className={`nav-link ${activeTab == "education" ? "nav-active" : ""}`} onClick={() => handleScroll('education')}>
-                                <span>Education</span>
-                            </li>
-                            <li className={`nav-link ${activeTab == "contact" ? "nav-active" : ""}`} onClick={() => handleScroll('contact')}>
-                                <span>Contact</span>
-                            </li>
+                            {
+                                pages.map((page) => (
+                                    <Link href={page.link} key={page.name}>
+                                        <li key={page.name} className="nav-link">
+                                            <span>{page.name}</span>
+                                        </li>
+                                    </Link>
+                                ))
+                            }
                         </ul>
                     </div>
                 </div>
