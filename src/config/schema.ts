@@ -95,13 +95,7 @@ const aboutMebreadcrumbSchema = {
       "position": 1,
       "name": "About Me",
       "item": "https://billypentester.pk/about-me"
-    }, 
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Blogs",
-      "item": "https://billypentester.pk/blogs"
-    },
+    }
   ]
 }
 
