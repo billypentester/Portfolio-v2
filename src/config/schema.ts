@@ -86,4 +86,50 @@ const profileSchema = {
   }
 }
 
-export { aboutSchema, profileSchema }
+const aboutMebreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "About Me",
+      "item": "https://billypentester.pk/about-me"
+    }, 
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blogs",
+      "item": "https://billypentester.pk/blogs"
+    },
+  ]
+}
+
+const blogBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Blogs",
+      "item": "https://billypentester.pk/blogs"
+    },
+  ]
+}
+
+const projectBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Projects",
+      "item": "https://billypentester.pk/projects"
+    },
+  ]
+}
+
+
+export { aboutSchema, profileSchema, aboutMebreadcrumbSchema, projectBreadcrumbSchema, blogBreadcrumbSchema  }

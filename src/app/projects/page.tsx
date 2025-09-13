@@ -3,6 +3,7 @@ import { projectsInterface } from '@/src/interface'
 import { Metadata } from 'next'
 import React from 'react'
 import Image from 'next/image'
+import { projectBreadcrumbSchema } from '@/src/config/schema'
 
 export const metadata: Metadata = {
     title: 'Projects | Bilal Ahmad - Full Stack Software Engineer',
@@ -15,6 +16,12 @@ const page = () => {
 
   return (
     <section>
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectBreadcrumbSchema).replace(/</g, '\\u003c'),
+          }}
+      />
       <header className="flex flex-col gap-4 mb-20 text-center">
         <h3 className="text-primary text-2xl">Take a Look at My</h3>
         <h1 className="font-bold text-secondary text-5xl">Projects</h1>

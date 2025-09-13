@@ -1,5 +1,5 @@
 import IconBuilder from '@/src/helpers/IconBuilder'
-import { aboutSchema, profileSchema } from '@/src/config/schema'
+import { aboutMebreadcrumbSchema, aboutSchema, profileSchema } from '@/src/config/schema'
 import { Metadata } from 'next'
 import React from 'react'
 
@@ -21,6 +21,12 @@ const page = () => {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                 __html: JSON.stringify(profileSchema).replace(/</g, '\\u003c'),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                __html: JSON.stringify(aboutMebreadcrumbSchema).replace(/</g, '\\u003c'),
                 }}
             />
             <header className='flex flex-col gap-4 mb-10 text-center'>

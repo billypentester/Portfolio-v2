@@ -24,7 +24,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return (
     <html lang="en" className={APP_THEME}>
-      <body className={`${fontOptions.className} antialiased bg-background`}>
+      <body className={`${fontOptions.className} bg-texture antialiased bg-background`}>
         <Navbar identity_keyword={identity_keyword} />
         <div className="page-container">
           {children}

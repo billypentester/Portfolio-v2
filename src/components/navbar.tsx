@@ -58,14 +58,15 @@ export default function Navbar({ identity_keyword }: any) {
 
     const pages = [
         { name: 'About', link: '/about-me' },
-        { name: 'Blog', link: '/blogs' },
         { name: 'Projects', link: '/projects' },
+        { name: 'Certificates', link: '/certificates' },
+        { name: 'Blog', link: '/blogs' },
         { name: 'Contact', link: '#contact' }
     ]
 
     return (
         <>
-            <nav className={`fixed top-0 left-0 z-40 w-full bg-background ${isScrolled ? 'navbar-shadow glass-effect' : 'shadow-none'}`}>
+            <nav className={`fixed top-0 left-0 z-40 w-full  ${isScrolled ? 'navbar-shadow glass-effect' : 'shadow-none'}`}>
                 <div className="p-5 custom-container">
                     <div className="flex items-center justify-between xl:gap-5">
                         <button onClick={()=>setNavOpen(value => !value)} className="text-xl font-bold text-secondary block xl:hidden">
@@ -76,7 +77,7 @@ export default function Navbar({ identity_keyword }: any) {
                                 <span className="text-xl font-bold text-secondary">{identity_keyword}</span>
                             </Link>
                         </div>
-                        <div className="flex-1 bg-surface nav-list hidden xl:block xl:flex-none">
+                        <div className="flex-1 bg-surface nav-list hidden xl:block xl:flex-none shadow-sm border border-1 border-gray-800">
                             <ul className="flex p-1 gap-2">
                                 {
                                     pages.map((page, index) => (
