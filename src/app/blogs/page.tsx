@@ -27,7 +27,7 @@ const page = () => {
             {
               [1,2,3,4,5,6].map((item)=> {
                 return (
-                  <div className='h-72 bg-surface rounded-md border-primary' key={item}>
+                  <div className='h-72 bg-soft rounded-md border-primary' key={item}>
                     
                   </div>
                 )

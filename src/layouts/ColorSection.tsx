@@ -6,9 +6,9 @@ export default function ColorSection ({ children, title, id } : {
 }) 
 {
     return (
-      <section id={id} className="my-20 bg-primary section-block">
+      <section id={id} className="card bg-base-100 my-20 section-block">
           <div className='p-10'>
-              <h2 className='text-3xl sm:text-4xl lg:text-5xl leading-tight text-baseline tracking-tight font-semibold my-3'> {title} </h2>
+              <h2 className='text-3xl sm:text-4xl lg:text-5xl leading-tight text-primary tracking-tight font-semibold my-3'> {title} </h2>
               {children}
           </div>
       </section>

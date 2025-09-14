@@ -13,16 +13,16 @@ const Services = () => {
             <div className="grid grid-cols-1 gap-2 my-10">
                 {
                     expertise.map((item: any, index: number) => (
-                        <React.Fragment key={index} >
-                            <div className="flex flex-1 flex-col sm:flex-row justify-between items-center">
+                        <React.Fragment key={index}>
+                            <div className={`flex flex-1 flex-col sm:flex-row justify-between items-center ${index !== expertise.length - 1 ? 'pb-5' : ''}`}>
                                 <div className="w-full sm:w-1/3 mb-5 sm:mb-0">
-                                    <h3 className='text-xl font-medium my-5 text-baseline'> {item.title} </h3>
+                                    <h3 className='text-xl font-medium my-5 text-secondary'> {item.title} </h3>
                                 </div>
                                 <div className="w-full sm:w-2/3">
                                     <div className='flex flex-wrap flex-1 justify-center sm:justify-end'>
                                         {
                                             item.skills.map((skill: any, index: number) => (
-                                                <div key={index} className="bg-white p-3 inline-block rounded-full mr-3 mb-3 xl:mb-0 shadow-lg tooltip cursor-pointer">
+                                                <div key={index} className="bg-soft p-3 inline-block rounded-full mr-3 mb-3 xl:mb-0 shadow tooltip tooltip-secondary cursor-pointer">
                                                     <svg 
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         dangerouslySetInnerHTML={{ __html: Icons[skill].path }} 

@@ -39,14 +39,14 @@ export default function Dialog({ show, handleShow, title, description }: any) {
                         role="dialog"
                         id="contact-modal"
                         aria-hidden="false"
-                        className="flex modal fixed top-0 left-0 z-50 w-screen h-screen bg-black/70 items-center flex-col justify-center p-6 fade"
+                        className="flex modal fixed top-0 left-0 z-50 w-screen h-screen bg-white/40 items-center flex-col justify-center p-6 fade"
                         tabIndex={-1}    
                         ref={modalRef}                
                     >
                 
                         <div className="absolute top-0 left-0 z-[0] w-full h-full" tabIndex={-1}></div>
                     
-                        <article className="w-5/6 md:w-2/3 lg:w-1/3  modal-content flex flex-col relative m-0 rounded-md bg-text sm:my-16" aria-labelledby="modal-title" aria-describedby="modal-body">
+                        <article className="w-5/6 md:w-2/3 lg:w-1/3 modal-content flex flex-col relative m-0 rounded-md bg-base-100 sm:my-16" aria-labelledby="modal-title" aria-describedby="modal-body">
                         
                             <header className="flex p-4 items-center justify-between">
                                 <h2 className="m-0 text-xl font-bold text-secondary max-w-[calc(100%_-_3rem)]">{title}</h2>
@@ -75,18 +75,11 @@ export default function Dialog({ show, handleShow, title, description }: any) {
                                 </button>
                             </header>
 
-                            
                             <main className="relative pb-5 px-4 pt-0">
                                 <p>
                                     {description}
                                 </p>
                             </main>
-                            
-                            <footer className="flex flex-shrink-0 flex-wrap items-center justify-end flex-row p-4 gap-1">
-                                <button type="button" onClick={()=>dismissModal()} className="flex items-center justify-center px-4 font-medium bg-blue-700 text-white h-9 rounded-md md hover:bg-blue-800 transition-all duration-300">
-                                <span className="flex items-center justify-center space-x-2">Close</span>
-                                </button>
-                            </footer>
 
                         </article>
 

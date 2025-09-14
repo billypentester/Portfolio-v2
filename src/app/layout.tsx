@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { data } from '@/src/config/data'
-import { APP_THEME } from "@/src/config";
 import Navbar from "@/src/components/navbar";
 import Footer from "@/src/components/footer";
 import Contact from "@/src/components/contact";
+import useWindowDimensions from "../helpers/screenDimension";
 
 export const dynamic = 'force-dynamic'
 
@@ -22,9 +22,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   const { identity_keyword } = data
 
+  const APP_THEME = "dracula"
+
   return (
-    <html lang="en" className={APP_THEME}>
-      <body className={`${fontOptions.className} bg-texture antialiased bg-background`}>
+    <html lang="en" data-theme={APP_THEME}>
+      <body className={`${fontOptions.className} antialiased`}>
         <Navbar identity_keyword={identity_keyword} />
         <div className="page-container">
           {children}

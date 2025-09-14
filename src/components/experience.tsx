@@ -33,8 +33,8 @@ const Experience = () => {
                                 </div>
                                 <div className="w-full">
                                     <div className="flex justify-between mb-2">
-                                        <h3 className='text-xl sm:text-2xl font-semibold text-baseline'> {item.title} </h3>
-                                        <h4 className='text-md sm:text-lg font-medium hidden sm:block text-baseline'> {dateFormatter(item.startTime)} - {item.currentlyWorking ? 'Present' : dateFormatter(item.endTime)} </h4>
+                                        <h3 className='text-xl sm:text-2xl font-semibold text-secondary'> {item.title} </h3>
+                                        <h4 className='text-md sm:text-lg font-medium hidden sm:block text-accent'> {dateFormatter(item.startTime)} - {item.currentlyWorking ? 'Present' : dateFormatter(item.endTime)} </h4>
                                     </div>
                                     <h3 className='text-lg mg:text-xl font-medium text-baseline'> {item.company} </h3>
                                     <h4 className='text-md sm:text-lg text-baseline'> {item.location} </h4>

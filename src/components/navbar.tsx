@@ -1,13 +1,13 @@
 'use client'
-import {  useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import IconBuilder from "@/src/helpers/IconBuilder";
 import Link from "next/link";
+import useWindowDimensions from "../helpers/screenDimension";
 
 export default function Navbar({ identity_keyword }: any) {
 
     const [isScrolled, setIsScrolled] = useState(false);
-    const [activeTab, setActiveTab] = useState('');
-    const [navOpen, setNavOpen] = useState(false);
+    const { width } = useWindowDimensions()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,105 +19,61 @@ export default function Navbar({ identity_keyword }: any) {
         };
     }, []);
 
-    // block scroll when nav is open
-
-    useEffect(() => {
-        if(navOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-    }, [navOpen]);
-
-    const handleScroll = (tab: string) => {
-        setActiveTab(tab);
-        if(navOpen) {
-            setNavOpen(value => !value);
-        }
-        const element = document.getElementById(tab);
-        window.location.hash = tab;
-        if (element) {
-          window.scrollTo({
-            top: element.offsetTop - 150,
-            behavior: 'smooth',
-          });
-        }
-    };
-
-    const scrollToTop = () => {
-        setActiveTab('');
-        if(navOpen) {
-            setNavOpen(value => !value);
-        }
-        window.location.hash = ''
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    };
-
     const pages = [
-        { name: 'About', link: '/about-me' },
-        { name: 'Projects', link: '/projects' },
-        { name: 'Certificates', link: '/certificates' },
-        { name: 'Blog', link: '/blogs' },
-        { name: 'Contact', link: '#contact' }
+        { name: 'About', link: '/about-me', icon: "user" },
+        { name: 'Projects', link: '/projects', icon: "file" },
+        { name: 'Certificates', link: '/certificates', icon: "cert" },
+        { name: 'Blog', link: '/blogs', icon: "blog" },
+        { name: 'Contact', link: '#contact', icon: "contact" },
     ]
 
+    if (width < 1024) {
+        return (
+            <>
+                <nav className="fixed top-0 left-0 z-40 w-full bg-base-100">
+                    <div className="p-3 custom-container flex justify-between items-center">
+                        <Link href={'/'}>
+                            <span className="text-lg font-bold text-secondary">{identity_keyword}</span>
+                        </Link>
+                        <a className="btn btn-accent" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                            <IconBuilder type="file" paint="h-4 w-4 mr-2" />
+                            <span>Resume</span>
+                        </a>
+                    </div>
+                </nav>
+                {/* Bottom Navbar */}
+                <nav className="fixed bottom-0 left-0 z-40 w-full bg-base-100">
+                    <ul className="flex justify-center p-1 gap-2">
+                        {
+                            pages.map((page, index) => (
+                                <Link href={page.link} key={index}>
+                                    <li key={page.name} className="tab">
+                                        <IconBuilder type={page.icon} paint='h-6 w-6 text-secondary' />
+                                    </li>
+                                </Link>
+                            ))
+                        }
+                    </ul>
+                </nav>
+            </>
+        )
+    }
+
     return (
-        <>
-            <nav className={`fixed top-0 left-0 z-40 w-full  ${isScrolled ? 'navbar-shadow glass-effect' : 'shadow-none'}`}>
-                <div className="p-5 custom-container">
-                    <div className="flex items-center justify-between xl:gap-5">
-                        <button onClick={()=>setNavOpen(value => !value)} className="text-xl font-bold text-secondary block xl:hidden">
-                            <IconBuilder type="bars" paint="h-5 w-5" />
-                        </button>
-                        <div className="mx-2 xl:m-0">
-                            <Link href={'/'}>
-                                <span className="text-xl font-bold text-secondary">{identity_keyword}</span>
-                            </Link>
-                        </div>
-                        <div className="flex-1 bg-surface nav-list hidden xl:block xl:flex-none shadow-sm border border-1 border-gray-800">
-                            <ul className="flex p-1 gap-2">
-                                {
-                                    pages.map((page, index) => (
-                                        <Link href={page.link} key={index}>
-                                            <li key={page.name} className="nav-link">
-                                                <span>{page.name}</span>
-                                            </li>
-                                        </Link>
-                                    ))
-                                }
-                            </ul>
-                        </div>
-                        <div className="flex-1 xl:flex-none">
-                            <div className="flex justify-end">
-                                <a className="btn" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                                    <IconBuilder type="file" paint="h-4 w-4 mr-2" />
-                                    <span>Resume</span>
-                                </a>
-                            </div>
-                        </div>
+        <nav className={`fixed top-0 left-0 z-40 w-full  ${isScrolled ? 'navbar-shadow glass-effect' : 'shadow-none'}`}>
+            <div className="p-5 custom-container">
+                <div className="flex items-center justify-between xl:gap-5">
+                    <div className="flex-1 mx-2 xl:m-0">
+                        <Link href={'/'}>
+                            <span className="text-xl font-bold text-secondary">{identity_keyword}</span>
+                        </Link>
                     </div>
-                </div>
-            </nav>
-
-            {/* Mobile Nav */}
-
-            <div className={`fixed top-0 left-0 z-50 w-full h-full backdrop-blur-2xl ${navOpen ? 'block' : 'hidden'}`} style={{ height: '100vh' }}>
-                <div className="px-5 py-8 mob-nav-container">
-                    <div className="flex justify-between mb-5">
-                        <button onClick={()=>scrollToTop()} className="text-xl font-bold text-secondary">{identity_keyword}</button>
-                        <button onClick={()=>setNavOpen(value => !value)} className="text-xl font-bold text-secondary">
-                            <IconBuilder type="close" paint="h-5 w-5" />
-                        </button>
-                    </div>
-                    <div className="flex-1 bg-surface nav-list shadow-sm">
-                        <ul className="flex p-1 gap-2 flex-col">
+                    <div className="flex-1 bg-soft tabs shadow-sm">
+                        <ul className="flex p-1 gap-2">
                             {
-                                pages.map((page) => (
-                                    <Link href={page.link} key={page.name}>
-                                        <li key={page.name} className="nav-link">
+                                pages.map((page, index) => (
+                                    <Link href={page.link} key={index}>
+                                        <li key={page.name} className="tab">
                                             <span>{page.name}</span>
                                         </li>
                                     </Link>
@@ -125,8 +81,16 @@ export default function Navbar({ identity_keyword }: any) {
                             }
                         </ul>
                     </div>
+                    <div className="flex-1">
+                        <div className="flex justify-end">
+                            <a className="btn btn-accent" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                                <IconBuilder type="file" paint="h-4 w-4 mr-2" />
+                                <span>Resume</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </>
+        </nav>
     )
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from 'next/image'
 import { data } from '@/src/config/data'
 import Icon from '@/src/helpers/IconBuilder'
@@ -39,15 +38,24 @@ export default function Hero() {
             />
             <div className="flex items-center justify-between">
                 <div className='me-0 lg:me-2'>
-                    <h1 className='text-xl text-primary font-medium'> {HERO_STARTER} <span className='text-secondary font-semibold'>{first_name}</span> </h1>
-                    <h2 className='text-5xl tracking-tight text-primary leading-tight font-semibold my-3'> {HERO_HEADING_START} <br /> {HERO_HEADING_END} </h2>
+                    <h1 className='text-xl text-primary font-medium'> 
+                        {HERO_STARTER} 
+                        <span className='text-secondary font-semibold'>{" " + first_name}</span> 
+                    </h1>
+                    <h2 className='text-5xl tracking-tight text-primary leading-tight font-semibold my-3'> 
+                        {HERO_HEADING_START} 
+                        <br /> 
+                        {HERO_HEADING_END} 
+                    </h2>
                     <div className="flex items-center flex-col sm:flex-row">
-                        <p className='me-5 text-lg text-primary font-medium mb-4 sm:mb-0'> {HERO_CHAT_START} </p>
+                        <p className='me-5 text-lg text-secondary font-medium mb-4 sm:mb-0'> 
+                            {HERO_CHAT_START} 
+                        </p>
                         <div className="flex items-center space-x-5">
                             {
                                 socialLinks.map((url: any) => (
                                     <Link href={url.url} key={url.name} target="_blank">
-                                        <button title={capitalized(url.name)} name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-primary text-baseline p-3 rounded-full shadow-2xl transition duration-500 ease-in-out'>
+                                        <button title={capitalized(url.name)} name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-base-100 text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'>
                                             <Icon type={url.name} paint='h-6 w-6' />
                                             <div className="tooltip-content">
                                                 {capitalized(url.name)}

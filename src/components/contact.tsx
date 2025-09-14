@@ -63,17 +63,17 @@ const Contact = () => {
       <ColorSection id="contact" title={CONTACT_HEADING}>
         <div className="flex flex-1 flex-col md:flex-row gap-10 my-10">
           <div className="w-full md:w-2/5">
-              <p className='text-lg text-primary font-medium mb-5 text-baseline'> 
+              <p className='text-lg font-medium mb-5'> 
                 {CONTACT_DESC}
               </p>
-              <p className='text-lg text-primary font-medium my-5 text-baseline'>
+              <p className='text-lg font-medium my-5'>
                 {CONTACT_FLAVOUR}
               </p>
               <div className="flex items-center space-x-5 my-8">
                 {
                   socialLinks.map((url: any) => (
                       <Link href={url.url} key={url.name} target="_blank">
-                        <button name={capitalized(url.name)} className='tooltip tooltip-bottom bg-background hover:bg-secondary text-secondary hover:text-neutral p-3 rounded-full shadow-md shadow-secondary transition duration-500 ease-in-out'>
+                        <button name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-base-100 text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'>
                           <Icon type={url.name} paint="h-6 w-6"/>
                           <div className="tooltip-content">
                             {capitalized(url.name)}
@@ -88,11 +88,11 @@ const Contact = () => {
             <form onSubmit={getContactData}>
               <div className="flex flex-col space-y-5">
                 <div className="flex sm:space-x-5 space-y-5 sm:space-y-0 flex-col sm:flex-row">
-                  <input id="name" type="text" name="name" placeholder="Full Name *" className="w-full shadow-lg" />
-                  <input id="email" type="email" name="email" placeholder="Email *" className="w-full shadow-lg" />
+                  <input id="name" type="text" name="name" placeholder="Full Name *" className="w-full shadow-sm" />
+                  <input id="email" type="email" name="email" placeholder="Email *" className="w-full shadow-sm" />
                 </div>
-                <textarea id="message" name="message" className="textarea w-full shadow-lg resize-none" placeholder="Type your message here *" rows={5}></textarea>
-                <button type="submit" className="w-full lg:w-max btn btn-inverse ms-auto">
+                <textarea id="message" name="message" className="textarea w-full shadow-sm resize-none" placeholder="Type your message here *" rows={5}></textarea>
+                <button type="submit" className="w-full lg:w-max btn btn-accent ms-auto">
                     {
                       loading ? <Icon type="spinner" paint="animate-spin h-4 w-4 mr-2" /> : <Icon type="contact" paint="h-4 w-4 mr-2" />
                     }

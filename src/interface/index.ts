@@ -61,6 +61,7 @@ export interface DataInterface {
     profile_pic: StaticImageData;
     experience: experienceInterface[];
     projects: projectsInterface[];
+    themes: string[];
     expertise: Array<{
         title: string,
         skills: Array<string>
