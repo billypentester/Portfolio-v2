@@ -21,11 +21,11 @@ const page = () => {
       </header>
       <main className='my-10'>
         <div className='w-full'>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {
-              cert.map((item)=> {
+              cert.map((item, index)=> {
                 return (
-                  <div>
+                  <div key={index}>
                     <Image src={item.image} alt={item.title} loading="lazy" className='rounded-md object-cover object-left-top shadow-primary shadow-lg h-full' />
                   </div>
                 )

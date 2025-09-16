@@ -73,7 +73,7 @@ const Contact = () => {
                 {
                   socialLinks.map((url: any) => (
                       <Link href={url.url} key={url.name} target="_blank">
-                        <button name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-base-100 text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'>
+                        <button name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-soft text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'>
                           <Icon type={url.name} paint="h-6 w-6"/>
                           <div className="tooltip-content">
                             {capitalized(url.name)}
@@ -88,11 +88,11 @@ const Contact = () => {
             <form onSubmit={getContactData}>
               <div className="flex flex-col space-y-5">
                 <div className="flex sm:space-x-5 space-y-5 sm:space-y-0 flex-col sm:flex-row">
-                  <input id="name" type="text" name="name" placeholder="Full Name *" className="w-full shadow-sm" />
-                  <input id="email" type="email" name="email" placeholder="Email *" className="w-full shadow-sm" />
+                  <input id="name" type="text" name="name" placeholder="Full Name *" className="w-full shadow" />
+                  <input id="email" type="email" name="email" placeholder="Email *" className="w-full shadow" />
                 </div>
-                <textarea id="message" name="message" className="textarea w-full shadow-sm resize-none" placeholder="Type your message here *" rows={5}></textarea>
-                <button type="submit" className="w-full lg:w-max btn btn-accent ms-auto">
+                <textarea id="message" name="message" className="textarea w-full shadow resize-none" placeholder="Type your message here *" rows={5}></textarea>
+                <button type="submit" className="w-full lg:w-max btn btn-accent ms-auto shadow">
                     {
                       loading ? <Icon type="spinner" paint="animate-spin h-4 w-4 mr-2" /> : <Icon type="contact" paint="h-4 w-4 mr-2" />
                     }

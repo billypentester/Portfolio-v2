@@ -34,7 +34,7 @@ const page = () => {
               {
                 projects.map((item: projectsInterface, index: number)=> {
                   return (
-                    <div key={index} className='h-96 rounded-md bg-surface shadpow-md hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer'>
+                    <div key={index} className='h-96 rounded-md bg-base-100 shadpow-md hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer'>
                       <div className='flex h-full p-2 gap-3'>
                         <div className='hidden lg:flex lg:flex-1 p-5 flex-col justify-between'>
                           <div>

@@ -22,7 +22,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   const { identity_keyword } = data
 
-  const APP_THEME = "dracula"
+  const APP_THEME = "light"
 
   return (
     <html lang="en" data-theme={APP_THEME}>

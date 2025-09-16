@@ -240,14 +240,14 @@ const data : DataInterface = {
             title: 'Develop Applications with GCP',
             image: develop,
         },
-        {
-            title: '',
-            image: GDSC,
-        },
-        {
-            title: '',
-            image: sqlSoloLearn,
-        }
+        // {
+        //     title: '',
+        //     image: GDSC,
+        // },
+        // {
+        //     title: '',
+        //     image: sqlSoloLearn,
+        // }
     ],
     expertise: [
         {

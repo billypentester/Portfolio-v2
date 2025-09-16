@@ -46,7 +46,7 @@ export default function Dialog({ show, handleShow, title, description }: any) {
                 
                         <div className="absolute top-0 left-0 z-[0] w-full h-full" tabIndex={-1}></div>
                     
-                        <article className="w-5/6 md:w-2/3 lg:w-1/3 modal-content flex flex-col relative m-0 rounded-md bg-base-100 sm:my-16" aria-labelledby="modal-title" aria-describedby="modal-body">
+                        <article className="card w-5/6 md:w-2/3 lg:w-1/3 modal-content flex flex-col relative m-0 rounded-md bg-base-100 sm:my-16" aria-labelledby="modal-title" aria-describedby="modal-body">
                         
                             <header className="flex p-4 items-center justify-between">
                                 <h2 className="m-0 text-xl font-bold text-secondary max-w-[calc(100%_-_3rem)]">{title}</h2>

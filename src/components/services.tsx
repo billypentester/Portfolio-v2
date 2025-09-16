@@ -31,7 +31,7 @@ export default function Services() {
                                 type="application/ld+json"
                                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(service)) }}
                             />
-                            <div className="p-3 bg-soft inline-block rounded-full shadow-md mb-2 text-secondary">
+                            <div className="p-3 bg-soft inline-block rounded-full shadow mb-2 text-secondary">
                                 <Icon type={service.icon} paint='h-6 w-6' />
                             </div>
                             <h3 className='text-xl sm:text-2xl font-semibold my-5 text-secondary'> {service.title} </h3>

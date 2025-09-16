@@ -9,7 +9,7 @@ const WorkCard = ({title, image}: {
 }) => {
   return (
       <div>
-          <Image src={image} alt={title} className="rounded-lg shadow-lg cursor-pointer h-48 object-cover" loading="lazy" />
+          <Image src={image} alt={title} className="rounded-lg shadow cursor-pointer h-48 object-cover" loading="lazy" />
           <h5 className="text-sm font-medium m-3 text-primary"> {title} </h5>
       </div>
   )
@@ -25,7 +25,7 @@ const Education = () => {
         {
           edu.map((item: any) => {
             return(
-              <div key={item.id} className="card bg-base-100 shadow-lg rounded-lg p-10">
+              <div key={item.id} className="card bg-base-100 shadow rounded-lg p-10">
                 <div className="flex flex-col sm:flex-row">
                   <div className="w-full sm:w-1/3 mb-4 sm:mb-0">
                     <Image src={item.image} alt={item.title} className="w-32 h-32" loading="lazy" />

@@ -27,7 +27,7 @@ const Experience = () => {
                         <React.Fragment key={item.id}>
                             <section className="flex flex-1 flex-col sm:flex-row justify-between my-1">
                                 <div className="me-5 mb-5 sm:mb-0">
-                                    <div className='p-1 bg-white rounded-full w-16 shadow-md'>
+                                    <div className='p-1 bg-soft rounded-full w-16 shadow'>
                                         <Image src={item.logo} alt={item.title} className="rounded-full" loading="lazy" />
                                     </div>
                                 </div>
