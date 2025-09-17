@@ -3,20 +3,6 @@ import Icon from '@/src/helpers/IconBuilder'
 import { SERVICE_HEADING } from '@/src/config/constants'
 import { data } from '@/src/config/data'
 
-const structuredData = (service: { title: string, description: string }) => {                
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": service.title,
-        "description": service.description,
-        "provider": {
-            "@type": "Person",
-            "name": "Bilal Ahmad"
-        }
-    }
-    return jsonLd
-}
-
 export default function Services() {
 
     const { services } = data
@@ -27,10 +13,6 @@ export default function Services() {
                 {
                     services.map((service: any, index: number) => (
                         <section key={index}>
-                            <script
-                                type="application/ld+json"
-                                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(service)) }}
-                            />
                             <div className="p-3 bg-soft inline-block rounded-full shadow mb-2 text-secondary">
                                 <Icon type={service.icon} paint='h-6 w-6' />
                             </div>

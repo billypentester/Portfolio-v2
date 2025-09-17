@@ -1,5 +1,5 @@
 import IconBuilder from '@/src/helpers/IconBuilder'
-import { aboutMebreadcrumbSchema, aboutSchema, profileSchema } from '@/src/config/schema'
+import { structuredData } from '@/src/config/data'
 import { Metadata } from 'next'
 import React from 'react'
 
@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 }
 
 const page = () => {
+
+    const { aboutSchema, profileSchema, aboutMebreadcrumbSchema } = structuredData
+
     return (
         <section>
             <script
@@ -48,7 +51,7 @@ const page = () => {
                         </div>
                     </div>
                     <div className='mb-10 mx-5 lg:mx-0'>
-                        <h1 className='bg-primary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
+                        <h1 className='bg-secondary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
                             Experience
                         </h1>
                         <div className='ms-5'>

@@ -24,6 +24,9 @@ import PGC from '@/assets/images/education/punjab-group-of-colleges.webp'
 import IT from '@/assets/images/publications/it.webp'
 import predict from '@/assets/images/publications/predict.webp'
 import master from '@/assets/images/publications/master.webp'
+import CyberSecurity from '@/assets/images/publications/cybersecurity.webp'
+import WekaModelPrediction from '@/assets/images/publications/weka-model-prediction.webp'
+import FrontendTenStages from '@/assets/images/publications/frontend-ten-stages.webp'
 
 import KFCProject from '@/assets/images/projects/KFC.png'
 
@@ -33,7 +36,7 @@ import PizzaHut from '@/assets/images/clients/pizzahut.png'
 import CrustCulture from '@/assets/images/clients/crustculture.png'
 import halla from '@/assets/images/clients/halla.png'
 import Kyochon from '@/assets/images/clients/kyochon.png'
-import { DataInterface } from '../interface'
+import { DataInterface, structuredDataInterface } from '../interface'
 
 const data : DataInterface = {
     first_name: 'Bilal',
@@ -98,7 +101,6 @@ const data : DataInterface = {
         'bumblebee',
         'emerald',
         'corporate',
-
         'synthwave',
         'retro',
         'cyberpunk',
@@ -342,18 +344,189 @@ const data : DataInterface = {
           link: "https://billypentester.medium.com/ethics-and-the-it-professional-8b108a4f0ee",
           image: IT,
           tags: ['ethics', 'IT']
+        },
+        {
+            title: 'Student study material engagement prediction model',
+            description: 'Without the knowledge of coding, you can train the model using the weka tool.',
+            link: 'https://billypentester.medium.com/student-study-material-engagement-prediction-model-using-weka-bd2a2ee97cd8',
+            image: WekaModelPrediction,
+            tags: ['Machine Learning', 'Data Mining']
+        },
+        {
+            title: 'Ultimate 10 Stages to Master Frontend Development',
+            description: 'A step-by-step guide to getting a job as a good frontend developer',
+            link: 'https://levelup.gitconnected.com/ultimate-10-stages-to-master-frontend-development-9b075b904835',
+            image: FrontendTenStages,
+            tags: ['JavaScript', 'Frontend']
+        },
+        {
+            title: 'Cyber security essentials',
+            description: 'Intro to cyber security',
+            link: 'https://medium.com/@billypentester/cyber-security-essentials-ad2bb8e9fce8',
+            image: CyberSecurity,
+            tags: ['Cyber Security', 'Essentials']
         }
     ],
     projects: [
         {
             title: 'KFC Pakistan',
             description: 'A full stack e-commerce web application for KFC Pakistan, built with Next.js, React, Node.js, Express, and MongoDB. Features include user authentication, product browsing, cart management, and order processing.',
-            tags: ['MERN', 'React', 'Node.js', 'MongoDB'],
+            tags: ['React', 'Node.js', 'mySQL'],
             image: KFCProject,
             url: ''
         }
-    ] 
+    ],
+
 }
 
-export { data }
+const worksFor = {
+  "@type": "Organization",
+  "legalName": "Simplex Technology Solutions",
+}
+
+const knowsAbout = [
+  "MERN Stack",
+  "MEVN Stack",
+  "Cybersecurity",
+  "Penetration Testing",
+  "Full Stack Development",
+  "Scalable System Design",
+]
+
+const sameAs = [
+  "http://linkedin.com/in/billypentester",
+  "https://github.com/billypentester",
+  "https://twitter.com/billypentester"
+]
+
+const offerCatalog = {
+  "@type": "OfferCatalog",
+  "name": "Services",
+  "itemListElement": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Full Stack Web Development",
+        "description": "Building scalable and efficient applications with MERN & MEVN."
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Penetration Testing",
+        "description": "Comprehensive security testing from reconnaissance to exploitation."
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Technical SEO",
+        "description": "Improving website performance and search engine rankings."
+      }
+    }
+  ]
+}
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Bilal Ahmad",
+  "url": "https://billypentester.pk",
+  "image": "https://billypentester.pk/images/about-me.jpeg",
+  "jobTitle": "Software Engineer & Security Expert",
+  "description": "I am Bilal Ahmad, a passionate Software Engineer & Security Expert. I offer services in full-stack web development, penetration testing, and technical SEO.",
+  "worksFor": worksFor,
+  "sameAs": sameAs,
+  "knowsAbout": knowsAbout,
+  "hasOfferCatalog": offerCatalog
+}
+
+const profileSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "dateCreated": "2025-09-13T00:00:00+05:00",
+  "dateModified": "2025-09-13T00:00:00+05:00",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Bilal Ahmad",
+    "alternateName": "Billy Pentester",
+    "identifier": "billypentester",
+    "url": "https://billypentester.pk",
+    "image": "https://billypentester.pk/images/about-me.jpeg",
+    "jobTitle": "Software Engineer & Security Expert",
+    "description": "I am Bilal Ahmad, a passionate Software Engineer & Security Expert. I offer services in full-stack web development, penetration testing, and technical SEO.",
+    "worksFor": worksFor,
+    "sameAs": sameAs,
+    "knowsAbout": knowsAbout,
+    "hasOfferCatalog": offerCatalog
+
+  }
+}
+
+const aboutMebreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "About Me",
+      "item": "https://billypentester.pk/about-me"
+    }
+  ]
+}
+
+const blogBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Blogs",
+      "item": "https://billypentester.pk/blogs"
+    },
+  ]
+}
+
+const projectBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Projects",
+      "item": "https://billypentester.pk/projects"
+    },
+  ]
+}
+
+const certificationsBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Certificates",
+      "item": "https://billypentester.pk/certificates"
+    },
+  ]
+}
+
+const structuredData: structuredDataInterface = {
+    aboutSchema, 
+    profileSchema, 
+    aboutMebreadcrumbSchema, 
+    projectBreadcrumbSchema, 
+    blogBreadcrumbSchema,
+    certificationsBreadcrumbSchema
+}
+
+
+export { data, structuredData }
 

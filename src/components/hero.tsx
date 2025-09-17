@@ -4,27 +4,9 @@ import Icon from '@/src/helpers/IconBuilder'
 import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/src/config/constants'
 import Link from 'next/link'
 
-const structuredData = () => {                
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "image": "https://billypentester.pk/images/profile.webp",
-        "name": "Bilal Ahmad",
-        "url": "https://billypentester.pk",
-        "jobTitle": "Software Engineer",
-        "description": "I am a software engineer with a passion for web development and cybersecurity. I have a strong background in computer science and have worked on various projects in the past. I am always looking for new opportunities to learn and grow as a developer.",
-        "sameAs": [
-            "https://linkedin.com/in/billypentester",
-            "https://github.com/billypentester",
-            "https://twitter.com/billypentester"
-        ]
-    }
-    return jsonLd
-}
-
 export default function Hero() {
 
-    const { first_name, profile_pic, socialLinks } = data
+    const { first_name, profile_pic, socialLinks, identity_keyword } = data
 
     const capitalized = (str: any) => {
         return str.charAt(0).toUpperCase() + str.slice(1)
@@ -32,10 +14,6 @@ export default function Hero() {
 
     return (
         <header id="hey" className="my-20 mx-10">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData()) }}
-            />
             <div className="flex items-center justify-between">
                 <div className='me-0 lg:me-2'>
                     <h1 className='text-xl text-primary font-medium'> 
@@ -68,7 +46,7 @@ export default function Hero() {
                     </div>
                 </div>
                 <div className='hidden lg:inline-block'>
-                    <Image src={profile_pic} alt="billypentester" className='w-72 h-72 profile-pic' loading="lazy"/>
+                    <Image src={profile_pic} alt={identity_keyword} className='w-72 h-72 profile-pic' loading="lazy"/>
                 </div>
             </div>
         </header>

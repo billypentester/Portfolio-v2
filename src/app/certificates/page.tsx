@@ -1,5 +1,5 @@
 import React from 'react'
-import { data } from '@/src/config/data'
+import { data, structuredData } from '@/src/config/data'
 import Image from 'next/image'
 import { Metadata } from 'next'
 
@@ -11,13 +11,20 @@ export const metadata: Metadata = {
 const page = () => {
 
   const { cert } = data
+  const { certificationsBreadcrumbSchema } = structuredData
 
   return (
     <section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(certificationsBreadcrumbSchema).replace(/</g, '\\u003c'),
+        }}
+      />
       <header className="flex flex-col gap-4 mb-20 text-center">
         <h3 className="text-primary text-2xl">Proudly Showcasing My</h3>
         <h1 className="font-bold text-secondary text-5xl">Certificates & Achievements</h1>
-        <h2 className="text-primary text-2xl">Milestones in My Learning Journey</h2>
+        <h2 className="text-accent text-2xl">Milestones in My Learning Journey</h2>
       </header>
       <main className='my-10'>
         <div className='w-full'>
@@ -26,7 +33,7 @@ const page = () => {
               cert.map((item, index)=> {
                 return (
                   <div key={index}>
-                    <Image src={item.image} alt={item.title} loading="lazy" className='rounded-md object-cover object-left-top shadow-primary shadow-lg h-full' />
+                    <Image src={item.image} alt={item.title} loading="lazy" className='card shadow rounded-md object-cover object-left-top shadow-primary h-full' />
                   </div>
                 )
               })

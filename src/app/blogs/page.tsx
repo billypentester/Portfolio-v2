@@ -1,5 +1,5 @@
 import { data } from '@/src/config/data'
-import { blogBreadcrumbSchema } from '@/src/config/schema'
+import { structuredData } from '@/src/config/data'
 import { Metadata } from 'next'
 import React from 'react'
 import Image from 'next/image'
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 const page = () => {
 
   const { publications } = data
+  const { blogBreadcrumbSchema } = structuredData
 
   return (
     <section>
@@ -25,7 +26,7 @@ const page = () => {
       <header className="flex flex-col gap-4 mb-20 text-center">
         <h3 className="text-primary text-2xl">Insights & Learnings</h3>
         <h1 className="font-bold text-secondary text-5xl">Blogs</h1>
-        <h2 className="text-primary text-2xl">Sharing knowledge, thoughts, and experiences</h2>
+        <h2 className="text-accent text-2xl">Sharing knowledge, thoughts, and experiences</h2>
       </header>
       <main className='my-10'>
         <div className='w-full'>
@@ -33,22 +34,22 @@ const page = () => {
             {
               publications.map((item, index) => {
                 return (
-                  <div className='bg-base-100 rounded-md border-primary'>
+                  <div key={index} className='card bg-base-100 rounded-md border-primary shadow'>
                     <Link key={index} href={item.link} target='_blank' rel='noopener noreferrer'>
-                      <div className='p-5'>
-                        <Image src={item.image} alt={item.title} className='h-48 w-full object-cover rounded-md mb-5' />
-                        <h1 className='text-2xl font-bold text-secondary'>{item.title}</h1>
-                        <p className='text-primary py-3'>{item.description}</p>
-                        {/* // tags */}
-                        <div className='flex flex-wrap gap-2'>
-                          {
-                            item.tags.map((tag, index) => {
-                              return (
-                                <span key={index} className='bg-soft text-white px-3 py-1 rounded-full text-sm'>{tag}</span>
-                              )
+                      <div className='p-3'>
+                        <Image src={item.image} alt={item.title} className='card h-60 w-full object-cover rounded-md mb-5 shadow' />
+                        <div className='px-5 pb-3'>
+                          <h1 className='text-2xl font-bold text-secondary'>{item.title}</h1>
+                          <p className='text-primary py-3'>{item.description}</p>
+                          <div className='flex flex-wrap gap-2'>
+                            {
+                              item.tags.map((tag, index) => {
+                                return (
+                                  <span key={index} className='bg-soft px-3 py-1 rounded-full text-sm'>{tag}</span>
+                                )
+                              })
                             }
-                          )
-                          }
+                          </div>
                         </div>
                       </div>
                     </Link>

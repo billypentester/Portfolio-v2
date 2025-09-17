@@ -97,3 +97,12 @@ export interface DataInterface {
         url: string
     }>;
 }
+
+export interface structuredDataInterface {
+    profileSchema: object;
+    aboutSchema: object;
+    aboutMebreadcrumbSchema: object;
+    projectBreadcrumbSchema: object;
+    blogBreadcrumbSchema: object;
+    certificationsBreadcrumbSchema: object;
+}
