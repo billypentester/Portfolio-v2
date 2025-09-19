@@ -4,10 +4,10 @@ import IconBuilder from "@/src/helpers/IconBuilder";
 import Link from "next/link";
 import useWindowDimensions from "../helpers/screenDimension";
 
-export default function Navbar({ identity_keyword }: any) {
+export default function Navbar({ identity_keyword }: { identity_keyword: string }) {
 
     const [isScrolled, setIsScrolled] = useState(false);
-    const { width } = useWindowDimensions()
+    const { width, loaded } = useWindowDimensions()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,13 +42,13 @@ export default function Navbar({ identity_keyword }: any) {
                     </div>
                 </nav>
                 {/* Bottom Navbar */}
-                <nav className="fixed bottom-0 left-0 z-40 w-full bg-base-100">
-                    <ul className="flex justify-center p-1 gap-2">
+                <nav className="fixed bottom-0 left-0 z-40 w-full bg-base-100 px-6 py-2">
+                    <ul className="flex justify-between align-middle p-1 gap-2">
                         {
                             pages.map((page, index) => (
                                 <Link href={page.link} key={index}>
-                                    <li key={page.name} className="tab">
-                                        <IconBuilder type={page.icon} paint='h-6 w-6 text-secondary' />
+                                    <li key={page.name} className="tab !p-0 hover:bg-transparent">
+                                        <IconBuilder type={page.icon} paint='h-6 w-6 text-accent' />
                                     </li>
                                 </Link>
                             ))
@@ -65,7 +65,7 @@ export default function Navbar({ identity_keyword }: any) {
                 <div className="flex items-center justify-between xl:gap-5">
                     <div className="flex-1 mx-2 xl:m-0">
                         <Link href={'/'}>
-                            <span className="text-xl font-bold text-secondary">{identity_keyword}</span>
+                            <span className="text-xl font-bold text-secondary hover:bg-primary">{identity_keyword}</span>
                         </Link>
                     </div>
                     <div className="flex-1 bg-soft tabs shadow">

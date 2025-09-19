@@ -3,14 +3,12 @@ import { data } from '@/src/config/data'
 import Icon from '@/src/helpers/IconBuilder'
 import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/src/config/constants'
 import Link from 'next/link'
+import { capitalized } from '../lib/utils'
+import { socialLinksInterface } from '../interface'
 
 export default function Hero() {
 
     const { first_name, profile_pic, socialLinks, identity_keyword } = data
-
-    const capitalized = (str: any) => {
-        return str.charAt(0).toUpperCase() + str.slice(1)
-    }
 
     return (
         <header id="hey" className="my-20 mx-10">
@@ -31,7 +29,7 @@ export default function Hero() {
                         </p>
                         <div className="flex items-center space-x-5">
                             {
-                                socialLinks.map((url: any) => (
+                                socialLinks.map((url: socialLinksInterface) => (
                                     <Link href={url.url} key={url.name} target="_blank">
                                         <button title={capitalized(url.name)} name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-base-100 text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'>
                                             <Icon type={url.name} paint='h-6 w-6' />

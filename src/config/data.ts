@@ -2,8 +2,6 @@ import cnss from '@/assets/images/certifications/cnss.webp'
 import develop from '@/assets/images/certifications/develop.webp'
 import pentesting from '@/assets/images/certifications/pentesting.webp'
 import remote from '@/assets/images/certifications/remoteWork.webp'
-import GDSC from '@/assets/images/certifications/GDSCCOMSATS.jpg'
-import sqlSoloLearn from '@/assets/images/certifications/sqlSoloLearn.jpg'
 
 import TutorHub from '@/assets/images/projects/tutorhub.webp'
 import DEX from '@/assets/images/projects/dex.webp'
@@ -95,41 +93,15 @@ const data: DataInterface = {
     ]
   },
   themes: [
-    'light',
-    'dark',
-    'cupcake',
-    'bumblebee',
-    'emerald',
-    'corporate',
-    'synthwave',
-    'retro',
-    'cyberpunk',
-    'valentine',
-    'halloween',
-    'garden',
-    'forest',
-    'aqua',
-    'lofi',
-    'pastel',
-    'fantasy',
-    'wireframe',
-    'black',
-    'luxury',
-    'dracula',
-    'cmyk',
-    'autumn',
-    'business',
-    'acid',
-    'lemonade',
-    'night',
-    'coffee',
-    'winter',
-    'dim',
-    'nord',
-    'sunset',
-    'caramellate',
-    'abyss',
-    'silk'
+    "light",
+    "dark",
+    "cupcake",
+    "bumblebee",
+    "emerald",
+    "lofi",
+    "business",
+    "cymk",
+    "dracula"
   ],
   profile_pic: Profile,
   socialLinks: [
@@ -171,7 +143,7 @@ const data: DataInterface = {
     {
       id: 1,
       title: 'Bachelor in Computer Science',
-      university: 'COMSATS University Islamabad',
+      university: 'COMSATS University',
       startDate: '2019',
       endDate: '2023',
       city: 'Lahore',
@@ -241,15 +213,7 @@ const data: DataInterface = {
     {
       title: 'Develop Applications with GCP',
       image: develop,
-    },
-    // {
-    //     title: '',
-    //     image: GDSC,
-    // },
-    // {
-    //     title: '',
-    //     image: sqlSoloLearn,
-    // }
+    }
   ],
   expertise: [
     {
@@ -258,11 +222,15 @@ const data: DataInterface = {
     },
     {
       title: 'Backend',
-      skills: ['nodejs', 'nestjs', 'firebase', 'kafka', 'jest', 'graphql']
+      skills: ['nodejs', 'nestjs', 'kafka', 'jest', 'graphql']
     },
     {
       title: 'Database',
       skills: ['mysql', 'postgresql', 'mongodb', 'redis']
+    },
+    {
+      title: 'DevOps',
+      skills: ['docker', 'kubernetes', 'gcp', 'nginx']
     }
   ],
   work: [

@@ -289,6 +289,68 @@
   --shadow: 0 4px 6px rgba(255, 255, 255, 0.1), 0 1px 3px rgba(255, 255, 255, 0.06);
 }
 
+[data-theme="rainyhero"] {
+  --color-base-100: oklch(98% 0 0);
+  --color-base-200: oklch(96% 0.001 286.375);
+  --color-base-300: oklch(92% 0.004 286.32);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(60% 0.118 184.704);
+  --color-primary-content: oklch(98% 0.014 180.72);
+  --color-secondary: oklch(54% 0.245 262.881);
+  --color-secondary-content: oklch(97% 0.014 254.604);
+  --color-accent: oklch(62% 0.194 149.214);
+  --color-accent-content: oklch(98% 0.018 155.826);
+  --color-neutral: oklch(21% 0.006 285.885);
+  --color-neutral-content: oklch(98% 0 0);
+  --color-info: oklch(78% 0.154 211.53);
+  --color-info-content: oklch(30% 0.056 229.695);
+  --color-success: oklch(84% 0.238 128.85);
+  --color-success-content: oklch(27% 0.072 132.109);
+  --color-warning: oklch(85% 0.199 91.936);
+  --color-warning-content: oklch(28% 0.066 53.813);
+  --color-error: oklch(71% 0.202 349.761);
+  --color-error-content: oklch(28% 0.109 3.907);
+  --radius-selector: 2rem;
+  --radius-field: 0rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}
+
+[data-theme="pizzapie"] {
+  --color-base-100: oklch(13% 0.028 261.692);
+  --color-base-200: oklch(21% 0.034 264.665);
+  --color-base-300: oklch(27% 0.033 256.848);
+  --color-base-content: oklch(96% 0.003 264.542);
+  --color-primary: oklch(70% 0.14 182.503);
+  --color-primary-content: oklch(98% 0.014 180.72);
+  --color-secondary: oklch(63% 0.237 25.331);
+  --color-secondary-content: oklch(97% 0.013 17.38);
+  --color-accent: oklch(79% 0.184 86.047);
+  --color-accent-content: oklch(98% 0.026 102.212);
+  --color-neutral: oklch(13% 0.028 261.692);
+  --color-neutral-content: oklch(98% 0.002 247.839);
+  --color-info: oklch(78% 0.154 211.53);
+  --color-info-content: oklch(30% 0.056 229.695);
+  --color-success: oklch(77% 0.152 181.912);
+  --color-success-content: oklch(27% 0.046 192.524);
+  --color-warning: oklch(75% 0.183 55.934);
+  --color-warning-content: oklch(26% 0.079 36.259);
+  --color-error: oklch(71% 0.194 13.428);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 2rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}
+
 
 /* Custom CSS */
 
@@ -366,8 +428,12 @@ body {
   box-shadow: var(--shadow);
 }
 
-.text-baseline {
-  color: var(--background)
+.divider {
+  border: 1px solid var(--color-base-300);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  
 }
 
 .section-block {
@@ -417,12 +483,6 @@ body {
 .btn-inverse {
   background-color: var(--background);
   color: var(--primary)
-}
-
-.divider {
-  height: 1px;
-  background-color: var(--background);
-  opacity: 0.2;
 }
 
 ::-webkit-scrollbar {
@@ -521,10 +581,6 @@ body {
   border: 2px solid var(--color-secondary);
   padding: 1px;
   box-shadow: 0px 1px 10px 0px var(--color-secondary)
-}
-
-.navbar-shadow {
-  box-shadow: 0 0 10px var(--surface);
 }
 
 .btn {

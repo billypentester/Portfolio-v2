@@ -7,25 +7,22 @@ import { sendContactData } from '@/src/helpers/action'
 import Dialog from './dialog'
 import Link from 'next/link'
 import { data } from '@/src/config/data'
+import { dialogboxInterface, socialLinksInterface } from '../interface'
+import { capitalized } from '../lib/utils'
 
 const Contact = () => {
 
   const { socialLinks } = data
 
-  const [show, setShow] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
-  const [content, setContent] = useState<any>({
-    title: '',
-    description: ''
+
+  const [dialog, setDialog] = useState<dialogboxInterface>({
+    show: false,
+    content: {
+      title: '',
+      description: ''
+    }
   })
-
-  const capitalized = (str: any) => {
-    return str.charAt(0).toUpperCase() + str.slice(1)
-  }
-
-  const handleShow = (value: boolean) => {
-    setShow(value)
-  }
 
   const getContactData = async(e: any) => {
     e.preventDefault()
@@ -38,22 +35,28 @@ const Contact = () => {
     if(status) {
       setLoading(false)
       form.reset()
-      setContent({
-        title: 'Contact Us',
-        description: message
+      setDialog({
+        ...dialog,
+        content: {
+          title: 'Contact Us',
+          description: message
+        }
       })
       setTimeout(() => {
-        handleShow(true)
+        setDialog({...dialog, show: true})
       }, 100)
     }
     else {
       setLoading(false)
-      setContent({
-        title: 'Contact Us',
-        description: message
+      setDialog({
+        ...dialog,
+        content: {
+          title: 'Contact Us',
+          description: message
+        }
       })
       setTimeout(() => {
-        handleShow(true)
+        setDialog({...dialog, show: true})
       }, 100)
     }
   }
@@ -71,7 +74,7 @@ const Contact = () => {
               </p>
               <div className="flex items-center space-x-5 my-8">
                 {
-                  socialLinks.map((url: any) => (
+                  socialLinks.map((url: socialLinksInterface) => (
                       <Link href={url.url} key={url.name} target="_blank">
                         <button name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-soft text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'>
                           <Icon type={url.name} paint="h-6 w-6"/>
@@ -103,7 +106,7 @@ const Contact = () => {
           </div>
         </div>
       </ColorSection>  
-      <Dialog show={show} handleShow={handleShow} title={content.title} description={content.description} />
+      <Dialog show={dialog.show} handleShow={(value: boolean) => {setDialog({...dialog, show: value})}} title={dialog.content.title} description={dialog.content.description} />
 
     </>
   )

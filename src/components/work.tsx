@@ -1,10 +1,11 @@
 import { WORK_HEADING } from '@/src/config/constants'
 import TransSection from '@/src/layouts/TransSection'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import React from 'react'
 import { data } from '@/src/config/data'
+import { workInterface } from '../interface'
 
-const WorkCard = ({title, image}: { title: string, image: any }) => {
+const WorkCard = ({title, image}: { title: string, image: StaticImageData }) => {
     return (
         <div>
             <Image src={image} alt={title} className="rounded-lg shadow cursor-pointer opacity-90" loading="lazy" width={400} height={400} />
@@ -17,11 +18,13 @@ const Work = () => {
 
     const { work } = data
 
+    if(!work || work.length === 0) return null
+
     return (
         <TransSection id="work" title={WORK_HEADING}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-10">
                 {
-                    work.map((work: any, index: number) => (
+                    work.map((work: workInterface, index: number) => (
                         <WorkCard key={index} title={work.title} image={work.image} />
                     ))
                 }

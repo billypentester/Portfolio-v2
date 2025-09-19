@@ -51,6 +51,38 @@ export interface projectsInterface {
     url: string;
 }
 
+export interface clientInterface {
+    id: number,
+    name: string,
+    image: StaticImageData,
+    url: string
+}
+
+export interface educationInterface {
+    id: number,
+    title: string,
+    university: string,
+    startDate: string,
+    endDate: string,
+    city: string,
+    image: StaticImageData
+}
+
+export interface certificationInterface {
+    title: string,
+    image: StaticImageData
+}
+
+export interface expertiseInterface {
+    title: string,
+    skills: Array<string>
+}
+
+export interface workInterface {
+    title: string,
+    image: StaticImageData
+}
+
 export interface DataInterface {
     first_name: string;
     last_name: string;
@@ -62,23 +94,9 @@ export interface DataInterface {
     experience: experienceInterface[];
     projects: projectsInterface[];
     themes: string[];
-    expertise: Array<{
-        title: string,
-        skills: Array<string>
-    }>;
-    work: Array<{
-        title: string,
-        image: StaticImageData
-    }>;
-    edu: Array<{
-        id: number,
-        title: string,
-        university: string,
-        startDate: string,
-        endDate: string,
-        city: string,
-        image: StaticImageData
-    }>;
+    expertise: expertiseInterface[];
+    work: workInterface[];
+    edu: educationInterface[];
     publications: Array<{
         title: string,
         description: string,
@@ -86,16 +104,8 @@ export interface DataInterface {
         image: StaticImageData,
         tags: Array<string>
     }>;
-    cert: Array<{
-        title: string,
-        image: StaticImageData
-    }>;
-    clients: Array<{
-        id: number,
-        name: string,
-        image: StaticImageData,
-        url: string
-    }>;
+    cert: certificationInterface[];
+    clients?: clientInterface[];
 }
 
 export interface structuredDataInterface {
@@ -106,4 +116,12 @@ export interface structuredDataInterface {
     projectBreadcrumbSchema: object;
     blogBreadcrumbSchema: object;
     certificationsBreadcrumbSchema: object;
+}
+
+export interface dialogboxInterface {
+    show: boolean;
+    content: {
+        title: string;
+        description: string;
+    }
 }

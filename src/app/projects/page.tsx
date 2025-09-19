@@ -50,7 +50,7 @@ const page = () => {
                           </div>
                         </div>
                         <div className='w-full  lg:w-7/12 h-full'>
-                          <Image src={item.image} alt={item.title} className='card w-full h-full object-cover rounded-md shadow-md' />
+                          <Image src={item.image} alt={item.title} className='card w-full h-full object-contain bg-black rounded-md shadow' />
                         </div>
                       </div>
                     </div>

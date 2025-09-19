@@ -5,7 +5,6 @@ import { data } from '@/src/config/data'
 import Navbar from "@/src/components/navbar";
 import Footer from "@/src/components/footer";
 import Contact from "@/src/components/contact";
-import useWindowDimensions from "../helpers/screenDimension";
 
 export const dynamic = 'force-dynamic'
 
@@ -22,7 +21,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   const { identity_keyword } = data
 
-  const APP_THEME = "light"
+  const APP_THEME="light"
 
   return (
     <html lang="en" data-theme={APP_THEME}>

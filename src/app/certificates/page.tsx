@@ -33,7 +33,7 @@ const page = () => {
               cert.map((item, index)=> {
                 return (
                   <div key={index}>
-                    <Image src={item.image} alt={item.title} loading="lazy" className='card shadow rounded-md object-cover object-left-top shadow-primary h-full' />
+                    <Image src={item.image} alt={item.title} loading="lazy" className='card rounded-md object-cover object-left-top shadow h-full' />
                   </div>
                 )
               })
