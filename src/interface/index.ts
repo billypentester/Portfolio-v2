@@ -100,7 +100,8 @@ export interface DataInterface {
 
 export interface structuredDataInterface {
     profileSchema: object;
-    aboutSchema: object;
+    aboutSchema?: object;
+    websiteSchema?: object;
     aboutMebreadcrumbSchema: object;
     projectBreadcrumbSchema: object;
     blogBreadcrumbSchema: object;

@@ -5,10 +5,20 @@ import Work from "@/src/components/work";
 import Expertise from "@/src/components/expertise";
 import Education from "@/src/components/education";
 import Client from "@/src/components/clients";
+import { structuredData } from "@/src/config/data";
 
 export default async function Home() {
+
+  const { websiteSchema } = structuredData;
+
   return (
-    <>
+    <section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+        __html: JSON.stringify(websiteSchema).replace(/</g, '\\u003c'),
+        }}
+      />
       <Hero />
       <Services />
       <Work />
@@ -16,6 +26,6 @@ export default async function Home() {
       <Client />
       <Expertise />
       <Education />
-    </>
+    </section>
   );
 }

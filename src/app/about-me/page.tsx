@@ -10,16 +10,10 @@ export const metadata: Metadata = {
 
 const page = () => {
 
-    const { aboutSchema, profileSchema, aboutMebreadcrumbSchema } = structuredData
+    const { profileSchema, aboutMebreadcrumbSchema } = structuredData
 
     return (
         <section>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                __html: JSON.stringify(aboutSchema).replace(/</g, '\\u003c'),
-                }}
-            />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
