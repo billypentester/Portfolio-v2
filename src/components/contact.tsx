@@ -30,6 +30,20 @@ const Contact = () => {
     const form = e.target
     const data = new FormData(form)
 
+    // check if all fields are filled
+    if(!data.get('name') || !data.get('email') || !data.get('message')) {
+      setLoading(false)
+      setDialog({
+        ...dialog,
+        content: {
+          title: 'Contact Us',
+          description: 'Please fill all the required fields.'
+        },
+        show: true
+      })
+      return
+    }
+
     const { status, message } = await sendContactData(data)
 
     if(status) {

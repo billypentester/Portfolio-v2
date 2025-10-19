@@ -87,6 +87,7 @@ export interface DataInterface {
     first_name: string;
     last_name: string;
     identity_keyword: string;
+    active_theme: string;
     seo: Metadata;
     socialLinks: socialLinksInterface[];
     services: servicesInterface[];

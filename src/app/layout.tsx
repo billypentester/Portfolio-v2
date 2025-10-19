@@ -19,12 +19,10 @@ export const metadata: Metadata = data.seo
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-  const { identity_keyword } = data
-
-  const APP_THEME="light"
+  const { identity_keyword, active_theme } = data
 
   return (
-    <html lang="en" data-theme={APP_THEME}>
+    <html lang="en" data-theme={active_theme}>
       <body className={`${fontOptions.className} antialiased`}>
         <Navbar identity_keyword={identity_keyword} />
         <div className="page-container">

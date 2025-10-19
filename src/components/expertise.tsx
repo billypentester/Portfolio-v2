@@ -14,7 +14,7 @@ const Services = () => {
             <div className="grid grid-cols-1 gap-2 my-10">
                 {
                     expertise.map((item: expertiseInterface, index: number) => (
-                        <div className={`flex flex-1 flex-col sm:flex-row justify-between items-center ${index !== expertise.length - 1 ? 'pb-4 divider' : ''}`}>
+                        <div key={index} className={`flex flex-1 flex-col sm:flex-row justify-between items-center ${index !== expertise.length - 1 ? 'pb-4 divider' : ''}`}>
                             <div className="w-full sm:w-1/3 mb-5 sm:mb-0">
                                 <h3 className='text-xl font-medium my-5 text-secondary'> {item.title} </h3>
                             </div>

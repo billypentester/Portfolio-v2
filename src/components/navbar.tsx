@@ -35,7 +35,7 @@ export default function Navbar({ identity_keyword }: { identity_keyword: string 
                         <Link href={'/'}>
                             <span className="text-lg font-bold text-secondary">{identity_keyword}</span>
                         </Link>
-                        <a className="btn btn-accent" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <a className="btn btn-accent" href="/myResume.pdf" target="_blank" rel="noopener noreferrer">
                             <IconBuilder type="file" paint="h-4 w-4 mr-2" />
                             <span>Resume</span>
                         </a>
@@ -83,7 +83,7 @@ export default function Navbar({ identity_keyword }: { identity_keyword: string 
                     </div>
                     <div className="flex-1">
                         <div className="flex justify-end">
-                            <a className="btn btn-accent" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                            <a className="btn btn-accent" href="/myResume.pdf" target="_blank" rel="noopener noreferrer">
                                 <IconBuilder type="file" paint="h-4 w-4 mr-2" />
                                 <span>Resume</span>
                             </a>
