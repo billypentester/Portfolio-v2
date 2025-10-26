@@ -13,7 +13,7 @@ export default function NotFound() {
                 </p>
             </div>
             <Link href="/">
-                <button className='btn'>
+                <button className='btn btn-accent'>
                     Return to Home
                 </button>
             </Link>
