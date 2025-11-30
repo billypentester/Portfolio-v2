@@ -4,7 +4,7 @@ import Icon from '@/src/helpers/IconBuilder'
 import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/src/config/constants'
 import Link from 'next/link'
 import { capitalized } from '../lib/utils'
-import { socialLinksInterface } from '../interface'
+import { socialLinksInterface } from '../lib/interface'
 
 export default function Hero() {
 

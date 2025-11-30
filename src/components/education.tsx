@@ -2,7 +2,7 @@ import { EDUCATION_HEADING } from '@/src/config/constants';
 import TransSection from '../layouts/TransSection'
 import Image, { StaticImageData } from 'next/image'
 import { data } from '@/src/config/data'
-import { certificationInterface, educationInterface } from '../interface';
+import { certificationInterface, educationInterface } from '../lib/interface';
 
 const WorkCard = ({title, image}: { title: string; image: StaticImageData }) => {
   return (
@@ -41,7 +41,9 @@ const Education = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-content-center place-items-start gap-5 my-10">
         {
-          cert.map((work: certificationInterface, index: number) => (
+          cert
+            .filter((certificate) => certificate.showcase)
+            .map((work: certificationInterface, index: number) => (
               <WorkCard key={index} title={work.title} image={work.image} />
           ))
         }

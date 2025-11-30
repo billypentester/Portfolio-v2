@@ -3,7 +3,7 @@ import TransSection from '../layouts/TransSection'
 import Image from 'next/image'
 import Link from 'next/link'
 import { data } from '@/src/config/data'
-import { clientInterface } from '../interface'
+import { clientInterface } from '../lib/interface'
 
 const Education = () => {
 

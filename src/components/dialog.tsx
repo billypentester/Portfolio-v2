@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
+import { modalInterface } from "../lib/interface"
 
-export default function Dialog({ show, handleShow, title, description }: any) {
+export default function Dialog({ show, content, handleShow }: modalInterface) {
 
     const modalRef = useRef<HTMLDivElement | null>(null)
     const contentRef = useRef<HTMLElement | null>(null)
@@ -33,6 +34,8 @@ export default function Dialog({ show, handleShow, title, description }: any) {
         }, 200)
     }
 
+    console.log("description: ", content.description)
+
     const handleOverlayMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         // If the click target is outside the content element, dismiss the modal
         const contentEl = contentRef.current
@@ -60,7 +63,7 @@ export default function Dialog({ show, handleShow, title, description }: any) {
                         <article ref={contentRef} className="card w-5/6 md:w-2/3 lg:w-1/3 modal-content flex flex-col relative m-0 rounded-md bg-base-100 sm:my-16" aria-labelledby="modal-title" aria-describedby="modal-body">
 
                             <header className="flex p-4 items-center justify-between">
-                                <h2 className="m-0 text-xl font-bold text-secondary max-w-[calc(100%_-_3rem)]">{title}</h2>
+                                <h2 className="m-0 text-xl font-bold text-secondary max-w-[calc(100%_-_3rem)]">{content.title}</h2>
                                 <button
                                     type="button"
                                     className="flex items-center justify-center w-8 h-8 rounded-full bg-transparent transition-colors duration-300 hover:bg-black/10"
@@ -88,7 +91,7 @@ export default function Dialog({ show, handleShow, title, description }: any) {
 
                             <main className="relative pb-5 px-4 pt-0">
                                 <p>
-                                    {description}
+                                    {content.description}
                                 </p>
                             </main>
 

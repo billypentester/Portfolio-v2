@@ -1,5 +1,5 @@
 import { icons } from "@/src/config/Icon"
-import { IconBuilderInterface } from "../interface"
+import { IconBuilderInterface } from "../lib/interface"
 
 export default function IconBuilder({ type, paint }: IconBuilderInterface) : JSX.Element {
     return (

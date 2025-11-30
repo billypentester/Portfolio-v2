@@ -3,7 +3,7 @@ import ColorSection from '../layouts/ColorSection'
 import Image from 'next/image'
 import { EXPERIENCE_HEADING } from '@/src/config/constants'
 import { data } from '@/src/config/data'
-import { experienceInterface } from '../interface'
+import { experienceInterface } from '../lib/interface'
 import { dateFormatter, yearDifference } from '../lib/utils'
 
 const Experience = () => {

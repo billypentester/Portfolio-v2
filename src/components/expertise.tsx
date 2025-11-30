@@ -3,7 +3,7 @@ import ColorSection from "../layouts/ColorSection"
 import Icons from "@/src/config/SkillIcon"
 import React from "react"
 import { data } from "@/src/config/data"
-import { expertiseInterface } from "../interface"
+import { expertiseInterface } from "../lib/interface"
 
 const Services = () => {
 

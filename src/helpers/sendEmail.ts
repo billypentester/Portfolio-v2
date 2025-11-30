@@ -1,22 +1,27 @@
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import { emailTemplate } from '@/src/config/template';
+import { data } from '../config/data';
 
 const transport = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.zoho.com',
+    port: 465,
+    secure: true, 
     auth: {
         user: process.env.APP_EMAIL,
         pass: process.env.APP_PASS,
     },
 });
 
-export const sendEmail = async (name: string, email: string, message: string) : Promise<{ message: string, status: boolean }> => {
+export const sendEmail = async (senderName: string, email: string, message: string) : Promise<{ message: string, status: boolean }> => {
+
+    const { identity_keyword } = data
 
     const mailOptions: Mail.Options = {
-        from: '"Portfolio" <hello@billypentester.com>',
+        from: `Portfolio <${process.env.APP_EMAIL}>`,
         to: process.env.APP_EMAIL,
-        subject: `Message from : ${name}`,
-        html: emailTemplate(name, 'Bilal', message, email)
+        subject: `New Contact Message from ${senderName}`,
+        html: emailTemplate(senderName, email, message, identity_keyword)
     };
 
     const sendMailPromise = () => new Promise<{ message: string, status: boolean }>((resolve, reject) => {

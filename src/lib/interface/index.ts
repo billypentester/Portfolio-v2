@@ -70,7 +70,8 @@ export interface educationInterface {
 
 export interface certificationInterface {
     title: string,
-    image: StaticImageData
+    image: StaticImageData,
+    showcase?: boolean
 }
 
 export interface expertiseInterface {
@@ -125,4 +126,10 @@ export interface dialogboxInterface {
         title: string;
         description: string;
     }
+}
+
+export interface modalInterface { 
+    show: boolean, 
+    content: { title: string, description: string }, 
+    handleShow: (value: boolean) => void 
 }

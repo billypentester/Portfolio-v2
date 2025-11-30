@@ -7,7 +7,7 @@ import { sendContactData } from '@/src/helpers/action'
 import Dialog from './dialog'
 import Link from 'next/link'
 import { data } from '@/src/config/data'
-import { dialogboxInterface, socialLinksInterface } from '../interface'
+import { dialogboxInterface, socialLinksInterface } from '../lib/interface'
 import { capitalized } from '../lib/utils'
 
 const Contact = () => {
@@ -30,7 +30,6 @@ const Contact = () => {
     const form = e.target
     const data = new FormData(form)
 
-    // check if all fields are filled
     if(!data.get('name') || !data.get('email') || !data.get('message')) {
       setLoading(false)
       setDialog({
@@ -47,32 +46,27 @@ const Contact = () => {
     const { status, message } = await sendContactData(data)
 
     if(status) {
-      setLoading(false)
       form.reset()
-      setDialog({
-        ...dialog,
-        content: {
-          title: 'Contact Us',
-          description: message
-        }
-      })
-      setTimeout(() => {
-        setDialog({...dialog, show: true})
-      }, 100)
     }
-    else {
-      setLoading(false)
-      setDialog({
-        ...dialog,
-        content: {
-          title: 'Contact Us',
-          description: message
-        }
-      })
-      setTimeout(() => {
-        setDialog({...dialog, show: true})
-      }, 100)
-    }
+
+    setLoading(false)
+
+    setDialog({
+      ...dialog,
+      content: {
+        title: 'Contact Us',
+        description: message
+      },
+      show: true
+    })
+
+  }
+
+  const handleDialogModal = (value: boolean) => {
+    setDialog({
+      ...dialog,
+      show: value
+    })
   }
 
   return (
@@ -105,10 +99,10 @@ const Contact = () => {
             <form onSubmit={getContactData}>
               <div className="flex flex-col space-y-5">
                 <div className="flex sm:space-x-5 space-y-5 sm:space-y-0 flex-col sm:flex-row">
-                  <input id="name" type="text" name="name" placeholder="Full Name *" className="w-full shadow" />
-                  <input id="email" type="email" name="email" placeholder="Email *" className="w-full shadow" />
+                  <input id="name" type="text" name="name" placeholder="Full Name" className="w-full shadow" />
+                  <input id="email" type="email" name="email" placeholder="Email Address" className="w-full shadow" />
                 </div>
-                <textarea id="message" name="message" className="textarea w-full shadow resize-none" placeholder="Type your message here *" rows={5}></textarea>
+                <textarea id="message" name="message" className="textarea w-full shadow resize-none" placeholder="Type your message..." rows={5}></textarea>
                 <button type="submit" className="w-full lg:w-max btn btn-accent ms-auto shadow">
                     {
                       loading ? <Icon type="spinner" paint="animate-spin h-4 w-4 mr-2" /> : <Icon type="contact" paint="h-4 w-4 mr-2" />
@@ -120,7 +114,8 @@ const Contact = () => {
           </div>
         </div>
       </ColorSection>  
-      <Dialog show={dialog.show} handleShow={(value: boolean) => {setDialog({...dialog, show: value})}} title={dialog.content.title} description={dialog.content.description} />
+      
+      <Dialog show={dialog.show} content={dialog.content} handleShow={handleDialogModal} />
 
     </>
   )

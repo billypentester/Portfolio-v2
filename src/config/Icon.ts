@@ -1,6 +1,6 @@
 // these icons are imported from Font Awesome
 
-import { IconListInterface } from "../interface"
+import { IconListInterface } from "../lib/interface"
 
 const icons: IconListInterface = {
 

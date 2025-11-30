@@ -1,4 +1,4 @@
-import { IconListInterface } from "../interface";
+import { IconListInterface } from "../lib/interface";
 
 const SkillIcons: IconListInterface = {
 

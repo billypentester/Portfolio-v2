@@ -1,5 +1,5 @@
 import { data, structuredData } from '@/src/config/data'
-import { projectsInterface } from '@/src/interface'
+import { projectsInterface } from '@/src/lib/interface'
 import { Metadata } from 'next'
 import React from 'react'
 import Image from 'next/image'

@@ -6,7 +6,7 @@ export async function POST(request: Request) {
         const body = await request.json()
         const { name, email, message } = body
 
-        console.log('Contact form data: ', body)
+        console.log('Form Data: ', body)
 
         const { valid, error } = validateContactForm({ name, email, message })
 
@@ -15,14 +15,12 @@ export async function POST(request: Request) {
         }
 
         const res = await sendEmail(name, email, message)
-        if(res.status) {
-            console.log('Email sent successfully')
-        }
-        else {
-            console.log('Error: ', res.message)
+        if(!res.status) {
+            console.log('Error while sending email: ', res.message)
         }
 
         return Response.json({ message: 'Thank you for contacting us! We will get back to you soon' }, { status: 201 })
+        
     }
     catch(e){
         console.log('Error: ', e)

@@ -2,6 +2,9 @@ import cnss from '@/assets/images/certifications/cnss.webp'
 import develop from '@/assets/images/certifications/develop.webp'
 import pentesting from '@/assets/images/certifications/pentesting.webp'
 import remote from '@/assets/images/certifications/remoteWork.webp'
+import gdscLead from '@/assets/images/certifications/GDSCCOMSATS.jpg'
+import PAMCybrary from '@/assets/images/certifications/PAMCybrary.jpg'
+import sqlSoloLearn from '@/assets/images/certifications/sqlSoloLearn.jpg'
 
 import TutorHub from '@/assets/images/projects/tutorhub.webp'
 import DEX from '@/assets/images/projects/dex.webp'
@@ -34,7 +37,7 @@ import PizzaHut from '@/assets/images/clients/pizzahut.png'
 import CrustCulture from '@/assets/images/clients/crustculture.png'
 import halla from '@/assets/images/clients/halla.png'
 import Kyochon from '@/assets/images/clients/kyochon.png'
-import { DataInterface, structuredDataInterface } from '../interface'
+import { DataInterface, structuredDataInterface } from '../lib/interface'
 
 const data: DataInterface = {
   first_name: 'Bilal',
@@ -103,7 +106,7 @@ const data: DataInterface = {
     "cymk",
     "dracula"
   ],
-  active_theme: "dracula",
+  active_theme: "light",
   profile_pic: Profile,
   socialLinks: [
     {
@@ -201,20 +204,36 @@ const data: DataInterface = {
   cert: [
     {
       title: 'Certified Network Security Specialist',
-      image: cnss
+      image: cnss,
+      showcase: true
     },
     {
       title: 'Remote Work Certification',
       image: remote,
+      showcase: true
     },
     {
       title: 'Advance Peneration Testing',
       image: pentesting,
+      showcase: true
     },
     {
       title: 'Develop Applications with GCP',
       image: develop,
-    }
+      showcase: true
+    },
+    {
+      title: 'GDSC Cloud Lead',
+      image: gdscLead
+    },
+    {
+      title: 'SQL',
+      image: sqlSoloLearn
+    },
+    {
+      title: 'Privileged Access Management',
+      image: PAMCybrary
+    },
   ],
   expertise: [
     {

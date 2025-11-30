@@ -1,263 +1,111 @@
 const template = `
     <!doctype html>
-    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <html lang="en" style="margin:0; padding:0;">
     <head>
-        <title></title>
-        <!--[if !mso]><!-->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!--<![endif]-->
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="x-apple-disable-message-reformatting">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style type="text/css">
-        #outlook a { padding:0; }
-        body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%; }
-        table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt; }
-        img { border:0;height:auto;line-height:100%; outline:none;text-decoration:none;-ms-interpolation-mode:bicubic; }
-        p { display:block;margin:13px 0; }
-        </style>
-        <!--[if mso]>
-        <noscript>
-        <xml>
-        <o:OfficeDocumentSettings>
-        <o:AllowPNG/>
-        <o:PixelsPerInch>96</o:PixelsPerInch>
-        </o:OfficeDocumentSettings>
-        </xml>
-        </noscript>
-        <![endif]-->
-        <!--[if lte mso 11]>
-        <style type="text/css">
-        .mj-outlook-group-fix { width:100% !important; }
-        </style>
-        <![endif]-->
-        
-        <!--[if !mso]><!-->
-            <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet" type="text/css">
-            <style type="text/css">
-            @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
-    @import url(https://fonts.googleapis.com/css?family=Bitter:400,700);
-            </style>
-        <!--<![endif]-->
-
-        
-        
-        <style type="text/css">
-        @media only screen and (min-width:480px) {
-            .mj-column-per-100 { width:100% !important; max-width: 100%; }
+        <title>Contact Us Submission</title>
+        <style>
+        /* Optional fallback styles for clients that respect <style> */
+        @media only screen and (max-width: 600px) {
+            .container { width: 100% !important; }
+            .content { padding: 20px !important; }
         }
         </style>
-        <style media="screen and (min-width:480px)">
-        .moz-text-html .mj-column-per-100 { width:100% !important; max-width: 100%; }
-        </style>
-        
-    
-        <style type="text/css">
-        
-        
-        </style>
-        <style type="text/css">
-        .hide_on_mobile { display: none !important;} 
-            @media only screen and (min-width: 480px) { .hide_on_mobile { display: block !important;} }
-            .hide_section_on_mobile { display: none !important;} 
-            @media only screen and (min-width: 480px) { 
-                .hide_section_on_mobile { 
-                    display: table !important;
-                } 
-
-                div.hide_section_on_mobile { 
-                    display: block !important;
-                }
-            }
-            .hide_on_desktop { display: block !important;} 
-            @media only screen and (min-width: 480px) { .hide_on_desktop { display: none !important;} }
-            .hide_section_on_desktop { 
-                display: table !important;
-                width: 100%;
-            } 
-            @media only screen and (min-width: 480px) { .hide_section_on_desktop { display: none !important;} }
-            
-            p, h1, h2, h3 {
-                margin: 0px;
-            }
-
-            ul, li, ol {
-                font-size: 11px;
-                font-family: Ubuntu, Helvetica, Arial;
-            }
-
-            a {
-                text-decoration: none;
-                color: inherit;
-            }
-
-            @media only screen and (max-width:480px) {
-                .mj-column-per-100 { width:100%!important; max-width:100%!important; }.mj-column-per-100 > .mj-column-per-100 { width:100%!important; max-width:100%!important; }
-            }
-        </style>
-        
     </head>
-    <body style="word-spacing:normal;background-color:#FFFFFF;">
-        
-        
-        <div style="background-color:#FFFFFF;">
-            
-        
-        <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#4A90E2" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-        
-        
-        <div style="background:#4A90E2;background-color:#4A90E2;margin:0px auto;max-width:600px;">
-            
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#4A90E2;background-color:#4A90E2;width:100%;">
-            <tbody>
-                <tr>
-                <td style="direction:ltr;font-size:0px;padding:10px 0px 10px 0px;text-align:center;">
-                    <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
-                
-        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-            
-        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-            <tbody>
-            
-            </tbody>
-        </table>
-        
+    <body style="margin:0; padding:0; background:#f5f7fb; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; font-family: Arial, Helvetica, sans-serif;">
+        <!-- Preheader (hidden) -->
+        <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:transparent;">
+        New contact form submission received
         </div>
-        
-            <!--[if mso | IE]></td></tr></table><![endif]-->
-                </td>
-                </tr>
-            </tbody>
-            </table>
-            
-        </div>
-        
-        
-        <!--[if mso | IE]></td></tr></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-        
-        
-        <div style="margin:0px auto;max-width:600px;">
-            
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-            <tbody>
-                <tr>
-                <td style="direction:ltr;font-size:0px;padding:10px 0px 10px 0px;text-align:center;">
-                    <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
-                
-        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-            
-        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-            <tbody>
-            
-                <tr>
-                    <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
-                    
-        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;text-align:left;color:#000000;"><h1 style="font-family: Ubuntu, sans-serif; font-size: 22px; font-weight: bold; text-align: center;"><span style="font-family: Bitter, Georgia, serif; font-size: 23px; color: rgb(53, 152, 219);"><strong>billypentester</strong></span></h1></div>
-        
-                    </td>
-                </tr>
-                
-            </tbody>
-        </table>
-        
-        </div>
-        
-            <!--[if mso | IE]></td></tr></table><![endif]-->
-                </td>
-                </tr>
-            </tbody>
-            </table>
-            
-        </div>
-        
-        
-        <!--[if mso | IE]></td></tr></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-        
-        
-        <div style="margin:0px auto;max-width:600px;">
-            
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-            <tbody>
-                <tr>
-                <td style="direction:ltr;font-size:0px;padding:10px 0px 10px 0px;text-align:center;">
-                    <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
-                
-        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-            
-        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-            <tbody>
-            
-                <tr>
-                    <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
 
-                        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;text-align:left;color:#000000;"><p style="font-family: Ubuntu, sans-serif; font-size: 11px;"><span style="font-size: 14px;">Hi {{receiver}}, I'm {{sender}}</span></p>
-                        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;text-align:left;color:#000000;"><p style="font-family: Ubuntu, sans-serif; font-size: 11px;"><span style="font-size: 14px;">Email : {{email}}</span></p>
-
-                        <p style="font-family: Ubuntu, sans-serif; font-size: 11px;">&nbsp;</p>
-                        <p style="font-family: Ubuntu, sans-serif; font-size: 11px;"><span style="font-size: 14px;">{{message}}</span></p>
-                        <p style="font-family: Ubuntu, sans-serif; font-size: 11px;">&nbsp;</p>
-                        <p style="font-family: Ubuntu, sans-serif; font-size: 11px;"><span style="font-size: 14px;">Regards,</span></p>
-                        <p style="font-family: Ubuntu, sans-serif; font-size: 11px;"><span style="font-size: 14px;">Bilal Ahmad</span></p></div>
-        
-                    </td>
-                </tr>
-                
-            </tbody>
-        </table>
-        
-        </div>
-        
-            <!--[if mso | IE]></td></tr></table><![endif]-->
-                </td>
-                </tr>
-            </tbody>
-            </table>
-            
-        </div>
-        
-        
-        <!--[if mso | IE]></td></tr></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#4A90E2" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-        
-        
-        <div style="background:#4A90E2;background-color:#4A90E2;margin:0px auto;max-width:600px;">
-            
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#4A90E2;background-color:#4A90E2;width:100%;">
-            <tbody>
+        <!-- Full width wrapper -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f5f7fb;">
+        <tr>
+            <td align="center" style="padding:30px 15px;">
+            <!-- Container -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="container" style="width:600px; max-width:600px; background:#ffffff; border-radius:8px; overflow:hidden;">
+                <!-- Header -->
                 <tr>
-                <td style="direction:ltr;font-size:0px;padding:10px 0px 10px 0px;text-align:center;">
-                    <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
-                
-        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-            
-        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-            <tbody>
-            
-            </tbody>
-        </table>
-        
-        </div>
-        
-            <!--[if mso | IE]></td></tr></table><![endif]-->
+                <td align="center" style="background:#1f2a44; color:#ffffff; padding:24px;">
+                    <h1 style="margin:0; font-size:20px; line-height:1.4; font-weight:700; letter-spacing:0.2px;">
+                    New Contact Us Submission
+                    </h1>
                 </td>
                 </tr>
-            </tbody>
+
+                <!-- Body -->
+                <tr>
+                <td class="content" style="padding:28px 28px 8px; color:#1c2130; font-size:16px; line-height:1.6;">
+                    <p style="margin:0 0 16px;">
+                    You’ve received a new message via your Contact Us form. Details are below:
+                    </p>
+
+                    <!-- Data card -->
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid #e6e8ee; border-radius:6px;">
+                    <tr>
+                        <td style="padding:16px 18px; border-bottom:1px solid #e6e8ee; background:#fafbff;">
+                        <strong style="display:inline-block; width:110px; color:#4a5568;">Name:</strong>
+                        <span style="color:#1c2130;">{{name}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:16px 18px; border-bottom:1px solid #e6e8ee;">
+                        <strong style="display:inline-block; width:110px; color:#4a5568;">Email:</strong>
+                        <a href="mailto:{{email}}" style="color:#1f6feb; text-decoration:none;">{{email}}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:16px 18px;">
+                        <strong style="display:block; margin-bottom:8px; color:#4a5568;">Message:</strong>
+                        <div style="white-space:pre-wrap; color:#1c2130;">{{message}}</div>
+                        </td>
+                    </tr>
+                    </table>
+
+                    <!-- CTA -->
+                    <p style="margin:18px 0 0;">
+                    <a href="mailto:{{email}}" style="background:#1f6feb; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:6px; display:inline-block; font-weight:600; font-size:14px;">
+                        Reply to {{name}}
+                    </a>
+                    </p>
+                </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                <td align="center" style="padding:22px 28px 28px; color:#6b7280; font-size:12px; line-height:1.6;">
+                    <p style="margin:0;">
+                    You’re receiving this email because your website’s contact form was submitted.
+                    </p>
+                    <p style="margin:8px 0 0;">
+                    © {{year}} {{brand_name}} · This is an automated message
+                    </p>
+                </td>
+                </tr>
             </table>
-            
-        </div>
-        
-        
-        <!--[if mso | IE]></td></tr></table><![endif]-->
-        
-        
-        </div>
-        
+            <!-- End container -->
+            </td>
+        </tr>
+        </table>
     </body>
     </html>
   
 `
 
-function emailTemplate(sender: string, receiver: string, message: string, email: string) {
-    return template.replace('{{sender}}', sender).replace('{{receiver}}', receiver).replace('{{message}}', message,).replace('{{email}}', email)
+function emailTemplate(name: string, email: string, message: string, identity_keyword: string): string {
+    
+    const currentYear = new Date().getFullYear();
+    
+    let filledTemplate = template.replace(/{{name}}/g, name);
+    filledTemplate = filledTemplate.replace(/{{email}}/g, email);
+    filledTemplate = filledTemplate.replace(/{{message}}/g, message);
+    filledTemplate = filledTemplate.replace(/{{year}}/g, currentYear.toString());
+    filledTemplate = filledTemplate.replace(/{{brand_name}}/g, identity_keyword);
+    
+    return filledTemplate;
+
 }
 
 export { emailTemplate }

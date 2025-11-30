@@ -3,7 +3,7 @@ import TransSection from '@/src/layouts/TransSection'
 import Image, { StaticImageData } from 'next/image'
 import React from 'react'
 import { data } from '@/src/config/data'
-import { workInterface } from '../interface'
+import { workInterface } from '../lib/interface'
 
 const WorkCard = ({title, image}: { title: string, image: StaticImageData }) => {
     return (
