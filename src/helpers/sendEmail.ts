@@ -5,8 +5,8 @@ import { data } from '../config/data';
 
 const transport = nodemailer.createTransport({
     host: 'smtp.zoho.com',
-    port: 465,
-    secure: true, 
+    port: 587,
+    secure: false,
     auth: {
         user: process.env.APP_EMAIL,
         pass: process.env.APP_PASS,
@@ -14,6 +14,10 @@ const transport = nodemailer.createTransport({
 });
 
 export const sendEmail = async (senderName: string, email: string, message: string) : Promise<{ message: string, status: boolean }> => {
+
+    console.log('Sending email...');
+    console.log("App Email:", process.env.APP_EMAIL);
+    console.log("App Pass:", process.env.APP_PASS);
 
     const { identity_keyword } = data
 
