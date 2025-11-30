@@ -34,8 +34,6 @@ export default function Dialog({ show, content, handleShow }: modalInterface) {
         }, 200)
     }
 
-    console.log("description: ", content.description)
-
     const handleOverlayMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         // If the click target is outside the content element, dismiss the modal
         const contentEl = contentRef.current
