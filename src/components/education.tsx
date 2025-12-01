@@ -26,12 +26,12 @@ const Education = () => {
               <div key={item.id} className="card bg-base-100 shadow rounded-lg p-10">
                 <div className="flex flex-col sm:flex-row">
                   <div className="w-full sm:w-1/3 mb-4 sm:mb-0">
-                    <Image src={item.image} alt={item.title} className="w-32 h-32 object-contain" loading="lazy" />
+                    <Image src={item.image} alt={item.title} className="w-32 h-32 object-contain mx-auto sm:mx-0" loading="lazy" />
                   </div>
-                  <div className="w-full sm:w-2/3">
-                    <h3 className="text-lg sm:text-2xl font-semibold text-primary">{item.university}</h3>
-                    <h4 className="mt-3 text-lg text-secondary">{item.title}</h4>
-                    <h5 className="mt-1 text-accent">{item.startDate} - {item.endDate}</h5>
+                  <div className="w-full sm:w-2/3 flex flex-col justify-center">
+                    <h3 className="text-lg sm:text-2xl font-semibold text-primary text-center sm:text-left">{item.university}</h3>
+                    <h4 className="mt-3 text-lg text-secondary text-center sm:text-left">{item.title}</h4>
+                    <h5 className="mt-1 text-accent text-center sm:text-left">{item.startDate} - {item.endDate}</h5>
                   </div>
                 </div>
               </div>

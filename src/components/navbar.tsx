@@ -4,10 +4,15 @@ import IconBuilder from "@/src/helpers/IconBuilder";
 import Link from "next/link";
 import useWindowDimensions from "../helpers/screenDimension";
 
-export default function Navbar({ identity_keyword }: { identity_keyword: string }) {
+export default function Navbar({ identity_keyword, isMobileDevice }: { identity_keyword: string, isMobileDevice: boolean }) {
 
     const [isScrolled, setIsScrolled] = useState(false);
-    const { width, loaded } = useWindowDimensions()
+    const { width } = useWindowDimensions()
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,7 +32,10 @@ export default function Navbar({ identity_keyword }: { identity_keyword: string 
         { name: 'Contact', link: '#contact', icon: "contact" },
     ]
 
-    if (width < 1024) {
+    // Use server-side detection initially, then client-side width after mount
+    const showMobileNav = isMounted ? width < 1024 : isMobileDevice;
+
+    if (showMobileNav) {
         return (
             <>
                 <nav className="fixed top-0 left-0 z-40 w-full bg-base-100">
