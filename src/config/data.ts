@@ -513,6 +513,5 @@ const structuredData: structuredDataInterface = {
   certificationsBreadcrumbSchema
 }
 
-
 export { data, structuredData }
 
