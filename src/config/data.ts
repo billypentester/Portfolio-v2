@@ -106,7 +106,7 @@ const data: DataInterface = {
     "cymk",
     "dracula"
   ],
-  active_theme: "dracula",
+  active_theme: "professional-light",
   profile_pic: Profile,
   socialLinks: [
     {
