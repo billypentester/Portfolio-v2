@@ -1,9 +1,9 @@
-import { EXPERTISE_HEADING } from "@/src/config/constants"
-import ColorSection from "../layouts/ColorSection"
-import Icons from "@/src/config/SkillIcon"
+import { EXPERTISE_HEADING } from "@/src/lib/constants"
+import ColorSection from "../../layouts/ColorSection"
+import Icons from "@/src/config/skillIcon"
 import React from "react"
 import { data } from "@/src/config/data"
-import { expertiseInterface } from "../lib/interface"
+import { expertiseInterface } from "../../lib/interface"
 
 const Services = () => {
 

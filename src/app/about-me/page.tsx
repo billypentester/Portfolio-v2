@@ -2,6 +2,8 @@ import IconBuilder from '@/src/helpers/IconBuilder'
 import { structuredData } from '@/src/config/data'
 import { Metadata } from 'next'
 import React from 'react'
+import { PAGE_HEADER } from '@/src/lib/constants'
+import Starter from '@/src/components/shared/starter'
 
 export const metadata: Metadata = {
     title: 'About Bilal Ahmad | Software Engineer & Full Stack Developer',
@@ -26,11 +28,7 @@ const page = () => {
                 __html: JSON.stringify(aboutMebreadcrumbSchema).replace(/</g, '\\u003c'),
                 }}
             />
-            <header className='flex flex-col gap-4 mb-10 text-center'>
-                <h3 className='text-primary text-2xl'>Hello there 👋 I'm</h3>
-                <h1 className='font-bold text-secondary text-5xl'>Bilal Ahmad</h1>
-                <h2 className='text-primary text-2xl'>Software Engineer</h2>
-            </header>
+            <Starter starter={PAGE_HEADER.aboutMe.starter} heading={PAGE_HEADER.aboutMe.heading} flavour={PAGE_HEADER.aboutMe.flavour} />
             <main className='my-10'>
                 <div className='mx-auto max-w-5xl'>
                     <div className='flex flex-col lg:flex-row items-center gap-10 mb-10 mx-5 lg:mx-0'>          

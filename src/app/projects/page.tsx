@@ -3,6 +3,8 @@ import { projectsInterface } from '@/src/lib/interface'
 import { Metadata } from 'next'
 import React from 'react'
 import Image from 'next/image'
+import { PAGE_HEADER } from '@/src/lib/constants'
+import Starter from '@/src/components/shared/starter'
 
 export const metadata: Metadata = {
     title: 'Projects | Bilal Ahmad - Full Stack Software Engineer',
@@ -22,11 +24,7 @@ const page = () => {
         __html: JSON.stringify(projectBreadcrumbSchema).replace(/</g, '\\u003c'),
         }}
       />
-      <header className="flex flex-col gap-4 mb-20 text-center">
-        <h3 className="text-primary text-2xl">Take a Look at My</h3>
-        <h1 className="font-bold text-secondary text-5xl">Projects</h1>
-        <h2 className="text-accent text-2xl">Turning ideas into real-world solutions</h2>
-      </header>
+      <Starter starter={PAGE_HEADER.projects.starter} heading={PAGE_HEADER.projects.heading} flavour={PAGE_HEADER.projects.flavour} />
       <main className='my-10'>
         <div className='mx-auto max-w-5xl'>
           <div className='w-full'>

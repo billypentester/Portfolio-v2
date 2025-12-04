@@ -352,7 +352,6 @@
 }
 
 [data-theme="professional-light"] {
-  /* Base — soft grey surfaces */
   --color-base-100: oklch(98% 0.005 255);   /* main background */
   --color-base-200: oklch(95% 0.006 255);
   --color-base-300: oklch(90% 0.01 255);
@@ -363,12 +362,14 @@
   --color-primary-content: oklch(98% 0.005 255);
 
   /* Secondary — subtle desaturated purple-blue */
-  --color-secondary: oklch(55% 0.01 230);
+  --color-secondary: oklch(50% 0.01 230);
   --color-secondary-content: oklch(32% 0.01 230);
 
   /* Accent — teal/mint for highlights (looks premium) */
   --color-accent: oklch(78% 0.12 170);
   --color-accent-content: oklch(15% 0.02 170);
+
+
 
   /* Neutral — soft grey for borders/cards */
   --color-neutral: oklch(85% 0.02 255);
@@ -438,11 +439,6 @@ body {
 
 .text-accent {
   color: var(--color-accent);
-}
-
-.bg-soft {
-  background-color: color-mix(in oklab, var(--badge-color, var(--color-base-content)) 8%, var(--color-base-100));
-  border-color: color-mix(in oklab, var(--badge-color, var(--color-base-content)) 10%, var(--color-base-100));
 }
 
 .bg-base-100 {

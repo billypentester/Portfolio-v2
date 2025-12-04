@@ -1,10 +1,10 @@
-import Experience from "@/src/components/experience";
-import Hero from "@/src/components/hero";
-import Services from "@/src/components/services";
-import Work from "@/src/components/work";
-import Expertise from "@/src/components/expertise";
-import Education from "@/src/components/education";
-import Client from "@/src/components/clients";
+import Experience from "@/src/components/home/experience";
+import Hero from "@/src/components/home/hero";
+import Services from "@/src/components/home/services";
+import Work from "@/src/components/home/work";
+import Expertise from "@/src/components/home/expertise";
+import Education from "@/src/components/home/education";
+import Client from "@/src/components/home/clients";
 import { structuredData } from "@/src/config/data";
 
 export default async function Home() {

@@ -21,3 +21,7 @@ export const dateFormatter = (date: string) : string => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' }
     return new Date(date).toLocaleDateString('en-US', options)
 }
+
+export const isMobile = (userAgent: string) : boolean => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+}

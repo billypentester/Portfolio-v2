@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react"
 import IconBuilder from "@/src/helpers/IconBuilder";
 import Link from "next/link";
-import useWindowDimensions from "../helpers/screenDimension";
+import useWindowDimensions from "../../helpers/screenDimension";
+import { PAGE_LIST } from "@/src/lib/constants";
 
 export default function Navbar({ identity_keyword, isMobileDevice }: { identity_keyword: string, isMobileDevice: boolean }) {
 
@@ -23,14 +24,6 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-    const pages = [
-        { name: 'About', link: '/about-me', icon: "user" },
-        { name: 'Projects', link: '/projects', icon: "file" },
-        { name: 'Certificates', link: '/certificates', icon: "cert" },
-        { name: 'Blog', link: '/blogs', icon: "blog" },
-        { name: 'Contact', link: '#contact', icon: "contact" },
-    ]
 
     // Use server-side detection initially, then client-side width after mount
     const showMobileNav = isMounted ? width < 1024 : isMobileDevice;
@@ -53,7 +46,7 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                 <nav className="fixed bottom-0 left-0 z-40 w-full bg-base-100 px-6 py-2">
                     <ul className="flex justify-between align-middle p-1 gap-2">
                         {
-                            pages.map((page, index) => (
+                            PAGE_LIST.map((page, index) => (
                                 <Link href={page.link} key={index}>
                                     <li key={page.name} className="tab !p-0 hover:bg-transparent">
                                         <IconBuilder type={page.icon} paint='h-6 w-6 text-accent' />
@@ -79,7 +72,7 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                     <div className="flex-1 bg-soft tabs shadow">
                         <ul className="flex p-1 gap-2">
                             {
-                                pages.map((page, index) => (
+                                PAGE_LIST.map((page, index) => (
                                     <Link href={page.link} key={index}>
                                         <li key={page.name} className="tab">
                                             <span>{page.name}</span>
@@ -91,9 +84,11 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                     </div>
                     <div className="flex-1">
                         <div className="flex justify-end">
-                            <a className="btn btn-accent" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                                <IconBuilder type="file" paint="h-4 w-4 mr-2" />
-                                <span>Resume</span>
+                            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                                <button className="btn btn-accent">
+                                    <IconBuilder type="file" paint="h-4 w-4 mr-2" />
+                                    <span>Resume</span>
+                                </button>
                             </a>
                         </div>
                     </div>

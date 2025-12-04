@@ -1,14 +1,14 @@
 'use client'
 import { useState } from 'react'
 import Icon from '@/src/helpers/IconBuilder'
-import ColorSection from "../layouts/ColorSection"
-import { CONTACT_DESC, CONTACT_FLAVOUR, CONTACT_HEADING } from '@/src/config/constants'
+import ColorSection from "../../layouts/ColorSection"
+import { CONTACT_DESC, CONTACT_FLAVOUR, CONTACT_HEADING } from '@/src/lib/constants'
 import { sendContactData } from '@/src/helpers/action'
-import Dialog from './dialog'
+import Dialog from '@/src/components/shared/dialog'
 import Link from 'next/link'
 import { data } from '@/src/config/data'
-import { dialogboxInterface, socialLinksInterface } from '../lib/interface'
-import { capitalized } from '../lib/utils'
+import { dialogboxInterface, socialLinksInterface } from '@/src/lib/interface'
+import { capitalized } from '../../utils'
 
 const Contact = () => {
 

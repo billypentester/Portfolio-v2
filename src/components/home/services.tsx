@@ -1,8 +1,8 @@
 import ColorSection from '@/src/layouts/ColorSection'
 import Icon from '@/src/helpers/IconBuilder'
-import { SERVICE_HEADING } from '@/src/config/constants'
+import { SERVICE_HEADING } from '@/src/lib/constants'
 import { data } from '@/src/config/data'
-import { servicesInterface } from '../lib/interface'
+import { servicesInterface } from '../../lib/interface'
 
 export default function Services() {
 

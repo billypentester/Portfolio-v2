@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { data } from '@/src/config/data'
-import Navbar from "@/src/components/navbar";
-import Footer from "@/src/components/footer";
-import Contact from "@/src/components/contact";
+import Navbar from "@/src/components/shared/navbar";
+import Footer from "@/src/components/shared/footer";
+import Contact from "@/src/components/shared/contact";
 import { headers } from 'next/headers';
+import { isMobile } from "../utils";
 
 export const dynamic = 'force-dynamic'
 
@@ -20,15 +21,16 @@ export const metadata: Metadata = data.seo
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-  const { identity_keyword, active_theme } = data
   const headersList = await headers();
   const userAgent = headersList.get('user-agent') || '';
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+  const isMobileDevice = isMobile(userAgent);
+
+  const { identity_keyword, active_theme } = data
 
   return (
     <html lang="en" data-theme={active_theme}>
       <body className={`${fontOptions.className} antialiased`}>
-        <Navbar identity_keyword={identity_keyword} isMobileDevice={isMobile} />
+        <Navbar identity_keyword={identity_keyword} isMobileDevice={isMobileDevice} />
         <div className="page-container">
           {children}
           <Contact />

@@ -4,6 +4,8 @@ import { Metadata } from 'next'
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Starter from '@/src/components/shared/starter'
+import { PAGE_HEADER } from '@/src/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Bilal Ahmad Blogs | Insights on Software Engineering, Development & Technology',
@@ -23,11 +25,7 @@ const page = () => {
           __html: JSON.stringify(blogBreadcrumbSchema).replace(/</g, '\\u003c'),
         }}
       />
-      <header className="flex flex-col gap-4 mb-20 text-center">
-        <h3 className="text-primary text-2xl">Insights & Learnings</h3>
-        <h1 className="font-bold text-secondary text-5xl">Blogs</h1>
-        <h2 className="text-accent text-2xl">Sharing knowledge, thoughts, and experiences</h2>
-      </header>
+      <Starter starter={PAGE_HEADER.blogs.starter} heading={PAGE_HEADER.blogs.heading} flavour={PAGE_HEADER.blogs.flavour} />
       <main className='my-10'>
         <div className='w-full'>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

@@ -1,9 +1,9 @@
-import { WORK_HEADING } from '@/src/config/constants'
+import { WORK_HEADING } from '@/src/lib/constants'
 import TransSection from '@/src/layouts/TransSection'
 import Image, { StaticImageData } from 'next/image'
 import React from 'react'
 import { data } from '@/src/config/data'
-import { workInterface } from '../lib/interface'
+import { workInterface } from '../../lib/interface'
 
 const WorkCard = ({title, image}: { title: string, image: StaticImageData }) => {
     return (

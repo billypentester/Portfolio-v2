@@ -1,8 +1,8 @@
-import { EDUCATION_HEADING } from '@/src/config/constants';
-import TransSection from '../layouts/TransSection'
+import { EDUCATION_HEADING } from '@/src/lib/constants';
+import TransSection from '../../layouts/TransSection'
 import Image, { StaticImageData } from 'next/image'
 import { data } from '@/src/config/data'
-import { certificationInterface, educationInterface } from '../lib/interface';
+import { certificationInterface, educationInterface } from '../../lib/interface';
 
 const WorkCard = ({title, image}: { title: string; image: StaticImageData }) => {
   return (

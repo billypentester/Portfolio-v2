@@ -1,9 +1,9 @@
-import { CLIENT_HEADING } from '@/src/config/constants'
-import TransSection from '../layouts/TransSection'
+import { CLIENT_HEADING } from '@/src/lib/constants'
+import TransSection from '@/src/layouts/TransSection'
 import Image from 'next/image'
 import Link from 'next/link'
 import { data } from '@/src/config/data'
-import { clientInterface } from '../lib/interface'
+import { clientInterface } from '@/src/lib/interface'
 
 const Education = () => {
 

@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { data } from '@/src/config/data'
 import Icon from '@/src/helpers/IconBuilder'
-import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/src/config/constants'
+import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/src/lib/constants'
 import Link from 'next/link'
-import { capitalized } from '../lib/utils'
-import { socialLinksInterface } from '../lib/interface'
+import { capitalized } from '../../utils'
+import { socialLinksInterface } from '../../lib/interface'
 
 export default function Hero() {
 
@@ -14,9 +14,9 @@ export default function Hero() {
         <header id="hey" className="my-20 mx-10">
             <div className="flex items-center justify-between">
                 <div className='me-0 lg:me-2'>
-                    <h1 className='text-xl text-primary font-medium'> 
+                    <h1 className='text-xl text-secondary font-medium'> 
                         {HERO_STARTER} 
-                        <span className='text-secondary font-semibold'>{" " + first_name}</span> 
+                        <span className='text-secondary font-bold'>{" " + first_name}</span> 
                     </h1>
                     <h2 className='text-5xl tracking-tight text-primary leading-tight font-semibold my-3'> 
                         {HERO_HEADING_START} 
