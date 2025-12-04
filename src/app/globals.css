@@ -363,8 +363,8 @@
   --color-primary-content: oklch(98% 0.005 255);
 
   /* Secondary — subtle desaturated purple-blue */
-  --color-secondary: oklch(72% 0.05 230);
-  --color-secondary-content: oklch(15% 0.01 230);
+  --color-secondary: oklch(55% 0.01 230);
+  --color-secondary-content: oklch(32% 0.01 230);
 
   /* Accent — teal/mint for highlights (looks premium) */
   --color-accent: oklch(78% 0.12 170);
