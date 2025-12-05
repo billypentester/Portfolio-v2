@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { modalInterface } from "../lib/interface"
+import { modalInterface } from "@/src/lib/interface"
 
 export default function Dialog({ show, content, handleShow }: modalInterface) {
 
