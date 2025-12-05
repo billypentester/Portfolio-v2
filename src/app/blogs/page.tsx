@@ -5,7 +5,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Starter from '@/src/components/shared/starter'
-import { PAGE_HEADER } from '@/src/lib/constants'
+import { BLUR_IMAGE_DATA, PAGE_HEADER } from '@/src/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Bilal Ahmad Blogs | Insights on Software Engineering, Development & Technology',
@@ -35,7 +35,14 @@ const page = () => {
                   <div key={index} className='card bg-base-100 rounded-md border-primary shadow'>
                     <Link key={index} href={item.link} target='_blank' rel='noopener noreferrer'>
                       <div className='p-3'>
-                        <Image src={item.image} alt={item.title} className='card h-60 w-full object-cover rounded-md mb-5 shadow' />
+                        <Image 
+                          src={item.image} 
+                          alt={item.title} 
+                          className='card h-60 w-full object-cover rounded-md mb-5 shadow' 
+                          loading="lazy" 
+                          placeholder="blur"
+                          blurDataURL={BLUR_IMAGE_DATA}
+                        />
                         <div className='px-5 pb-3'>
                           <h1 className='text-2xl font-bold text-secondary'>{item.title}</h1>
                           <p className='text-primary py-3'>{item.description}</p>

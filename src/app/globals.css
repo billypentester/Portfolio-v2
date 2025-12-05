@@ -352,30 +352,23 @@
 }
 
 [data-theme="professional-light"] {
-  --color-base-100: oklch(98% 0.005 255);   /* main background */
+  --color-base-100: oklch(98% 0.005 255);
   --color-base-200: oklch(95% 0.006 255);
   --color-base-300: oklch(90% 0.01 255);
-  --color-base-content: oklch(25% 0.02 255); /* text: dark grey */
+  --color-base-content: oklch(25% 0.02 255);
 
-  /* Primary — clean, trustworthy blue */
-  --color-primary: oklch(60% 0.15 255);  /* modern blue */
+  --color-primary: oklch(60% 0.15 255);
   --color-primary-content: oklch(98% 0.005 255);
 
-  /* Secondary — subtle desaturated purple-blue */
   --color-secondary: oklch(50% 0.01 230);
   --color-secondary-content: oklch(32% 0.01 230);
 
-  /* Accent — teal/mint for highlights (looks premium) */
   --color-accent: oklch(78% 0.12 170);
   --color-accent-content: oklch(15% 0.02 170);
 
-
-
-  /* Neutral — soft grey for borders/cards */
   --color-neutral: oklch(85% 0.02 255);
   --color-neutral-content: oklch(25% 0.02 255);
 
-  /* Status colors (subtle & modern) */
   --color-info: oklch(70% 0.18 250);
   --color-info-content: oklch(98% 0.01 250);
 
@@ -388,7 +381,6 @@
   --color-error: oklch(65% 0.22 25);
   --color-error-content: oklch(98% 0.01 25);
 
-  /* Border Radius + UI tokens */
   --radius-selector: 0.5rem;
   --radius-field: 1rem;
   --radius-box: 1rem;
@@ -426,8 +418,6 @@ body {
   background-color: var(--color-base-200);
   color: var(--color-base-content);
 }
-
-
 
 .text-primary {
   color: var(--color-primary);
@@ -566,10 +556,6 @@ body {
   transform: scale(1.1) translateY(-5px);
 }
 
-.client-logo:hover img {
-  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3)) drop-shadow(-5px -5px 5px rgba(255, 255, 255, 0.2)) brightness(1.2) saturate(1.1);
-}
-
 
 .tooltip {
   position: relative;
@@ -642,6 +628,10 @@ body {
   box-shadow: 0px 1px 10px 0px var(--color-secondary)
 }
 
+.bg-soft {
+  background-color: var(--color-base-300);
+}
+
 .btn {
   cursor: pointer;
   text-align: center;
@@ -650,28 +640,30 @@ body {
   -webkit-user-select: none;
   user-select: none;
   padding-inline: var(--btn-p);
+  /* visual defaults - driven by theme variables */
+  --size: calc(var(--size-field, .25rem) * 10);
+  height: var(--size);
+  --btn-color: var(--btn-color, var(--color-base-200)); /* base token for variant overrides */
+  --btn-bg: var(--btn-bg, var(--btn-color));
+  --btn-fg: var(--btn-fg, var(--color-base-content));
   color: var(--btn-fg);
   --tw-prose-links: var(--btn-fg);
-  height: var(--size);
-  /* font-size: var(--fontsize, .875rem); */
-  outline-color: var(--btn-color, var(--color-base-content));
+
+  outline-color: color-mix(in oklab, var(--btn-bg), #000 calc(var(--depth) * 5%));
   background-color: var(--btn-bg);
-  background-size: auto, calc(var(--noise)*100%);
+  background-size: auto, calc(var(--noise) * 100%);
   background-image: none, var(--btn-noise);
-  border-width: var(--border);
   border-style: solid;
+  --btn-border: color-mix(in oklab, var(--btn-bg), #000 calc(var(--depth) * 5%));
   border-color: var(--btn-border);
-  text-shadow: 0 .5px oklch(100% 0 0/calc(var(--depth)*.15));
+
+  text-shadow: 0 .5px oklch(100% 0 0 / calc(var(--depth) * .15));
   touch-action: manipulation;
-  /* box-shadow: var(--shadow); */
-  box-shadow: 0 .5px 0 .5px oklch(100% 0 0/calc(var(--depth)*6%)) inset, var(--btn-shadow);
-  --size: calc(var(--size-field, .25rem)*10);
-  --btn-bg: var(--btn-color, var(--color-base-200));
-  --btn-fg: var(--color-base-content);
+  --btn-shadow: 0 3px 2px -2px color-mix(in oklab, var(--btn-bg) calc(var(--depth) * 30%), #0000), 0 4px 3px -2px color-mix(in oklab, var(--btn-bg) calc(var(--depth) * 30%), #0000);
+  box-shadow: 0 .5px 0 .5px oklch(100% 0 0 / calc(var(--depth) * 6%)) inset, var(--btn-shadow);
   --btn-p: 1rem;
-  --btn-border: color-mix(in oklab, var(--btn-bg), #000 calc(var(--depth)*5%));
-  --btn-shadow: 0 3px 2px -2px color-mix(in oklab, var(--btn-bg)calc(var(--depth)*30%), #0000), 0 4px 3px -2px color-mix(in oklab, var(--btn-bg)calc(var(--depth)*30%), #0000);
   --btn-noise: var(--fx-noise);
+
   border-start-start-radius: var(--join-ss, var(--radius-field));
   border-start-end-radius: var(--join-se, var(--radius-field));
   border-end-end-radius: var(--join-ee, var(--radius-field));
@@ -681,11 +673,36 @@ body {
   justify-content: center;
   align-items: center;
   gap: .375rem;
-  /* font-weight: 600; */
-  transition-property: color, background-color, border-color, box-shadow;
-  transition-duration: .2s;
+  transition-property: color, background-color, border-color, box-shadow, transform;
+  transition-duration: .18s;
   transition-timing-function: cubic-bezier(0, 0, .2, 1);
   display: inline-flex;
+}
+
+/* Hover / active / focus interactions (theme-aware) */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px color-mix(in oklab, var(--btn-bg) 60%, #000 40% / 0.12);
+  background-color: color-mix(in oklab, var(--btn-bg) 88%, black 12%);
+  border-color: color-mix(in oklab, var(--btn-bg) 80%, black 20%);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px color-mix(in oklab, var(--btn-bg) 70%, #000 30% / 0.12);
+  background-color: color-mix(in oklab, var(--btn-bg) 76%, black 24%);
+}
+
+.btn:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--btn-bg) 20%, #0000 80%);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--btn-bg) 10%, #0000 90%);
+}
+
+/* Toggle/pressed state support for accessible buttons */
+.btn[aria-pressed="true"] {
+  background-color: color-mix(in oklab, var(--btn-bg) 70%, black 30%);
+  box-shadow: 0 6px 14px color-mix(in oklab, var(--btn-bg) 50%, #000 50% / 0.14);
 }
 
 .btn-primary {
@@ -706,7 +723,7 @@ body {
 input,
 textarea {
   background-color: transparent;
-  border: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
   border-radius: var(--radius-field);
   color: var(--color-base-content);
   padding: 1rem;

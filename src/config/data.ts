@@ -5,6 +5,9 @@ import remote from '@/assets/images/certifications/remoteWork.webp'
 import gdscLead from '@/assets/images/certifications/GDSCCOMSATS.jpg'
 import PAMCybrary from '@/assets/images/certifications/PAMCybrary.jpg'
 import sqlSoloLearn from '@/assets/images/certifications/sqlSoloLearn.jpg'
+import NSE2 from '@/assets/images/certifications/NSE2.jpg'
+import apiArchitect from '@/assets/images/certifications/apiArchitect.jpg'
+import securityFoundation from '@/assets/images/certifications/securityFoundation.jpg'
 
 import TutorHub from '@/assets/images/projects/tutorhub.webp'
 import DEX from '@/assets/images/projects/dex.webp'
@@ -36,7 +39,8 @@ import Dominos from '@/assets/images/clients/dominos.png'
 import PizzaHut from '@/assets/images/clients/pizzahut.png'
 import CrustCulture from '@/assets/images/clients/crustculture.png'
 import halla from '@/assets/images/clients/halla.png'
-import Kyochon from '@/assets/images/clients/kyochon.png'
+import unitedEMR from '@/assets/images/clients/uniteemr.png'
+
 import { DataInterface, structuredDataInterface } from '../lib/interface'
 
 const data: DataInterface = {
@@ -196,9 +200,9 @@ const data: DataInterface = {
     },
     {
       id: 6,
-      name: 'Kyochon',
-      image: Kyochon,
-      url: "https://www.kyochonme.com/"
+      name: 'Unite EMR',
+      image: unitedEMR,
+      url: "https://www.uniteemr.com/"
     }
   ],
   cert: [
@@ -234,6 +238,18 @@ const data: DataInterface = {
       title: 'Privileged Access Management',
       image: PAMCybrary
     },
+    {
+      title: 'NSE 2 - Network Security Associate',
+      image: NSE2
+    },
+    {
+      title: 'API Architect Certification',
+      image: apiArchitect
+    },
+    {
+      title: 'Security Foundation Professional Certificate',
+      image: securityFoundation
+    }
   ],
   expertise: [
     {
