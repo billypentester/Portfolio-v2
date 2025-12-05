@@ -363,8 +363,8 @@
   --color-secondary: oklch(50% 0.01 230);
   --color-secondary-content: oklch(32% 0.01 230);
 
-  --color-accent: oklch(78% 0.12 170);
-  --color-accent-content: oklch(15% 0.02 170);
+  --color-accent: oklch(78% 0.12 45);
+  --color-accent-content: oklch(15% 0.02 45);
 
   --color-neutral: oklch(85% 0.02 255);
   --color-neutral-content: oklch(25% 0.02 255);
@@ -394,13 +394,11 @@
 }
 
 
-[data-theme="dracula"] body {
-    /* Apply the dark background and light text */
+[data-theme="professional-light"] body {
+    
     background-color: var(--color-base-200);
     color: var(--color-base-content);
     
-    /* A clean, modern sans-serif for general text */
-    /* font-family: 'Inter', 'Roboto', sans-serif; */
     line-height: 1.6;
     padding: 0;
     margin: 0;
@@ -629,7 +627,7 @@ body {
 }
 
 .bg-soft {
-  background-color: var(--color-base-300);
+  background-color: var(--color-base-200);
 }
 
 .btn {

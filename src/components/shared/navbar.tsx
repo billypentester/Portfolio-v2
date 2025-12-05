@@ -69,7 +69,7 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                             <span className="text-xl font-bold text-secondary hover:bg-primary">{identity_keyword}</span>
                         </Link>
                     </div>
-                    <div className="flex-1 bg-soft tabs shadow">
+                    <div className="flex-1 bg-base-100 tabs shadow">
                         <ul className="flex p-1 gap-2">
                             {
                                 PAGE_LIST.map((page, index) => (
