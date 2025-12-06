@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import IconBuilder from "@/src/helpers/IconBuilder";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import useWindowDimensions from "../../helpers/screenDimension";
 import { PAGE_LIST } from "@/src/lib/constants";
 
@@ -10,10 +11,15 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
     const [isScrolled, setIsScrolled] = useState(false);
     const { width } = useWindowDimensions()
     const [isMounted, setIsMounted] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         setIsMounted(true);
     }, []);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }, [pathname]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,7 +31,6 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
         };
     }, []);
 
-    // Use server-side detection initially, then client-side width after mount
     const showMobileNav = isMounted ? width < 1024 : isMobileDevice;
 
     if (showMobileNav) {
@@ -42,13 +47,12 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                         </a>
                     </div>
                 </nav>
-                {/* Bottom Navbar */}
-                <nav className="fixed bottom-0 left-0 z-40 w-full bg-base-100 px-6 py-2">
-                    <ul className="flex justify-between align-middle p-1 gap-2">
+                <nav className="fixed bottom-5 left-0 z-40 w-full px-3">
+                    <ul className="flex justify-between align-middle px-6 py-3 glass-effect border-radius">
                         {
                             PAGE_LIST.map((page, index) => (
                                 <Link href={page.link} key={index}>
-                                    <li key={page.name} className="tab p-0! hover:bg-transparent">
+                                    <li key={page.name} className="mobile-tab p-0!">
                                         <IconBuilder type={page.icon} paint='h-6 w-6 text-accent' />
                                     </li>
                                 </Link>
@@ -56,6 +60,8 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                         }
                     </ul>
                 </nav>
+                <div className="fixed bottom-0 left-0 z-30 w-full h-24 bg-linear-to-t from-gray-100 to-transparent pointer-events-none"></div>
+
             </>
         )
     }

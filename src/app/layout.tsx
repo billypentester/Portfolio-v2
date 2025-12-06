@@ -7,6 +7,7 @@ import Footer from "@/src/components/shared/footer";
 import Contact from "@/src/components/shared/contact";
 import { headers } from 'next/headers';
 import { isMobile } from "../utils";
+import Dialog from "../components/shared/dialog";
 
 export const dynamic = 'force-dynamic'
 
@@ -36,6 +37,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <Contact />
         </div>
         <Footer identity_keyword={identity_keyword} />
+        <Dialog />
       </body>
     </html>
   );

@@ -16,8 +16,6 @@ export const HERO_CHAT_START = "Let's have a chat"
 export const CONTACT_DESC = "Let's have a chat and I'll help your next idea comes to the real world."
 export const CONTACT_FLAVOUR = "Simple friendly talk is never a bad idea ☺️"
 
-// pages
-
 export const PAGE_HEADER = {
     blogs: {
         starter: "Insights & Learnings",
@@ -48,7 +46,5 @@ export const PAGE_LIST = [
     { name: 'Blog', link: '/blogs', icon: "blog" },
     { name: 'Contact', link: '#contact', icon: "contact" },
 ]
-
-// placeholder blur image data
 
 export const BLUR_IMAGE_DATA = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAYAAACzzX7wAAAAkElEQVR4AQCEAHv/Ao3R8f+10eH/3dfV//Pi2//z6uv/3ePz/7vR8f+ZvOj/Aizr5wAd6N0AEeTOAAjhxAAH4MkACuTVAAro3QAM7OEAAhvg5QAN4ecA/9/nAPna5gD11uUA89nmAPLj6wDw7vIAAgTf8gD65wMA7eoZAObmIgDj4BkA4eEQAN7tCwDU+wsAAAAA//9Bn+RaAAAABklEQVQDADStTaprX7EVAAAAAElFTkSuQmCC"
