@@ -48,7 +48,7 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                         {
                             PAGE_LIST.map((page, index) => (
                                 <Link href={page.link} key={index}>
-                                    <li key={page.name} className="tab !p-0 hover:bg-transparent">
+                                    <li key={page.name} className="tab p-0! hover:bg-transparent">
                                         <IconBuilder type={page.icon} paint='h-6 w-6 text-accent' />
                                     </li>
                                 </Link>

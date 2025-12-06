@@ -1,14 +1,19 @@
 'use server'
 
+import { headers } from 'next/headers';
+
 async function sendContactData(formData: FormData) : Promise<{ status: boolean, message: string }> {
+
+  const headersList = headers();
+  const host = (await headersList).get('host') ? `http://${(await headersList).get('host')}` : ''
+
+  console.log('Host:', host);
  
   const rawFormData = {
     name: formData.get('name'),
     email: formData.get('email'),
     message: formData.get('message'),
   }
-
-  const host = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://billypentester.pk'
 
   const response = await fetch(`${host}/api/contact`, {
     method: 'POST',
