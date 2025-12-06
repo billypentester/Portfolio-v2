@@ -1,15 +1,10 @@
 'use server'
 
-import { headers } from 'next/headers'
-
 async function sendContactData(formData: FormData) : Promise<{ status: boolean, message: string }> {
 
-  const headersList = await headers()
-  const host = headersList.get('host')
-  const protocol = headersList.get('x-forwarded-proto') || 'http'
-  const baseUrl = `${protocol}://${host}`
+  const HOST = process.env.NEXT_PUBLIC_HOST || 'https://billypentester.pk'
 
-  console.log('Base URL:', baseUrl);
+  console.log("HOST: ", HOST)
  
   const rawFormData = {
     name: formData.get('name'),
@@ -17,7 +12,7 @@ async function sendContactData(formData: FormData) : Promise<{ status: boolean, 
     message: formData.get('message'),
   }
 
-  const response = await fetch(`${baseUrl}/api/contact`, {
+  const response = await fetch(`${HOST}/api/contact`, {
     method: 'POST',
     body: JSON.stringify(rawFormData),
     headers: {
