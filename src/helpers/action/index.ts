@@ -1,13 +1,15 @@
 'use server'
 
-import { headers } from 'next/headers';
+import { headers } from 'next/headers'
 
 async function sendContactData(formData: FormData) : Promise<{ status: boolean, message: string }> {
 
-  const headersList = headers();
-  const host = (await headersList).get('host') ? `http://${(await headersList).get('host')}` : ''
+  const headersList = await headers()
+  const host = headersList.get('host')
+  const protocol = headersList.get('x-forwarded-proto') || 'http'
+  const baseUrl = `${protocol}://${host}`
 
-  console.log('Host:', host);
+  console.log('Base URL:', baseUrl);
  
   const rawFormData = {
     name: formData.get('name'),
@@ -15,7 +17,7 @@ async function sendContactData(formData: FormData) : Promise<{ status: boolean, 
     message: formData.get('message'),
   }
 
-  const response = await fetch(`${host}/api/contact`, {
+  const response = await fetch(`${baseUrl}/api/contact`, {
     method: 'POST',
     body: JSON.stringify(rawFormData),
     headers: {
