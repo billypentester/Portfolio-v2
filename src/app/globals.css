@@ -352,6 +352,7 @@
 }
 
 [data-theme="professional-light"] {
+  
   --color-base-100: oklch(98% 0.005 255);
   --color-base-200: oklch(95% 0.006 255);
   --color-base-300: oklch(90% 0.01 255);
@@ -360,11 +361,11 @@
   --color-primary: oklch(60% 0.15 255);
   --color-primary-content: oklch(98% 0.005 255);
 
-  --color-secondary: oklch(50% 0.01 230);
-  --color-secondary-content: oklch(32% 0.01 230);
+  --color-secondary: oklch(75% 0.15 85);
+  --color-secondary-content: oklch(20% 0.05 85);
 
-  --color-accent: oklch(78% 0.12 45);
-  --color-accent-content: oklch(15% 0.02 45);
+  --color-accent: oklch(70% 0.18 35);
+  --color-accent-content: oklch(98% 0.01 35);
 
   --color-neutral: oklch(85% 0.02 255);
   --color-neutral-content: oklch(25% 0.02 255);
@@ -391,6 +392,7 @@
   --noise: 0;
 
   --shadow: 0 4px 8px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.04);
+  
 }
 
 

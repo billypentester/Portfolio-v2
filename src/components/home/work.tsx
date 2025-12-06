@@ -1,4 +1,4 @@
-import { WORK_HEADING } from '@/src/lib/constants'
+import { BLUR_IMAGE_DATA, WORK_HEADING } from '@/src/lib/constants'
 import TransSection from '@/src/layouts/TransSection'
 import Image, { StaticImageData } from 'next/image'
 import React from 'react'
@@ -8,7 +8,16 @@ import { workInterface } from '../../lib/interface'
 const WorkCard = ({title, image}: { title: string, image: StaticImageData }) => {
     return (
         <div>
-            <Image src={image} alt={title} className="rounded-lg shadow cursor-pointer opacity-90" loading="lazy" width={400} height={400} />
+            <Image 
+                src={image} 
+                alt={title} 
+                className="rounded-lg shadow cursor-pointer opacity-90" 
+                loading="lazy" 
+                width={400} 
+                height={400} 
+                placeholder="blur"
+                blurDataURL={BLUR_IMAGE_DATA}
+            />
             <h3 className="text-lg text-primary font-medium m-3"> {title} </h3>
         </div>
     )

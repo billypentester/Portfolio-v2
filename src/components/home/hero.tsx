@@ -31,7 +31,7 @@ export default function Hero() {
                             {
                                 socialLinks.map((url: socialLinksInterface) => (
                                     <Link href={url.url} key={url.name} target="_blank">
-                                        <button title={capitalized(url.name)} name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-base-100 text-accent p-3 rounded-full shadow transition duration-500 ease-in-out'>
+                                        <button title={capitalized(url.name)} name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-base-100 text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'>
                                             <Icon type={url.name} paint='h-6 w-6' />
                                             <div className="tooltip-content">
                                                 {capitalized(url.name)}
@@ -44,7 +44,7 @@ export default function Hero() {
                     </div>
                 </div>
                 <div className='hidden lg:inline-block'>
-                    <Image src={profile_pic} alt={identity_keyword} className='w-72 h-72 profile-pic' loading="lazy"/>
+                    <Image src={profile_pic} alt={identity_keyword} className='w-72 h-72 profile-pic' />
                 </div>
             </div>
         </header>

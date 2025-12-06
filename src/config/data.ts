@@ -108,7 +108,8 @@ const data: DataInterface = {
     "lofi",
     "business",
     "cymk",
-    "dracula"
+    "dracula",
+    "professional-light"
   ],
   active_theme: "professional-light",
   profile_pic: Profile,

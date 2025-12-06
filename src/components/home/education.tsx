@@ -1,4 +1,4 @@
-import { EDUCATION_HEADING } from '@/src/lib/constants';
+import { BLUR_IMAGE_DATA, EDUCATION_HEADING } from '@/src/lib/constants';
 import TransSection from '../../layouts/TransSection'
 import Image, { StaticImageData } from 'next/image'
 import { data } from '@/src/config/data'
@@ -7,7 +7,14 @@ import { certificationInterface, educationInterface } from '../../lib/interface'
 const WorkCard = ({title, image}: { title: string; image: StaticImageData }) => {
   return (
       <div>
-          <Image src={image} alt={title} className="rounded-lg shadow cursor-pointer h-48 object-cover" loading="lazy" />
+          <Image 
+            src={image} 
+            alt={title} 
+            className="rounded-lg shadow cursor-pointer h-48 object-cover" 
+            loading="lazy" 
+            placeholder="blur"
+            blurDataURL={BLUR_IMAGE_DATA}
+          />
           <h5 className="text-sm font-medium m-3 text-primary"> {title} </h5>
       </div>
   )
@@ -26,12 +33,19 @@ const Education = () => {
               <div key={item.id} className="card bg-base-100 shadow rounded-lg p-10">
                 <div className="flex flex-col sm:flex-row">
                   <div className="w-full sm:w-1/3 mb-4 sm:mb-0">
-                    <Image src={item.image} alt={item.title} className="w-32 h-32 object-contain mx-auto sm:mx-0" loading="lazy" />
+                    <Image 
+                      src={item.image} 
+                      alt={item.title} 
+                      className="w-32 h-32 object-contain mx-auto sm:mx-0" 
+                      loading="lazy" 
+                      placeholder="blur"
+                      blurDataURL={BLUR_IMAGE_DATA}
+                    />
                   </div>
                   <div className="w-full sm:w-2/3 flex flex-col justify-center">
                     <h3 className="text-lg sm:text-2xl font-semibold text-primary text-center sm:text-left">{item.university}</h3>
                     <h4 className="mt-3 text-lg text-secondary text-center sm:text-left">{item.title}</h4>
-                    <h5 className="mt-1 text-accent text-center sm:text-left">{item.startDate} - {item.endDate}</h5>
+                    <h5 className="mt-1 text-center sm:text-left">{item.startDate} - {item.endDate}</h5>
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { CLIENT_HEADING } from '@/src/lib/constants'
+import { BLUR_IMAGE_DATA, CLIENT_HEADING } from '@/src/lib/constants'
 import TransSection from '@/src/layouts/TransSection'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -20,7 +20,15 @@ const Education = () => {
               <div key={client.id}>
                 <Link key={client.id} href={client.url} target='_blank'>
                   <div key={client.id} className="p-10 client-logo">
-                    <Image src={client.image} alt={client.name} height={'130'} className='object-cover' loading="lazy" />
+                    <Image 
+                      src={client.image} 
+                      alt={client.name} 
+                      height={'130'} 
+                      className='object-cover' 
+                      loading="lazy" 
+                      placeholder="blur"
+                      blurDataURL={BLUR_IMAGE_DATA}
+                    />
                   </div>
                 </Link>
               </div>
