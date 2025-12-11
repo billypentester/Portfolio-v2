@@ -87,6 +87,7 @@ export interface workInterface {
 export interface DataInterface {
     first_name: string;
     last_name: string;
+    description: string;
     identity_keyword: string;
     active_theme: string;
     seo: Metadata;

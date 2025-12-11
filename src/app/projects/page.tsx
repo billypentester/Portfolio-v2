@@ -3,8 +3,9 @@ import { projectsInterface } from '@/src/lib/interface'
 import { Metadata } from 'next'
 import React from 'react'
 import Image from 'next/image'
-import { PAGE_HEADER } from '@/src/lib/constants'
+import { BLUR_IMAGE_DATA, PAGE_HEADER } from '@/src/lib/constants'
 import Starter from '@/src/components/shared/starter'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
     title: 'Projects | Bilal Ahmad - Full Stack Software Engineer',
@@ -32,26 +33,35 @@ const page = () => {
               {
                 projects.map((item: projectsInterface, index: number)=> {
                   return (
-                    <div key={index} className='card h-96 rounded-md bg-base-100 shadow transition-shadow duration-300 ease-in-out cursor-pointer'>
-                      <div className='flex justify-between h-full p-2 gap-3'>
-                        <div className='hidden lg:block w-full lg:w-5/12 p-5 flex-col justify-between'>
-                          <div>
-                            <h2 className='text-4xl font-bold text-secondary mb-2'>{item.title}</h2>
-                            <p className='text-primary my-4 text-lg'>{item.description}</p>
+                    <Link href={item.url} target="_blank" rel="noopener noreferrer" key={index}>
+                      <div className='card h-96 rounded-md bg-base-100 shadow transition-shadow duration-300 ease-in-out cursor-pointer'>
+                        <div className={`flex justify-between h-full p-2 gap-5 ${index % 2 === 0 ? 'flex-row' : 'flex-col lg:flex-row-reverse'}`}>
+                          <div className='hidden lg:block w-full lg:w-1/2 p-5 flex-col justify-between relative'>
+                            <div>
+                              <h2 className='text-4xl font-bold text-secondary mb-2'>{item.title}</h2>
+                              <p className='text-primary my-4 text-lg'>{item.description}</p>
+                            </div>
+                            <div className="flex flex-wrap gap-2 absolute bottom-3 left-5">
+                              {
+                                item.tags.map((tag: string, idx: number) => (
+                                  <span key={idx} className='bg-soft px-3 py-1 rounded-full text-sm'>{tag}</span>
+                                ))
+                              }
+                            </div>
                           </div>
-                          <div className='flex flex-wrap gap-2'>
-                            {
-                              item.tags.map((tag: string, idx: number) => (
-                                <span key={idx} className='bg-soft px-3 py-1 rounded-full text-sm'>{tag}</span>
-                              ))
-                            }
+                          <div className='w-full lg:w-1/2 h-full'>
+                            <Image 
+                              src={item.image} 
+                              alt={item.title} 
+                              className='card w-full h-full object-cover object-top-left rounded-md shadow' 
+                              loading="lazy" 
+                              placeholder="blur"
+                              blurDataURL={BLUR_IMAGE_DATA}
+                            />
                           </div>
-                        </div>
-                        <div className='w-full  lg:w-7/12 h-full'>
-                          <Image src={item.image} alt={item.title} className='card w-full h-full object-contain bg-black rounded-md shadow' />
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   )
                 })
               }

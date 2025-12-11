@@ -1,7 +1,7 @@
 import React from 'react'
 import ColorSection from '../../layouts/ColorSection'
 import Image from 'next/image'
-import { EXPERIENCE_HEADING } from '@/src/lib/constants'
+import { BLUR_IMAGE_DATA, EXPERIENCE_HEADING } from '@/src/lib/constants'
 import { data } from '@/src/config/data'
 import { experienceInterface } from '../../lib/interface'
 import { dateFormatter, yearDifference } from '../../utils'
@@ -21,7 +21,14 @@ const Experience = () => {
                             <section className={`flex flex-1 flex-col sm:flex-row justify-between my-1 ${index !== experience.length - 1 ? 'pb-4 divider' : ''}`}>
                                 <div className="me-5 mb-5 sm:mb-0">
                                     <div className='p-1 rounded-full w-16 h-16 bg-base-100 flex items-center justify-center shadow'>
-                                        <Image src={item.logo} alt={item.title} className="rounded-full" loading="lazy" />
+                                        <Image 
+                                            src={item.logo} 
+                                            alt={item.title} 
+                                            className="rounded-full" 
+                                            loading="lazy" 
+                                            placeholder="blur"
+                                            blurDataURL={BLUR_IMAGE_DATA}
+                                        />
                                     </div>
                                 </div>
                                 <div className="w-full">

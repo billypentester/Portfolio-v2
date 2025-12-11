@@ -33,6 +33,7 @@ import WekaModelPrediction from '@/assets/images/publications/weka-model-predict
 import FrontendTenStages from '@/assets/images/publications/frontend-ten-stages.webp'
 
 import KFCProject from '@/assets/images/projects/KFC.png'
+import DominosProject from '@/assets/images/projects/Dominos.png'
 
 import KFC from '@/assets/images/clients/kfc.png'
 import Dominos from '@/assets/images/clients/dominos.png'
@@ -41,11 +42,12 @@ import CrustCulture from '@/assets/images/clients/crustculture.png'
 import halla from '@/assets/images/clients/halla.png'
 import unitedEMR from '@/assets/images/clients/uniteemr.png'
 
-import { DataInterface, structuredDataInterface } from '../lib/interface'
+import { DataInterface, structuredDataInterface } from '@/src/lib/interface'
 
 const data: DataInterface = {
   first_name: 'Bilal',
   last_name: 'Ahmad',
+  description: 'Full-Stack Software Engineer with 3+ years of experience in agile environments building, optimizing, and deploying scalable microservices and secure web applications. Proficient in MySQL, NestJS, Redis, and NextJS, with strong expertise in MVC architecture, software design principles, debugging, testing and documentation practices.',
   identity_keyword: 'billypentester',
   seo: {
     title: "Bilal Ahmad - Software Engineer | Full Stack Developer",
@@ -376,9 +378,16 @@ const data: DataInterface = {
     {
       title: 'KFC Pakistan',
       description: 'A full stack e-commerce web application for KFC Pakistan, built with Next.js, React, Node.js, Express, and MongoDB. Features include user authentication, product browsing, cart management, and order processing.',
-      tags: ['React', 'Node.js', 'mySQL'],
+      tags: ['React', 'Node.js', 'mySQL', 'Nest.js', 'Redis'],
       image: KFCProject,
-      url: ''
+      url: 'https://www.kfcpakistan.com/'
+    },
+    {
+      title: 'Dominos Pakistan',
+      description: 'A full stack e-commerce web application for Dominos Pakistan, built with Next.js, React, Node.js, Express, and MongoDB. Features include user authentication, product browsing, cart management, and order processing.',
+      tags: ['React', 'Node.js', 'mySQL', 'Nest.js', 'GTM'],
+      image: DominosProject,
+      url: 'https://www.dominos.com.pk/'
     }
   ],
 

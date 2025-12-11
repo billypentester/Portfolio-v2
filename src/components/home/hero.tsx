@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { data } from '@/src/config/data'
 import Icon from '@/src/helpers/IconBuilder'
-import { HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/src/lib/constants'
+import { BLUR_IMAGE_DATA, HERO_CHAT_START, HERO_HEADING_END, HERO_HEADING_START, HERO_STARTER } from '@/src/lib/constants'
 import Link from 'next/link'
 import { capitalized } from '../../utils'
 import { socialLinksInterface } from '../../lib/interface'
@@ -44,7 +44,14 @@ export default function Hero() {
                     </div>
                 </div>
                 <div className='hidden lg:inline-block'>
-                    <Image src={profile_pic} alt={identity_keyword} className='w-72 h-72 profile-pic' />
+                    <Image 
+                        src={profile_pic} 
+                        alt={identity_keyword} 
+                        className='w-72 h-72 profile-pic' 
+                        loading="lazy" 
+                        placeholder="blur"
+                        blurDataURL={BLUR_IMAGE_DATA}
+                    />
                 </div>
             </div>
         </header>

@@ -1,9 +1,11 @@
 import IconBuilder from '@/src/helpers/IconBuilder'
-import { structuredData } from '@/src/config/data'
+import { data, structuredData } from '@/src/config/data'
 import { Metadata } from 'next'
 import React from 'react'
-import { PAGE_HEADER } from '@/src/lib/constants'
+import { BLUR_IMAGE_DATA, PAGE_HEADER } from '@/src/lib/constants'
 import Starter from '@/src/components/shared/starter'
+import Image from 'next/image'
+import ProfilePic from '@/public/images/about-me.jpeg'
 
 export const metadata: Metadata = {
     title: 'About Bilal Ahmad | Software Engineer & Full Stack Developer',
@@ -13,6 +15,7 @@ export const metadata: Metadata = {
 const page = () => {
 
     const { profileSchema, aboutMebreadcrumbSchema } = structuredData
+    const { description } = data
 
     return (
         <section>
@@ -32,13 +35,18 @@ const page = () => {
             <main className='my-10'>
                 <div className='mx-auto max-w-5xl'>
                     <div className='flex flex-col lg:flex-row items-center gap-10 mb-10 mx-5 lg:mx-0'>          
-                        <img src='/images/about-me.jpeg' alt='Bilal Ahmad' className='hidden lg:block lg:w-80 lg:h-80 object-cover rounded-full z-20' />
+                        <Image 
+                            src={ProfilePic}
+                            alt="Bilal Ahmad"
+                            className='hidden lg:block lg:w-80 lg:h-80 object-cover rounded-full z-20 shadow'
+                            loading="lazy" 
+                            placeholder="blur"
+                            blurDataURL={BLUR_IMAGE_DATA}
+                        />
                         <div className='flex flex-col gap-5'>
                             <IconBuilder type='quote' paint='h-10 w-10 text-primary' />
                             <p className='text-secondary text-xl leading-relaxed lg:leading-loose max-w-3xl text-justify'>
-                                Full-Stack Software Engineer with 3+ years of experience in designing, developing, and deploying scalable microservices
-                                and robust web applications. Proficient in PostgreSQL, Redis, Node.js, Golang, and React, with a strong understanding
-                                of MVC design patterns for clean code architecture, bug fixing, and documentation.
+                                {description}
                             </p>
                         </div>
                     </div>
@@ -53,8 +61,9 @@ const page = () => {
                                         <li>
                                             <h3 className='font-semibold mb-3'>Simplex Techology Solutions</h3>
                                             <ul className='text-secondary mt-1 ml-5 flex flex-col gap-3'>
-                                                <li>Developed and maintained web applications using React, Node.js, and PostgreSQL, resulting in a 20% increase in user engagement. Implemented RESTful APIs and microservices architecture, improving system scalability and performance by 30%.</li>
-                                                <li>Collaborated with cross-functional teams to design and deploy cloud-based solutions on AWS, reducing infrastructure costs by 15% and enhancing system reliability.</li>
+                                                <li>Developed and implemented coupons, discounts, taxation, and OTP-based authentication features, significantly improving system functionality and customer experience.</li>
+                                                <li>Redesigned and optimized existing modules, resolved critical bugs, conducted GA integration, and implemented CRM development to ensure seamless performance and improved customer retention.</li>
+                                                <li>Integrated third-party SDKs, implemented task scheduling, and managed event-based notifications, streamlining operational workflows.</li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -66,8 +75,8 @@ const page = () => {
                                         <li>
                                             <h3 className='font-semibold mb-3'>Cache First</h3>
                                             <ul className='text-secondary mt-1 ml-5 flex flex-col gap-3'>
-                                                <li>Developed and maintained web applications using React, Node.js, and PostgreSQL, resulting in a 20% increase in user engagement. Implemented RESTful APIs and microservices architecture, improving system scalability and performance by 30%.</li>
-                                                <li>Collaborated with cross-functional teams to design and deploy cloud-based solutions on AWS, reducing infrastructure costs by 15% and enhancing system reliability.</li>
+                                                <li>Spearheaded delivery of 10+ global and local projects including crypto exchange, e-commerce solution, SPAs, and CMS using MERN stack, earning 4.5+ client ratings for performance and reliability.</li>
+                                                <li>Designed business oriented data models, performed automated migrations, and writing cloud SQL scripts to ensure speed, integrity, and seamless integration with dashboards logs, analytics and reports.</li>
                                             </ul>
                                         </li>
                                     </ul>

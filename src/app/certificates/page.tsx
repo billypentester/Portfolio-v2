@@ -37,7 +37,7 @@ const page = () => {
                       src={item.image} 
                       alt={item.title} 
                       loading="lazy" 
-                      className='card rounded-md object-cover object-left-top shadow h-full' 
+                      className='card rounded-md object-cover object-top-left shadow h-full' 
                       placeholder="blur"
                       blurDataURL={BLUR_IMAGE_DATA}
                       width={800}
