@@ -31,9 +31,13 @@ import master from '@/assets/images/publications/master.webp'
 import CyberSecurity from '@/assets/images/publications/cybersecurity.webp'
 import WekaModelPrediction from '@/assets/images/publications/weka-model-prediction.webp'
 import FrontendTenStages from '@/assets/images/publications/frontend-ten-stages.webp'
+import web3Part1 from '@/assets/images/publications/web3-1.png'
+import web3Part2 from '@/assets/images/publications/web3-2.png'
+import web3Part3 from '@/assets/images/publications/web3-3.png'
 
-import KFCProject from '@/assets/images/projects/KFC.png'
-import DominosProject from '@/assets/images/projects/Dominos.png'
+import KFCProject from '@/assets/images/projects/kfc.png'
+import DominosProject from '@/assets/images/projects/dominos.png'
+import CrustCultureProject from '@/assets/images/projects/crustculture.png'
 
 import KFC from '@/assets/images/clients/kfc.png'
 import Dominos from '@/assets/images/clients/dominos.png'
@@ -332,25 +336,18 @@ const data: DataInterface = {
   ],
   publications: [
     {
-      title: 'Predict your personality',
-      description: 'How does one assess your personality based on a survey or interview question?',
-      link: 'https://medium.com/mlearning-ai/predict-your-personality-f2c5d3701dc3',
-      image: predict,
-      tags: ['ML', 'AI']
+      title: 'Ultimate 10 Stages to Master Frontend Development',
+      description: 'A step-by-step guide to getting a job as a good frontend developer',
+      link: 'https://levelup.gitconnected.com/ultimate-10-stages-to-master-frontend-development-9b075b904835',
+      image: FrontendTenStages,
+      tags: ['JavaScript', 'Frontend']
     },
     {
       title: 'Ultimate 10 Stages to Master Backend Development',
       description: "A step-by-step guide to getting a job as a good backend developer",
-      link: "https://billypentester.medium.com/ultimate-10-stages-to-master-backend-development-f6f65f22a327",
+      link: "https://levelup.gitconnected.com/ultimate-10-stages-to-master-backend-development-f6f65f22a327",
       image: master,
       tags: ['JS', 'Backend']
-    },
-    {
-      title: 'Ethics and the IT Professional',
-      description: 'Why ethics are important to follow? ',
-      link: "https://billypentester.medium.com/ethics-and-the-it-professional-8b108a4f0ee",
-      image: IT,
-      tags: ['ethics', 'IT']
     },
     {
       title: 'Student study material engagement prediction model',
@@ -360,11 +357,11 @@ const data: DataInterface = {
       tags: ['Machine Learning', 'Data Mining']
     },
     {
-      title: 'Ultimate 10 Stages to Master Frontend Development',
-      description: 'A step-by-step guide to getting a job as a good frontend developer',
-      link: 'https://levelup.gitconnected.com/ultimate-10-stages-to-master-frontend-development-9b075b904835',
-      image: FrontendTenStages,
-      tags: ['JavaScript', 'Frontend']
+      title: 'Predict your personality',
+      description: 'How does one assess your personality based on a survey or interview question?',
+      link: 'https://medium.com/mlearning-ai/predict-your-personality-f2c5d3701dc3',
+      image: predict,
+      tags: ['ML', 'AI']
     },
     {
       title: 'Cyber security essentials',
@@ -372,6 +369,34 @@ const data: DataInterface = {
       link: 'https://medium.com/@billypentester/cyber-security-essentials-ad2bb8e9fce8',
       image: CyberSecurity,
       tags: ['Cyber Security', 'Essentials']
+    },
+    {
+      title: 'Ethics and the IT Professional',
+      description: 'Why ethics are important to follow? ',
+      link: "https://billypentester.medium.com/ethics-and-the-it-professional-8b108a4f0ee",
+      image: IT,
+      tags: ['ethics', 'IT']
+    },
+    {
+      title: 'Web3 js in practical - Part I',
+      description: 'learn basics about web3 js API',
+      link: 'https://coinsbench.com/web3-js-in-practical-part-i-39fbbd65738b',
+      image: web3Part1,
+      tags: ['blockchain', 'Web3', 'solidity']
+    },
+    {
+      title: 'Web3 js in practical - Part II',
+      description: 'learn how to interact with smart contracts using web3 js API',
+      link: 'https://coinsbench.com/web3-js-in-practical-part-ii-937b035a8c0c',
+      image: web3Part2,
+      tags: ['blockchain', 'Web3', 'solidity']
+    },
+    {
+      title: 'Web3 js in practical - Part III',
+      description: 'learn how to compile and deploy contracts using web3 js API',
+      link: 'https://coinsbench.com/web3-js-in-practical-part-iii-6ed2080f84b7',
+      image: web3Part3,
+      tags: ['blockchain', 'Web3', 'solidity']
     }
   ],
   projects: [
@@ -388,6 +413,13 @@ const data: DataInterface = {
       tags: ['React', 'Node.js', 'mySQL', 'Nest.js', 'GTM'],
       image: DominosProject,
       url: 'https://www.dominos.com.pk/'
+    },
+    {
+      title: 'Crust Culture',
+      description: 'A full stack e-commerce web application for Crust Culture, built with Next.js, React, Node.js, Express, and MongoDB. Features include user authentication, product browsing, cart management, and order processing.',
+      tags: ['React', 'Node.js', 'mySQL', 'Nest.js', 'SEO'],
+      image: CrustCultureProject,
+      url: 'https://crustculture.com.pk/'
     }
   ],
 

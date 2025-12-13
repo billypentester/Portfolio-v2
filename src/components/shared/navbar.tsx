@@ -47,7 +47,7 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                         </a>
                     </div>
                 </nav>
-                <nav className="fixed bottom-5 left-0 z-40 w-full px-3">
+                <nav className="fixed bottom-5 left-0 z-40 w-full px-5">
                     <ul className="flex justify-between align-middle px-6 py-3 glass-effect border-radius">
                         {
                             PAGE_LIST.map((page, index) => (
