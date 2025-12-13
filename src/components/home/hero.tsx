@@ -31,7 +31,12 @@ export default function Hero() {
                             {
                                 socialLinks.map((url: socialLinksInterface) => (
                                     <Link href={url.url} key={url.name} target="_blank">
-                                        <button title={capitalized(url.name)} name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-base-100 text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'>
+                                        <button 
+                                            data-umami-event={`${url.name}_button_click`}
+                                            name={capitalized(url.name)} 
+                                            title={capitalized(url.name)}
+                                            className='tooltip tooltip-bottom tooltip-secondary bg-base-100 text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'
+                                        >
                                             <Icon type={url.name} paint='h-6 w-6' />
                                             <div className="tooltip-content">
                                                 {capitalized(url.name)}

@@ -32,6 +32,14 @@ const Contact = () => {
       return
     }
 
+    if (window.umami) {
+      window.umami.track('contact_form_submit', {
+        name: data.get('name'),
+        email: data.get('email'),
+        message: data.get('message')
+      })
+    }
+
     const { status, message } = await sendContactData(data)
 
     if (status) {
@@ -58,7 +66,12 @@ const Contact = () => {
             {
               socialLinks.map((url: socialLinksInterface) => (
                 <Link href={url.url} key={url.name} target="_blank">
-                  <button name={capitalized(url.name)} className='tooltip tooltip-bottom tooltip-secondary bg-soft text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'>
+                  <button 
+                    data-umami-event={`${url.name}_button_click`}
+                    name={capitalized(url.name)} 
+                    title={capitalized(url.name)} 
+                    className='tooltip tooltip-bottom tooltip-secondary bg-soft text-secondary p-3 rounded-full shadow transition duration-500 ease-in-out'
+                  >
                     <Icon type={url.name} paint="h-6 w-6" />
                     <div className="tooltip-content">
                       {capitalized(url.name)}

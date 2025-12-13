@@ -8,8 +8,8 @@ const transport = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: process.env.APP_EMAIL,
-        pass: process.env.APP_PASS,
+        user: process.env.NEXT_PUBLIC_APP_EMAIL,
+        pass: process.env.NEXT_PUBLIC_APP_PASS,
     },
 });
 

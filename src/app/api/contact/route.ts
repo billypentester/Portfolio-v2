@@ -6,8 +6,6 @@ export async function POST(request: Request) {
         const body = await request.json()
         const { name, email, message } = body
 
-        console.log('Form Data: ', body)
-
         const { valid, error } = validateContactForm({ name, email, message })
 
         if(!valid) {

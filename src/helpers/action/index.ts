@@ -3,8 +3,6 @@
 async function sendContactData(formData: FormData) : Promise<{ status: boolean, message: string }> {
 
   const HOST = process.env.NEXT_PUBLIC_HOST || 'https://billypentester.pk'
-
-  console.log("HOST: ", HOST)
  
   const rawFormData = {
     name: formData.get('name'),
