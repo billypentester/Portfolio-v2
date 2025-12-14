@@ -18,7 +18,12 @@ const Education = () => {
           clients.map((client: clientInterface) => {
             return(
               <div key={client.id}>
-                <Link key={client.id} href={client.url} target='_blank'>
+                <Link 
+                  key={client.id} 
+                  href={client.url} 
+                  target='_blank'
+                  data-umami-event={`${client.name.replace(/\s+/g, '_').toLowerCase()}_logo_click`}
+                >
                   <div key={client.id} className="p-10 client-logo">
                     <Image 
                       src={client.image} 
