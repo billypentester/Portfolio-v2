@@ -41,7 +41,7 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                         <Link href={'/'}>
                             <span className="text-lg font-bold text-secondary">{identity_keyword}</span>
                         </Link>
-                        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <a href="/Bilal_Resume.pdf" target="_blank" rel="noopener noreferrer">
                             <button className="btn btn-accent" data-umami-event="resume_button_click">
                                 <IconBuilder type="file" paint="h-4 w-4 mr-2" />
                                 <span>Resume</span>
@@ -92,7 +92,7 @@ export default function Navbar({ identity_keyword, isMobileDevice }: { identity_
                     </div>
                     <div className="flex-1">
                         <div className="flex justify-end">
-                            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                            <a href="/Bilal_Resume.pdf" target="_blank" rel="noopener noreferrer">
                                 <button className="btn btn-accent" data-umami-event="resume_button_click">
                                     <IconBuilder type="file" paint="h-4 w-4 mr-2" />
                                     <span>Resume</span>
