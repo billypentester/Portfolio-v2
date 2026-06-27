@@ -33,7 +33,13 @@ const page = () => {
               publications.map((item, index) => {
                 return (
                   <div key={index} className='card bg-base-100 rounded-md border-primary shadow'>
-                    <Link key={index} href={item.link} target='_blank' rel='noopener noreferrer'>
+                    <Link 
+                      key={index} 
+                      href={item.link} 
+                      target='_blank' 
+                      rel='noopener noreferrer'
+                      data-umami-event={`${item.title.replace(/\s+/g, '_').toLowerCase()}_blog_click`}
+                    >
                       <div className='p-3'>
                         <Image 
                           src={item.image} 

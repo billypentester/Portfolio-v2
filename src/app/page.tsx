@@ -6,6 +6,7 @@ import Expertise from "@/src/components/home/expertise";
 import Education from "@/src/components/home/education";
 import Client from "@/src/components/home/clients";
 import { structuredData } from "@/src/config/data";
+import SectionObserver from "@/src/components/shared/sectionObserver";
 
 export default async function Home() {
 
@@ -13,6 +14,7 @@ export default async function Home() {
 
   return (
     <section>
+      <SectionObserver ids={["hey", "services", "work", "experience", "clients", "expertise", "education"]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
