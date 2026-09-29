@@ -43,7 +43,8 @@ export const sendEmail = async ({ name, email, message }: ContactInput): Promise
     }
 
     const mailOptions: Mail.Options = {
-        from: `Portfolio <${config.recipient}>`,
+        // Zoho only relays mail sent as the authenticated account; any other sender is rejected with 553.
+        from: `Portfolio <${config.user}>`,
         to: config.recipient,
         replyTo: { name, address: email },
         subject: `New contact message from ${name}`,
