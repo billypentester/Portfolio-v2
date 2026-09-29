@@ -53,7 +53,7 @@ const template = `
                     <tr>
                         <td style="padding:16px 18px; border-bottom:1px solid #e6e8ee;">
                         <strong style="display:inline-block; width:110px; color:#4a5568;">Email:</strong>
-                        <a href="mailto:{{email}}" style="color:#1f6feb; text-decoration:none;">{{email}}</a>
+                        <a href="mailto:{{emailHref}}" style="color:#1f6feb; text-decoration:none;">{{email}}</a>
                         </td>
                     </tr>
                     <tr>
@@ -66,7 +66,7 @@ const template = `
 
                     <!-- CTA -->
                     <p style="margin:18px 0 0;">
-                    <a href="mailto:{{email}}" style="background:#1f6feb; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:6px; display:inline-block; font-weight:600; font-size:14px;">
+                    <a href="mailto:{{emailHref}}" style="background:#1f6feb; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:6px; display:inline-block; font-weight:600; font-size:14px;">
                         Reply to {{name}}
                     </a>
                     </p>
@@ -94,18 +94,28 @@ const template = `
   
 `
 
-function emailTemplate(name: string, email: string, message: string, identity_keyword: string): string {
-    
-    const currentYear = new Date().getFullYear();
-    
-    let filledTemplate = template.replace(/{{name}}/g, name);
-    filledTemplate = filledTemplate.replace(/{{email}}/g, email);
-    filledTemplate = filledTemplate.replace(/{{message}}/g, message);
-    filledTemplate = filledTemplate.replace(/{{year}}/g, currentYear.toString());
-    filledTemplate = filledTemplate.replace(/{{brand_name}}/g, identity_keyword);
-    
-    return filledTemplate;
+const HTML_ESCAPES: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }
 
+export const escapeHtml = (value: string): string => value.replace(/[&<>"']/g, (char) => HTML_ESCAPES[char])
+
+interface EmailTemplateInput {
+    name: string
+    email: string
+    message: string
+    brandName: string
+}
+
+// Every value is escaped, and a replacer function stops "$&"-style patterns in user input from expanding.
+function emailTemplate({ name, email, message, brandName }: EmailTemplateInput): string {
+    const values: Record<string, string> = {
+        name: escapeHtml(name),
+        email: escapeHtml(email),
+        emailHref: encodeURIComponent(email),
+        message: escapeHtml(message),
+        year: new Date().getFullYear().toString(),
+        brand_name: escapeHtml(brandName),
+    }
+    return template.replace(/{{(\w+)}}/g, (placeholder, key: string) => values[key] ?? placeholder)
 }
 
 export { emailTemplate }

@@ -1,57 +1,43 @@
-import React from 'react'
-import { data, structuredData } from '@/src/config/data'
-import Image from 'next/image'
-import { Metadata } from 'next'
-import { BLUR_IMAGE_DATA } from '@/src/lib/constants'
-import { PAGE_HEADER } from '@/src/lib/constants'
-import Starter from '@/src/components/shared/starter'
+import type { Metadata } from 'next'
+import Container from '@/src/components/ui/Container'
+import PageHeader from '@/src/components/ui/PageHeader'
+import JsonLd from '@/src/components/seo/JsonLd'
+import CertificateCard from '@/src/components/credentials/CertificateCard'
+import { certifications } from '@/src/content/credentials'
+import { breadcrumbSchema, buildMetadata } from '@/src/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Certificates | Bilal Ahmad - Software Engineer',
-  description: 'View certifications earned by Bilal Ahmad in software engineering, full-stack development, cloud computing, and security testing. Demonstrating continuous learning and expertise in modern technologies.',
-}
+export const metadata: Metadata = buildMetadata({
+  title: 'Certificates',
+  description: 'Certifications earned by Bilal Ahmad in network security, penetration testing, cloud development, API design and SQL.',
+  path: '/certificates',
+})
 
-const page = () => {
+const ordered = [...certifications].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)))
 
-  const { cert } = data
-  const { certificationsBreadcrumbSchema } = structuredData
-
+export default function CertificatesPage() {
   return (
-    <section>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(certificationsBreadcrumbSchema).replace(/</g, '\\u003c'),
-        }}
+    <>
+      <JsonLd data={breadcrumbSchema([{ name: 'Certificates', path: '/certificates' }])} />
+      <PageHeader
+        eyebrow="Certificates"
+        title="Certifications and recognition."
+        lede="Security, cloud and engineering credentials. Select a certificate to view it full size."
       />
-      <Starter starter={PAGE_HEADER.certifications.starter} heading={PAGE_HEADER.certifications.heading} flavour={PAGE_HEADER.certifications.flavour} />
-      <main className='my-10'>
-        <div className='w-full'>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {
-              cert.length > 0 &&
-              cert.map((item, index)=> {
-                return (
-                  <div key={index}>
-                    <Image 
-                      src={item.image} 
-                      alt={item.title} 
-                      loading="lazy" 
-                      className='card rounded-md object-cover object-top-left shadow h-full' 
-                      placeholder="blur"
-                      blurDataURL={BLUR_IMAGE_DATA}
-                      width={800}
-                      height={600}
-                    />
-                  </div>
-                )
-              })
-            }
-          </div>
-        </div>
-      </main>
-    </section>
+      <section aria-label="Certificates" className="border-t border-line py-14 sm:py-20">
+        <Container>
+          {ordered.length === 0 ? (
+            <p className="text-muted">No certificates yet.</p>
+          ) : (
+            <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {ordered.map((certification) => (
+                <li key={certification.id}>
+                  <CertificateCard certification={certification} headingLevel="h2" />
+                </li>
+              ))}
+            </ul>
+          )}
+        </Container>
+      </section>
+    </>
   )
 }
-
-export default page

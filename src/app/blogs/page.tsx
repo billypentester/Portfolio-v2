@@ -1,78 +1,72 @@
-import { data } from '@/src/config/data'
-import { structuredData } from '@/src/config/data'
-import { Metadata } from 'next'
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import Starter from '@/src/components/shared/starter'
-import { BLUR_IMAGE_DATA, PAGE_HEADER } from '@/src/lib/constants'
+import type { Metadata } from 'next'
+import Container from '@/src/components/ui/Container'
+import Eyebrow from '@/src/components/ui/Eyebrow'
+import PageHeader from '@/src/components/ui/PageHeader'
+import JsonLd from '@/src/components/seo/JsonLd'
+import PublicationCard from '@/src/components/writing/PublicationCard'
+import { publications } from '@/src/content/publications'
+import type { PublicationCategory } from '@/src/content/types'
+import { breadcrumbSchema, buildMetadata } from '@/src/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Bilal Ahmad Blogs | Insights on Software Engineering, Development & Technology',
-  description: 'Read blogs by Bilal Ahmad, Software Engineer, covering full-stack development, JavaScript, Next.js, Golang, system design, security testing, and modern engineering practices.',
-}
+export const metadata: Metadata = buildMetadata({
+  title: 'Writing',
+  description: 'Articles by Bilal Ahmad on backend and frontend development, Web3, security and machine learning.',
+  path: '/blogs',
+})
 
-const page = () => {
+const PUBLISHERS = [...new Set(publications.map((p) => p.publisher))]
 
-  const { publications } = data
-  const { blogBreadcrumbSchema } = structuredData
+const CATEGORY_ORDER: PublicationCategory[] = ['Engineering', 'Career', 'Web3', 'Security', 'Machine Learning']
+
+export default function BlogsPage() {
+  const groups = CATEGORY_ORDER
+    .map((category) => ({ category, items: publications.filter((p) => p.category === category) }))
+    .filter((group) => group.items.length > 0)
 
   return (
-    <section>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(blogBreadcrumbSchema).replace(/</g, '\\u003c'),
-        }}
-      />
-      <Starter starter={PAGE_HEADER.blogs.starter} heading={PAGE_HEADER.blogs.heading} flavour={PAGE_HEADER.blogs.flavour} />
-      <main className='my-10'>
-        <div className='w-full'>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {
-              publications.map((item, index) => {
-                return (
-                  <div key={index} className='card bg-base-100 rounded-md border-primary shadow'>
-                    <Link 
-                      key={index} 
-                      href={item.link} 
-                      target='_blank' 
-                      rel='noopener noreferrer'
-                      data-umami-event={`${item.title.replace(/\s+/g, '_').toLowerCase()}_blog_click`}
-                    >
-                      <div className='p-3'>
-                        <Image 
-                          src={item.image} 
-                          alt={item.title} 
-                          className='card h-60 w-full object-cover rounded-md mb-5 shadow' 
-                          loading="lazy" 
-                          placeholder="blur"
-                          blurDataURL={BLUR_IMAGE_DATA}
-                        />
-                        <div className='px-5 pb-3'>
-                          <h1 className='text-2xl font-bold text-secondary'>{item.title}</h1>
-                          <p className='text-primary py-3'>{item.description}</p>
-                          <div className='flex flex-wrap gap-2'>
-                            {
-                              item.tags.map((tag, index) => {
-                                return (
-                                  <span key={index} className='bg-soft px-3 py-1 rounded-full text-sm'>{tag}</span>
-                                )
-                              })
-                            }
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                )
-              })
-            }
-          </div>
-        </div>
-      </main>
-    </section>
+    <>
+      <JsonLd data={breadcrumbSchema([{ name: 'Writing', path: '/blogs' }])} />
+      <PageHeader
+        eyebrow="Writing"
+        title="Articles and notes."
+        lede={`Guides and write-ups on development, Web3, security and machine learning, published on ${PUBLISHERS.join(', ')}.`}
+      >
+        <nav aria-label="Topics" className="mt-8">
+          <ul className="flex flex-wrap gap-2">
+            {groups.map((group) => (
+              <li key={group.category}>
+                <a href={`#${group.category.toLowerCase().replace(/\s+/g, '-')}`} className="inline-flex h-9 items-center gap-2 rounded-control border border-line bg-surface px-3 text-sm text-muted hover:border-fg hover:text-fg">
+                  {group.category}
+                  <span className="font-mono text-xs text-faint">{group.items.length}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </PageHeader>
+
+      {groups.length === 0 ? (
+        <Container className="border-t border-line py-16 text-muted">No articles yet.</Container>
+      ) : (
+        groups.map((group) => {
+          const id = group.category.toLowerCase().replace(/\s+/g, '-')
+          return (
+            <section key={group.category} id={id} aria-labelledby={`${id}-heading`} className="scroll-mt-20 border-t border-line py-14 sm:py-20">
+              <Container>
+                <Eyebrow>{group.category}</Eyebrow>
+                <h2 id={`${id}-heading`} className="sr-only">{group.category}</h2>
+                <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {group.items.map((publication) => (
+                    <li key={publication.url}>
+                      <PublicationCard publication={publication} />
+                    </li>
+                  ))}
+                </ul>
+              </Container>
+            </section>
+          )
+        })
+      )}
+    </>
   )
 }
-
-export default page

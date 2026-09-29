@@ -1,50 +1,24 @@
-// content
-
-export const SERVICE_HEADING = "Services I Offer"
-export const WORK_HEADING = "Work I've done"
-export const EXPERIENCE_HEADING = "My Experience"
-export const CLIENT_HEADING = "Who I've Worked With"
-export const EXPERTISE_HEADING = "Expertise I have"
-export const EDUCATION_HEADING = "My Education"
-export const CONTACT_HEADING = "Get in touch"
-
-export const HERO_STARTER = "Hi, I'm"
-export const HERO_HEADING_START = "I design & build simple yet"
-export const HERO_HEADING_END = "beautiful websites"
-export const HERO_CHAT_START = "Let's have a chat"
-
-export const CONTACT_DESC = "Let's have a chat and I'll help your next idea comes to the real world."
-export const CONTACT_FLAVOUR = "Simple friendly talk is never a bad idea ☺️"
-
-export const PAGE_HEADER = {
-    blogs: {
-        starter: "Insights & Learnings",
-        heading: "Blogs",
-        flavour: "Sharing knowledge one post at a time"
-    },
-    projects: {
-        starter: "My Works",
-        heading: "Projects",
-        flavour: "Turning ideas into real-world solutions"
-    },
-    aboutMe: {
-        starter: "Hello there 👋 I'm",
-        heading: "Bilal Ahmad",
-        flavour: "Software Engineer"
-    },
-    certifications: {
-        starter: "My Achievements",
-        heading: "Certifications",
-        flavour: "Professional recognitions and accomplishments"
-    }
+export interface NavLink {
+  name: string
+  href: string
 }
 
-export const PAGE_LIST = [
-    { name: 'About', link: '/about-me', icon: "user" },
-    { name: 'Projects', link: '/projects', icon: "file" },
-    { name: 'Certificates', link: '/certificates', icon: "cert" },
-    { name: 'Blog', link: '/blogs', icon: "blog" },
-    { name: 'Contact', link: '#contact', icon: "contact" },
+export const NAV_LINKS: NavLink[] = [
+  { name: 'Work', href: '/projects' },
+  { name: 'Experience', href: '/experience' },
+  { name: 'About', href: '/about-me' },
+  { name: 'Writing', href: '/blogs' },
 ]
+
+export const FOOTER_LINKS: NavLink[] = [
+  ...NAV_LINKS,
+  { name: 'Certificates', href: '/certificates' },
+  { name: 'Contact', href: '/#contact' },
+]
+
+export const THEME_STORAGE_KEY = 'theme'
+
+// Sent to Umami when a home section is 75% visible.
+export const TRACKED_HOME_SECTIONS = ['hero', 'snapshot', 'capabilities', 'work', 'experience', 'approach', 'expertise', 'writing', 'credentials', 'contact']
 
 export const BLUR_IMAGE_DATA = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAYAAACzzX7wAAAAkElEQVR4AQCEAHv/Ao3R8f+10eH/3dfV//Pi2//z6uv/3ePz/7vR8f+ZvOj/Aizr5wAd6N0AEeTOAAjhxAAH4MkACuTVAAro3QAM7OEAAhvg5QAN4ecA/9/nAPna5gD11uUA89nmAPLj6wDw7vIAAgTf8gD65wMA7eoZAObmIgDj4BkA4eEQAN7tCwDU+wsAAAAA//9Bn+RaAAAABklEQVQDADStTaprX7EVAAAAAElFTkSuQmCC"

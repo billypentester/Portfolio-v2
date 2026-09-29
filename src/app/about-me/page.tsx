@@ -1,175 +1,125 @@
-import IconBuilder from '@/src/helpers/IconBuilder'
-import { data, structuredData } from '@/src/config/data'
-import { Metadata } from 'next'
-import React from 'react'
-import { BLUR_IMAGE_DATA, PAGE_HEADER } from '@/src/lib/constants'
-import Starter from '@/src/components/shared/starter'
+import type { Metadata } from 'next'
 import Image from 'next/image'
-import ProfilePic from '@/public/images/about-me.jpeg'
+import Container from '@/src/components/ui/Container'
+import Eyebrow from '@/src/components/ui/Eyebrow'
+import PageHeader from '@/src/components/ui/PageHeader'
+import TagList from '@/src/components/ui/TagList'
+import ArrowLink from '@/src/components/ui/ArrowLink'
+import JsonLd from '@/src/components/seo/JsonLd'
+import BulletList from '@/src/components/projects/BulletList'
+import { journey } from '@/src/content/experience'
+import { fullName, profile } from '@/src/content/profile'
+import { principles, skillGroups } from '@/src/content/skills'
+import { now } from '@/src/content/now'
+import { breadcrumbSchema, buildMetadata, profilePageSchema } from '@/src/lib/seo'
 
-export const metadata: Metadata = {
-    title: 'About Bilal Ahmad | Software Engineer & Full Stack Developer',
-    description: 'Learn more about Bilal Ahmad, a Software Engineer and Full Stack Developer with expertise in MERN, MEVN, and modern JavaScript frameworks. Passionate about building scalable web, mobile, and desktop applications.',
+export const metadata: Metadata = buildMetadata({
+  title: 'About',
+  description: 'Bilal Ahmad is a software engineer in Lahore who builds backend systems for production commerce. His background, engineering approach and the tools he works with.',
+  path: '/about-me',
+  type: 'profile',
+})
+
+function AboutBlock({ id, label, title, children }: { id: string; label: string; title: string; children: React.ReactNode }) {
+  return (
+    <section id={id} aria-labelledby={`${id}-heading`} className="reveal grid gap-6 border-t border-line py-12 sm:py-16 lg:grid-cols-12 lg:gap-12">
+      <div className="lg:col-span-4">
+        <Eyebrow>{label}</Eyebrow>
+        <h2 id={`${id}-heading`} className="mt-3 text-heading font-semibold">{title}</h2>
+      </div>
+      <div className="lg:col-span-8">{children}</div>
+    </section>
+  )
 }
 
-const page = () => {
+export default function AboutPage() {
+  const learning = now.learning
 
-    const { profileSchema, aboutMebreadcrumbSchema } = structuredData
-    const { description } = data
+  return (
+    <>
+      <JsonLd data={[profilePageSchema(), breadcrumbSchema([{ name: 'About', path: '/about-me' }])]} />
+      <PageHeader eyebrow="About" title={`Hi, I'm ${profile.firstName}.`} lede={profile.headline} />
 
-    return (
-        <section>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                __html: JSON.stringify(profileSchema).replace(/</g, '\\u003c'),
-                }}
+      <Container>
+        <div className="grid gap-10 pb-16 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <Image
+              src={profile.photo}
+              alt={`Portrait of ${fullName}`}
+              priority
+              placeholder="blur"
+              sizes="(min-width: 1024px) 360px, 100vw"
+              className="aspect-[4/5] w-full max-w-sm rounded-card border border-line object-cover"
             />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                __html: JSON.stringify(aboutMebreadcrumbSchema).replace(/</g, '\\u003c'),
-                }}
-            />
-            <Starter starter={PAGE_HEADER.aboutMe.starter} heading={PAGE_HEADER.aboutMe.heading} flavour={PAGE_HEADER.aboutMe.flavour} />
-            <main className='my-10'>
-                <div className='mx-auto max-w-5xl'>
-                    <div className='flex flex-col lg:flex-row items-center gap-10 mb-10 mx-5 lg:mx-0'>          
-                        <Image 
-                            src={ProfilePic}
-                            alt="Bilal Ahmad"
-                            className='hidden lg:block lg:w-80 lg:h-80 object-cover rounded-full z-20 shadow'
-                            loading="lazy" 
-                            placeholder="blur"
-                            blurDataURL={BLUR_IMAGE_DATA}
-                        />
-                        <div className='flex flex-col gap-5'>
-                            <IconBuilder type='quote' paint='h-10 w-10 text-primary' />
-                            <p className='text-secondary text-xl leading-relaxed lg:leading-loose max-w-3xl text-justify'>
-                                {description}
-                            </p>
-                        </div>
-                    </div>
-                    <div className='mb-10 mx-5 lg:mx-0'>
-                        <h1 className='bg-secondary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
-                            Experience
-                        </h1>
-                        <div className='ms-5'>
-                            <ul className='text-primary mb-5 flex flex-col gap-2'>
-                                <li>
-                                    <ul className='text-primary mt-1 ml-5 flex flex-col gap-5'>
-                                        <li>
-                                            <h3 className='font-semibold mb-3'>Simplex Techology Solutions</h3>
-                                            <ul className='text-secondary mt-1 ml-5 flex flex-col gap-3'>
-                                                <li>Developed and implemented coupons, discounts, taxation, and OTP-based authentication features, significantly improving system functionality and customer experience.</li>
-                                                <li>Redesigned and optimized existing modules, resolved critical bugs, conducted GA integration, and implemented CRM development to ensure seamless performance and improved customer retention.</li>
-                                                <li>Integrated third-party SDKs, implemented task scheduling, and managed event-based notifications, streamlining operational workflows.</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul className='text-primary mb-5 flex flex-col gap-2'>
-                                <li>
-                                    <ul className='text-primary mt-1 ml-5 flex flex-col gap-5'>
-                                        <li>
-                                            <h3 className='font-semibold mb-3'>Cache First</h3>
-                                            <ul className='text-secondary mt-1 ml-5 flex flex-col gap-3'>
-                                                <li>Spearheaded delivery of 10+ global and local projects including crypto exchange, e-commerce solution, SPAs, and CMS using MERN stack, earning 4.5+ client ratings for performance and reliability.</li>
-                                                <li>Designed business oriented data models, performed automated migrations, and writing cloud SQL scripts to ensure speed, integrity, and seamless integration with dashboards logs, analytics and reports.</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className='mb-10 flex flex-col lg:flex-row mx-5 lg:mx-0'>
-                        <div className='flex-1'>
-                            <h1 className='bg-primary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
-                                Education
-                            </h1>
-                            <div className='ms-5'>
-                                <ul className='text-primary mb-3 flex flex-col gap-2'>
-                                    <li>
-                                        <ul className='text-primary mt-1 ml-5 flex flex-col gap-5'>
-                                            <li>
-                                                <h3 className='font-semibold text-primary'>Bachelor of Computer Science</h3>
-                                                <span className='text-sm text-secondary'>COMSATS University Islamabad, Lahore</span>
-                                            </li>
-                                            <li>
-                                                <h3 className='font-semibold text-primary'>Intermediate of Computer Science</h3>
-                                                <span className='text-sm text-secondary'>Punjab Group of Colleges, Lahore</span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className='flex-1'>
-                            <h1 className='bg-primary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
-                                Certificates
-                            </h1>
-                            <div className='ms-5'>
-                                <ul className='text-primary mb-3 flex flex-col gap-2'>
-                                    <li>
-                                        <ul className='text-primary mt-1 ml-5 flex flex-col gap-5'>
-                                            <li>
-                                                <h3 className='font-semibold text-primary'>Full-Stack Web Development</h3>
-                                                <span className='text-sm text-secondary'>Coursera</span>
-                                            </li>
-                                            <li>
-                                                <h3 className='font-semibold text-primary'>AWS Certified Solutions Architect - Associate</h3>
-                                                <span className='text-sm text-secondary'>Amazon Web Services (AWS)</span>
-                                            </li>
-                                            <li>
-                                                <h3 className='font-semibold text-primary'>Google Data Analytics Professional Certificate</h3>
-                                                <span className='text-sm text-secondary'>Google</span>
-                                            </li>
-                                            <li>
-                                                <h3 className='font-semibold text-primary'>Certified Kubernetes Administrator (CKA)</h3>
-                                                <span className='text-sm text-secondary'>Cloud Native Computing Foundation (CNCF)</span>
-                                            </li>
-                                            <li>
-                                                <h3 className='font-semibold text-primary'>Microsoft Certified: Azure Fundamentals</h3>
-                                                <span className='text-sm text-secondary'>Microsoft</span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='mb-10 flex mx-5 lg:mx-0'>
-                        <div className='w-1/2'>
-                            <h1 className='bg-primary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
-                                Language
-                            </h1>
-                            <div className='ms-5'>
-                                <ul className='text-primary mt-1 ml-5 flex flex-col gap-2'>
-                                    <li>English</li>
-                                    <li>Urdu</li>
-                                    <li>Punjabi</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className='w-1/2'>
-                            <h1 className='bg-primary rounded-lg block w-fit px-3 py-1 font-semibold mb-5 tracking-wider'>
-                                Hobbies
-                            </h1>
-                            <div className='ms-5'>
-                                <ul className='text-primary mt-1 ml-5 flex flex-col gap-2'>
-                                    <li>Reading</li>
-                                    <li>Photography</li>
-                                    <li>Movies</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+          </div>
+          <div className="grid gap-5 text-lede text-muted lg:col-span-8">
+            {profile.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+        </div>
+
+        <AboutBlock id="journey" label="Journey" title="How I got here">
+          <ol className="grid gap-0">
+            {journey.map((milestone) => (
+              <li key={milestone.title} className="grid gap-1 border-b border-line py-5 first:pt-0 last:border-b-0 sm:grid-cols-[9rem_1fr] sm:gap-6">
+                <p className="font-mono text-xs text-faint sm:pt-1">{milestone.period}</p>
+                <div>
+                  <h3 className="font-semibold">{milestone.title}</h3>
+                  <p className="mt-1 text-muted">{milestone.description}</p>
                 </div>
-            </main>
-        </section>
-    )
-}
+              </li>
+            ))}
+          </ol>
+        </AboutBlock>
 
-export default page
+        <AboutBlock id="enjoy" label="What I enjoy" title="The problems I like most">
+          <BulletList items={profile.enjoyBuilding} />
+        </AboutBlock>
+
+        <AboutBlock id="approach" label="Approach" title="How I approach engineering">
+          <dl className="grid gap-6 sm:grid-cols-2">
+            {principles.map((principle) => (
+              <div key={principle.title}>
+                <dt className="font-semibold">{principle.title}</dt>
+                <dd className="mt-1 text-sm text-muted">{principle.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </AboutBlock>
+
+        <AboutBlock id="tools" label="Tools" title="Technologies I work with">
+          <dl className="grid gap-5">
+            {skillGroups.map((group) => (
+              <div key={group.title} className="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-6">
+                <dt className="text-sm font-semibold sm:pt-0.5">{group.title}</dt>
+                <dd><TagList items={group.skills} label={`${group.title} skills`} /></dd>
+              </div>
+            ))}
+          </dl>
+        </AboutBlock>
+
+        {learning.length > 0 && (
+          <AboutBlock id="learning" label="Learning" title="What I am learning now">
+            <BulletList items={learning.map((item) => `${item.title}: ${item.description}`)} />
+          </AboutBlock>
+        )}
+
+        <AboutBlock id="outside" label="Outside work" title="Beyond the code">
+          <dl className="grid gap-6 sm:grid-cols-2">
+            <div>
+              <dt className="font-mono text-eyebrow uppercase text-faint">Languages</dt>
+              <dd className="mt-2">{profile.languages.join(', ')}</dd>
+            </div>
+            <div>
+              <dt className="font-mono text-eyebrow uppercase text-faint">Interests</dt>
+              <dd className="mt-2">{profile.interests.join(', ')}</dd>
+            </div>
+          </dl>
+          <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
+            <ArrowLink href="/experience">See the full experience timeline</ArrowLink>
+            <ArrowLink href="/projects">Read the case studies</ArrowLink>
+          </div>
+        </AboutBlock>
+      </Container>
+    </>
+  )
+}

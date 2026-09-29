@@ -1,27 +1,26 @@
-import { sendEmail } from "@/src/helpers/sendEmail"
-import { validateContactForm } from "@/src/helpers/validator"
+import { submitContact } from "@/src/helpers/contact"
+
+const MAX_BODY_BYTES = 16 * 1024
+
+const STATUS_CODES = { success: 201, invalid: 400, error: 500 } as const
 
 export async function POST(request: Request) {
-    try{
-        const body = await request.json()
-        const { name, email, message } = body
-
-        const { valid, error } = validateContactForm({ name, email, message })
-
-        if(!valid) {
-            return Response.json({ message: error }, { status: 400 })
-        }
-
-        const res = await sendEmail(name, email, message)
-        if(!res.status) {
-            console.log('Error while sending email: ', res.message)
-        }
-
-        return Response.json({ message: 'Thank you for contacting us! We will get back to you soon' }, { status: 201 })
-        
+    const declaredLength = Number(request.headers.get('content-length') ?? 0)
+    if (declaredLength > MAX_BODY_BYTES) {
+        return Response.json({ message: 'Request body is too large.' }, { status: 413 })
     }
-    catch(e){
-        console.log('Error: ', e)
-        return Response.json({ message: 'Something went wrong! Please try again' }, { status: 500 })
+
+    let body: unknown
+    try {
+        body = await request.json()
+    } catch {
+        return Response.json({ message: 'Request body must be valid JSON.' }, { status: 400 })
     }
+
+    if (typeof body !== 'object' || body === null || Array.isArray(body)) {
+        return Response.json({ message: 'Request body must be a JSON object.' }, { status: 400 })
+    }
+
+    const result = await submitContact(body as Record<string, unknown>)
+    return Response.json({ message: result.message }, { status: STATUS_CODES[result.status] })
 }

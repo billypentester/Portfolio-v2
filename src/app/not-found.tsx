@@ -1,23 +1,22 @@
-import IconBuilder from '@/src/helpers/IconBuilder'
-import Link from 'next/link'
- 
+import Container from '@/src/components/ui/Container'
+import Eyebrow from '@/src/components/ui/Eyebrow'
+import ButtonLink from '@/src/components/ui/ButtonLink'
+
 export default function NotFound() {
   return (
-    <div className='centerized'>
-        <div className='flex flex-col items-center gap-10 w-full sm:w-11/12 md:w-1/2 lg:w-1/3 p-10 md:p-5'>
-            <div className='text-center text-secondary'>
-                <IconBuilder type="notFound" paint="h-16 w-16 mb-5" />
-                <h1 className='text-secondary text-3xl lg:text-4xl font-extrabold mb-4'>Page Not Found</h1>
-                <p className='text-primary text-md'>
-                    Oops! The page you're looking for isn't here
-                </p>
-            </div>
-            <Link href="/">
-                <button className='btn btn-accent'>
-                    Return to Home
-                </button>
-            </Link>
+    <section aria-labelledby="not-found-heading" className="relative overflow-hidden pt-36 pb-24 sm:pt-44">
+      <div aria-hidden="true" className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
+      <Container className="relative">
+        <Eyebrow>Error 404</Eyebrow>
+        <h1 id="not-found-heading" className="mt-5 text-title font-semibold">This page doesn&apos;t exist.</h1>
+        <p className="mt-5 max-w-xl text-lede text-muted">
+          The link may be old or mistyped. The work, experience and writing are all a click away.
+        </p>
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <ButtonLink href="/" icon="arrowRight" className="w-full sm:w-auto">Back to home</ButtonLink>
+          <ButtonLink href="/projects" variant="secondary" className="w-full sm:w-auto">View work</ButtonLink>
         </div>
-    </div>
+      </Container>
+    </section>
   )
 }

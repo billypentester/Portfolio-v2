@@ -1,33 +1,33 @@
-import Experience from "@/src/components/home/experience";
-import Hero from "@/src/components/home/hero";
-import Services from "@/src/components/home/services";
-import Work from "@/src/components/home/work";
-import Expertise from "@/src/components/home/expertise";
-import Education from "@/src/components/home/education";
-import Client from "@/src/components/home/clients";
-import { structuredData } from "@/src/config/data";
+import Hero from "@/src/components/home/Hero";
+import Snapshot from "@/src/components/home/Snapshot";
+import Capabilities from "@/src/components/home/Capabilities";
+import FeaturedWork from "@/src/components/home/FeaturedWork";
+import ExperiencePreview from "@/src/components/home/ExperiencePreview";
+import Approach from "@/src/components/home/Approach";
+import Expertise from "@/src/components/home/Expertise";
+import Now from "@/src/components/home/Now";
+import Writing from "@/src/components/home/Writing";
+import Credentials from "@/src/components/home/Credentials";
 import SectionObserver from "@/src/components/shared/sectionObserver";
+import JsonLd from "@/src/components/seo/JsonLd";
+import { TRACKED_HOME_SECTIONS } from "@/src/lib/constants";
+import { homeSchema } from "@/src/lib/seo";
 
-export default async function Home() {
-
-  const { websiteSchema } = structuredData;
-
+export default function Home() {
   return (
-    <section>
-      <SectionObserver ids={["hey", "services", "work", "experience", "clients", "expertise", "education"]} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-        __html: JSON.stringify(websiteSchema).replace(/</g, '\\u003c'),
-        }}
-      />
+    <>
+      <JsonLd data={homeSchema()} />
+      <SectionObserver ids={TRACKED_HOME_SECTIONS} />
       <Hero />
-      <Services />
-      <Work />
-      <Experience />
-      <Client />
+      <Snapshot />
+      <Capabilities />
+      <FeaturedWork />
+      <ExperiencePreview />
+      <Approach />
       <Expertise />
-      <Education />
-    </section>
+      <Now />
+      <Writing />
+      <Credentials />
+    </>
   );
 }
