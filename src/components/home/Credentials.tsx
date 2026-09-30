@@ -26,7 +26,10 @@ export default function Credentials() {
           <ul className="divide-y divide-line border-y border-line">
             {featured.map((cert) => (
               <li key={cert.id} className="flex items-center justify-between gap-4 py-4">
-                <span className="font-medium">{cert.title}</span>
+                <span>
+                  <span className="block font-medium">{cert.title}</span>
+                  {cert.issuer && <span className="mt-0.5 block text-sm text-muted">{cert.issuer}</span>}
+                </span>
                 {cert.topics && <span className="shrink-0 font-mono text-xs text-faint">{cert.topics[0]}</span>}
               </li>
             ))}

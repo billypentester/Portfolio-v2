@@ -12,15 +12,16 @@ export const experience: Experience[] = [
     url: 'https://simplexts.net/',
     logo: Simplex,
     summary: 'Backend-focused full-stack engineering on production ordering, loyalty and healthcare platforms.',
-    ownership: 'Lead backend development across two active projects, working with the mobile and marketing teams.',
+    ownership: 'Lead backend development across two active projects, working with the mobile and marketing teams on APIs, frontend integrations and SEO initiatives.',
     highlights: [
       'Delivered 20+ feature modules from business requirements to production, including third-party integrations and analytical reports.',
       'Built coupons, discounts, taxation and OTP-based authentication for customer-facing ordering platforms.',
       'Integrated third-party SDKs, task scheduling and event-based notifications to streamline operational workflows.',
       'Revamped core modules for security, performance and scalability, optimised API payloads and refactored legacy code.',
-      'Handled Google Analytics integration and CRM development, and kept documentation and test coverage current.',
+      'Implemented Google Analytics tracking and CRM features, and kept documentation and test coverage current.',
     ],
     stack: ['NestJS', 'Node.js', 'React', 'MySQL', 'Redis', 'GTM'],
+    projects: ['kfc-pakistan', 'dominos-pakistan', 'hospinizer'],
   },
   {
     id: 'cache-first',

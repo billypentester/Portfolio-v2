@@ -15,7 +15,7 @@ export default function Approach() {
             <li key={principle.title} className="reveal flex flex-col bg-surface p-6 sm:p-7">
               <h3 className="font-semibold tracking-tight">{principle.title}</h3>
               <p className="mt-2 flex-1 text-sm text-muted">{principle.description}</p>
-              <p className="mt-5 border-l-2 border-accent pl-3 text-xs text-faint">{principle.evidence}</p>
+              {principle.evidence && <p className="mt-5 border-l-2 border-accent pl-3 text-xs text-faint">{principle.evidence}</p>}
             </li>
           ))}
         </ol>

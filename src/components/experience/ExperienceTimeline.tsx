@@ -1,6 +1,8 @@
 import Image from 'next/image'
-import type { Experience } from '@/src/content/types'
+import type { Experience, ShowcaseProject } from '@/src/content/types'
 import TagList from '@/src/components/ui/TagList'
+import ArrowLink from '@/src/components/ui/ArrowLink'
+import { getProject } from '@/src/content/projects'
 import { formatDuration, formatYearMonth, monthsBetween } from '@/src/utils'
 
 interface ExperienceTimelineProps {
@@ -20,6 +22,7 @@ export default function ExperienceTimeline({ roles, variant, headingLevel = 'h3'
         const isCurrent = role.end === null
         const highlights = variant === 'compact' ? role.highlights.slice(0, COMPACT_HIGHLIGHTS) : role.highlights
         const hiddenCount = role.highlights.length - highlights.length
+        const caseStudies = (role.projects ?? []).map(getProject).filter((project): project is ShowcaseProject => project?.caseStudy !== undefined)
 
         return (
           <li key={role.id} id={role.id} className="reveal relative scroll-mt-24">
@@ -44,6 +47,7 @@ export default function ExperienceTimeline({ roles, variant, headingLevel = 'h3'
                     {role.url ? (
                       <a href={role.url} target="_blank" rel="noopener noreferrer" className="text-sm text-muted underline decoration-line-strong underline-offset-4 hover:text-fg">
                         {role.company}
+                        <span className="sr-only"> (opens in a new tab)</span>
                       </a>
                     ) : (
                       <p className="text-sm text-muted">{role.company}</p>
@@ -72,6 +76,16 @@ export default function ExperienceTimeline({ roles, variant, headingLevel = 'h3'
                   <p className="mt-3 font-mono text-xs text-faint">+{hiddenCount} more on the experience page</p>
                 )}
                 <TagList items={role.stack} label={`${role.company} technologies`} className="mt-5" />
+                {caseStudies.length > 0 && (
+                  <div className="mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-2 border-t border-line pt-5">
+                    <span className="font-mono text-eyebrow uppercase text-faint">Case studies</span>
+                    {caseStudies.map((project) => (
+                      <ArrowLink key={project.slug} href={`/projects/${project.slug}`} event="project_case_study_click">
+                        {project.title}
+                      </ArrowLink>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </li>

@@ -33,6 +33,7 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       context: 'KFC Pakistan takes customer orders online. I work on its ordering platform as part of the engineering team at Simplex Technology Solutions, mostly on the backend and its integrations.',
+      problem: 'On top of standard online ordering, the platform needed a loyalty programme whose point rules the business can configure, orders that can be scheduled for later, and a way to order from the table in the restaurant.',
       role: 'Software Engineer at Simplex, working on backend services and the features below from requirements to production.',
       responsibilities: [
         'Turned business requirements for loyalty and ordering into backend modules and APIs.',
@@ -59,6 +60,12 @@ export const projects: Project[] = [
         { name: 'Data', items: ['MySQL', 'Redis'] },
         { name: 'Integrations', items: ['Third-party loyalty services'] },
       ],
+      complexity: [
+        'Point rules are configured by the business, so the loyalty engine evaluates rules defined as data rather than hard-coded logic.',
+        'Loyalty connects to third-party services and feeds reporting, so balances have to agree across every system that reads them.',
+        'A scheduled order is only valid inside the store\'s operational hours.',
+        'QR dine-in ties an order to a table in the restaurant instead of a delivery address.',
+      ],
     },
   },
   {
@@ -79,6 +86,7 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       context: 'Domino\'s Pakistan takes customer orders online. At Simplex Technology Solutions my work on the platform focused on checkout flexibility and the quality of the APIs its clients depend on.',
+      problem: 'Checkout needed more flexibility: wallet credits as a way to pay, and free delivery decided by time, channel, deals and location instead of a fixed threshold. The client-facing APIs these features depend on also needed restructuring.',
       role: 'Software Engineer at Simplex, building the features below on the backend.',
       responsibilities: [
         'Built the wallet and free-delivery checkout features on the backend.',
@@ -103,6 +111,16 @@ export const projects: Project[] = [
         { name: 'Services', items: ['Node.js', 'NestJS'] },
         { name: 'Data', items: ['MySQL'] },
       ],
+      complexity: [
+        'Free-delivery eligibility combines four inputs, so the rules have to stay predictable when time, channel, deals and location overlap.',
+        'Wallet credits are a balance customers spend at checkout, where any mistake is visible to them.',
+        'Refactoring client-facing APIs means tightening structure and validation without breaking the apps that already call them.',
+      ],
+      outcomes: [
+        'Customers can pay with wallet credits, making checkout more flexible.',
+        'Free delivery is decided by rules instead of a single threshold.',
+        'Client APIs with a clearer structure, stricter validation, documentation, and security and performance fixes.',
+      ],
     },
   },
   {
@@ -120,6 +138,7 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       context: 'Hospinizer handles patient appointments across multiple clinics, each running its own EMR system, so appointment data has to stay synchronised between them.',
+      problem: 'Patients book with clinics that each run their own EMR system. Appointments had to stay synchronised across those systems, and patients needed secure sign-in and timely reminders.',
       role: 'Software Engineer at Simplex, building the patient-facing backend features and the EMR integration.',
       responsibilities: [
         'Implemented patient authentication.',
@@ -135,6 +154,15 @@ export const projects: Project[] = [
           title: 'EMR aggregation',
           description: 'An aggregator engine integrates each clinic\'s EMR system so appointments stay synchronised everywhere.',
         },
+      ],
+      complexity: [
+        'Every clinic runs its own EMR system, so synchronisation goes through an aggregator engine rather than one shared database.',
+        'Reminders are automated and time-based, so they are only as good as the appointment data behind them.',
+        'Patient data is sensitive, which puts authentication at the centre of the patient-facing features.',
+      ],
+      outcomes: [
+        'Automated reminders for upcoming appointments, built to improve adherence.',
+        'Appointments synchronised across clinics through the aggregator engine.',
       ],
     },
   },

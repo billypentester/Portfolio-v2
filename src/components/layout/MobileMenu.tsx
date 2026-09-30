@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import IconBuilder from '@/src/helpers/IconBuilder'
 import { profile, socialLinks } from '@/src/content/profile'
 import { buttonStyles } from '@/src/components/ui/button'
@@ -13,6 +13,16 @@ export default function MobileMenu() {
 
   const open = () => dialogRef.current?.showModal()
   const close = () => dialogRef.current?.close()
+
+  // The menu is hidden at the md breakpoint, so an open modal would leave the page inert.
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 768px)')
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) dialogRef.current?.close()
+    }
+    desktop.addEventListener('change', closeOnDesktop)
+    return () => desktop.removeEventListener('change', closeOnDesktop)
+  }, [])
 
   const closeOnBackdrop = (event: React.MouseEvent<HTMLDialogElement>) => {
     if (event.target === dialogRef.current) close()
@@ -60,7 +70,7 @@ export default function MobileMenu() {
 
         <div className="grid gap-3 border-t border-line p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
           <Link href="/#contact" onClick={close} className={buttonStyles('primary', 'md', 'w-full')}>
-            Start a conversation
+            Let&apos;s talk
           </Link>
           <a
             href={profile.resumeUrl}
@@ -69,7 +79,7 @@ export default function MobileMenu() {
             data-umami-event="resume_download"
             className={buttonStyles('secondary', 'md', 'w-full')}
           >
-            Resume
+            Download resume
             <IconBuilder type="download" paint="h-4 w-4" />
           </a>
           <ul className="mt-2 flex justify-center gap-1" aria-label="Social links">
@@ -77,12 +87,12 @@ export default function MobileMenu() {
               <li key={link.platform}>
                 <a
                   href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(link.platform === 'email' ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                  data-umami-event={`${link.platform}_click`}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-control text-muted hover:bg-subtle hover:text-fg"
                 >
                   <IconBuilder type={link.platform} paint="h-[18px] w-[18px]" />
-                  <span className="sr-only">{link.label}</span>
+                  <span className="sr-only">{link.label}{link.platform === 'email' ? '' : ' (opens in a new tab)'}</span>
                 </a>
               </li>
             ))}

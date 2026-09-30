@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/src/components/layout/SiteHeader";
 import SiteFooter from "@/src/components/layout/SiteFooter";
@@ -9,17 +9,16 @@ import { UmamiAnalytics } from "@/src/components/shared/umami";
 import { SITE_URL, fullName } from "@/src/content/profile";
 import { SITE_DESCRIPTION, SITE_TITLE, buildMetadata } from "@/src/lib/seo";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+// Self-hosted at build time as subsetted woff2, with metric-matched fallbacks to limit layout shift.
+const geistSans = Geist({
+  subsets: ["latin"],
   variable: "--font-geist-sans",
-  weight: "100 900",
   display: "swap",
 });
 
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
   variable: "--font-geist-mono",
-  weight: "100 900",
   display: "swap",
 });
 

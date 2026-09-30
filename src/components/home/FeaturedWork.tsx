@@ -11,11 +11,11 @@ export default function FeaturedWork() {
       id="work"
       index="02"
       eyebrow="Selected work"
-      title="Production platforms I have helped build."
-      lede="Ordering, loyalty and healthcare platforms I have worked on as an engineer at Simplex. Only publicly visible details are shared."
+      title="Production platforms, and the parts I built."
+      lede="Ordering, loyalty and healthcare platforms I work on at Simplex. Each case study covers the problem, my contribution and what made it hard. Only publicly shareable details are included."
       action={<ArrowLink href="/projects">All projects</ArrowLink>}
     >
-      <div className="grid gap-20 sm:gap-28">
+      <div className="grid gap-6 sm:gap-8">
         {featuredProjects.map((project, index) => (
           <ProjectRow key={project.slug} project={project} index={index} />
         ))}

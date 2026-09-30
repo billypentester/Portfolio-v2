@@ -6,7 +6,6 @@ import IconBuilder from '@/src/helpers/IconBuilder'
 import ButtonLink from '@/src/components/ui/ButtonLink'
 import Container from '@/src/components/ui/Container'
 import Eyebrow from '@/src/components/ui/Eyebrow'
-import TagList from '@/src/components/ui/TagList'
 import JsonLd from '@/src/components/seo/JsonLd'
 import BulletList from '@/src/components/projects/BulletList'
 import CaseStudySection from '@/src/components/projects/CaseStudySection'
@@ -33,10 +32,18 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     description: project.summary,
     path: `/projects/${project.slug}`,
     type: 'article',
-    ...(project.cover
-      ? { image: { url: project.cover.src.src, width: project.cover.src.width, height: project.cover.src.height, alt: project.cover.alt } }
-      : {}),
+    image: { url: `/projects/${project.slug}/opengraph-image`, width: 1200, height: 630, alt: `${project.title} case study` },
   })
+}
+
+const DISCLOSURE =
+  'Only publicly shareable information is included. No proprietary code, credentials, confidential architecture or sensitive business information is shown.'
+
+interface CaseStudyBlock {
+  id: string
+  label: string
+  title: string
+  content: React.ReactNode
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
@@ -49,8 +56,94 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const next = caseStudyProjects[(position + 1) % caseStudyProjects.length]
   const meta = [
     { label: 'Role', value: caseStudy.role },
-    ...(project.kind === 'professional' ? [{ label: 'Domain', value: project.domain }] : []),
     ...(project.kind === 'professional' && project.employer ? [{ label: 'Company', value: project.employer }] : []),
+    ...(project.stack.length > 0 ? [{ label: 'Stack', value: project.stack.join(' · ') }] : []),
+  ]
+
+  // Optional blocks drop out when the content file has nothing for them, and numbering follows.
+  const blocks: CaseStudyBlock[] = [
+    {
+      id: 'project',
+      label: 'Project',
+      title: 'What the system is',
+      content: <p className="text-lede text-muted">{caseStudy.context}</p>,
+    },
+    {
+      id: 'problem',
+      label: 'Problem',
+      title: 'What needed solving',
+      content: <p className="text-lede text-muted">{caseStudy.problem}</p>,
+    },
+    {
+      id: 'contribution',
+      label: 'Contribution',
+      title: 'What I worked on',
+      content: <BulletList items={caseStudy.responsibilities} />,
+    },
+    {
+      id: 'engineering',
+      label: 'Engineering',
+      title: 'What shipped',
+      content: (
+        <ol className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
+          {caseStudy.features.map((feature, index) => (
+            <li key={feature.title} className="bg-surface p-6 sm:odd:last:col-span-2">
+              <span className="font-mono text-xs text-accent">{String(index + 1).padStart(2, '0')}</span>
+              <h3 className="mt-3 font-semibold tracking-tight">{feature.title}</h3>
+              <p className="mt-2 text-sm text-muted">{feature.description}</p>
+            </li>
+          ))}
+        </ol>
+      ),
+    },
+    ...(caseStudy.layers && caseStudy.layers.length > 0
+      ? [{ id: 'stack', label: 'Stack', title: 'How the pieces fit', content: <StackDiagram layers={caseStudy.layers} /> }]
+      : []),
+    ...(caseStudy.complexity && caseStudy.complexity.length > 0
+      ? [{ id: 'complexity', label: 'Complexity', title: 'What made it non-trivial', content: <BulletList items={caseStudy.complexity} /> }]
+      : []),
+    ...(caseStudy.challenges && caseStudy.challenges.length > 0
+      ? [{
+          id: 'challenges',
+          label: 'Challenges',
+          title: 'Problems and solutions',
+          content: (
+            <dl className="grid gap-6">
+              {caseStudy.challenges.map((item) => (
+                <div key={item.challenge} className="rounded-card border border-line bg-surface p-6">
+                  <dt className="font-semibold">{item.challenge}</dt>
+                  <dd className="mt-2 text-muted">{item.solution}</dd>
+                </div>
+              ))}
+            </dl>
+          ),
+        }]
+      : []),
+    ...(caseStudy.outcomes && caseStudy.outcomes.length > 0
+      ? [{ id: 'outcome', label: 'Outcome', title: 'What it changed', content: <BulletList items={caseStudy.outcomes} /> }]
+      : []),
+    ...(caseStudy.gallery && caseStudy.gallery.length > 0
+      ? [{
+          id: 'gallery',
+          label: 'Screens',
+          title: 'Screenshots',
+          content: (
+            <ul className="grid gap-5 sm:grid-cols-2">
+              {caseStudy.gallery.map((shot) => (
+                <li key={shot.alt}>
+                  <figure>
+                    <Image src={shot.src} alt={shot.alt} placeholder="blur" sizes="(min-width: 1024px) 400px, 100vw" className="rounded-card border border-line" />
+                    {shot.caption && <figcaption className="mt-2 text-sm text-faint">{shot.caption}</figcaption>}
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          ),
+        }]
+      : []),
+    ...(caseStudy.lessons && caseStudy.lessons.length > 0
+      ? [{ id: 'lessons', label: 'Reflection', title: 'Lessons learned', content: <BulletList items={caseStudy.lessons} /> }]
+      : []),
   ]
 
   return (
@@ -69,7 +162,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               All work
             </Link>
           </nav>
-          <Eyebrow className="mt-8">Case study</Eyebrow>
+          <Eyebrow className="mt-8">
+            {project.kind === 'professional' ? `Case study · ${project.domain}` : 'Case study'}
+          </Eyebrow>
           <h1 className="mt-4 max-w-4xl animate-rise text-display font-semibold">{project.title}</h1>
           <p className="mt-6 max-w-3xl text-heading font-medium text-muted">{project.summary}</p>
 
@@ -82,92 +177,41 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             ))}
           </dl>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            {project.links?.live && (
-              <ButtonLink href={project.links.live} external icon="arrowUpRight" event="project_live_click" className="w-full sm:w-auto">
-                Visit live site
-              </ButtonLink>
-            )}
-            {project.links?.github && (
-              <ButtonLink href={project.links.github} external variant="secondary" icon="github" event="project_github_click" className="w-full sm:w-auto">
-                View source
-              </ButtonLink>
-            )}
-          </div>
+          {(project.links?.live || project.links?.github) && (
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              {project.links?.live && (
+                <ButtonLink href={project.links.live} external icon="arrowUpRight" event="project_live_click" className="w-full sm:w-auto">
+                  Visit live site
+                </ButtonLink>
+              )}
+              {project.links?.github && (
+                <ButtonLink href={project.links.github} external variant="secondary" icon="github" event="project_github_click" className="w-full sm:w-auto">
+                  View source
+                </ButtonLink>
+              )}
+            </div>
+          )}
         </Container>
       </header>
 
       <Container>
+        {/* Without a screenshot the modules are already listed under Engineering, so no placeholder panel. */}
         {project.cover && (
-          <ProjectCover title={project.title} cover={project.cover} priority sizes="(min-width: 1152px) 1088px, 100vw" className="shadow-lift" />
+          <ProjectCover title={project.title} cover={project.cover} preload sizes="(min-width: 1152px) 1088px, 100vw" className="shadow-lift" />
         )}
 
-        <CaseStudySection id="overview" label="Overview" title="Context">
-          <p className="text-lede text-muted">{caseStudy.context}</p>
-          <TagList items={project.stack} label="Technologies" className="mt-8" />
-        </CaseStudySection>
-
-        <CaseStudySection id="role" label="My role" title="What I was responsible for">
-          <BulletList items={caseStudy.responsibilities} />
-        </CaseStudySection>
-
-        <CaseStudySection id="features" label="Key features" title="What shipped">
-          <ol className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
-            {caseStudy.features.map((feature, index) => (
-              <li key={feature.title} className="bg-surface p-6 sm:odd:last:col-span-2">
-                <span className="font-mono text-xs text-accent">{String(index + 1).padStart(2, '0')}</span>
-                <h3 className="mt-3 font-semibold tracking-tight">{feature.title}</h3>
-                <p className="mt-2 text-sm text-muted">{feature.description}</p>
-              </li>
-            ))}
-          </ol>
-        </CaseStudySection>
-
-        {caseStudy.layers && caseStudy.layers.length > 0 && (
-          <CaseStudySection id="stack" label="Stack" title="How the pieces fit">
-            <StackDiagram layers={caseStudy.layers} />
+        {blocks.map((block, index) => (
+          <CaseStudySection key={block.id} id={block.id} index={String(index + 1).padStart(2, '0')} label={block.label} title={block.title}>
+            {block.content}
           </CaseStudySection>
-        )}
+        ))}
 
-        {caseStudy.challenges && caseStudy.challenges.length > 0 && (
-          <CaseStudySection id="challenges" label="Challenges" title="Problems and solutions">
-            <dl className="grid gap-6">
-              {caseStudy.challenges.map((item) => (
-                <div key={item.challenge} className="rounded-card border border-line bg-surface p-6">
-                  <dt className="font-semibold">{item.challenge}</dt>
-                  <dd className="mt-2 text-muted">{item.solution}</dd>
-                </div>
-              ))}
-            </dl>
-          </CaseStudySection>
-        )}
-
-        {caseStudy.outcomes && caseStudy.outcomes.length > 0 && (
-          <CaseStudySection id="outcomes" label="Results" title="Outcomes">
-            <BulletList items={caseStudy.outcomes} />
-          </CaseStudySection>
-        )}
-
-        {caseStudy.gallery && caseStudy.gallery.length > 0 && (
-          <CaseStudySection id="gallery" label="Screens" title="Screenshots">
-            <ul className="grid gap-5 sm:grid-cols-2">
-              {caseStudy.gallery.map((shot) => (
-                <li key={shot.alt}>
-                  <figure>
-                    <Image src={shot.src} alt={shot.alt} placeholder="blur" sizes="(min-width: 1024px) 400px, 100vw" className="rounded-card border border-line" />
-                    {shot.caption && <figcaption className="mt-2 text-sm text-faint">{shot.caption}</figcaption>}
-                  </figure>
-                </li>
-              ))}
-            </ul>
-          </CaseStudySection>
-        )}
-
-        {caseStudy.lessons && caseStudy.lessons.length > 0 && (
-          <CaseStudySection id="lessons" label="Reflection" title="Lessons learned">
-            <BulletList items={caseStudy.lessons} />
-          </CaseStudySection>
-        )}
+        <aside aria-label="Disclosure" className="border-t border-line py-8">
+          <p className="max-w-3xl text-sm text-faint">
+            <span className="font-mono text-xs uppercase">Disclosure · </span>
+            {DISCLOSURE}
+          </p>
+        </aside>
 
         {next && next.slug !== project.slug && (
           <nav aria-label="Next case study" className="border-t border-line py-12 sm:py-16">
@@ -175,6 +219,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <span>
                 <span className="font-mono text-eyebrow uppercase text-faint">Next case study</span>
                 <span className="mt-2 block text-heading font-semibold">{next.title}</span>
+                <span className="mt-2 block text-sm text-muted">{next.summary}</span>
               </span>
               <IconBuilder type="arrowRight" paint="h-6 w-6 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-accent" />
             </Link>

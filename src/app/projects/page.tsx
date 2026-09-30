@@ -21,7 +21,7 @@ const groups: { id: string; label: string; description: string; projects: Showca
   {
     id: 'professional',
     label: 'Professional work',
-    description: 'Production platforms I have worked on as an engineer. Only publicly visible details are shared.',
+    description: 'Production platforms I have worked on as an engineer. Only publicly shareable information is included: no proprietary code, credentials, confidential architecture or sensitive business details.',
     projects: showcaseProjects.filter((p) => p.kind === 'professional').sort(byFeatured),
   },
   {
@@ -50,9 +50,9 @@ export default function ProjectsPage() {
               <h2 id={`${group.id}-heading`} className="sr-only">{group.label}</h2>
               <p className="mt-3 text-muted">{group.description}</p>
             </div>
-            <div className="grid gap-20 sm:gap-28">
+            <div className="grid gap-6 sm:gap-8">
               {group.projects.map((project, index) => (
-                <ProjectRow key={project.slug} project={project} index={index} priority={group.id === 'professional' && index === 0} />
+                <ProjectRow key={project.slug} project={project} index={index} preload={group.id === 'professional' && index === 0} />
               ))}
             </div>
           </Container>

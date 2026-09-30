@@ -10,7 +10,7 @@ import { track } from '@/src/lib/analytics'
 const INITIAL_STATE: ContactFormState = { status: 'idle' }
 
 const inputClass =
-  'block w-full rounded-control border border-line-strong bg-canvas px-3.5 py-3 text-base text-fg placeholder:text-faint transition-colors hover:border-muted focus:border-fg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aria-[invalid=true]:border-danger'
+  'block w-full rounded-control border border-control bg-canvas px-3.5 py-3 text-base text-fg placeholder:text-faint transition-colors hover:border-muted focus:border-fg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aria-[invalid=true]:border-danger'
 
 interface FieldProps {
   id: ContactField
@@ -38,6 +38,10 @@ export default function ContactForm() {
   useEffect(() => {
     if (state.status === 'success') formRef.current?.reset()
     if (state.status === 'invalid' || state.status === 'error') track('contact_form_error', { reason: state.status })
+    // Server-side validation failed: move focus to the first field that needs fixing.
+    if (state.status === 'invalid') {
+      formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus()
+    }
   }, [state])
 
   // With JavaScript we submit in a transition so a failed attempt keeps what the visitor typed.

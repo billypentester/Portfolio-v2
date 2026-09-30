@@ -16,6 +16,8 @@ export interface Profile {
   lastName: string
   handle: string
   role: string
+  // Shown next to the role, e.g. "Backend & full-stack".
+  specialty: string
   location: string
   timezone: string
   email: string
@@ -39,7 +41,8 @@ export interface Capability {
 export interface Principle {
   title: string
   description: string
-  evidence: string
+  // Where the principle shows up in real work. Leave it out rather than stretch a claim.
+  evidence?: string
 }
 
 export interface WorkflowStep {
@@ -61,6 +64,8 @@ export interface Experience {
   ownership?: string
   highlights: string[]
   stack: string[]
+  // Slugs of case studies from this role, linked from the timeline.
+  projects?: string[]
 }
 
 export interface JourneyMilestone {
@@ -92,11 +97,15 @@ export interface ProjectFeature {
 
 export interface CaseStudy {
   context: string
+  // The business or technical problem the work had to solve.
+  problem: string
   role: string
   responsibilities: string[]
   features: ProjectFeature[]
   // Stack grouped by layer, rendered as a diagram. Only list layers that are documented.
   layers?: StackLayer[]
+  // What made the work non-trivial, stated at the level that is already public.
+  complexity?: string[]
   challenges?: { challenge: string; solution: string }[]
   outcomes?: string[]
   lessons?: string[]
@@ -139,7 +148,10 @@ export type ShowcaseProject = ProfessionalProject | PersonalProject
 
 export interface SkillGroup {
   title: string
-  skills: string[]
+  // Used day to day in production.
+  primary: string[]
+  // Used on projects or earlier roles, without implying depth.
+  additional: string[]
   appliedIn?: string
 }
 

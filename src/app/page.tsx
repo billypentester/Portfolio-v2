@@ -22,10 +22,10 @@ export default function Home() {
       <Snapshot />
       <Capabilities />
       <FeaturedWork />
+      <Now />
       <ExperiencePreview />
       <Approach />
       <Expertise />
-      <Now />
       <Writing />
       <Credentials />
     </>

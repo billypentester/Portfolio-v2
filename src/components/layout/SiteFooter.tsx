@@ -11,7 +11,7 @@ export default function SiteFooter() {
         <div className="md:col-span-5">
           <p className="text-lg font-semibold tracking-tight">{fullName}</p>
           <p className="mt-3 max-w-sm text-sm text-muted">
-            {profile.role} in {profile.location}. Building backend systems for production commerce, and the integrations around them.
+            {profile.role} in {profile.location}. Production backend and full-stack systems: APIs, commerce flows and integrations.
           </p>
           <a href={`mailto:${profile.email}`} className="mt-6 inline-block font-mono text-sm text-fg underline decoration-line-strong underline-offset-4 hover:decoration-accent">
             {profile.email}
@@ -28,7 +28,7 @@ export default function SiteFooter() {
             ))}
             <li>
               <a href={profile.resumeUrl} target="_blank" rel="noopener" data-umami-event="resume_download" className="text-muted hover:text-fg">
-                Resume
+                Download resume
               </a>
             </li>
           </ul>
@@ -41,13 +41,13 @@ export default function SiteFooter() {
               <li key={link.platform}>
                 <a
                   href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(link.platform === 'email' ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
                   data-umami-event={`${link.platform}_click`}
                   className="inline-flex items-center gap-2 text-muted hover:text-fg"
                 >
                   <IconBuilder type={link.platform} paint="h-4 w-4" />
                   {link.label}
+                  {link.platform !== 'email' && <span className="sr-only"> (opens in a new tab)</span>}
                 </a>
               </li>
             ))}

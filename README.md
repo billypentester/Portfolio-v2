@@ -7,9 +7,9 @@ Built with the Next.js App Router. All site content lives in typed files under `
 ## Features
 
 - **Pages**: Home, Work (`/projects`), a case study per project (`/projects/[slug]`), Experience, About, Writing (`/blogs`) and Certificates, plus a custom 404 page and a loading skeleton.
-- **Home sections**: Hero, Engineering snapshot, What I build, Selected work, Experience, How I work, Technical expertise, Now (hidden until filled in), Writing and Education & certifications.
+- **Home sections**: Hero, Engineering snapshot, What I build, Selected work, Currently building (hidden while `now.ts` is empty), Experience, How I work, Technical expertise, Writing and Education & certifications.
 - **Contact form**: a server action validates the input and sends an HTML email over SMTP (Zoho) using Nodemailer. `POST /api/contact` exposes the same logic as JSON. Inputs are length-limited, HTML-escaped and protected by a honeypot field.
-- **SEO**: a canonical URL and Open Graph/Twitter card per page, JSON-LD (WebSite, Person, ProfilePage, BreadcrumbList and CreativeWork), and a generated `sitemap.xml`, `robots.txt` and web app manifest.
+- **SEO**: a canonical URL and Open Graph/Twitter card per page, generated 1200×630 share images (`opengraph-image.tsx` for the site and for each case study, via `next/og`), JSON-LD (WebSite, Person, ProfilePage, BreadcrumbList and CreativeWork), and a generated `sitemap.xml`, `robots.txt` and web app manifest.
 - **Analytics**: optional [Umami](https://umami.is) integration with a small set of custom events. No personal data is sent.
 - **Theming**: designed light and dark themes that follow the OS setting, with a toggle that remembers the choice.
 - **Static by default**: every page is prerendered at build time. Only `/api/contact` runs on demand.
@@ -23,7 +23,7 @@ Built with the Next.js App Router. All site content lives in typed files under `
 | Styling     | Tailwind CSS v4 (`@tailwindcss/postcss`)        |
 | Email       | Nodemailer (Zoho SMTP)                          |
 | Analytics   | Umami (optional)                                |
-| Font        | Geist Sans and Geist Mono via `next/font/local` |
+| Font        | Geist Sans and Geist Mono via `next/font/google` (self-hosted at build) |
 | Tooling     | ESLint (`eslint-config-next`), Node test runner |
 
 ## Getting Started
@@ -120,12 +120,12 @@ Content lives in [`src/content/`](src/content), typed by [`src/content/types.ts`
 | File | Content |
 | --- | --- |
 | `profile.ts` | Name, role, headline, bio, photo, resume link, social links |
-| `experience.ts` | Roles (dates as `YYYY-MM`, `end: null` for the current role) and the About page journey |
-| `projects.ts` | Professional, personal and archived projects. Add a `caseStudy` to get a `/projects/[slug]` page |
-| `skills.ts` | Skill groups, capabilities, principles and the delivery workflow |
+| `experience.ts` | Roles (dates as `YYYY-MM`, `end: null` for the current role, `projects` to link case studies) and the About page journey |
+| `projects.ts` | Professional, personal and archived projects. Add a `caseStudy` (context, problem, contribution, features, optional complexity and outcomes) to get a `/projects/[slug]` page. Only publicly shareable details belong here |
+| `skills.ts` | Skill groups (`primary` for daily production use, `additional` for the rest), capabilities, principles and the delivery workflow |
 | `credentials.ts` | Education and certifications (issuer, date, credential ID and verify URL are optional) |
 | `publications.ts` | Articles (external links today; the type is ready for native MDX posts) |
-| `now.ts` | "Currently building / learning". The section stays hidden while both lists are empty |
+| `now.ts` | "Currently building / learning". The section stays hidden while both lists are empty, and a single list spans the full width |
 | `snapshot.ts` | Headline numbers. Years of experience are computed from `experience.ts` |
 
 Navigation links and tracked section IDs are in [`src/lib/constants.ts`](src/lib/constants.ts). Default metadata and JSON-LD builders are in [`src/lib/seo.ts`](src/lib/seo.ts).
@@ -134,7 +134,7 @@ To add an image, put it under `assets/images/<category>/` (WebP preferred), impo
 
 ## Theming
 
-Colours are semantic tokens (`canvas`, `surface`, `subtle`, `line`, `fg`, `muted`, `faint`, `accent`, ...) defined in [`src/app/globals.css`](src/app/globals.css) and mapped to Tailwind utilities with `@theme inline`, for example `bg-canvas`, `text-muted` and `border-line`. The light values sit on `:root` and the dark values on `[data-theme="dark"]`, with a `prefers-color-scheme` fallback. A small inline script applies the stored choice before first paint, so there is no flash. The type scale (`text-display`, `text-title`, `text-heading`, `text-lede`, `text-eyebrow`) and radii (`rounded-card`, `rounded-control`) live in the same file.
+Colours are semantic tokens (`canvas`, `surface`, `subtle`, `line`, `control`, `fg`, `muted`, `faint`, `accent`, ...) defined in [`src/app/globals.css`](src/app/globals.css) and mapped to Tailwind utilities with `@theme inline`, for example `bg-canvas`, `text-muted` and `border-line`. Text tokens meet WCAG AA on every surface, and `control` (form borders) meets the 3:1 non-text contrast minimum. The light values sit on `:root` and the dark values on `[data-theme="dark"]`, with a `prefers-color-scheme` fallback. A small inline script applies the stored choice before first paint, so there is no flash. The type scale (`text-display`, `text-title`, `text-heading`, `text-lede`, `text-eyebrow`) and radii (`rounded-card`, `rounded-control`) live in the same file.
 
 ## Contact Flow
 

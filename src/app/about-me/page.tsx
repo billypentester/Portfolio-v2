@@ -9,7 +9,7 @@ import JsonLd from '@/src/components/seo/JsonLd'
 import BulletList from '@/src/components/projects/BulletList'
 import { journey } from '@/src/content/experience'
 import { fullName, profile } from '@/src/content/profile'
-import { principles, skillGroups } from '@/src/content/skills'
+import { allSkills, principles, skillGroups } from '@/src/content/skills'
 import { now } from '@/src/content/now'
 import { breadcrumbSchema, buildMetadata, profilePageSchema } from '@/src/lib/seo'
 
@@ -46,7 +46,7 @@ export default function AboutPage() {
             <Image
               src={profile.photo}
               alt={`Portrait of ${fullName}`}
-              priority
+              preload
               placeholder="blur"
               sizes="(min-width: 1024px) 360px, 100vw"
               className="aspect-[4/5] w-full max-w-sm rounded-card border border-line object-cover"
@@ -91,7 +91,7 @@ export default function AboutPage() {
             {skillGroups.map((group) => (
               <div key={group.title} className="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-6">
                 <dt className="text-sm font-semibold sm:pt-0.5">{group.title}</dt>
-                <dd><TagList items={group.skills} label={`${group.title} skills`} /></dd>
+                <dd><TagList items={allSkills(group)} label={`${group.title} skills`} /></dd>
               </div>
             ))}
           </dl>

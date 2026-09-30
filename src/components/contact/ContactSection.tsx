@@ -1,10 +1,16 @@
 import IconBuilder from '@/src/helpers/IconBuilder'
 import Container from '@/src/components/ui/Container'
 import Eyebrow from '@/src/components/ui/Eyebrow'
+import ButtonLink from '@/src/components/ui/ButtonLink'
 import { profile, socialLinks } from '@/src/content/profile'
+import type { SocialPlatform } from '@/src/content/types'
 import ContactForm from './ContactForm'
 
-const DIRECT_CHANNELS = socialLinks.filter((link) => link.platform !== 'email')
+// Professional profiles first, chat apps after.
+const CHANNEL_ORDER: SocialPlatform[] = ['linkedin', 'github', 'whatsapp', 'messenger']
+const DIRECT_CHANNELS = CHANNEL_ORDER
+  .map((platform) => socialLinks.find((link) => link.platform === platform))
+  .filter((link) => link !== undefined)
 
 export default function ContactSection() {
   return (
@@ -14,8 +20,8 @@ export default function ContactSection() {
           <div aria-hidden="true" className="grid-texture pointer-events-none absolute inset-0 opacity-70" />
           <div className="relative grid gap-12 p-6 sm:p-10 lg:grid-cols-12 lg:gap-16 lg:p-14">
             <div className="lg:col-span-5">
-              <Eyebrow>Have a project or role in mind?</Eyebrow>
-              <h2 id="contact-heading" className="mt-4 text-title font-semibold">Let&apos;s build something useful.</h2>
+              <Eyebrow>Contact</Eyebrow>
+              <h2 id="contact-heading" className="mt-4 text-heading font-semibold sm:text-[2.25rem]">Have a project, role or engineering problem in mind?</h2>
               <p className="mt-5 text-lede text-muted">
                 Tell me about the product, the problem or the role, and how I can help.
               </p>
@@ -48,10 +54,19 @@ export default function ContactSection() {
                           >
                             <IconBuilder type={link.platform} paint="h-4 w-4" />
                             {link.label}
+                            <span className="sr-only"> (opens in a new tab)</span>
                           </a>
                         </li>
                       ))}
                     </ul>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-eyebrow uppercase text-faint">Resume</dt>
+                  <dd className="mt-2">
+                    <ButtonLink href={profile.resumeUrl} download variant="secondary" size="sm" icon="download" event="resume_download">
+                      Download resume <span className="font-mono text-xs text-faint">PDF</span>
+                    </ButtonLink>
                   </dd>
                 </div>
               </dl>

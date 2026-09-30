@@ -22,11 +22,11 @@ export default function SiteHeader() {
         <div className="flex items-center gap-1 sm:gap-2">
           <ThemeToggle />
           <div className="hidden items-center gap-2 md:flex">
-            <ButtonLink href={profile.resumeUrl} download variant="ghost" size="sm" event="resume_download">
+            <ButtonLink href={profile.resumeUrl} download variant="ghost" size="sm" icon="download" event="resume_download">
               Resume
             </ButtonLink>
             <ButtonLink href="/#contact" size="sm">
-              Contact
+              Let&apos;s talk
             </ButtonLink>
           </div>
           <MobileMenu />

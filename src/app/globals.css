@@ -13,6 +13,8 @@
   --subtle: oklch(96.2% 0.005 85);
   --line: oklch(90.5% 0.006 85);
   --line-strong: oklch(82% 0.008 85);
+  /* Form control borders: at least 3:1 against canvas and surface (WCAG 1.4.11). */
+  --control: oklch(62% 0.01 260);
   --fg: oklch(21% 0.012 260);
   --muted: oklch(44% 0.012 260);
   --faint: oklch(54% 0.01 260);
@@ -32,6 +34,7 @@
   --subtle: oklch(22.5% 0.007 260);
   --line: oklch(28.5% 0.007 260);
   --line-strong: oklch(37% 0.008 260);
+  --control: oklch(52% 0.01 260);
   --fg: oklch(95.5% 0.004 85);
   --muted: oklch(73% 0.01 260);
   --faint: oklch(63% 0.01 260);
@@ -52,6 +55,7 @@
     --subtle: oklch(22.5% 0.007 260);
     --line: oklch(28.5% 0.007 260);
     --line-strong: oklch(37% 0.008 260);
+  --control: oklch(52% 0.01 260);
     --fg: oklch(95.5% 0.004 85);
     --muted: oklch(73% 0.01 260);
     --faint: oklch(63% 0.01 260);
@@ -70,6 +74,7 @@
   --color-subtle: var(--subtle);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
+  --color-control: var(--control);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
@@ -87,7 +92,7 @@
 
 @theme {
   /* Type scale: fluid display sizes, fixed body sizes. */
-  --text-display: clamp(2.75rem, 1.4rem + 5.6vw, 6rem);
+  --text-display: clamp(2.625rem, 1.4rem + 4.8vw, 5.25rem);
   --text-display--line-height: 0.95;
   --text-display--letter-spacing: -0.045em;
   --text-title: clamp(2rem, 1.35rem + 2.6vw, 3.5rem);
@@ -119,6 +124,13 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: 5rem;
+    /* Reserve the scrollbar so locking scroll for the mobile menu causes no layout shift. */
+    scrollbar-gutter: stable;
+  }
+
+  /* The modal mobile menu locks page scroll behind it. */
+  html:has(dialog[open]) {
+    overflow: hidden;
   }
 
   body {
