@@ -8,10 +8,12 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --test \"src/**/*.test.ts\""
+    "test": "node --test \"src/**/*.test.ts\"",
+    "resume:upload": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/upload-resume.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.17",
+    "@vercel/blob": "^2.8.0",
     "next": "16.0.7",
     "nodemailer": "^7.0.11",
     "react": "19.2.1",

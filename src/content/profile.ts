@@ -11,7 +11,7 @@ export const profile: Profile = {
   location: 'Lahore, Pakistan',
   timezone: 'UTC+5',
   email: 'contact@billypentester.pk',
-  resumeUrl: '/Bilal_Resume.pdf',
+  resumeUrl: '/resume',
   photo: Photo,
   headline: 'I build the backend systems behind production commerce: loyalty engines, ordering flows, digital wallets and the integrations that hold them together.',
   intro: 'Full-stack software engineer at Simplex Technology Solutions, taking features from business requirements to production. Most of my work is in NestJS, React, Next.js, MySQL and Redis.',

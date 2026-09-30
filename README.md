@@ -60,6 +60,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `yarn lint`      | Run ESLint                               |
 | `yarn typecheck` | Type-check with `tsc --noEmit`           |
 | `yarn test`      | Run unit tests with the Node test runner |
+| `yarn resume:upload <pdf>` | Upload a new resume to Vercel Blob and delete the old one |
 
 ## Environment Variables
 
@@ -70,6 +71,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `APP_EMAIL`                    | No       | `src/helpers/sendEmail.ts`           | Sender and recipient for contact emails. Defaults to `SMTP_USER` |
 | `NEXT_PUBLIC_UMAMI_URL`        | No       | `src/components/shared/umami.tsx`    | URL of the Umami tracking script                                 |
 | `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | No       | `src/components/shared/umami.tsx`    | Umami website ID                                                 |
+| `BLOB_READ_WRITE_TOKEN`        | Yes      | `src/lib/resume.ts`                  | Vercel Blob store that holds the resume PDF (server-only)        |
 
 > **Migrating from the old names:** `NEXT_PUBLIC_APP_EMAIL` and `NEXT_PUBLIC_APP_PASS` still work as a fallback, but set `SMTP_USER` and `SMTP_PASSWORD` on your host and then remove the old ones. Never put secrets in `NEXT_PUBLIC_*` variables.
 >
@@ -82,13 +84,15 @@ Open [http://localhost:3000](http://localhost:3000).
 ```
 .
 ├── assets/images/          # Images imported by the content files
-├── public/                 # Static files: resume PDF, OG image, manifest icons
+├── scripts/                # One-off tasks, such as uploading the resume
+├── public/                 # Static files: OG image, manifest icons
 └── src/
     ├── app/                # App Router routes
     │   ├── page.tsx        # Home page
     │   ├── projects/       # Work listing and [slug] case studies
     │   ├── experience/  about-me/  blogs/  certificates/
     │   ├── api/contact/    # POST /api/contact (JSON)
+    │   ├── resume/         # GET /resume: redirects to the current resume in Vercel Blob
     │   ├── layout.tsx      # Root layout: fonts, theme script, header, contact, footer, analytics
     │   ├── sitemap.ts  robots.ts  manifest.ts
     │   └── globals.css     # Design tokens and light/dark themes
@@ -102,7 +106,7 @@ Open [http://localhost:3000](http://localhost:3000).
     │   └── shared/         # Section observer, Umami
     ├── config/             # Email template, icon registry
     ├── helpers/            # Contact service, validator, email sender, server action, IconBuilder
-    ├── lib/                # Constants, SEO helpers, analytics, global types
+    ├── lib/                # Constants, SEO helpers, analytics, resume storage, global types
     ├── utils/              # Date and duration helpers
     └── __tests__/          # Unit tests
 ```
@@ -115,7 +119,7 @@ Content lives in [`src/content/`](src/content), typed by [`src/content/types.ts`
 
 | File | Content |
 | --- | --- |
-| `profile.ts` | Name, role, headline, bio, photo, resume path, social links |
+| `profile.ts` | Name, role, headline, bio, photo, resume link, social links |
 | `experience.ts` | Roles (dates as `YYYY-MM`, `end: null` for the current role) and the About page journey |
 | `projects.ts` | Professional, personal and archived projects. Add a `caseStudy` to get a `/projects/[slug]` page |
 | `skills.ts` | Skill groups, capabilities, principles and the delivery workflow |
@@ -138,6 +142,12 @@ Colours are semantic tokens (`canvas`, `surface`, `subtle`, `line`, `fg`, `muted
 2. The action calls `submitContact` in [`helpers/contact.ts`](src/helpers/contact.ts), which drops honeypot submissions, validates with `validateContactForm` and sends the email with `sendEmail`.
 3. [`route.ts`](src/app/api/contact/route.ts) exposes the same service as JSON. It returns `201` on success, `400` for invalid input, `413` for oversized bodies and `500` when sending fails.
 
+## Resume
+
+The resume PDF is stored in Vercel Blob under the `resume/` prefix, not in `public/`. Every resume link points to `/resume`, which looks up the newest blob and redirects to it. The lookup is cached for an hour under the `resume` cache tag.
+
+To replace it, run `yarn resume:upload path/to/resume.pdf`. The script uploads the new file, then deletes the older ones. The script runs outside Next.js and can't clear that cache, so for up to an hour `/resume` may still redirect to the deleted file. Use it for the first upload, or when a short gap doesn't matter. Code that replaces the resume inside the app (for example an admin uploader) should call `replaceResume` from [`src/lib/resume.ts`](src/lib/resume.ts) and then `revalidateTag('resume', 'max')`, so the new file is served right away.
+
 ## Analytics Events
 
 When Umami is enabled, the site sends these events. None of them include form contents or other personal data.
@@ -149,7 +159,7 @@ When Umami is enabled, the site sends these events. None of them include form co
 
 ## Deployment
 
-The app is a standard Next.js app. Every page is static, so you can deploy it to Vercel or any Node host:
+The app is a standard Next.js app. Every page except `/resume` is static, so you can deploy it to Vercel or any Node host:
 
 ```bash
 yarn build
