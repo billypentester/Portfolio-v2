@@ -2,71 +2,10 @@
 
 /*
  * Design tokens.
- * Runtime colour variables live on :root / [data-theme] so the theme can switch without a rebuild;
+ * Runtime colour variables (--canvas, --fg, --accent, ...) are generated from the active theme in
+ * src/config/themes.ts and rendered into <head> by ThemeStyles, so light/dark can switch without a rebuild.
  * @theme inline maps them to Tailwind utilities (bg-canvas, text-muted, border-line, ...).
  */
-
-:root {
-  color-scheme: light;
-  --canvas: oklch(98.6% 0.004 85);
-  --surface: oklch(100% 0 0);
-  --subtle: oklch(96.2% 0.005 85);
-  --line: oklch(90.5% 0.006 85);
-  --line-strong: oklch(82% 0.008 85);
-  /* Form control borders: at least 3:1 against canvas and surface (WCAG 1.4.11). */
-  --control: oklch(62% 0.01 260);
-  --fg: oklch(21% 0.012 260);
-  --muted: oklch(44% 0.012 260);
-  --faint: oklch(54% 0.01 260);
-  --accent: oklch(54% 0.165 42);
-  --accent-fg: oklch(99% 0.005 42);
-  --accent-soft: oklch(94% 0.035 50);
-  --success: oklch(48% 0.12 155);
-  --danger: oklch(52% 0.19 25);
-  --shadow-lift: 0 1px 2px oklch(20% 0.01 260 / 0.04), 0 8px 24px -12px oklch(20% 0.01 260 / 0.14);
-}
-
-/* Dark tokens are repeated for the OS-preference fallback below; keep both blocks in sync. */
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --canvas: oklch(16.5% 0.006 260);
-  --surface: oklch(19.5% 0.007 260);
-  --subtle: oklch(22.5% 0.007 260);
-  --line: oklch(28.5% 0.007 260);
-  --line-strong: oklch(37% 0.008 260);
-  --control: oklch(52% 0.01 260);
-  --fg: oklch(95.5% 0.004 85);
-  --muted: oklch(73% 0.01 260);
-  --faint: oklch(63% 0.01 260);
-  --accent: oklch(73% 0.15 52);
-  --accent-fg: oklch(18% 0.02 52);
-  --accent-soft: oklch(28% 0.05 52);
-  --success: oklch(74% 0.13 155);
-  --danger: oklch(71% 0.17 25);
-  --shadow-lift: 0 1px 2px oklch(0% 0 0 / 0.3), 0 12px 32px -16px oklch(0% 0 0 / 0.6);
-}
-
-/* No stored preference: follow the operating system. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --canvas: oklch(16.5% 0.006 260);
-    --surface: oklch(19.5% 0.007 260);
-    --subtle: oklch(22.5% 0.007 260);
-    --line: oklch(28.5% 0.007 260);
-    --line-strong: oklch(37% 0.008 260);
-  --control: oklch(52% 0.01 260);
-    --fg: oklch(95.5% 0.004 85);
-    --muted: oklch(73% 0.01 260);
-    --faint: oklch(63% 0.01 260);
-    --accent: oklch(73% 0.15 52);
-    --accent-fg: oklch(18% 0.02 52);
-    --accent-soft: oklch(28% 0.05 52);
-    --success: oklch(74% 0.13 155);
-    --danger: oklch(71% 0.17 25);
-    --shadow-lift: 0 1px 2px oklch(0% 0 0 / 0.3), 0 12px 32px -16px oklch(0% 0 0 / 0.6);
-  }
-}
 
 @theme inline {
   --color-canvas: var(--canvas);

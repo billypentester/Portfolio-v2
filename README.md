@@ -11,7 +11,7 @@ Built with the Next.js App Router. All site content lives in typed files under `
 - **Contact form**: a server action validates the input and sends an HTML email over SMTP (Zoho) using Nodemailer. `POST /api/contact` exposes the same logic as JSON. Inputs are length-limited, HTML-escaped and protected by a honeypot field.
 - **SEO**: a canonical URL and Open Graph/Twitter card per page, generated 1200×630 share images (`opengraph-image.tsx` for the site and for each case study, via `next/og`), JSON-LD (WebSite, Person, ProfilePage, BreadcrumbList and CreativeWork), and a generated `sitemap.xml`, `robots.txt` and web app manifest.
 - **Analytics**: optional [Umami](https://umami.is) integration with a small set of custom events. No personal data is sent.
-- **Theming**: designed light and dark themes that follow the OS setting, with a toggle that remembers the choice.
+- **Theming**: 18 colour themes, picked with `SITE_THEME`, each with designed light and dark modes that follow the OS setting and a toggle that remembers the choice.
 - **Static by default**: every page is prerendered at build time. Only `/api/contact` runs on demand.
 
 ## Tech Stack
@@ -72,6 +72,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `NEXT_PUBLIC_UMAMI_URL`        | No       | `src/components/shared/umami.tsx`    | URL of the Umami tracking script                                 |
 | `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | No       | `src/components/shared/umami.tsx`    | Umami website ID                                                 |
 | `BLOB_READ_WRITE_TOKEN`        | Yes      | `src/lib/resume.ts`                  | Vercel Blob store that holds the resume PDF (server-only)        |
+| `SITE_THEME`                   | No       | `src/lib/theme.ts`                   | Colour theme id (see [Theming](#theming)). Defaults to `ember`   |
 
 > **Migrating from the old names:** `NEXT_PUBLIC_APP_EMAIL` and `NEXT_PUBLIC_APP_PASS` still work as a fallback, but set `SMTP_USER` and `SMTP_PASSWORD` on your host and then remove the old ones. Never put secrets in `NEXT_PUBLIC_*` variables.
 >
@@ -93,9 +94,9 @@ Open [http://localhost:3000](http://localhost:3000).
     │   ├── experience/  about-me/  blogs/  certificates/
     │   ├── api/contact/    # POST /api/contact (JSON)
     │   ├── resume/         # GET /resume: redirects to the current resume in Vercel Blob
-    │   ├── layout.tsx      # Root layout: fonts, theme script, header, contact, footer, analytics
+    │   ├── layout.tsx      # Root layout: fonts, theme styles and script, header, contact, footer, analytics
     │   ├── sitemap.ts  robots.ts  manifest.ts
-    │   └── globals.css     # Design tokens and light/dark themes
+    │   └── globals.css     # Tailwind token mapping, type scale, base styles
     ├── content/            # All site content and its domain types (types.ts)
     ├── components/
     │   ├── ui/             # Container, Section, PageHeader, ButtonLink, ArrowLink, Tag, Eyebrow
@@ -104,10 +105,10 @@ Open [http://localhost:3000](http://localhost:3000).
     │   ├── projects/  experience/  writing/  credentials/  contact/
     │   ├── seo/JsonLd.tsx
     │   └── shared/         # Section observer, Umami
-    ├── config/             # Email template, icon registry
+    ├── config/             # Colour themes, email template, icon registry
     ├── helpers/            # Contact service, validator, email sender, server action, IconBuilder
-    ├── lib/                # Constants, SEO helpers, analytics, resume storage, global types
-    ├── utils/              # Date and duration helpers
+    ├── lib/                # Constants, SEO helpers, analytics, resume storage, theme builder, global types
+    ├── utils/              # Date, duration and colour helpers
     └── __tests__/          # Unit tests
 ```
 
@@ -134,7 +135,17 @@ To add an image, put it under `assets/images/<category>/` (WebP preferred), impo
 
 ## Theming
 
-Colours are semantic tokens (`canvas`, `surface`, `subtle`, `line`, `control`, `fg`, `muted`, `faint`, `accent`, ...) defined in [`src/app/globals.css`](src/app/globals.css) and mapped to Tailwind utilities with `@theme inline`, for example `bg-canvas`, `text-muted` and `border-line`. Text tokens meet WCAG AA on every surface, and `control` (form borders) meets the 3:1 non-text contrast minimum. The light values sit on `:root` and the dark values on `[data-theme="dark"]`, with a `prefers-color-scheme` fallback. A small inline script applies the stored choice before first paint, so there is no flash. The type scale (`text-display`, `text-title`, `text-heading`, `text-lede`, `text-eyebrow`) and radii (`rounded-card`, `rounded-control`) live in the same file.
+Colours are semantic tokens (`canvas`, `surface`, `subtle`, `line`, `control`, `fg`, `muted`, `faint`, `accent`, ...) mapped to Tailwind utilities with `@theme inline` in [`src/app/globals.css`](src/app/globals.css), for example `bg-canvas`, `text-muted` and `border-line`. The type scale (`text-display`, `text-title`, `text-heading`, `text-lede`, `text-eyebrow`) and radii (`rounded-card`, `rounded-control`) live in the same file.
+
+The token values come from the active theme. Set `SITE_THEME` to one of these ids, or change `DEFAULT_THEME` in [`src/config/themes.ts`](src/config/themes.ts):
+
+`ember` (default) · `sepia` · `amber` · `olive` · `forest` · `mint` · `teal` · `sky` · `nord` · `ocean` · `cobalt` · `indigo` · `violet` · `fuchsia` · `plum` · `rose` · `crimson` · `graphite`
+
+Pages are prerendered, so the theme is read at build time: redeploy after changing `SITE_THEME`. An unknown id logs a warning and falls back to the default.
+
+A theme is only a few numbers: the hue of the light neutrals (`paperHue`), the hue of the dark neutrals (`inkHue`), a neutral `tint` strength, and an accent hue and chroma. [`src/lib/theme.ts`](src/lib/theme.ts) derives the full light and dark palettes on the original design's lightness scale and renders them into `<head>` (`ThemeStyles`). The same palette supplies the hex colours for the Open Graph images, the manifest and the browser `theme-color`. To add a theme, add an entry to `THEMES`. The tests check every theme in both modes for WCAG AA contrast (text 4.5:1 on every surface, `accent-fg` on `accent`, and 3:1 for `control` form borders).
+
+The light values sit on `:root` and the dark values on `[data-theme="dark"]`, with a `prefers-color-scheme` fallback. A small inline script applies the stored light/dark choice before first paint, so there is no flash.
 
 ## Contact Flow
 

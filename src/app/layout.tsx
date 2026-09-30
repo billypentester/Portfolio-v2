@@ -4,10 +4,13 @@ import "./globals.css";
 import SiteHeader from "@/src/components/layout/SiteHeader";
 import SiteFooter from "@/src/components/layout/SiteFooter";
 import ThemeScript from "@/src/components/layout/ThemeScript";
+import ThemeStyles from "@/src/components/layout/ThemeStyles";
 import ContactSection from "@/src/components/contact/ContactSection";
 import { UmamiAnalytics } from "@/src/components/shared/umami";
 import { SITE_URL, fullName } from "@/src/content/profile";
 import { SITE_DESCRIPTION, SITE_TITLE, buildMetadata } from "@/src/lib/seo";
+import { activeTheme } from "@/src/lib/theme";
+import { toHex } from "@/src/utils/color";
 
 // Self-hosted at build time as subsetted woff2, with metric-matched fallbacks to limit layout shift.
 const geistSans = Geist({
@@ -51,8 +54,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf9f7" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f1012" },
+    { media: "(prefers-color-scheme: light)", color: toHex(activeTheme.light.canvas) },
+    { media: "(prefers-color-scheme: dark)", color: toHex(activeTheme.dark.canvas) },
   ],
 };
 
@@ -60,6 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
+        <ThemeStyles />
         <ThemeScript />
       </head>
       <body className="min-h-dvh overflow-x-clip">

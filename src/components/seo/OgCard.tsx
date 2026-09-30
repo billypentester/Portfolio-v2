@@ -1,7 +1,11 @@
+import { activeTheme } from '@/src/lib/theme'
+import { toHex } from '@/src/utils/color'
+
 // Layout for generated Open Graph images (rendered by next/og, so only inline styles and hex colours).
 export const OG_SIZE = { width: 1200, height: 630 }
 
-const COLORS = { canvas: '#faf9f7', line: '#e4e2de', fg: '#1b1e24', muted: '#5a5e67', accent: '#b8481f' }
+const { canvas, line, fg, muted, accent } = activeTheme.light
+const COLORS = { canvas: toHex(canvas), line: toHex(line), fg: toHex(fg), muted: toHex(muted), accent: toHex(accent) }
 
 interface OgCardProps {
   eyebrow: string
