@@ -1,6 +1,9 @@
+import type { Metadata } from 'next'
 import Container from '@/src/components/ui/Container'
 import Eyebrow from '@/src/components/ui/Eyebrow'
 import ButtonLink from '@/src/components/ui/ButtonLink'
+
+export const metadata: Metadata = { title: 'Page not found' }
 
 export default function NotFound() {
   return (

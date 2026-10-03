@@ -12,7 +12,7 @@ const variants: Record<ButtonVariant, string> = {
 
 const sizes: Record<ButtonSize, string> = {
   sm: 'h-9 px-3.5 text-sm',
-  md: 'h-11 px-5 text-[0.9375rem]',
+  md: 'h-11 px-5 text-ui',
 }
 
 // Shared by links styled as buttons and by real <button>s (e.g. the contact form submit).

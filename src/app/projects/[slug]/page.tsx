@@ -12,7 +12,8 @@ import CaseStudySection from '@/src/components/projects/CaseStudySection'
 import ProjectCover from '@/src/components/projects/ProjectCover'
 import StackDiagram from '@/src/components/projects/StackDiagram'
 import { caseStudyProjects, getProject } from '@/src/content/projects'
-import { breadcrumbSchema, buildMetadata, projectSchema } from '@/src/lib/seo'
+import { experience } from '@/src/content/experience'
+import { buildMetadata, caseStudyDescription, caseStudyNode, pageSchema } from '@/src/lib/seo'
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
   return buildMetadata({
     title: `${project.title} case study`,
-    description: project.summary,
+    description: caseStudyDescription(project),
     path: `/projects/${project.slug}`,
     type: 'article',
     image: { url: `/projects/${project.slug}/opengraph-image`, width: 1200, height: 630, alt: `${project.title} case study` },
@@ -38,6 +39,12 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
 const DISCLOSURE =
   'Only publicly shareable information is included. No proprietary code, credentials, confidential architecture or sensitive business information is shown.'
+
+interface MetaItem {
+  label: string
+  value: string
+  href?: string
+}
 
 interface CaseStudyBlock {
   id: string
@@ -54,9 +61,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const { caseStudy } = project
   const position = caseStudyProjects.findIndex((p) => p.slug === project.slug)
   const next = caseStudyProjects[(position + 1) % caseStudyProjects.length]
-  const meta = [
+  // The role this project belongs to, so the company links to it on the experience timeline.
+  const employerRole = experience.find((role) => role.projects?.includes(project.slug))
+  const meta: MetaItem[] = [
     { label: 'Role', value: caseStudy.role },
-    ...(project.kind === 'professional' && project.employer ? [{ label: 'Company', value: project.employer }] : []),
+    ...(project.kind === 'professional' && project.employer
+      ? [{ label: 'Company', value: project.employer, href: employerRole ? `/experience#${employerRole.id}` : undefined }]
+      : []),
     ...(project.stack.length > 0 ? [{ label: 'Stack', value: project.stack.join(' · ') }] : []),
   ]
 
@@ -66,13 +77,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       id: 'project',
       label: 'Project',
       title: 'What the system is',
-      content: <p className="text-lede text-muted">{caseStudy.context}</p>,
+      content: <p className="max-w-prose text-lede text-muted">{caseStudy.context}</p>,
     },
     {
       id: 'problem',
       label: 'Problem',
       title: 'What needed solving',
-      content: <p className="text-lede text-muted">{caseStudy.problem}</p>,
+      content: <p className="max-w-prose text-lede text-muted">{caseStudy.problem}</p>,
     },
     {
       id: 'contribution',
@@ -148,10 +159,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <article>
-      <JsonLd data={[
-        breadcrumbSchema([{ name: 'Work', path: '/projects' }, { name: project.title, path: `/projects/${project.slug}` }]),
-        projectSchema(project),
-      ]} />
+      <JsonLd data={pageSchema({
+        path: `/projects/${project.slug}`,
+        name: `${project.title} case study`,
+        description: caseStudyDescription(project),
+        breadcrumbs: [{ name: 'Work', path: '/projects' }, { name: project.title, path: `/projects/${project.slug}` }],
+        mainEntity: caseStudyNode(project),
+      })} />
 
       <header className="relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16">
         <div aria-hidden="true" className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
@@ -165,14 +179,22 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <Eyebrow className="mt-8">
             {project.kind === 'professional' ? `Case study · ${project.domain}` : 'Case study'}
           </Eyebrow>
-          <h1 className="mt-4 max-w-4xl animate-rise text-display font-semibold">{project.title}</h1>
+          <h1 className="mt-4 max-w-4xl text-display font-semibold">{project.title}</h1>
           <p className="mt-6 max-w-3xl text-heading font-medium text-muted">{project.summary}</p>
 
           <dl className="mt-10 grid gap-6 border-t border-line pt-6 sm:grid-cols-3">
             {meta.map((item) => (
               <div key={item.label}>
                 <dt className="font-mono text-eyebrow uppercase text-faint">{item.label}</dt>
-                <dd className="mt-2 text-sm">{item.value}</dd>
+                <dd className="mt-2 text-sm">
+                  {item.href ? (
+                    <Link href={item.href} className="underline decoration-line-strong underline-offset-4 hover:decoration-accent">
+                      {item.value}
+                    </Link>
+                  ) : (
+                    item.value
+                  )}
+                </dd>
               </div>
             ))}
           </dl>

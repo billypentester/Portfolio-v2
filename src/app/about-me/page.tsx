@@ -11,14 +11,15 @@ import { journey } from '@/src/content/experience'
 import { fullName, profile } from '@/src/content/profile'
 import { allSkills, principles, skillGroups } from '@/src/content/skills'
 import { now } from '@/src/content/now'
-import { breadcrumbSchema, buildMetadata, profilePageSchema } from '@/src/lib/seo'
+import { buildMetadata, pageSchema } from '@/src/lib/seo'
 
-export const metadata: Metadata = buildMetadata({
+const PAGE = {
   title: 'About',
   description: 'Bilal Ahmad is a software engineer in Lahore who builds backend systems for production commerce. His background, engineering approach and the tools he works with.',
   path: '/about-me',
-  type: 'profile',
-})
+}
+
+export const metadata: Metadata = buildMetadata({ ...PAGE, type: 'profile' })
 
 function AboutBlock({ id, label, title, children }: { id: string; label: string; title: string; children: React.ReactNode }) {
   return (
@@ -37,8 +38,15 @@ export default function AboutPage() {
 
   return (
     <>
-      <JsonLd data={[profilePageSchema(), breadcrumbSchema([{ name: 'About', path: '/about-me' }])]} />
-      <PageHeader eyebrow="About" title={`Hi, I'm ${profile.firstName}.`} lede={profile.headline} />
+      <JsonLd data={pageSchema({
+        path: PAGE.path,
+        name: `About ${fullName}`,
+        description: PAGE.description,
+        type: 'ProfilePage',
+        breadcrumbs: [{ name: PAGE.title, path: PAGE.path }],
+        mainEntity: 'person',
+      })} />
+      <PageHeader eyebrow="About" title={`Hi, I'm ${fullName}.`} lede={profile.headline} />
 
       <Container>
         <div className="grid gap-10 pb-16 lg:grid-cols-12 lg:gap-12">
@@ -52,7 +60,7 @@ export default function AboutPage() {
               className="aspect-[4/5] w-full max-w-sm rounded-card border border-line object-cover"
             />
           </div>
-          <div className="grid gap-5 text-lede text-muted lg:col-span-8">
+          <div className="grid max-w-prose gap-5 text-lede text-muted lg:col-span-8">
             {profile.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
         </div>
@@ -117,6 +125,7 @@ export default function AboutPage() {
           <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
             <ArrowLink href="/experience">See the full experience timeline</ArrowLink>
             <ArrowLink href="/projects">Read the case studies</ArrowLink>
+            <ArrowLink href="/blogs">Browse my writing</ArrowLink>
           </div>
         </AboutBlock>
       </Container>

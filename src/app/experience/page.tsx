@@ -6,18 +6,25 @@ import JsonLd from '@/src/components/seo/JsonLd'
 import ExperienceTimeline from '@/src/components/experience/ExperienceTimeline'
 import { experience } from '@/src/content/experience'
 import { profile } from '@/src/content/profile'
-import { breadcrumbSchema, buildMetadata } from '@/src/lib/seo'
+import { buildMetadata, pageSchema } from '@/src/lib/seo'
 
-export const metadata: Metadata = buildMetadata({
+const PAGE = {
   title: 'Experience',
   description: 'Career timeline of Bilal Ahmad: Software Engineer at Simplex Technology Solutions since 2023, and MERN stack developer at Cache First before that.',
   path: '/experience',
-})
+}
+
+export const metadata: Metadata = buildMetadata(PAGE)
 
 export default function ExperiencePage() {
   return (
     <>
-      <JsonLd data={breadcrumbSchema([{ name: 'Experience', path: '/experience' }])} />
+      <JsonLd data={pageSchema({
+        path: PAGE.path,
+        name: PAGE.title,
+        description: PAGE.description,
+        breadcrumbs: [{ name: PAGE.title, path: PAGE.path }],
+      })} />
       <PageHeader
         eyebrow="Experience"
         title="Where I have worked, and what I owned."

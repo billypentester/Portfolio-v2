@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Hero from "@/src/components/home/Hero";
 import Snapshot from "@/src/components/home/Snapshot";
 import Capabilities from "@/src/components/home/Capabilities";
@@ -11,12 +12,14 @@ import Credentials from "@/src/components/home/Credentials";
 import SectionObserver from "@/src/components/shared/sectionObserver";
 import JsonLd from "@/src/components/seo/JsonLd";
 import { TRACKED_HOME_SECTIONS } from "@/src/lib/constants";
-import { homeSchema } from "@/src/lib/seo";
+import { SITE_DESCRIPTION, SITE_TITLE, buildMetadata, pageSchema } from "@/src/lib/seo";
+
+export const metadata: Metadata = buildMetadata({ description: SITE_DESCRIPTION, path: "/" });
 
 export default function Home() {
   return (
     <>
-      <JsonLd data={homeSchema()} />
+      <JsonLd data={pageSchema({ path: "/", name: SITE_TITLE, description: SITE_DESCRIPTION, mainEntity: "person" })} />
       <SectionObserver ids={TRACKED_HOME_SECTIONS} />
       <Hero />
       <Snapshot />

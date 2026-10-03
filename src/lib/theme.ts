@@ -19,6 +19,7 @@ export type TokenName =
   | 'accent'
   | 'accent-fg'
   | 'accent-soft'
+  | 'focus'
   | 'success'
   | 'danger'
 
@@ -43,10 +44,11 @@ const SHADOWS: Record<ColorMode, string> = {
 }
 
 // The lightness scale below is the original design's; only hue and chroma vary between themes.
-// Form control borders ("control") stay at least 3:1 against canvas and surface (WCAG 1.4.11).
+// Form control borders ("control") and focus rings stay at least 3:1 against canvas and surface (WCAG 1.4.11).
 const lightPalette = ({ paperHue, inkHue, tint, accent }: ThemeDefinition): Palette => {
   const paper = (l: number, c: number): Oklch => ({ l, c: c * tint, h: paperHue })
   const ink = (l: number, c: number): Oklch => ({ l, c: c * tint, h: inkHue })
+  const accentColor: Oklch = { l: 54, c: accent.chroma, h: accent.hue }
   return {
     canvas: paper(98.6, 0.004),
     surface: paper(100, 0),
@@ -57,9 +59,10 @@ const lightPalette = ({ paperHue, inkHue, tint, accent }: ThemeDefinition): Pale
     fg: ink(21, 0.012),
     muted: ink(44, 0.012),
     faint: ink(54, 0.01),
-    accent: { l: 54, c: accent.chroma, h: accent.hue },
+    accent: accentColor,
     'accent-fg': { l: 99, c: Math.min(accent.chroma, 0.005), h: accent.hue },
     'accent-soft': { l: 94, c: Math.min(accent.chroma * 0.25, 0.035), h: accent.hue },
+    focus: accentColor,
     ...STATUS.light,
   }
 }
@@ -68,6 +71,7 @@ const darkPalette = ({ paperHue, inkHue, tint, accent }: ThemeDefinition): Palet
   const paper = (l: number, c: number): Oklch => ({ l, c: c * tint, h: paperHue })
   const ink = (l: number, c: number): Oklch => ({ l, c: c * tint, h: inkHue })
   const accentHue = accent.darkHue ?? accent.hue
+  const accentColor: Oklch = { l: 73, c: accent.chroma * 0.91, h: accentHue }
   return {
     canvas: ink(16.5, 0.006),
     surface: ink(19.5, 0.007),
@@ -78,9 +82,10 @@ const darkPalette = ({ paperHue, inkHue, tint, accent }: ThemeDefinition): Palet
     fg: paper(95.5, 0.004),
     muted: ink(73, 0.01),
     faint: ink(63, 0.01),
-    accent: { l: 73, c: accent.chroma * 0.91, h: accentHue },
+    accent: accentColor,
     'accent-fg': { l: 18, c: Math.min(accent.chroma, 0.02), h: accentHue },
     'accent-soft': { l: 28, c: Math.min(accent.chroma * 0.35, 0.05), h: accentHue },
+    focus: accentColor,
     ...STATUS.dark,
   }
 }

@@ -35,7 +35,7 @@ export default function ButtonLink({ href, children, variant, size, icon, extern
         {...(download ? { target: '_blank', rel: 'noopener' } : {})}
       >
         {content}
-        {external && <span className="sr-only"> (opens in a new tab)</span>}
+        {(external || download) && <span className="sr-only"> (opens in a new tab)</span>}
       </a>
     )
   }

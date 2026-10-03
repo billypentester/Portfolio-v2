@@ -34,10 +34,10 @@ export default function PublicationCard({ publication, headingLevel = 'h3' }: Pu
             target="_blank"
             rel="noopener noreferrer"
             data-umami-event={eventName(publication.title)}
-            className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:rounded-card focus-visible:after:outline-2 focus-visible:after:outline-accent"
+            className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:rounded-card focus-visible:after:outline-2 focus-visible:after:outline-focus"
           >
             {publication.title}
-            <span className="sr-only"> (opens on {publication.publisher})</span>
+            <span className="sr-only"> (on {publication.publisher}, opens in a new tab)</span>
           </a>
         </Heading>
         <p className="mt-2 flex-1 text-sm text-muted">{publication.description}</p>

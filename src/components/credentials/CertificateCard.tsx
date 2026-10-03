@@ -22,7 +22,7 @@ export default function CertificateCard({ certification, headingLevel = 'h3' }: 
       >
         <Image
           src={image}
-          alt={`${title} certificate`}
+          alt=""
           fill
           sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
           placeholder="blur"

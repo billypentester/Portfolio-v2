@@ -1,4 +1,4 @@
-import Photo from '@/public/images/about-me.jpeg'
+import Photo from '@/public/images/profile.jpg'
 import type { Profile, SocialLink } from './types'
 
 export const SITE_URL = 'https://billypentester.pk'
@@ -14,8 +14,8 @@ export const profile: Profile = {
   email: 'contact@billypentester.pk',
   resumeUrl: '/resume',
   photo: Photo,
-  headline: 'I build production backend and full-stack systems: the APIs, commerce flows and integrations behind ordering, loyalty and wallet features.',
-  intro: 'Software Engineer at Simplex Technology Solutions, working on the ordering and loyalty platforms behind KFC and Domino\'s Pakistan. I take features from business requirements to production, mostly in NestJS, React, Next.js, MySQL and Redis.',
+  headline: 'Software Engineer focused on building modern, reliable and scalable web applications.',
+  intro: 'I build backend and full-stack solutions, from APIs and business logic to responsive web experiences, with a focus on clean architecture, performance and maintainable code.',
   primaryStack: ['NestJS', 'Next.js', 'React', 'MySQL', 'Redis'],
   bio: [
     'I studied Computer Science at COMSATS University and started shipping client work before I graduated: crypto exchange, e-commerce, SPA and CMS projects on the MERN stack, delivered remotely through Cache First.',

@@ -6,10 +6,10 @@ Built with the Next.js App Router. All site content lives in typed files under `
 
 ## Features
 
-- **Pages**: Home, Work (`/projects`), a case study per project (`/projects/[slug]`), Experience, About, Writing (`/blogs`) and Certificates, plus a custom 404 page and a loading skeleton.
+- **Pages**: Home, Work (`/projects`), a case study per project (`/projects/[slug]`), Experience, About, Writing (`/blogs`) and Certificates, plus a custom 404 page. Every page is prerendered, so there is no loading state: content is in the initial HTML.
 - **Home sections**: Hero, Engineering snapshot, What I build, Selected work, Currently building (hidden while `now.ts` is empty), Experience, How I work, Technical expertise, Writing and Education & certifications.
 - **Contact form**: a server action validates the input and sends an HTML email over SMTP (Zoho) using Nodemailer. `POST /api/contact` exposes the same logic as JSON. Inputs are length-limited, HTML-escaped and protected by a honeypot field.
-- **SEO**: a canonical URL and Open Graph/Twitter card per page, generated 1200×630 share images (`opengraph-image.tsx` for the site and for each case study, via `next/og`), JSON-LD (WebSite, Person, ProfilePage, BreadcrumbList and CreativeWork), and a generated `sitemap.xml`, `robots.txt` and web app manifest.
+- **SEO**: a canonical URL and Open Graph/Twitter card per page, generated 1200×630 share images (`opengraph-image.tsx` for the site and for each case study, via `next/og`), one connected JSON-LD `@graph` per page (WebSite, Person, WebPage/ProfilePage/CollectionPage, BreadcrumbList, and CreativeWork for case studies), and a generated `sitemap.xml`, `robots.txt` and web app manifest.
 - **Analytics**: optional [Umami](https://umami.is) integration with a small set of custom events. No personal data is sent.
 - **Theming**: 18 colour themes, picked with `SITE_THEME`, each with designed light and dark modes that follow the OS setting and a toggle that remembers the choice.
 - **Static by default**: every page is prerendered at build time. Only `/api/contact` runs on demand.
@@ -135,7 +135,7 @@ To add an image, put it under `assets/images/<category>/` (WebP preferred), impo
 
 ## Theming
 
-Colours are semantic tokens (`canvas`, `surface`, `subtle`, `line`, `control`, `fg`, `muted`, `faint`, `accent`, ...) mapped to Tailwind utilities with `@theme inline` in [`src/app/globals.css`](src/app/globals.css), for example `bg-canvas`, `text-muted` and `border-line`. The type scale (`text-display`, `text-title`, `text-heading`, `text-lede`, `text-eyebrow`) and radii (`rounded-card`, `rounded-control`) live in the same file.
+Colours are semantic tokens (`canvas`, `surface`, `subtle`, `line`, `control`, `fg`, `muted`, `faint`, `accent`, `focus`, ...; the role of each is listed at the top of `globals.css`) mapped to Tailwind utilities with `@theme inline` in [`src/app/globals.css`](src/app/globals.css), for example `bg-canvas`, `text-muted` and `border-line`. The type scale (`text-display`, `text-page-title`, `text-title`, `text-subtitle`, `text-heading`, `text-lede`, `text-eyebrow`, `text-ui`, `text-metric`, plus body line-heights for `text-base`/`text-sm`/`text-xs`) and radii (`rounded-card`, `rounded-control`) live in the same file.
 
 The token values come from the active theme. Set `SITE_THEME` to one of these ids, or change `DEFAULT_THEME` in [`src/config/themes.ts`](src/config/themes.ts):
 
@@ -143,7 +143,7 @@ The token values come from the active theme. Set `SITE_THEME` to one of these id
 
 Pages are prerendered, so the theme is read at build time: redeploy after changing `SITE_THEME`. An unknown id logs a warning and falls back to the default.
 
-A theme is only a few numbers: the hue of the light neutrals (`paperHue`), the hue of the dark neutrals (`inkHue`), a neutral `tint` strength, and an accent hue and chroma. [`src/lib/theme.ts`](src/lib/theme.ts) derives the full light and dark palettes on the original design's lightness scale and renders them into `<head>` (`ThemeStyles`). The same palette supplies the hex colours for the Open Graph images, the manifest and the browser `theme-color`. To add a theme, add an entry to `THEMES`. The tests check every theme in both modes for WCAG AA contrast (text 4.5:1 on every surface, `accent-fg` on `accent`, and 3:1 for `control` form borders).
+A theme is only a few numbers: the hue of the light neutrals (`paperHue`), the hue of the dark neutrals (`inkHue`), a neutral `tint` strength, and an accent hue and chroma. [`src/lib/theme.ts`](src/lib/theme.ts) derives the full light and dark palettes on the original design's lightness scale and renders them into `<head>` (`ThemeStyles`). The same palette supplies the hex colours for the Open Graph images, the manifest and the browser `theme-color`. To add a theme, add an entry to `THEMES`. The tests check every theme in both modes for WCAG AA contrast (text 4.5:1 on every surface including status colours, `accent-fg` on `accent`, and 3:1 for `control` form borders and `focus` rings).
 
 The light values sit on `:root` and the dark values on `[data-theme="dark"]`, with a `prefers-color-scheme` fallback. A small inline script applies the stored light/dark choice before first paint, so there is no flash.
 

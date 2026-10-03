@@ -13,7 +13,7 @@ export default function Snapshot() {
             <li key={metric.label} className="bg-surface">
               <Link href={metric.href} className="group flex h-full flex-col p-4 transition-colors hover:bg-subtle sm:p-7">
                 <span className="flex items-start justify-between">
-                  <span className="text-[clamp(2.5rem,2rem+2vw,3.5rem)] leading-none font-semibold tracking-tighter tabular-nums">{metric.value}</span>
+                  <span className="text-metric font-semibold tabular-nums">{metric.value}</span>
                   <IconBuilder type="arrowUpRight" paint="h-4 w-4 text-faint transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
                 </span>
                 <span className="mt-4 text-sm font-medium sm:text-base">{metric.label}</span>

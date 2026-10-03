@@ -6,13 +6,15 @@ import JsonLd from '@/src/components/seo/JsonLd'
 import PublicationCard from '@/src/components/writing/PublicationCard'
 import { publications } from '@/src/content/publications'
 import type { PublicationCategory } from '@/src/content/types'
-import { breadcrumbSchema, buildMetadata } from '@/src/lib/seo'
+import { buildMetadata, externalArticleNode, pageSchema } from '@/src/lib/seo'
 
-export const metadata: Metadata = buildMetadata({
+const PAGE = {
   title: 'Writing',
   description: 'Articles by Bilal Ahmad on backend and frontend development, Web3, security and machine learning.',
   path: '/blogs',
-})
+}
+
+export const metadata: Metadata = buildMetadata(PAGE)
 
 const PUBLISHERS = [...new Set(publications.map((p) => p.publisher))]
 
@@ -25,7 +27,14 @@ export default function BlogsPage() {
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema([{ name: 'Writing', path: '/blogs' }])} />
+      <JsonLd data={pageSchema({
+        path: PAGE.path,
+        name: PAGE.title,
+        description: PAGE.description,
+        type: 'CollectionPage',
+        breadcrumbs: [{ name: PAGE.title, path: PAGE.path }],
+        hasPart: publications.map(externalArticleNode),
+      })} />
       <PageHeader
         eyebrow="Writing"
         title="Articles and notes."
@@ -53,8 +62,7 @@ export default function BlogsPage() {
           return (
             <section key={group.category} id={id} aria-labelledby={`${id}-heading`} className="scroll-mt-20 border-t border-line py-14 sm:py-20">
               <Container>
-                <Eyebrow>{group.category}</Eyebrow>
-                <h2 id={`${id}-heading`} className="sr-only">{group.category}</h2>
+                <Eyebrow as="h2" id={`${id}-heading`}>{group.category}</Eyebrow>
                 <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {group.items.map((publication) => (
                     <li key={publication.url}>

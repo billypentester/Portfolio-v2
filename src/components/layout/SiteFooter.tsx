@@ -29,6 +29,7 @@ export default function SiteFooter() {
             <li>
               <a href={profile.resumeUrl} target="_blank" rel="noopener" data-umami-event="resume_download" className="text-muted hover:text-fg">
                 Download resume
+                <span className="sr-only"> (PDF, opens in a new tab)</span>
               </a>
             </li>
           </ul>

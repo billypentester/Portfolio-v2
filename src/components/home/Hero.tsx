@@ -13,28 +13,25 @@ export default function Hero() {
       <Container className="relative">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-8">
-            <div className="flex animate-rise items-center gap-3">
+            <div className="flex items-center gap-3">
               <Image src={profile.photo} alt="" width={44} height={44} className="h-11 w-11 rounded-full border border-line object-cover lg:hidden" />
-              <div>
-                <p className="font-mono text-eyebrow uppercase text-muted">
-                  {profile.role} <span className="text-accent">/</span> {profile.specialty}
-                </p>
-                <p className="mt-1 text-sm text-faint">{profile.location} · {profile.timezone}</p>
-              </div>
+              <p className="font-mono text-eyebrow uppercase text-muted">
+                {profile.location} <span className="text-accent">/</span> {profile.timezone}
+              </p>
             </div>
 
-            <h1 id="hero-heading" className="mt-6 animate-rise text-display font-semibold [animation-delay:60ms]">
+            <h1 id="hero-heading" className="mt-6 text-display font-semibold">
               {fullName}
             </h1>
 
-            <p className="mt-6 max-w-3xl animate-rise text-heading font-medium text-fg [animation-delay:120ms]">
+            <p className="mt-6 max-w-2xl text-heading font-medium text-balance text-fg">
               {profile.headline}
             </p>
-            <p className="mt-5 max-w-2xl animate-rise text-lede text-muted [animation-delay:180ms]">
+            <p className="mt-4 max-w-2xl text-lede text-muted">
               {profile.intro}
             </p>
 
-            <div className="mt-9 flex animate-rise flex-col gap-3 [animation-delay:240ms] sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <ButtonLink href="#work" icon="arrowRight" className="w-full sm:w-auto">View selected work</ButtonLink>
               <ButtonLink href="#contact" variant="secondary" className="w-full sm:w-auto">Let&apos;s talk</ButtonLink>
               <ButtonLink href={profile.resumeUrl} download variant="ghost" icon="download" event="resume_download" className="w-full sm:w-auto">
@@ -44,7 +41,7 @@ export default function Hero() {
           </div>
 
           <div className="hidden lg:col-span-4 lg:block">
-            <figure className="animate-rise rounded-card border border-line bg-surface p-2 shadow-lift [animation-delay:120ms]">
+            <figure className="rounded-card border border-line bg-surface p-2 shadow-lift">
               {/* Desktop only: the 1px mobile size keeps phones from downloading a hidden portrait. */}
               <Image
                 src={profile.photo}

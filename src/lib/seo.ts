@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { SITE_URL, fullName, profile, socialLinks } from '@/src/content/profile'
 import { experience } from '@/src/content/experience'
-import { allSkills, skillGroups } from '@/src/content/skills'
+import { education } from '@/src/content/credentials'
+import { skillGroups } from '@/src/content/skills'
+import type { ShowcaseProject } from '@/src/content/types'
 
-export const SITE_TITLE = `${fullName} — Software Engineer, Backend & Full-stack`
+export const SITE_TITLE = `${fullName} — Software Engineer, Backend & Full-Stack`
 export const SITE_DESCRIPTION = `${fullName} is a backend and full-stack software engineer in ${profile.location}, building production APIs, commerce systems and integrations with NestJS, Next.js, MySQL and Redis.`
 
 interface PageMetadataInput {
@@ -44,76 +46,158 @@ export const buildMetadata = ({ title, description, path, image = DEFAULT_OG_IMA
   }
 }
 
-type JsonLdObject = { '@context'?: 'https://schema.org'; '@type': string; [key: string]: unknown }
+// Leads with what the project is, then says whose work it is, so the snippet stands on its own in search results.
+export const caseStudyDescription = (project: ShowcaseProject): string => {
+  const employer = project.kind === 'professional' && project.employer ? ` at ${project.employer}` : ''
+  const author = project.kind === 'professional' ? `${fullName}, ${profile.role}${employer}` : fullName
+  return `${project.summary} Case study by ${author}.`
+}
+
+// Structured data: one connected Schema.org graph per page. The Person and WebSite nodes are
+// repeated on every page with stable @ids, so each page can be read on its own and search
+// engines can still merge them into a single entity.
+
+type JsonLdNode = { '@type': string; '@id'?: string; [key: string]: unknown }
+
+export interface JsonLdGraph {
+  '@context': 'https://schema.org'
+  '@graph': JsonLdNode[]
+}
+
+const PERSON_ID = `${SITE_URL}/#person`
+const WEBSITE_ID = `${SITE_URL}/#website`
+
+const ref = (id: string) => ({ '@id': id })
+
+const absoluteUrl = (path: string): string => `${SITE_URL}${path === '/' ? '' : path}`
 
 const currentRole = experience.find((role) => role.end === null)
 
-// Areas of work, listed ahead of individual tools in the Person schema.
+// Areas of work first, then the tools used day to day in production. Tools only used on side
+// projects or earlier roles are left out so the entity is not described more broadly than the site supports.
 const KNOWS_ABOUT_DOMAINS = ['Backend development', 'API design', 'Full-stack development', 'E-commerce systems', 'Third-party integrations', 'Application security']
 
-export const personSchema = (): JsonLdObject => ({
+const OTHER_PROFILES = [
+  'https://billypentester.medium.com',
+  'https://twitter.com/billypentester',
+  'https://www.facebook.com/billypentester',
+  'https://www.instagram.com/billypentester',
+  'https://www.fiverr.com/billypentester',
+]
+
+const personNode = (): JsonLdNode => ({
   '@type': 'Person',
-  '@id': `${SITE_URL}/#person`,
+  '@id': PERSON_ID,
   name: fullName,
+  givenName: profile.firstName,
+  familyName: profile.lastName,
   alternateName: profile.handle,
   url: SITE_URL,
-  image: `${SITE_URL}${profile.photo.src}`,
+  image: {
+    '@type': 'ImageObject',
+    url: `${SITE_URL}${profile.photo.src}`,
+    width: profile.photo.width,
+    height: profile.photo.height,
+  },
   jobTitle: profile.role,
+  description: SITE_DESCRIPTION,
   email: `mailto:${profile.email}`,
   address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressCountry: 'PK' },
   ...(currentRole ? { worksFor: { '@type': 'Organization', name: currentRole.company, url: currentRole.url } } : {}),
-  alumniOf: { '@type': 'CollegeOrUniversity', name: 'COMSATS University Islamabad' },
-  description: profile.headline,
-  knowsAbout: [...KNOWS_ABOUT_DOMAINS, ...skillGroups.flatMap(allSkills)],
+  alumniOf: education.map((school) => ({ '@type': 'EducationalOrganization', name: school.institution })),
+  knowsAbout: [...KNOWS_ABOUT_DOMAINS, ...skillGroups.flatMap((group) => group.primary)],
   sameAs: [
     ...socialLinks.filter((l) => l.platform === 'github' || l.platform === 'linkedin').map((l) => l.url),
-    'https://billypentester.medium.com',
-    'https://twitter.com/billypentester',
-    'https://www.facebook.com/billypentester',
-    'https://www.instagram.com/billypentester',
-    'https://www.fiverr.com/billypentester',
+    ...OTHER_PROFILES,
   ],
 })
 
-export const websiteSchema = (): JsonLdObject => ({
-  '@context': 'https://schema.org',
+const websiteNode = (): JsonLdNode => ({
   '@type': 'WebSite',
-  '@id': `${SITE_URL}/#website`,
+  '@id': WEBSITE_ID,
   name: fullName,
   url: SITE_URL,
+  description: SITE_DESCRIPTION,
   inLanguage: 'en',
-  publisher: { '@id': `${SITE_URL}/#person` },
+  publisher: ref(PERSON_ID),
 })
 
-export const profilePageSchema = (): JsonLdObject => ({
-  '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  url: `${SITE_URL}/about-me`,
-  mainEntity: personSchema(),
-})
+export interface Crumb {
+  name: string
+  path: string
+}
 
-export const homeSchema = (): JsonLdObject[] => [
-  websiteSchema(),
-  { '@context': 'https://schema.org', ...personSchema() },
-]
-
-export const breadcrumbSchema = (trail: { name: string; path: string }[]): JsonLdObject => ({
-  '@context': 'https://schema.org',
+const breadcrumbNode = (idBase: string, trail: Crumb[]): JsonLdNode => ({
   '@type': 'BreadcrumbList',
+  '@id': `${idBase}#breadcrumb`,
   itemListElement: [{ name: 'Home', path: '/' }, ...trail].map((crumb, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     name: crumb.name,
-    item: `${SITE_URL}${crumb.path === '/' ? '' : crumb.path}`,
+    item: absoluteUrl(crumb.path),
   })),
 })
 
-export const projectSchema = (project: { title: string; summary: string; slug: string; stack: string[] }): JsonLdObject => ({
-  '@context': 'https://schema.org',
-  '@type': 'CreativeWork',
-  name: project.title,
-  description: project.summary,
-  url: `${SITE_URL}/projects/${project.slug}`,
-  keywords: project.stack.join(', '),
-  creator: { '@id': `${SITE_URL}/#person` },
+interface PageSchemaInput {
+  path: string
+  name: string
+  description: string
+  type?: 'WebPage' | 'ProfilePage' | 'CollectionPage'
+  // Trail after Home. Omit on the home page.
+  breadcrumbs?: Crumb[]
+  // What the page is primarily about. 'person' points at the Person node already in the graph.
+  mainEntity?: 'person' | JsonLdNode
+  hasPart?: JsonLdNode[]
+}
+
+export const pageSchema = ({ path, name, description, type = 'WebPage', breadcrumbs = [], mainEntity, hasPart }: PageSchemaInput): JsonLdGraph => {
+  const url = absoluteUrl(path)
+  // Fragment ids hang off the trailing-slash form of the home URL, like the Person and WebSite ids.
+  const idBase = path === '/' ? `${SITE_URL}/` : url
+  const breadcrumb = breadcrumbs.length > 0 ? breadcrumbNode(idBase, breadcrumbs) : undefined
+  const entity = mainEntity === 'person' ? undefined : mainEntity
+  const entityId = mainEntity === 'person' ? PERSON_ID : mainEntity?.['@id']
+
+  const page: JsonLdNode = {
+    '@type': type,
+    '@id': `${idBase}#webpage`,
+    url,
+    name,
+    description,
+    inLanguage: 'en',
+    isPartOf: ref(WEBSITE_ID),
+    ...(entityId ? { mainEntity: ref(entityId) } : {}),
+    ...(breadcrumb?.['@id'] ? { breadcrumb: ref(breadcrumb['@id']) } : {}),
+    ...(hasPart && hasPart.length > 0 ? { hasPart } : {}),
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [websiteNode(), personNode(), page, ...(breadcrumb ? [breadcrumb] : []), ...(entity ? [entity] : [])],
+  }
+}
+
+export const caseStudyNode = (project: ShowcaseProject): JsonLdNode => {
+  const url = absoluteUrl(`/projects/${project.slug}`)
+  return {
+    '@type': 'CreativeWork',
+    '@id': `${url}#case-study`,
+    name: `${project.title} case study`,
+    description: project.summary,
+    url,
+    image: `${url}/opengraph-image`,
+    inLanguage: 'en',
+    author: ref(PERSON_ID),
+    ...(project.stack.length > 0 ? { keywords: project.stack.join(', ') } : {}),
+  }
+}
+
+// Articles are published on external platforms, so each one keeps its own URL and publisher.
+export const externalArticleNode = (article: { title: string; description: string; url: string; publisher: string }): JsonLdNode => ({
+  '@type': 'Article',
+  headline: article.title,
+  description: article.description,
+  url: article.url,
+  author: ref(PERSON_ID),
+  publisher: { '@type': 'Organization', name: article.publisher },
 })

@@ -11,7 +11,7 @@ export default function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-40 border-b border-line/70 bg-canvas/80 backdrop-blur-md supports-[backdrop-filter]:bg-canvas/70">
       <Container className="flex h-16 items-center justify-between gap-4">
         <Link href="/" className="group flex items-baseline gap-2 rounded-sm">
-          <span className="text-[0.9375rem] font-semibold tracking-tight">{fullName}</span>
+          <span className="text-ui font-semibold tracking-tight">{fullName}</span>
           <span className="hidden font-mono text-xs text-faint transition-colors group-hover:text-accent sm:inline">/ {profile.role.toLowerCase()}</span>
         </Link>
 

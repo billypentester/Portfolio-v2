@@ -10,7 +10,7 @@ import { track } from '@/src/lib/analytics'
 const INITIAL_STATE: ContactFormState = { status: 'idle' }
 
 const inputClass =
-  'block w-full rounded-control border border-control bg-canvas px-3.5 py-3 text-base text-fg placeholder:text-faint transition-colors hover:border-muted focus:border-fg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aria-[invalid=true]:border-danger'
+  'block w-full rounded-control border border-control bg-canvas px-3.5 py-3 text-base text-fg placeholder:text-faint transition-colors hover:border-muted focus:border-fg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-[invalid=true]:border-danger'
 
 interface FieldProps {
   id: ContactField
@@ -54,7 +54,8 @@ export default function ContactForm() {
   }
 
   return (
-    <form ref={formRef} action={formAction} onSubmit={handleSubmit} className="grid gap-5" aria-describedby="contact-status">
+    <form ref={formRef} action={formAction} onSubmit={handleSubmit} className="grid gap-5" aria-describedby="contact-required contact-status">
+      <p id="contact-required" className="text-sm text-muted">All fields are required.</p>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="name" label="Name" error={fieldErrors.name}>
           {(describedBy) => (

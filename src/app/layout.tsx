@@ -8,7 +8,7 @@ import ThemeStyles from "@/src/components/layout/ThemeStyles";
 import ContactSection from "@/src/components/contact/ContactSection";
 import { UmamiAnalytics } from "@/src/components/shared/umami";
 import { SITE_URL, fullName } from "@/src/content/profile";
-import { SITE_DESCRIPTION, SITE_TITLE, buildMetadata } from "@/src/lib/seo";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/src/lib/seo";
 import { activeTheme } from "@/src/lib/theme";
 import { toHex } from "@/src/utils/color";
 
@@ -25,28 +25,19 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+// Site-wide defaults only. Canonical URLs and page-specific social data are set by each page,
+// so routes without their own metadata (such as the 404 page) never inherit the home page's.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: SITE_TITLE, template: `%s — ${fullName}` },
+  description: SITE_DESCRIPTION,
   applicationName: fullName,
   authors: [{ name: fullName, url: SITE_URL }],
   creator: fullName,
-  keywords: [
-    "Bilal Ahmad",
-    "Software Engineer",
-    "Backend Engineer",
-    "Full Stack Developer",
-    "NestJS Developer",
-    "Next.js Developer",
-    "Software Engineer in Lahore",
-    "Software Engineer in Pakistan",
-  ],
-  robots: { index: true, follow: true },
   icons: [
     { rel: "icon", url: "/images/favicon.svg", type: "image/svg+xml" },
     { rel: "apple-touch-icon", url: "/images/apple-touch-icon.png" },
   ],
-  ...buildMetadata({ description: SITE_DESCRIPTION, path: "/" }),
 };
 
 export const viewport: Viewport = {

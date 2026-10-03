@@ -21,7 +21,7 @@ export default function ContactSection() {
           <div className="relative grid gap-12 p-6 sm:p-10 lg:grid-cols-12 lg:gap-16 lg:p-14">
             <div className="lg:col-span-5">
               <Eyebrow>Contact</Eyebrow>
-              <h2 id="contact-heading" className="mt-4 text-heading font-semibold sm:text-[2.25rem]">Have a project, role or engineering problem in mind?</h2>
+              <h2 id="contact-heading" className="mt-4 text-subtitle font-semibold">Have a project, role or engineering problem in mind?</h2>
               <p className="mt-5 text-lede text-muted">
                 Tell me about the product, the problem or the role, and how I can help.
               </p>

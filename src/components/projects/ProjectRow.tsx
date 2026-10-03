@@ -16,7 +16,7 @@ const STATUS_LABEL = { active: 'In progress', shipped: 'Shipped', paused: 'Pause
 
 // Stretches the case-study link over the whole card, so the card is one large tap target.
 const STRETCHED_LINK =
-  'after:absolute after:inset-0 after:z-0 after:rounded-card focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-accent'
+  'after:absolute after:inset-0 after:z-0 after:rounded-card focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-focus'
 
 // Featured-work card: screenshot and narrative side by side, alternating on desktop.
 export default function ProjectRow({ project, index, preload = false }: ProjectRowProps) {

@@ -81,6 +81,7 @@ export default function MobileMenu() {
           >
             Download resume
             <IconBuilder type="download" paint="h-4 w-4" />
+            <span className="sr-only"> (PDF, opens in a new tab)</span>
           </a>
           <ul className="mt-2 flex justify-center gap-1" aria-label="Social links">
             {socialLinks.map((link) => (
