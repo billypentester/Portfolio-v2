@@ -87,14 +87,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     },
     {
       id: 'contribution',
-      label: 'Contribution',
-      title: 'What I worked on',
+      label: 'My role',
+      title: 'What I was responsible for',
       content: <BulletList items={caseStudy.responsibilities} />,
     },
     {
       id: 'engineering',
       label: 'Engineering',
-      title: 'What shipped',
+      title: 'What I built',
       content: (
         <ol className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
           {caseStudy.features.map((feature, index) => (
@@ -108,10 +108,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       ),
     },
     ...(caseStudy.layers && caseStudy.layers.length > 0
-      ? [{ id: 'stack', label: 'Stack', title: 'How the pieces fit', content: <StackDiagram layers={caseStudy.layers} /> }]
+      ? [{ id: 'stack', label: 'Technologies', title: 'How the pieces fit', content: <StackDiagram layers={caseStudy.layers} /> }]
       : []),
     ...(caseStudy.complexity && caseStudy.complexity.length > 0
-      ? [{ id: 'complexity', label: 'Complexity', title: 'What made it non-trivial', content: <BulletList items={caseStudy.complexity} /> }]
+      ? [{ id: 'complexity', label: 'Complexity', title: 'Engineering challenges', content: <BulletList items={caseStudy.complexity} /> }]
       : []),
     ...(caseStudy.challenges && caseStudy.challenges.length > 0
       ? [{

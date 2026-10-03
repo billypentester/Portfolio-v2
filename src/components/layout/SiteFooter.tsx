@@ -11,7 +11,7 @@ export default function SiteFooter() {
         <div className="md:col-span-5">
           <p className="text-lg font-semibold tracking-tight">{fullName}</p>
           <p className="mt-3 max-w-sm text-sm text-muted">
-            {profile.role} in {profile.location}. Production backend and full-stack systems: APIs, commerce flows and integrations.
+            {profile.role}, {profile.specialty.toLowerCase()}. Reliable web applications, from APIs and integrations to responsive interfaces, built with security in mind.
           </p>
           <a href={`mailto:${profile.email}`} className="mt-6 inline-block font-mono text-sm text-fg underline decoration-line-strong underline-offset-4 hover:decoration-accent">
             {profile.email}

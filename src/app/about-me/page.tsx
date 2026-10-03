@@ -15,7 +15,7 @@ import { buildMetadata, pageSchema } from '@/src/lib/seo'
 
 const PAGE = {
   title: 'About',
-  description: 'Bilal Ahmad is a software engineer in Lahore who builds backend systems for production commerce. His background, engineering approach and the tools he works with.',
+  description: 'Bilal Ahmad is a software engineer focused on backend and full-stack development. His background, engineering principles and the tools he works with.',
   path: '/about-me',
 }
 

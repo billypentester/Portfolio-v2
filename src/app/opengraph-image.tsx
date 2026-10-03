@@ -11,8 +11,8 @@ export default function OpengraphImage() {
     <OgCard
       eyebrow={`${profile.role} · ${profile.specialty}`}
       title={fullName}
-      description="Production backend and full-stack systems: APIs, commerce flows and integrations."
-      footer={`${profile.location} · NestJS · Next.js · MySQL · Redis`}
+      description="Modern, reliable and scalable web applications, from APIs and business logic to responsive interfaces."
+      footer={`@${profile.handle}`}
     />,
     size,
   )

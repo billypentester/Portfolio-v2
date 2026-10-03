@@ -35,14 +35,11 @@ export interface Profile {
 export interface Capability {
   title: string
   description: string
-  evidence: string[]
 }
 
 export interface Principle {
   title: string
   description: string
-  // Where the principle shows up in real work. Leave it out rather than stretch a claim.
-  evidence?: string
 }
 
 export interface WorkflowStep {
@@ -125,6 +122,8 @@ interface ProjectBase {
 
 export interface ProfessionalProject extends ProjectBase {
   kind: 'professional'
+  // My role on the project, shown on its card, e.g. "Backend lead".
+  role?: string
   employer?: string
   domain: string
   highlights: string[]

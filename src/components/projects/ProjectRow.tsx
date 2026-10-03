@@ -9,8 +9,11 @@ interface ProjectRowProps {
   preload?: boolean
 }
 
-const ROLE_LABEL = (project: ShowcaseProject): string =>
-  project.kind === 'professional' ? (project.employer ? `At ${project.employer}` : 'Professional work') : 'Personal project'
+const ROLE_LABEL = (project: ShowcaseProject): string => {
+  if (project.kind === 'personal') return 'Personal project'
+  const role = project.role ?? 'Professional work'
+  return project.employer ? `${role} at ${project.employer}` : role
+}
 
 const STATUS_LABEL = { active: 'In progress', shipped: 'Shipped', paused: 'Paused' } as const
 
@@ -43,17 +46,20 @@ export default function ProjectRow({ project, index, preload = false }: ProjectR
         </p>
         <h3 className="mt-3 text-heading font-semibold">{project.title}</h3>
         <p className="mt-3 text-muted">{project.summary}</p>
-        <p className="mt-3 text-sm text-faint">{ROLE_LABEL(project)}</p>
+        <p className="mt-3 text-sm font-medium text-fg">{ROLE_LABEL(project)}</p>
 
         {project.kind === 'professional' && project.highlights.length > 0 && (
-          <ul aria-label="What I built" className="mt-6 grid gap-2.5 border-t border-line pt-6 text-sm">
-            {project.highlights.map((highlight) => (
-              <li key={highlight} className="flex gap-3">
-                <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                <span className="text-muted">{highlight}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-6 border-t border-line pt-6">
+            <p id={`${project.slug}-built`} className="font-mono text-eyebrow uppercase text-faint">What I built</p>
+            <ul aria-labelledby={`${project.slug}-built`} className="mt-3 grid gap-2.5 text-sm">
+              {project.highlights.map((highlight) => (
+                <li key={highlight} className="flex gap-3">
+                  <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                  <span className="text-muted">{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
 
         <TagList items={project.stack} label={`${project.title} technologies`} className="mt-6" />

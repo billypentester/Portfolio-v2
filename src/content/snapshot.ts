@@ -10,19 +10,19 @@ const professionalCount = showcaseProjects.filter((p) => p.kind === 'professiona
 export const snapshot: SnapshotMetric[] = [
   {
     value: `${yearsSince(careerStart)}+`,
-    label: 'Years of professional engineering',
+    label: 'Years engineering',
     detail: 'Client work since 2022, Simplex since 2023',
     href: '/experience',
   },
   {
     value: '20+',
-    label: 'Production modules delivered',
+    label: 'Production modules',
     detail: 'From business requirements to production at Simplex',
     href: '/experience#simplex',
   },
   {
     value: '10+',
-    label: 'Client applications built',
+    label: 'Client applications',
     detail: 'Crypto exchange, e-commerce, SPA and CMS at Cache First',
     href: '/experience#cache-first',
   },

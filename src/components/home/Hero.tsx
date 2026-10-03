@@ -16,7 +16,7 @@ export default function Hero() {
             <div className="flex items-center gap-3">
               <Image src={profile.photo} alt="" width={44} height={44} className="h-11 w-11 rounded-full border border-line object-cover lg:hidden" />
               <p className="font-mono text-eyebrow uppercase text-muted">
-                {profile.location} <span className="text-accent">/</span> {profile.timezone}
+                {profile.role} <span className="text-accent">/</span> {profile.specialty}
               </p>
             </div>
 
@@ -24,10 +24,10 @@ export default function Hero() {
               {fullName}
             </h1>
 
-            <p className="mt-6 max-w-2xl text-heading font-medium text-balance text-fg">
+            <p className="mt-6 max-w-3xl text-heading font-medium text-balance text-fg">
               {profile.headline}
             </p>
-            <p className="mt-4 max-w-2xl text-lede text-muted">
+            <p className="mt-5 max-w-2xl text-lede text-muted">
               {profile.intro}
             </p>
 

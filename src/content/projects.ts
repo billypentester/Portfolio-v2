@@ -21,6 +21,7 @@ export const projects: Project[] = [
     title: 'KFC Pakistan',
     summary: 'Loyalty, scheduled ordering and QR dine-in for KFC Pakistan\'s ordering platform.',
     domain: 'Food ordering · Loyalty',
+    role: 'Backend lead',
     employer: SIMPLEX,
     featured: true,
     stack: ['NestJS', 'Node.js', 'React', 'MySQL', 'Redis'],
@@ -32,13 +33,14 @@ export const projects: Project[] = [
       'QR code dine-in ordering straight from the customer\'s phone.',
     ],
     caseStudy: {
-      context: 'KFC Pakistan takes customer orders online. I work on its ordering platform as part of the engineering team at Simplex Technology Solutions, mostly on the backend and its integrations.',
+      context: 'KFC Pakistan\'s online ordering platform. I work on it at Simplex Technology Solutions as backend lead, owning the services, APIs and integrations behind the features below.',
       problem: 'On top of standard online ordering, the platform needed a loyalty programme whose point rules the business can configure, orders that can be scheduled for later, and a way to order from the table in the restaurant.',
-      role: 'Software Engineer at Simplex, working on backend services and the features below from requirements to production.',
+      role: 'Backend lead at Simplex. I built the loyalty, future ordering and QR dine-in features on the backend, from requirements to production.',
       responsibilities: [
         'Turned business requirements for loyalty and ordering into backend modules and APIs.',
-        'Worked with the mobile and marketing teams on frontend integrations.',
-        'Integrated third-party services and built the reporting around them.',
+        'Built the loyalty engine so point rules are configured by the business instead of hard-coded.',
+        'Integrated the third-party loyalty services and built the reporting around them.',
+        'Worked with the mobile and marketing teams on the frontend integrations.',
       ],
       features: [
         {
@@ -74,6 +76,7 @@ export const projects: Project[] = [
     title: 'Domino\'s Pakistan',
     summary: 'Digital wallet, rule-based free delivery and a refactored client API for Domino\'s Pakistan.',
     domain: 'Food ordering · Payments',
+    role: 'Backend lead',
     employer: SIMPLEX,
     featured: true,
     stack: ['NestJS', 'Node.js', 'React', 'MySQL', 'GTM'],
@@ -85,12 +88,12 @@ export const projects: Project[] = [
       'Refactored client-side APIs for structure, validation, documentation, security and performance.',
     ],
     caseStudy: {
-      context: 'Domino\'s Pakistan takes customer orders online. At Simplex Technology Solutions my work on the platform focused on checkout flexibility and the quality of the APIs its clients depend on.',
+      context: 'Domino\'s Pakistan\'s online ordering platform. I work on it at Simplex Technology Solutions as backend lead, focused on checkout flexibility and the quality of the APIs its clients depend on.',
       problem: 'Checkout needed more flexibility: wallet credits as a way to pay, and free delivery decided by time, channel, deals and location instead of a fixed threshold. The client-facing APIs these features depend on also needed restructuring.',
-      role: 'Software Engineer at Simplex, building the features below on the backend.',
+      role: 'Backend lead at Simplex. I built the wallet and free-delivery features and refactored the client-facing APIs.',
       responsibilities: [
-        'Built the wallet and free-delivery checkout features on the backend.',
-        'Refactored the existing client-facing APIs.',
+        'Built the digital wallet and the rule-based free-delivery checkout features on the backend.',
+        'Refactored the existing client-facing APIs for structure, validation, documentation, security and performance.',
       ],
       features: [
         {
@@ -129,6 +132,7 @@ export const projects: Project[] = [
     title: 'Hospinizer',
     summary: 'Patient authentication, appointment reminders and EMR synchronisation across clinics.',
     domain: 'Healthcare · Integrations',
+    role: 'Backend engineer',
     employer: SIMPLEX,
     featured: true,
     stack: [],
@@ -137,9 +141,9 @@ export const projects: Project[] = [
       'EMR systems integrated across clinics through an aggregator engine for appointment synchronisation.',
     ],
     caseStudy: {
-      context: 'Hospinizer handles patient appointments across multiple clinics, each running its own EMR system, so appointment data has to stay synchronised between them.',
+      context: 'Hospinizer handles patient appointments across multiple clinics, each running its own EMR system. I built its patient-facing backend features and the EMR integration at Simplex Technology Solutions.',
       problem: 'Patients book with clinics that each run their own EMR system. Appointments had to stay synchronised across those systems, and patients needed secure sign-in and timely reminders.',
-      role: 'Software Engineer at Simplex, building the patient-facing backend features and the EMR integration.',
+      role: 'Software Engineer at Simplex. I built patient authentication, appointment reminders and the EMR integration.',
       responsibilities: [
         'Implemented patient authentication.',
         'Built automated push notifications for upcoming appointments.',

@@ -6,7 +6,7 @@ import { skillGroups } from '@/src/content/skills'
 import type { ShowcaseProject } from '@/src/content/types'
 
 export const SITE_TITLE = `${fullName} — Software Engineer, Backend & Full-Stack`
-export const SITE_DESCRIPTION = `${fullName} is a backend and full-stack software engineer in ${profile.location}, building production APIs, commerce systems and integrations with NestJS, Next.js, MySQL and Redis.`
+export const SITE_DESCRIPTION = `${fullName} is a software engineer focused on backend and full-stack development: reliable, scalable web applications, APIs, integrations and business logic.`
 
 interface PageMetadataInput {
   title?: string

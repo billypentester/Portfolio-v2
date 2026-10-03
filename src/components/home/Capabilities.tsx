@@ -9,20 +9,15 @@ export default function Capabilities() {
       id="capabilities"
       index="01"
       eyebrow="What I build"
-      title="Backend-heavy product engineering, end to end."
-      lede="The kind of work I am trusted with in production, and where it has shown up."
+      title="Backend and full-stack engineering, end to end."
+      lede="The kind of work I take on, from the data model and API to the interface people use."
     >
       <ol className="grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
         {capabilities.map((capability, index) => (
           <li key={capability.title} className="reveal flex flex-col bg-surface p-6 sm:p-8">
             <span className="font-mono text-xs text-accent">{String(index + 1).padStart(2, '0')}</span>
             <h3 className="mt-4 text-lg font-semibold tracking-tight">{capability.title}</h3>
-            <p className="mt-2 flex-1 text-muted">{capability.description}</p>
-            <ul aria-label={`${capability.title} examples`} className="mt-6 grid gap-1.5 border-t border-line pt-5 font-mono text-xs text-faint">
-              {capability.evidence.map((item) => (
-                <li key={item}><span aria-hidden="true">→ </span>{item}</li>
-              ))}
-            </ul>
+            <p className="mt-2 text-muted">{capability.description}</p>
           </li>
         ))}
         {/* Sixth cell completes the 2- and 3-column grids and routes to the evidence. */}
