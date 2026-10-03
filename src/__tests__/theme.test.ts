@@ -32,10 +32,14 @@ const CONTRAST_PAIRS: [TokenName, TokenName, number][] = [
   ['focus', 'canvas', 3],
   ['focus', 'surface', 3],
   ['focus', 'subtle', 3],
+  // Accent icons on hover fills (Snapshot, Capabilities).
+  ['accent', 'subtle', 3],
+  ['accent', 'accent-soft', 3],
 ]
 
-test('offers between 15 and 20 themes', () => {
-  assert.ok(THEME_IDS.length >= 15 && THEME_IDS.length <= 20, `found ${THEME_IDS.length}`)
+test('offers a curated set of five themes', () => {
+  assert.equal(THEME_IDS.length, 5, `found ${THEME_IDS.length}`)
+  assert.ok(THEME_IDS.includes(DEFAULT_THEME))
 })
 
 for (const id of THEME_IDS) {
@@ -54,7 +58,7 @@ test('resolves the theme id from the environment value', (t) => {
   const warn = t.mock.method(console, 'warn', () => {})
   assert.equal(resolveThemeId(undefined), DEFAULT_THEME)
   assert.equal(resolveThemeId(''), DEFAULT_THEME)
-  assert.equal(resolveThemeId(' Ocean '), 'ocean')
+  assert.equal(resolveThemeId(' Emerald '), 'emerald')
   assert.equal(warn.mock.callCount(), 0)
 })
 
@@ -66,22 +70,22 @@ test('falls back to the default theme and warns on an unknown id', (t) => {
 })
 
 test('renders every token for light, dark and the OS-preference fallback', () => {
-  const css = themeCss(buildTheme('ocean'))
+  const css = themeCss(buildTheme('indigo'))
   assert.match(css, /^:root\{color-scheme:light;/)
   assert.match(css, /:root\[data-theme="dark"\]\{color-scheme:dark;/)
   assert.match(css, /@media \(prefers-color-scheme:dark\)\{:root:not\(\[data-theme="light"\]\)\{color-scheme:dark;/)
-  for (const token of Object.keys(buildTheme('ocean').light)) {
+  for (const token of Object.keys(buildTheme('indigo').light)) {
     assert.equal(css.split(`--${token}:`).length - 1, 3, `--${token} should appear once per block`)
   }
 })
 
-test('the default theme keeps the original design tokens', () => {
-  const css = themeCss(buildTheme('ember'))
-  assert.ok(css.includes('--canvas:oklch(98.6% 0.004 85)'))
-  assert.ok(css.includes('--fg:oklch(21% 0.012 260)'))
-  assert.ok(css.includes('--accent:oklch(54% 0.165 42)'))
-  assert.ok(css.includes('--accent:oklch(73% 0.1502 52)'))
-  assert.ok(css.includes('--canvas:oklch(16.5% 0.006 260)'))
+test('renders the expected design tokens', () => {
+  const css = themeCss(buildTheme('midnight'))
+  assert.ok(css.includes('--canvas:oklch(98.6% 0.009 245)'))
+  assert.ok(css.includes('--fg:oklch(21% 0.027 262)'))
+  assert.ok(css.includes('--accent:oklch(54% 0.17 260)'))
+  assert.ok(css.includes('--accent:oklch(73% 0.1547 252)'))
+  assert.ok(css.includes('--canvas:oklch(16.5% 0.0135 262)'))
 })
 
 test('converts OKLCH to hex, mapping out-of-gamut colours into sRGB', () => {

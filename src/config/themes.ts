@@ -21,28 +21,21 @@ export interface ThemeDefinition {
   }
 }
 
+// Each theme pairs its accent with its own neutrals, so the page character changes with it, not just the links.
 export const THEMES = {
-  ember: { label: 'Ember', paperHue: 85, inkHue: 260, tint: 1, accent: { hue: 42, chroma: 0.165, darkHue: 52 } },
-  sepia: { label: 'Sepia', paperHue: 80, inkHue: 60, tint: 4, accent: { hue: 55, chroma: 0.11 } },
-  amber: { label: 'Amber', paperHue: 85, inkHue: 70, tint: 2, accent: { hue: 70, chroma: 0.15 } },
-  olive: { label: 'Olive', paperHue: 110, inkHue: 120, tint: 2, accent: { hue: 122, chroma: 0.13 } },
-  forest: { label: 'Forest', paperHue: 145, inkHue: 160, tint: 1.5, accent: { hue: 150, chroma: 0.14 } },
-  mint: { label: 'Mint', paperHue: 170, inkHue: 190, tint: 2, accent: { hue: 168, chroma: 0.13 } },
-  teal: { label: 'Teal', paperHue: 195, inkHue: 210, tint: 1.5, accent: { hue: 195, chroma: 0.12 } },
-  sky: { label: 'Sky', paperHue: 220, inkHue: 240, tint: 1.5, accent: { hue: 225, chroma: 0.14 } },
-  nord: { label: 'Nord', paperHue: 230, inkHue: 250, tint: 3, accent: { hue: 235, chroma: 0.08 } },
-  ocean: { label: 'Ocean', paperHue: 240, inkHue: 255, tint: 1.5, accent: { hue: 245, chroma: 0.16 } },
-  cobalt: { label: 'Cobalt', paperHue: 260, inkHue: 262, tint: 0.5, accent: { hue: 262, chroma: 0.22 } },
-  indigo: { label: 'Indigo', paperHue: 275, inkHue: 278, tint: 1.5, accent: { hue: 280, chroma: 0.19 } },
-  violet: { label: 'Violet', paperHue: 300, inkHue: 290, tint: 1.5, accent: { hue: 300, chroma: 0.18 } },
-  fuchsia: { label: 'Fuchsia', paperHue: 320, inkHue: 290, tint: 0.5, accent: { hue: 328, chroma: 0.22 } },
-  plum: { label: 'Plum', paperHue: 340, inkHue: 330, tint: 2, accent: { hue: 342, chroma: 0.12 } },
-  rose: { label: 'Rose', paperHue: 10, inkHue: 355, tint: 2, accent: { hue: 5, chroma: 0.16 } },
-  crimson: { label: 'Crimson', paperHue: 30, inkHue: 260, tint: 0.5, accent: { hue: 22, chroma: 0.2 } },
-  graphite: { label: 'Graphite', paperHue: 260, inkHue: 260, tint: 0.5, accent: { hue: 260, chroma: 0.02 } },
+  // Navy-tinted neutrals (a deep blue-black in dark mode) with a clear azure accent.
+  midnight: { label: 'Midnight', paperHue: 245, inkHue: 262, tint: 2.25, accent: { hue: 260, chroma: 0.17, darkHue: 252 } },
+  // Cool sea-glass neutrals that keep dark mode slate rather than green, with an emerald accent.
+  emerald: { label: 'Emerald', paperHue: 170, inkHue: 205, tint: 1.5, accent: { hue: 162, chroma: 0.14, darkHue: 160 } },
+  // Faintly violet neutrals with a saturated indigo accent, in the style of modern product tools.
+  indigo: { label: 'Indigo', paperHue: 285, inkHue: 280, tint: 1.75, accent: { hue: 277, chroma: 0.2, darkHue: 280 } },
+  // Near-neutral graphite with a restrained cyan accent: the most understated option.
+  graphite: { label: 'Graphite', paperHue: 250, inkHue: 255, tint: 0.6, accent: { hue: 218, chroma: 0.1, darkHue: 212 } },
+  // Warm stone neutrals with a burnt-amber accent that turns golden on dark backgrounds.
+  amber: { label: 'Amber', paperHue: 75, inkHue: 55, tint: 1.75, accent: { hue: 50, chroma: 0.15, darkHue: 70 } },
 } satisfies Record<string, ThemeDefinition>
 
 export type ThemeId = keyof typeof THEMES
 
 // Used when SITE_THEME is unset or not a known theme id.
-export const DEFAULT_THEME: ThemeId = 'nord'
+export const DEFAULT_THEME: ThemeId = 'midnight'

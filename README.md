@@ -11,7 +11,7 @@ Built with the Next.js App Router. All site content lives in typed files under `
 - **Contact form**: a server action validates the input and sends an HTML email over SMTP (Zoho) using Nodemailer. `POST /api/contact` exposes the same logic as JSON. Inputs are length-limited, HTML-escaped and protected by a honeypot field.
 - **SEO**: a canonical URL and Open Graph/Twitter card per page, generated 1200×630 share images (`opengraph-image.tsx` for the site and for each case study, via `next/og`), one connected JSON-LD `@graph` per page (WebSite, Person, WebPage/ProfilePage/CollectionPage, BreadcrumbList, and CreativeWork for case studies), and a generated `sitemap.xml`, `robots.txt` and web app manifest.
 - **Analytics**: optional [Umami](https://umami.is) integration with a small set of custom events. No personal data is sent.
-- **Theming**: 18 colour themes, picked with `SITE_THEME`, each with designed light and dark modes that follow the OS setting and a toggle that remembers the choice.
+- **Theming**: 5 colour themes, picked with `SITE_THEME`, each with designed light and dark modes that follow the OS setting and a toggle that remembers the choice.
 - **Static by default**: every page is prerendered at build time. Only `/api/contact` runs on demand.
 
 ## Tech Stack
@@ -72,7 +72,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `NEXT_PUBLIC_UMAMI_URL`        | No       | `src/components/shared/umami.tsx`    | URL of the Umami tracking script                                 |
 | `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | No       | `src/components/shared/umami.tsx`    | Umami website ID                                                 |
 | `BLOB_READ_WRITE_TOKEN`        | Yes      | `src/lib/resume.ts`                  | Vercel Blob store that holds the resume PDF (server-only)        |
-| `SITE_THEME`                   | No       | `src/lib/theme.ts`                   | Colour theme id (see [Theming](#theming)). Defaults to `ember`   |
+| `SITE_THEME`                   | No       | `src/lib/theme.ts`                   | Colour theme id (see [Theming](#theming)). Defaults to `indigo`   |
 
 > **Migrating from the old names:** `NEXT_PUBLIC_APP_EMAIL` and `NEXT_PUBLIC_APP_PASS` still work as a fallback, but set `SMTP_USER` and `SMTP_PASSWORD` on your host and then remove the old ones. Never put secrets in `NEXT_PUBLIC_*` variables.
 >
@@ -139,11 +139,17 @@ Colours are semantic tokens (`canvas`, `surface`, `subtle`, `line`, `control`, `
 
 The token values come from the active theme. Set `SITE_THEME` to one of these ids, or change `DEFAULT_THEME` in [`src/config/themes.ts`](src/config/themes.ts):
 
-`ember` (default) · `sepia` · `amber` · `olive` · `forest` · `mint` · `teal` · `sky` · `nord` · `ocean` · `cobalt` · `indigo` · `violet` · `fuchsia` · `plum` · `rose` · `crimson` · `graphite`
+| Id                   | Character                                                              |
+| -------------------- | ---------------------------------------------------------------------- |
+| `midnight`           | Navy-tinted neutrals, deep blue-black dark mode, azure accent          |
+| `emerald`            | Cool sea-glass neutrals, slate dark mode, emerald accent               |
+| `indigo` (default)   | Faintly violet neutrals, saturated indigo accent                       |
+| `graphite`           | Near-neutral greys, restrained cyan accent                             |
+| `amber`              | Warm stone neutrals, burnt-amber accent that turns golden in dark mode |
 
 Pages are prerendered, so the theme is read at build time: redeploy after changing `SITE_THEME`. An unknown id logs a warning and falls back to the default.
 
-A theme is only a few numbers: the hue of the light neutrals (`paperHue`), the hue of the dark neutrals (`inkHue`), a neutral `tint` strength, and an accent hue and chroma. [`src/lib/theme.ts`](src/lib/theme.ts) derives the full light and dark palettes on the original design's lightness scale and renders them into `<head>` (`ThemeStyles`). The same palette supplies the hex colours for the Open Graph images, the manifest and the browser `theme-color`. To add a theme, add an entry to `THEMES`. The tests check every theme in both modes for WCAG AA contrast (text 4.5:1 on every surface including status colours, `accent-fg` on `accent`, and 3:1 for `control` form borders and `focus` rings).
+A theme is only a few numbers: the hue of the light neutrals (`paperHue`), the hue of the dark neutrals (`inkHue`), a neutral `tint` strength, and an accent hue and chroma. [`src/lib/theme.ts`](src/lib/theme.ts) derives the full light and dark palettes on the original design's lightness scale and renders them into `<head>` (`ThemeStyles`). The same palette supplies the hex colours for the Open Graph images, the manifest and the browser `theme-color`. To add a theme, add an entry to `THEMES`. The tests check every theme in both modes for WCAG AA contrast (text 4.5:1 on every surface including status colours, `accent-fg` on `accent`, and 3:1 for `control` form borders, `focus` rings and accent icons on hover fills).
 
 The light values sit on `:root` and the dark values on `[data-theme="dark"]`, with a `prefers-color-scheme` fallback. A small inline script applies the stored light/dark choice before first paint, so there is no flash.
 
