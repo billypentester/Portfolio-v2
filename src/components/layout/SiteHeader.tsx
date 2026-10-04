@@ -5,10 +5,11 @@ import Container from '@/src/components/ui/Container'
 import NavLinks from './NavLinks'
 import MobileMenu from './MobileMenu'
 import ThemeToggle from './ThemeToggle'
+import HeaderShell from './HeaderShell'
 
 export default function SiteHeader() {
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-line/70 bg-canvas/80 backdrop-blur-md supports-[backdrop-filter]:bg-canvas/70">
+    <HeaderShell>
       <Container className="flex h-16 items-center justify-between gap-4">
         <Link href="/" className="group flex items-baseline gap-2 rounded-sm">
           <span className="text-ui font-semibold tracking-tight">{fullName}</span>
@@ -32,6 +33,6 @@ export default function SiteHeader() {
           <MobileMenu />
         </div>
       </Container>
-    </header>
+    </HeaderShell>
   )
 }

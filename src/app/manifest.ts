@@ -1,13 +1,13 @@
 import type { MetadataRoute } from 'next'
 import { fullName } from '@/src/content/profile'
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/src/lib/seo'
-import { activeTheme } from '@/src/lib/theme'
+import { getActiveTheme } from '@/src/lib/admin/settings'
 import { toHex } from '@/src/utils/color'
 
 const ICON_SIZES = ['144x144', '192x192', '512x512']
-const CANVAS = toHex(activeTheme.light.canvas)
 
-export default function manifest(): MetadataRoute.Manifest {
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
+  const canvas = toHex((await getActiveTheme()).light.canvas)
   return {
     name: SITE_TITLE,
     short_name: fullName,
@@ -15,8 +15,8 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: '/',
     scope: '/',
     display: 'standalone',
-    background_color: CANVAS,
-    theme_color: CANVAS,
+    background_color: canvas,
+    theme_color: canvas,
     categories: ['portfolio', 'developer'],
     icons: ICON_SIZES.flatMap((sizes) => [
       { src: `/images/manifest-${sizes}.png`, sizes, type: 'image/png', purpose: 'any' as const },

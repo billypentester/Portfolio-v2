@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.17",
+    "@upstash/redis": "^1.39.0",
     "@vercel/blob": "^2.8.0",
+    "jose": "^5.10.0",
     "next": "16.0.7",
     "nodemailer": "^7.0.11",
     "react": "19.2.1",

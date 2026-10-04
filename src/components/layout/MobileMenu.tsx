@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import IconBuilder from '@/src/helpers/IconBuilder'
-import { profile, socialLinks } from '@/src/content/profile'
+import { fullName, profile, socialLinks } from '@/src/content/profile'
 import { buttonStyles } from '@/src/components/ui/button'
 import NavLinks from './NavLinks'
 
@@ -49,7 +49,10 @@ export default function MobileMenu() {
         className="sheet m-0 ml-auto h-dvh max-h-dvh w-full max-w-sm bg-canvas p-0 text-fg open:flex open:flex-col md:hidden"
       >
         <div className="flex h-16 items-center justify-between border-b border-line px-4">
-          <span className="font-mono text-eyebrow uppercase text-faint">Menu</span>
+          <div className="flex min-w-0 flex-col">
+            <span className="truncate text-ui font-semibold tracking-tight">{fullName}</span>
+            <span className="truncate font-mono text-xs text-faint">{profile.role.toLowerCase()}</span>
+          </div>
           <button
             type="button"
             onClick={close}

@@ -95,7 +95,7 @@ export const buildTheme = (id: ThemeId): ResolvedTheme => {
   return { id, label: definition.label, light: lightPalette(definition), dark: darkPalette(definition) }
 }
 
-const isThemeId = (value: string): value is ThemeId => Object.hasOwn(THEMES, value)
+export const isThemeId = (value: string): value is ThemeId => Object.hasOwn(THEMES, value)
 
 // A typo in the environment falls back to the default rather than failing the build over a cosmetic setting.
 export const resolveThemeId = (value: string | undefined): ThemeId => {
@@ -122,6 +122,3 @@ export const themeCss = ({ light, dark }: ResolvedTheme): string => {
     `@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){${darkDeclarations}}}`,
   ].join('\n')
 }
-
-// Pages are prerendered, so SITE_THEME is read at build time; changing it needs a rebuild.
-export const activeTheme: ResolvedTheme = buildTheme(resolveThemeId(process.env.SITE_THEME))

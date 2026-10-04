@@ -2,7 +2,8 @@
 // full light and dark token sets from them on a fixed lightness scale, so every theme keeps the
 // contrast of the original design (enforced by src/__tests__/theme.test.ts).
 //
-// Pick the active theme with the SITE_THEME environment variable, or change DEFAULT_THEME below.
+// Pick the active theme in /admin. SITE_THEME (or DEFAULT_THEME below) is the fallback used until a
+// theme is saved there, or while the settings store is unreachable.
 
 export interface ThemeDefinition {
   label: string
@@ -37,5 +38,5 @@ export const THEMES = {
 
 export type ThemeId = keyof typeof THEMES
 
-// Used when SITE_THEME is unset or not a known theme id.
+// Fallback when no theme is saved in /admin and SITE_THEME is unset or not a known theme id.
 export const DEFAULT_THEME: ThemeId = 'midnight'

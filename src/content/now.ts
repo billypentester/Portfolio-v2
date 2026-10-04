@@ -6,9 +6,17 @@ export const now: NowContent = {
   building: [
     {
       title: 'Funds Grid',
-      description: 'A personal investment and portfolio tracking application, designed and built on my own outside client work.',
+      description:
+        'A personal investment and portfolio tracking application, designed and built on my own outside client work.',
       status: 'In progress',
     },
   ],
-  learning: [],
+  learning: [
+    {
+      title: 'Agentic AI Application Development',
+      description:
+        'Exploring agent architectures, tool use, multi-step workflows, and building practical AI applications.',
+      status: 'Learning',
+    },
+  ],
 }

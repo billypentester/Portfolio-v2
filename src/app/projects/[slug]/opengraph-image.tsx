@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og'
 import OgCard, { OG_SIZE } from '@/src/components/seo/OgCard'
 import { fullName } from '@/src/content/profile'
 import { caseStudyProjects, getProject } from '@/src/content/projects'
+import { getActiveTheme } from '@/src/lib/admin/settings'
 
 export const alt = 'Case study'
 export const size = OG_SIZE
@@ -18,6 +19,7 @@ export default async function OpengraphImage({ params }: { params: Promise<{ slu
 
   return new ImageResponse(
     <OgCard
+      theme={await getActiveTheme()}
       eyebrow={eyebrow}
       title={project?.title ?? 'Case study'}
       description={project?.summary ?? ''}

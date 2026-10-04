@@ -5,12 +5,11 @@ import IconBuilder from '@/src/helpers/IconBuilder'
 import { sendContactData, type ContactFormState } from '@/src/helpers/action'
 import { CONTACT_LIMITS, type ContactField } from '@/src/helpers/validator'
 import { buttonStyles } from '@/src/components/ui/button'
+import { inputStyles } from '@/src/components/ui/input'
+import StatusMessage from '@/src/components/ui/StatusMessage'
 import { track } from '@/src/lib/analytics'
 
 const INITIAL_STATE: ContactFormState = { status: 'idle' }
-
-const inputClass =
-  'block w-full rounded-control border border-control bg-canvas px-3.5 py-3 text-base text-fg placeholder:text-faint transition-colors hover:border-muted focus:border-fg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-[invalid=true]:border-danger'
 
 interface FieldProps {
   id: ContactField
@@ -60,13 +59,13 @@ export default function ContactForm() {
         <Field id="name" label="Name" error={fieldErrors.name}>
           {(describedBy) => (
             <input id="name" name="name" type="text" autoComplete="name" required maxLength={CONTACT_LIMITS.name}
-              aria-invalid={Boolean(fieldErrors.name)} aria-describedby={describedBy} className={inputClass} />
+              aria-invalid={Boolean(fieldErrors.name)} aria-describedby={describedBy} className={inputStyles} />
           )}
         </Field>
         <Field id="email" label="Email" error={fieldErrors.email}>
           {(describedBy) => (
             <input id="email" name="email" type="email" autoComplete="email" inputMode="email" required maxLength={CONTACT_LIMITS.email}
-              aria-invalid={Boolean(fieldErrors.email)} aria-describedby={describedBy} className={inputClass} />
+              aria-invalid={Boolean(fieldErrors.email)} aria-describedby={describedBy} className={inputStyles} />
           )}
         </Field>
       </div>
@@ -75,7 +74,7 @@ export default function ContactForm() {
         {(describedBy) => (
           <textarea id="message" name="message" rows={5} required maxLength={CONTACT_LIMITS.message}
             placeholder="A few lines about the project, role or problem."
-            aria-invalid={Boolean(fieldErrors.message)} aria-describedby={describedBy} className={`${inputClass} resize-y`} />
+            aria-invalid={Boolean(fieldErrors.message)} aria-describedby={describedBy} className={`${inputStyles} resize-y`} />
         )}
       </Field>
 
@@ -87,12 +86,8 @@ export default function ContactForm() {
 
       <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div id="contact-status" role="status" aria-live="polite" className="min-h-6 text-sm">
-          {state.status === 'success' && (
-            <p className="flex items-start gap-2 text-success"><IconBuilder type="check" paint="mt-0.5 h-4 w-4" />{state.message}</p>
-          )}
-          {state.status === 'error' && (
-            <p className="flex items-start gap-2 text-danger"><IconBuilder type="alert" paint="mt-0.5 h-4 w-4" />{state.message}</p>
-          )}
+          {state.status === 'success' && <StatusMessage tone="success">{state.message}</StatusMessage>}
+          {state.status === 'error' && <StatusMessage tone="danger">{state.message}</StatusMessage>}
         </div>
         <button type="submit" disabled={pending} className={buttonStyles('primary', 'md', 'w-full sm:w-auto')}>
           {pending ? (

@@ -7,9 +7,10 @@ import ThemeScript from "@/src/components/layout/ThemeScript";
 import ThemeStyles from "@/src/components/layout/ThemeStyles";
 import ContactSection from "@/src/components/contact/ContactSection";
 import { UmamiAnalytics } from "@/src/components/shared/umami";
+import PublicOnly from "@/src/components/layout/PublicOnly";
 import { SITE_URL, fullName } from "@/src/content/profile";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/src/lib/seo";
-import { activeTheme } from "@/src/lib/theme";
+import { getActiveTheme } from "@/src/lib/admin/settings";
 import { toHex } from "@/src/utils/color";
 
 // Self-hosted at build time as subsetted woff2, with metric-matched fallbacks to limit layout shift.
@@ -40,15 +41,22 @@ export const metadata: Metadata = {
   ],
 };
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: toHex(activeTheme.light.canvas) },
-    { media: "(prefers-color-scheme: dark)", color: toHex(activeTheme.dark.canvas) },
-  ],
-};
+// Pages are prerendered and refreshed as soon as settings are saved in /admin. The hourly
+// revalidation only recovers pages that were rendered with the fallback while Redis was unreachable.
+export const revalidate = 3600;
+
+export async function generateViewport(): Promise<Viewport> {
+  const theme = await getActiveTheme();
+  return {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover",
+    themeColor: [
+      { media: "(prefers-color-scheme: light)", color: toHex(theme.light.canvas) },
+      { media: "(prefers-color-scheme: dark)", color: toHex(theme.dark.canvas) },
+    ],
+  };
+}
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -67,10 +75,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteHeader />
         <main id="main">
           {children}
-          <ContactSection />
+          <PublicOnly>
+            <ContactSection />
+          </PublicOnly>
         </main>
         <SiteFooter />
-        <UmamiAnalytics />
+        <PublicOnly>
+          <UmamiAnalytics />
+        </PublicOnly>
       </body>
     </html>
   );
