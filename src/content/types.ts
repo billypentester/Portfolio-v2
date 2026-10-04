@@ -24,6 +24,8 @@ export interface Profile {
   resumeUrl: string
   photo: StaticImageData
   headline: string
+  // Phrase from the headline that the hero emphasises; must appear in it verbatim.
+  headlineHighlight: string
   intro: string
   primaryStack: string[]
   bio: string[]

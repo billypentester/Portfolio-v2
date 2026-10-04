@@ -3,7 +3,7 @@ import type { Experience, ShowcaseProject } from '@/src/content/types'
 import TagList from '@/src/components/ui/TagList'
 import ArrowLink from '@/src/components/ui/ArrowLink'
 import { getProject } from '@/src/content/projects'
-import { formatDuration, formatYearMonth, monthsBetween } from '@/src/utils'
+import { formatDuration, formatYearMonth, getInitials, monthsBetween } from '@/src/utils'
 
 interface ExperienceTimelineProps {
   roles: Experience[]
@@ -39,8 +39,12 @@ export default function ExperienceTimeline({ roles, variant, headingLevel = 'h3'
                 </p>
                 <p className="mt-1 font-mono text-xs text-faint">{formatDuration(monthsBetween(role.start, role.end))} · {role.location}</p>
                 <div className="mt-4 flex items-center gap-3">
-                  {role.logo && (
+                  {role.logo ? (
                     <Image src={role.logo} alt="" width={36} height={36} className="h-9 w-9 rounded-md border border-line bg-surface object-contain" />
+                  ) : (
+                    <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-line bg-surface font-mono text-xs font-semibold text-muted">
+                      {getInitials(role.company)}
+                    </span>
                   )}
                   <div>
                     <Heading className="font-semibold leading-tight">{role.role}</Heading>

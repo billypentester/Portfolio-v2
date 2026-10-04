@@ -6,6 +6,23 @@ import { fullName, profile, socialLinks } from '@/src/content/profile'
 
 const HERO_LINKS = socialLinks.filter((l) => l.platform === 'github' || l.platform === 'linkedin' || l.platform === 'email')
 
+// The marker band sits under the baseline so the accent text itself stays on the canvas colour (AA contrast).
+function HighlightedHeadline({ text, highlight }: { text: string; highlight: string }) {
+  const start = highlight ? text.indexOf(highlight) : -1
+  if (start === -1) return text
+
+  const end = start + highlight.length
+  return (
+    <>
+      {text.slice(0, start)}
+      <strong className="bg-linear-to-r from-accent-soft to-accent-soft bg-size-[100%_0.3em] bg-bottom bg-no-repeat font-semibold text-accent box-decoration-clone">
+        {text.slice(start, end)}
+      </strong>
+      {text.slice(end)}
+    </>
+  )
+}
+
 export default function Hero() {
   return (
     <section id="hero" aria-labelledby="hero-heading" className="relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16">
@@ -15,8 +32,20 @@ export default function Hero() {
           <div className="lg:col-span-8">
             <div className="flex items-center gap-3">
               <Image src={profile.photo} alt="" width={44} height={44} className="h-11 w-11 rounded-full border border-line object-cover lg:hidden" />
-              <p className="font-mono text-eyebrow uppercase text-muted">
-                {profile.role} <span className="text-accent">/</span> {profile.specialty}
+              {/* Stacked next to the avatar on phones; a single-line chip from sm up. */}
+              <p className="flex flex-col gap-1 font-mono text-eyebrow uppercase sm:flex-row sm:items-center sm:gap-3 sm:rounded-full sm:border sm:border-line sm:bg-surface sm:py-1.5 sm:pr-4 sm:pl-3">
+                <span className="flex items-center gap-2 text-fg">
+                  <span aria-hidden="true" className="relative flex size-2">
+                    <span className="absolute inline-flex size-full rounded-full bg-accent opacity-60 motion-safe:animate-ping" />
+                    <span className="relative inline-flex size-2 rounded-full bg-accent" />
+                  </span>
+                  {profile.role}
+                </span>
+                <span aria-hidden="true" className="hidden h-3 w-px bg-line-strong sm:block" />
+                <span className="text-muted">
+                  <span className="sr-only">, </span>
+                  {profile.specialty}
+                </span>
               </p>
             </div>
 
@@ -25,7 +54,7 @@ export default function Hero() {
             </h1>
 
             <p className="mt-6 max-w-3xl text-heading font-medium text-balance text-fg">
-              {profile.headline}
+              <HighlightedHeadline text={profile.headline} highlight={profile.headlineHighlight} />
             </p>
             <p className="mt-5 max-w-2xl text-lede text-muted">
               {profile.intro}

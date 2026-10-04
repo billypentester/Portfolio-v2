@@ -39,3 +39,13 @@ export const formatDuration = (months: number): string => {
 export const yearsSince = (start: YearMonth, now: Date = new Date()): number => {
     return Math.floor((monthsBetween(start, null, now) - 1) / 12)
 }
+
+// First letter of the first two words, e.g. "Cache First" -> "CF", "Simplex" -> "S".
+export const getInitials = (name: string): string => {
+    return name
+        .trim()
+        .split(/\s+/)
+        .slice(0, 2)
+        .map((word) => word.charAt(0).toUpperCase())
+        .join('')
+}

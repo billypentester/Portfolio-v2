@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { formatDuration, formatYearMonth, monthsBetween, yearsSince } from '../utils/index.ts'
+import { formatDuration, formatYearMonth, getInitials, monthsBetween, yearsSince } from '../utils/index.ts'
 
 const SEPT_2026 = new Date(2026, 8, 29)
 
@@ -25,4 +25,11 @@ test('formats durations', () => {
 test('computes whole years elapsed', () => {
   assert.equal(yearsSince('2022-09', SEPT_2026), 4)
   assert.equal(yearsSince('2022-10', SEPT_2026), 3)
+})
+
+test('derives initials from a name', () => {
+  assert.equal(getInitials('Cache First'), 'CF')
+  assert.equal(getInitials('Simplex Technology Solutions'), 'ST')
+  assert.equal(getInitials('  simplex  '), 'S')
+  assert.equal(getInitials(''), '')
 })

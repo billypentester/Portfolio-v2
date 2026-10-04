@@ -9,7 +9,7 @@ export const experience: Experience[] = [
     location: 'Lahore, Pakistan',
     start: '2023-09',
     end: null,
-    url: 'https://simplexts.net/',
+    url: 'https://simplexsuite.com/',
     logo: Simplex,
     summary: 'Backend-focused full-stack engineering on production ordering, loyalty and healthcare platforms.',
     ownership: 'Lead backend development across two active projects, working with the mobile and marketing teams on APIs, frontend integrations and SEO initiatives.',
@@ -21,7 +21,7 @@ export const experience: Experience[] = [
       'Implemented Google Analytics tracking and CRM features, and kept documentation and test coverage current.',
     ],
     stack: ['NestJS', 'Node.js', 'React', 'MySQL', 'Redis', 'GTM'],
-    projects: ['kfc-pakistan', 'dominos-pakistan', 'hospinizer'],
+    projects: ['kfc-pakistan', 'dominos-pakistan'],
   },
   {
     id: 'cache-first',
@@ -36,6 +36,7 @@ export const experience: Experience[] = [
       'Designed business-oriented data models, automated database migrations and wrote SQL scripts for analytics, reporting and dashboard integrations.',
     ],
     stack: ['MongoDB', 'Express', 'React', 'Node.js', 'SQL'],
+    projects: ['hospinizer'],
   },
 ]
 

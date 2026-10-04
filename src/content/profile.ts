@@ -15,6 +15,7 @@ export const profile: Profile = {
   resumeUrl: '/resume',
   photo: Photo,
   headline: 'Software Engineer focused on building modern, reliable and scalable web applications.',
+  headlineHighlight: 'modern, reliable and scalable',
   intro: 'I build backend and full-stack solutions, from APIs and business logic to responsive web experiences, with a focus on clean architecture, performance and maintainable code.',
   primaryStack: ['NestJS', 'Next.js', 'React', 'MySQL', 'Redis'],
   bio: [
