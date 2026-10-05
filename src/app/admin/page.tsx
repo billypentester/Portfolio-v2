@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import SettingsForm, { type ResumeOption } from '@/src/components/admin/SettingsForm'
+import AnalyticsOptOut from '@/src/components/admin/AnalyticsOptOut'
 import Container from '@/src/components/ui/Container'
 import PageHeader from '@/src/components/ui/PageHeader'
 import StatusMessage from '@/src/components/ui/StatusMessage'
@@ -54,6 +55,7 @@ export default async function AdminPage() {
 
   return (
     <>
+      <AnalyticsOptOut />
       <PageHeader eyebrow="Admin" title="Portfolio settings" lede="Choose the theme and resume the public site uses. Changes go live as soon as they are saved." />
 
       <section aria-label="Settings" className="border-t border-line py-16 sm:py-20">

@@ -32,28 +32,42 @@ function Field({ id, label, error, children }: FieldProps) {
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState(sendContactData, INITIAL_STATE)
   const formRef = useRef<HTMLFormElement>(null)
+  const started = useRef(false)
   const fieldErrors = state.status === 'invalid' ? state.fieldErrors : {}
 
   useEffect(() => {
-    if (state.status === 'success') formRef.current?.reset()
-    if (state.status === 'invalid' || state.status === 'error') track('contact_form_error', { reason: state.status })
+    if (state.status === 'success') {
+      formRef.current?.reset()
+      track({ name: 'contact_form_success' })
+    }
+    if (state.status === 'invalid') {
+      track({ name: 'contact_form_error', data: { reason: 'invalid', fields: Object.keys(state.fieldErrors).join(',') } })
+    }
+    if (state.status === 'error') track({ name: 'contact_form_error', data: { reason: 'error', fields: '' } })
     // Server-side validation failed: move focus to the first field that needs fixing.
     if (state.status === 'invalid') {
       formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus()
     }
   }, [state])
 
+  // Marks the start of the contact funnel: the first time a visitor moves into the form.
+  const handleFocus = () => {
+    if (started.current) return
+    started.current = true
+    track({ name: 'contact_form_start' })
+  }
+
   // With JavaScript we submit in a transition so a failed attempt keeps what the visitor typed.
   // Without JavaScript the form still posts to the server action through `action`.
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
-    track('contact_form_submit')
+    track({ name: 'contact_form_submit' })
     startTransition(() => formAction(formData))
   }
 
   return (
-    <form ref={formRef} action={formAction} onSubmit={handleSubmit} className="grid gap-5" aria-describedby="contact-required contact-status">
+    <form ref={formRef} action={formAction} onSubmit={handleSubmit} onFocus={handleFocus} className="grid gap-5" aria-describedby="contact-required contact-status">
       <p id="contact-required" className="text-sm text-muted">All fields are required.</p>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="name" label="Name" error={fieldErrors.name}>

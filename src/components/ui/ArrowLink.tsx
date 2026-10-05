@@ -1,15 +1,16 @@
 import Link from 'next/link'
 import IconBuilder from '@/src/helpers/IconBuilder'
+import { trackingAttributes, type TrackedEvent } from '@/src/lib/analytics'
 
 interface ArrowLinkProps {
   href: string
   children: React.ReactNode
   external?: boolean
-  event?: string
+  tracking?: TrackedEvent
   className?: string
 }
 
-export default function ArrowLink({ href, children, external = false, event, className = '' }: ArrowLinkProps) {
+export default function ArrowLink({ href, children, external = false, tracking, className = '' }: ArrowLinkProps) {
   const classes = `group inline-flex items-center gap-1.5 text-sm font-medium text-fg underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-accent ${className}`
   const arrow = (
     <IconBuilder
@@ -20,7 +21,7 @@ export default function ArrowLink({ href, children, external = false, event, cla
 
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={classes} data-umami-event={event}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={classes} {...trackingAttributes(tracking)}>
         {children}
         {arrow}
         <span className="sr-only"> (opens in a new tab)</span>
@@ -29,7 +30,7 @@ export default function ArrowLink({ href, children, external = false, event, cla
   }
 
   return (
-    <Link href={href} className={classes} data-umami-event={event}>
+    <Link href={href} className={classes} {...trackingAttributes(tracking)}>
       {children}
       {arrow}
     </Link>

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import IconBuilder from '@/src/helpers/IconBuilder'
 import type { IconName } from '@/src/config/Icon'
+import { trackingAttributes, type TrackedEvent } from '@/src/lib/analytics'
 import { buttonStyles, type ButtonSize, type ButtonVariant } from './button'
 
 interface ButtonLinkProps {
@@ -11,11 +12,11 @@ interface ButtonLinkProps {
   icon?: IconName
   external?: boolean
   download?: boolean
-  event?: string
+  tracking?: TrackedEvent
   className?: string
 }
 
-export default function ButtonLink({ href, children, variant, size, icon, external = false, download = false, event, className }: ButtonLinkProps) {
+export default function ButtonLink({ href, children, variant, size, icon, external = false, download = false, tracking, className }: ButtonLinkProps) {
   const classes = buttonStyles(variant, size, className)
   const content = (
     <>
@@ -30,7 +31,7 @@ export default function ButtonLink({ href, children, variant, size, icon, extern
       <a
         href={href}
         className={classes}
-        data-umami-event={event}
+        {...trackingAttributes(tracking)}
         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         {...(download ? { target: '_blank', rel: 'noopener' } : {})}
       >
@@ -41,7 +42,7 @@ export default function ButtonLink({ href, children, variant, size, icon, extern
   }
 
   return (
-    <Link href={href} className={classes} data-umami-event={event}>
+    <Link href={href} className={classes} {...trackingAttributes(tracking)}>
       {content}
     </Link>
   )

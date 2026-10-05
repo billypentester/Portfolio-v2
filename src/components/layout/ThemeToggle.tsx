@@ -2,6 +2,7 @@
 
 import IconBuilder from '@/src/helpers/IconBuilder'
 import { THEME_STORAGE_KEY } from '@/src/lib/constants'
+import { track } from '@/src/lib/analytics'
 
 type Theme = 'light' | 'dark'
 
@@ -16,6 +17,7 @@ export default function ThemeToggle() {
   const toggle = () => {
     const next: Theme = currentTheme() === 'dark' ? 'light' : 'dark'
     document.documentElement.dataset.theme = next
+    track({ name: 'theme_toggle', data: { theme: next } })
     try {
       localStorage.setItem(THEME_STORAGE_KEY, next)
     } catch (error) {

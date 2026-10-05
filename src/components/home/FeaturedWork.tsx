@@ -13,7 +13,7 @@ export default function FeaturedWork() {
       eyebrow="Selected work"
       title="Production platforms, and the parts I built."
       lede="Ordering, loyalty and healthcare platforms I work on at Simplex. Each case study covers the problem, my contribution and what made it hard. Only publicly shareable details are included."
-      action={<ArrowLink href="/projects">All projects</ArrowLink>}
+      action={<ArrowLink href="/projects" tracking={{ name: 'cta_click', data: { cta: 'all-projects', location: 'work' } }}>All projects</ArrowLink>}
     >
       <div className="grid gap-6 sm:gap-8">
         {featuredProjects.map((project, index) => (

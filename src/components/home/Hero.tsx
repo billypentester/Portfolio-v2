@@ -3,6 +3,7 @@ import ButtonLink from '@/src/components/ui/ButtonLink'
 import Container from '@/src/components/ui/Container'
 import IconBuilder from '@/src/helpers/IconBuilder'
 import { fullName, profile, socialLinks } from '@/src/content/profile'
+import { trackingAttributes } from '@/src/lib/analytics'
 
 const HERO_LINKS = socialLinks.filter((l) => l.platform === 'github' || l.platform === 'linkedin' || l.platform === 'email')
 
@@ -61,9 +62,9 @@ export default function Hero() {
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <ButtonLink href="#work" icon="arrowRight" className="w-full sm:w-auto">View selected work</ButtonLink>
-              <ButtonLink href="#contact" variant="secondary" className="w-full sm:w-auto">Let&apos;s talk</ButtonLink>
-              <ButtonLink href={profile.resumeUrl} download variant="ghost" icon="download" event="resume_download" className="w-full sm:w-auto">
+              <ButtonLink href="#work" icon="arrowRight" tracking={{ name: 'cta_click', data: { cta: 'view-work', location: 'hero' } }} className="w-full sm:w-auto">View selected work</ButtonLink>
+              <ButtonLink href="#contact" variant="secondary" tracking={{ name: 'cta_click', data: { cta: 'contact', location: 'hero' } }} className="w-full sm:w-auto">Let&apos;s talk</ButtonLink>
+              <ButtonLink href={profile.resumeUrl} download variant="ghost" icon="download" tracking={{ name: 'resume_download', data: { location: 'hero' } }} className="w-full sm:w-auto">
                 Download resume
               </ButtonLink>
             </div>
@@ -88,7 +89,7 @@ export default function Hero() {
                       <a
                         href={link.url}
                         {...(link.platform === 'email' ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
-                        data-umami-event={`${link.platform}_click`}
+                        {...trackingAttributes({ name: 'social_click', data: { platform: link.platform, location: 'hero' } })}
                         className="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted hover:bg-subtle hover:text-fg"
                       >
                         <IconBuilder type={link.platform} paint="h-4 w-4" />

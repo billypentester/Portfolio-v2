@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { formatDuration, formatYearMonth, getInitials, monthsBetween, yearsSince } from '../utils/index.ts'
+import { formatDuration, formatYearMonth, getInitials, monthsBetween, slugify, yearsSince } from '../utils/index.ts'
 
 const SEPT_2026 = new Date(2026, 8, 29)
 
@@ -32,4 +32,10 @@ test('derives initials from a name', () => {
   assert.equal(getInitials('Simplex Technology Solutions'), 'ST')
   assert.equal(getInitials('  simplex  '), 'S')
   assert.equal(getInitials(''), '')
+})
+
+test('slugifies titles', () => {
+  assert.equal(slugify('Web3.js in Practice: Part I'), 'web3-js-in-practice-part-i')
+  assert.equal(slugify('Machine Learning'), 'machine-learning')
+  assert.equal(slugify('  --Hello, World!--  '), 'hello-world')
 })

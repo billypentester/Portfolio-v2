@@ -4,6 +4,8 @@ import Eyebrow from '@/src/components/ui/Eyebrow'
 import ButtonLink from '@/src/components/ui/ButtonLink'
 import { profile, socialLinks } from '@/src/content/profile'
 import type { SocialPlatform } from '@/src/content/types'
+import { trackingAttributes } from '@/src/lib/analytics'
+import SectionObserver from '@/src/components/shared/sectionObserver'
 import ContactForm from './ContactForm'
 
 // Professional profiles first, chat apps after.
@@ -15,6 +17,7 @@ const DIRECT_CHANNELS = CHANNEL_ORDER
 export default function ContactSection() {
   return (
     <section id="contact" aria-labelledby="contact-heading" className="border-t border-line py-20 sm:py-28">
+      <SectionObserver ids={['contact']} />
       <Container>
         <div className="relative overflow-hidden rounded-card border border-line bg-surface">
           <div aria-hidden="true" className="grid-texture pointer-events-none absolute inset-0 opacity-70" />
@@ -30,7 +33,10 @@ export default function ContactSection() {
                 <div>
                   <dt className="font-mono text-eyebrow uppercase text-faint">Email</dt>
                   <dd className="mt-1">
-                    <a href={`mailto:${profile.email}`} className="text-base font-medium underline decoration-line-strong underline-offset-4 hover:decoration-accent">
+                    <a
+                      href={`mailto:${profile.email}`}
+                      {...trackingAttributes({ name: 'social_click', data: { platform: 'email', location: 'contact' } })}
+                      className="text-base font-medium underline decoration-line-strong underline-offset-4 hover:decoration-accent">
                       {profile.email}
                     </a>
                   </dd>
@@ -49,7 +55,7 @@ export default function ContactSection() {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            data-umami-event={`${link.platform}_click`}
+                            {...trackingAttributes({ name: 'social_click', data: { platform: link.platform, location: 'contact' } })}
                             className="inline-flex h-10 items-center gap-2 rounded-control border border-line bg-canvas px-3 text-muted transition-colors hover:border-fg hover:text-fg"
                           >
                             <IconBuilder type={link.platform} paint="h-4 w-4" />
@@ -64,7 +70,7 @@ export default function ContactSection() {
                 <div>
                   <dt className="font-mono text-eyebrow uppercase text-faint">Resume</dt>
                   <dd className="mt-2">
-                    <ButtonLink href={profile.resumeUrl} download variant="secondary" size="sm" icon="download" event="resume_download">
+                    <ButtonLink href={profile.resumeUrl} download variant="secondary" size="sm" icon="download" tracking={{ name: 'resume_download', data: { location: 'contact' } }}>
                       Download resume <span className="font-mono text-xs text-faint">PDF</span>
                     </ButtonLink>
                   </dd>

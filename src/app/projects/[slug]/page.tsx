@@ -11,9 +11,11 @@ import BulletList from '@/src/components/projects/BulletList'
 import CaseStudySection from '@/src/components/projects/CaseStudySection'
 import ProjectCover from '@/src/components/projects/ProjectCover'
 import StackDiagram from '@/src/components/projects/StackDiagram'
+import SectionObserver from '@/src/components/shared/sectionObserver'
 import { caseStudyProjects, getProject } from '@/src/content/projects'
 import { experience } from '@/src/content/experience'
 import { buildMetadata, caseStudyDescription, caseStudyNode, pageSchema } from '@/src/lib/seo'
+import { trackingAttributes } from '@/src/lib/analytics'
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>
@@ -166,12 +168,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         breadcrumbs: [{ name: 'Work', path: '/projects' }, { name: project.title, path: `/projects/${project.slug}` }],
         mainEntity: caseStudyNode(project),
       })} />
+      <SectionObserver ids={blocks.map((block) => block.id)} />
 
       <header className="relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16">
         <div aria-hidden="true" className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
         <Container className="relative">
           <nav aria-label="Breadcrumb">
-            <Link href="/projects" className="inline-flex items-center gap-2 font-mono text-xs text-faint hover:text-fg">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 font-mono text-xs text-faint hover:text-fg"
+              {...trackingAttributes({ name: 'cta_click', data: { cta: 'all-work', location: 'case-study' } })}
+            >
               <IconBuilder type="arrowLeft" paint="h-3.5 w-3.5" />
               All work
             </Link>
@@ -188,7 +195,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <dt className="font-mono text-eyebrow uppercase text-faint">{item.label}</dt>
                 <dd className="mt-2 text-sm">
                   {item.href ? (
-                    <Link href={item.href} className="underline decoration-line-strong underline-offset-4 hover:decoration-accent">
+                    <Link
+                      href={item.href}
+                      className="underline decoration-line-strong underline-offset-4 hover:decoration-accent"
+                      {...trackingAttributes({ name: 'cta_click', data: { cta: 'employer-timeline', location: 'case-study' } })}
+                    >
                       {item.value}
                     </Link>
                   ) : (
@@ -202,12 +213,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {(project.links?.live || project.links?.github) && (
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               {project.links?.live && (
-                <ButtonLink href={project.links.live} external icon="arrowUpRight" event="project_live_click" className="w-full sm:w-auto">
+                <ButtonLink href={project.links.live} external icon="arrowUpRight" tracking={{ name: 'project_click', data: { project: project.slug, action: 'live', location: 'case-study' } }} className="w-full sm:w-auto">
                   Visit live site
                 </ButtonLink>
               )}
               {project.links?.github && (
-                <ButtonLink href={project.links.github} external variant="secondary" icon="github" event="project_github_click" className="w-full sm:w-auto">
+                <ButtonLink href={project.links.github} external variant="secondary" icon="github" tracking={{ name: 'project_click', data: { project: project.slug, action: 'github', location: 'case-study' } }} className="w-full sm:w-auto">
                   View source
                 </ButtonLink>
               )}
@@ -237,7 +248,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {next && next.slug !== project.slug && (
           <nav aria-label="Next case study" className="border-t border-line py-12 sm:py-16">
-            <Link href={`/projects/${next.slug}`} className="group flex items-center justify-between gap-6 rounded-card border border-line bg-surface p-6 transition-colors hover:border-line-strong sm:p-8">
+            <Link
+              href={`/projects/${next.slug}`}
+              className="group flex items-center justify-between gap-6 rounded-card border border-line bg-surface p-6 transition-colors hover:border-line-strong sm:p-8"
+              {...trackingAttributes({ name: 'project_click', data: { project: next.slug, action: 'case-study', location: 'case-study-next' } })}
+            >
               <span>
                 <span className="font-mono text-eyebrow uppercase text-faint">Next case study</span>
                 <span className="mt-2 block text-heading font-semibold">{next.title}</span>

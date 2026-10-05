@@ -4,6 +4,7 @@ import PageHeader from '@/src/components/ui/PageHeader'
 import ButtonLink from '@/src/components/ui/ButtonLink'
 import JsonLd from '@/src/components/seo/JsonLd'
 import ExperienceTimeline from '@/src/components/experience/ExperienceTimeline'
+import SectionObserver from '@/src/components/shared/sectionObserver'
 import { experience } from '@/src/content/experience'
 import { profile } from '@/src/content/profile'
 import { buildMetadata, pageSchema } from '@/src/lib/seo'
@@ -25,13 +26,14 @@ export default function ExperiencePage() {
         description: PAGE.description,
         breadcrumbs: [{ name: PAGE.title, path: PAGE.path }],
       })} />
+      <SectionObserver ids={experience.map((role) => role.id)} />
       <PageHeader
         eyebrow="Experience"
         title="Where I have worked, and what I owned."
         lede="Responsibilities, stack and the work I shipped in each role."
       >
         <div className="mt-8">
-          <ButtonLink href={profile.resumeUrl} download variant="secondary" icon="download" event="resume_download">
+          <ButtonLink href={profile.resumeUrl} download variant="secondary" icon="download" tracking={{ name: 'resume_download', data: { location: 'experience-page' } }}>
             Download resume
           </ButtonLink>
         </div>

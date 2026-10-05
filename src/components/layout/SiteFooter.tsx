@@ -3,6 +3,7 @@ import IconBuilder from '@/src/helpers/IconBuilder'
 import Container from '@/src/components/ui/Container'
 import { fullName, profile, socialLinks } from '@/src/content/profile'
 import { FOOTER_LINKS } from '@/src/lib/constants'
+import { trackingAttributes } from '@/src/lib/analytics'
 
 export default function SiteFooter() {
   return (
@@ -13,7 +14,10 @@ export default function SiteFooter() {
           <p className="mt-3 max-w-sm text-sm text-muted">
             {profile.role}, {profile.specialty.toLowerCase()}. Reliable web applications, from APIs and integrations to responsive interfaces, built with security in mind.
           </p>
-          <a href={`mailto:${profile.email}`} className="mt-6 inline-block font-mono text-sm text-fg underline decoration-line-strong underline-offset-4 hover:decoration-accent">
+          <a
+            href={`mailto:${profile.email}`}
+            {...trackingAttributes({ name: 'social_click', data: { platform: 'email', location: 'footer' } })}
+            className="mt-6 inline-block font-mono text-sm text-fg underline decoration-line-strong underline-offset-4 hover:decoration-accent">
             {profile.email}
           </a>
         </div>
@@ -23,11 +27,17 @@ export default function SiteFooter() {
           <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm md:grid-cols-1">
             {FOOTER_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-muted hover:text-fg">{link.name}</Link>
+                <Link
+                  href={link.href}
+                  className="text-muted hover:text-fg"
+                  {...trackingAttributes({ name: 'nav_click', data: { item: link.name.toLowerCase(), location: 'footer' } })}
+                >
+                  {link.name}
+                </Link>
               </li>
             ))}
             <li>
-              <a href={profile.resumeUrl} target="_blank" rel="noopener" data-umami-event="resume_download" className="text-muted hover:text-fg">
+              <a href={profile.resumeUrl} target="_blank" rel="noopener" {...trackingAttributes({ name: 'resume_download', data: { location: 'footer' } })} className="text-muted hover:text-fg">
                 Download resume
                 <span className="sr-only"> (PDF, opens in a new tab)</span>
               </a>
@@ -43,7 +53,7 @@ export default function SiteFooter() {
                 <a
                   href={link.url}
                   {...(link.platform === 'email' ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
-                  data-umami-event={`${link.platform}_click`}
+                  {...trackingAttributes({ name: 'social_click', data: { platform: link.platform, location: 'footer' } })}
                   className="inline-flex items-center gap-2 text-muted hover:text-fg"
                 >
                   <IconBuilder type={link.platform} paint="h-4 w-4" />

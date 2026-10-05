@@ -7,6 +7,8 @@ import PublicationCard from '@/src/components/writing/PublicationCard'
 import { publications } from '@/src/content/publications'
 import type { PublicationCategory } from '@/src/content/types'
 import { buildMetadata, externalArticleNode, pageSchema } from '@/src/lib/seo'
+import { trackingAttributes } from '@/src/lib/analytics'
+import { slugify } from '@/src/utils'
 
 const PAGE = {
   title: 'Writing',
@@ -44,7 +46,11 @@ export default function BlogsPage() {
           <ul className="flex flex-wrap gap-2">
             {groups.map((group) => (
               <li key={group.category}>
-                <a href={`#${group.category.toLowerCase().replace(/\s+/g, '-')}`} className="inline-flex h-9 items-center gap-2 rounded-control border border-line bg-surface px-3 text-sm text-muted hover:border-fg hover:text-fg">
+                <a
+                  href={`#${slugify(group.category)}`}
+                  className="inline-flex h-9 items-center gap-2 rounded-control border border-line bg-surface px-3 text-sm text-muted hover:border-fg hover:text-fg"
+                  {...trackingAttributes({ name: 'blog_topic_filter', data: { category: group.category } })}
+                >
                   {group.category}
                   <span className="font-mono text-xs text-faint">{group.items.length}</span>
                 </a>
@@ -58,7 +64,7 @@ export default function BlogsPage() {
         <Container className="border-t border-line py-16 text-muted">No articles yet.</Container>
       ) : (
         groups.map((group) => {
-          const id = group.category.toLowerCase().replace(/\s+/g, '-')
+          const id = slugify(group.category)
           return (
             <section key={group.category} id={id} aria-labelledby={`${id}-heading`} className="scroll-mt-20 border-t border-line py-14 sm:py-20">
               <Container>

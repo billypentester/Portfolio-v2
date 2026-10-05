@@ -12,7 +12,7 @@ export default function Writing() {
       index="06"
       eyebrow="Writing"
       title="Notes on backend, frontend and Web3."
-      action={<ArrowLink href="/blogs">All writing</ArrowLink>}
+      action={<ArrowLink href="/blogs" tracking={{ name: 'cta_click', data: { cta: 'all-writing', location: 'writing' } }}>All writing</ArrowLink>}
     >
       <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {featuredPublications.map((publication) => (

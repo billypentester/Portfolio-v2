@@ -2,6 +2,7 @@ import Image from 'next/image'
 import type { Certification } from '@/src/content/types'
 import ArrowLink from '@/src/components/ui/ArrowLink'
 import { formatYearMonth } from '@/src/utils'
+import { trackingAttributes } from '@/src/lib/analytics'
 
 interface CertificateCardProps {
   certification: Certification
@@ -10,7 +11,7 @@ interface CertificateCardProps {
 
 export default function CertificateCard({ certification, headingLevel = 'h3' }: CertificateCardProps) {
   const Heading = headingLevel
-  const { title, image, issuer, issuedAt, credentialId, verifyUrl, topics } = certification
+  const { id, title, image, issuer, issuedAt, credentialId, verifyUrl, topics } = certification
 
   return (
     <article className="reveal flex h-full flex-col overflow-hidden rounded-card border border-line bg-surface">
@@ -18,6 +19,7 @@ export default function CertificateCard({ certification, headingLevel = 'h3' }: 
         href={image.src}
         target="_blank"
         rel="noopener"
+        {...trackingAttributes({ name: 'certificate_view', data: { certificate: id } })}
         className="group relative block aspect-[4/3] overflow-hidden border-b border-line bg-subtle"
       >
         <Image
@@ -44,7 +46,7 @@ export default function CertificateCard({ certification, headingLevel = 'h3' }: 
         )}
         {credentialId && <p className="mt-2 font-mono text-xs text-faint">ID {credentialId}</p>}
         {verifyUrl && (
-          <ArrowLink href={verifyUrl} external className="mt-auto pt-4">
+          <ArrowLink href={verifyUrl} external tracking={{ name: 'certificate_verify', data: { certificate: id } }} className="mt-auto pt-4">
             Verify credential
           </ArrowLink>
         )}

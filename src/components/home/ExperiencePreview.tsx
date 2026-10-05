@@ -12,7 +12,7 @@ export default function ExperiencePreview() {
       index="03"
       eyebrow="Experience"
       title="From client projects to owning production backends."
-      action={<ArrowLink href="/experience">Full timeline</ArrowLink>}
+      action={<ArrowLink href="/experience" tracking={{ name: 'cta_click', data: { cta: 'full-timeline', location: 'experience' } }}>Full timeline</ArrowLink>}
     >
       <ExperienceTimeline roles={experience} variant="compact" />
     </Section>

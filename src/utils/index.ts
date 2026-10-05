@@ -40,6 +40,14 @@ export const yearsSince = (start: YearMonth, now: Date = new Date()): number => 
     return Math.floor((monthsBetween(start, null, now) - 1) / 12)
 }
 
+// URL- and analytics-safe identifier, e.g. "Web3.js in Practice: Part I" -> "web3-js-in-practice-part-i".
+export const slugify = (value: string): string => {
+    return value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '')
+}
+
 // First letter of the first two words, e.g. "Cache First" -> "CF", "Simplex" -> "S".
 export const getInitials = (name: string): string => {
     return name

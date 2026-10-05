@@ -7,6 +7,7 @@ import TagList from '@/src/components/ui/TagList'
 import ArrowLink from '@/src/components/ui/ArrowLink'
 import JsonLd from '@/src/components/seo/JsonLd'
 import BulletList from '@/src/components/projects/BulletList'
+import SectionObserver from '@/src/components/shared/sectionObserver'
 import { journey } from '@/src/content/experience'
 import { fullName, profile } from '@/src/content/profile'
 import { allSkills, principles, skillGroups } from '@/src/content/skills'
@@ -20,6 +21,9 @@ const PAGE = {
 }
 
 export const metadata: Metadata = buildMetadata({ ...PAGE, type: 'profile' })
+
+// Reported as section_view; a block that isn't rendered (such as an empty learning list) is skipped.
+const TRACKED_SECTIONS = ['journey', 'enjoy', 'approach', 'tools', 'learning', 'outside']
 
 function AboutBlock({ id, label, title, children }: { id: string; label: string; title: string; children: React.ReactNode }) {
   return (
@@ -46,6 +50,7 @@ export default function AboutPage() {
         breadcrumbs: [{ name: PAGE.title, path: PAGE.path }],
         mainEntity: 'person',
       })} />
+      <SectionObserver ids={TRACKED_SECTIONS} />
       <PageHeader eyebrow="About" title={`Hi, I'm ${fullName}.`} lede={profile.headline} />
 
       <Container>
@@ -123,9 +128,15 @@ export default function AboutPage() {
             </div>
           </dl>
           <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
-            <ArrowLink href="/experience">See the full experience timeline</ArrowLink>
-            <ArrowLink href="/projects">Read the case studies</ArrowLink>
-            <ArrowLink href="/blogs">Browse my writing</ArrowLink>
+            <ArrowLink href="/experience" tracking={{ name: 'cta_click', data: { cta: 'full-timeline', location: 'about' } }}>
+              See the full experience timeline
+            </ArrowLink>
+            <ArrowLink href="/projects" tracking={{ name: 'cta_click', data: { cta: 'case-studies', location: 'about' } }}>
+              Read the case studies
+            </ArrowLink>
+            <ArrowLink href="/blogs" tracking={{ name: 'cta_click', data: { cta: 'all-writing', location: 'about' } }}>
+              Browse my writing
+            </ArrowLink>
           </div>
         </AboutBlock>
       </Container>

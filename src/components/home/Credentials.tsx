@@ -34,7 +34,7 @@ export default function Credentials() {
               </li>
             ))}
           </ul>
-          <ArrowLink href="/certificates" className="mt-6">
+          <ArrowLink href="/certificates" tracking={{ name: 'cta_click', data: { cta: 'all-certificates', location: 'credentials' } }} className="mt-6">
             All {certifications.length} certificates
           </ArrowLink>
         </div>

@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import type { Publication } from '@/src/content/types'
 import IconBuilder from '@/src/helpers/IconBuilder'
+import { trackingAttributes } from '@/src/lib/analytics'
+import { slugify } from '@/src/utils'
 
 interface PublicationCardProps {
   publication: Publication
   headingLevel?: 'h2' | 'h3'
 }
-
-const eventName = (title: string) => `blog_click_${title.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')}`
 
 export default function PublicationCard({ publication, headingLevel = 'h3' }: PublicationCardProps) {
   const Heading = headingLevel
@@ -33,7 +33,10 @@ export default function PublicationCard({ publication, headingLevel = 'h3' }: Pu
             href={publication.url}
             target="_blank"
             rel="noopener noreferrer"
-            data-umami-event={eventName(publication.title)}
+            {...trackingAttributes({
+              name: 'blog_click',
+              data: { article: slugify(publication.title), category: publication.category, publisher: publication.publisher },
+            })}
             className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:rounded-card focus-visible:after:outline-2 focus-visible:after:outline-focus"
           >
             {publication.title}

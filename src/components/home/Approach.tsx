@@ -9,7 +9,9 @@ export default function Approach() {
       index="04"
       eyebrow="How I build"
       title="From requirements to production, and back again."
-      action={<ArrowLink href="/about-me#approach">Engineering principles</ArrowLink>}
+      action={<ArrowLink href="/about-me#approach" tracking={{ name: 'cta_click', data: { cta: 'engineering-principles', location: 'approach' } }}>
+          Engineering principles
+        </ArrowLink>}
     >
       <ol className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
         {workflow.map((step, index) => (

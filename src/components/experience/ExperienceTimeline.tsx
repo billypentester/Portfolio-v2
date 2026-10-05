@@ -3,6 +3,7 @@ import type { Experience, ShowcaseProject } from '@/src/content/types'
 import TagList from '@/src/components/ui/TagList'
 import ArrowLink from '@/src/components/ui/ArrowLink'
 import { getProject } from '@/src/content/projects'
+import { trackingAttributes } from '@/src/lib/analytics'
 import { formatDuration, formatYearMonth, getInitials, monthsBetween } from '@/src/utils'
 
 interface ExperienceTimelineProps {
@@ -49,7 +50,13 @@ export default function ExperienceTimeline({ roles, variant, headingLevel = 'h3'
                   <div>
                     <Heading className="font-semibold leading-tight">{role.role}</Heading>
                     {role.url ? (
-                      <a href={role.url} target="_blank" rel="noopener noreferrer" className="text-sm text-muted underline decoration-line-strong underline-offset-4 hover:text-fg">
+                      <a
+                        href={role.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        {...trackingAttributes({ name: 'company_click', data: { company: role.id } })}
+                        className="text-sm text-muted underline decoration-line-strong underline-offset-4 hover:text-fg"
+                      >
                         {role.company}
                         <span className="sr-only"> (opens in a new tab)</span>
                       </a>
@@ -84,7 +91,11 @@ export default function ExperienceTimeline({ roles, variant, headingLevel = 'h3'
                   <div className="mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-2 border-t border-line pt-5">
                     <span className="font-mono text-eyebrow uppercase text-faint">Case studies</span>
                     {caseStudies.map((project) => (
-                      <ArrowLink key={project.slug} href={`/projects/${project.slug}`} event="project_case_study_click">
+                      <ArrowLink
+                        key={project.slug}
+                        href={`/projects/${project.slug}`}
+                        tracking={{ name: 'project_click', data: { project: project.slug, action: 'case-study', location: 'experience-timeline' } }}
+                      >
                         {project.title}
                       </ArrowLink>
                     ))}

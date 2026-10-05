@@ -5,13 +5,17 @@ import { useEffect, useRef } from 'react'
 import IconBuilder from '@/src/helpers/IconBuilder'
 import { fullName, profile, socialLinks } from '@/src/content/profile'
 import { buttonStyles } from '@/src/components/ui/button'
+import { track, trackingAttributes } from '@/src/lib/analytics'
 import NavLinks from './NavLinks'
 
 // Native <dialog> gives focus trapping, Escape to close and an inert background for free.
 export default function MobileMenu() {
   const dialogRef = useRef<HTMLDialogElement>(null)
 
-  const open = () => dialogRef.current?.showModal()
+  const open = () => {
+    dialogRef.current?.showModal()
+    track({ name: 'mobile_menu_open' })
+  }
   const close = () => dialogRef.current?.close()
 
   // The menu is hidden at the md breakpoint, so an open modal would leave the page inert.
@@ -65,6 +69,7 @@ export default function MobileMenu() {
 
         <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-4 py-6">
           <NavLinks
+            location="mobile-menu"
             onNavigate={close}
             className="flex flex-col"
             linkClassName="flex items-center justify-between border-b border-line py-4 text-2xl font-medium tracking-tight"
@@ -72,14 +77,19 @@ export default function MobileMenu() {
         </nav>
 
         <div className="grid gap-3 border-t border-line p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-          <Link href="/#contact" onClick={close} className={buttonStyles('primary', 'md', 'w-full')}>
+          <Link
+            href="/#contact"
+            onClick={close}
+            className={buttonStyles('primary', 'md', 'w-full')}
+            {...trackingAttributes({ name: 'cta_click', data: { cta: 'contact', location: 'mobile-menu' } })}
+          >
             Let&apos;s talk
           </Link>
           <a
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener"
-            data-umami-event="resume_download"
+            {...trackingAttributes({ name: 'resume_download', data: { location: 'mobile-menu' } })}
             className={buttonStyles('secondary', 'md', 'w-full')}
           >
             Download resume
@@ -92,7 +102,7 @@ export default function MobileMenu() {
                 <a
                   href={link.url}
                   {...(link.platform === 'email' ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
-                  data-umami-event={`${link.platform}_click`}
+                  {...trackingAttributes({ name: 'social_click', data: { platform: link.platform, location: 'mobile-menu' } })}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-control text-muted hover:bg-subtle hover:text-fg"
                 >
                   <IconBuilder type={link.platform} paint="h-[18px] w-[18px]" />

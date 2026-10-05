@@ -66,18 +66,18 @@ export default function ProjectRow({ project, index, preload = false }: ProjectR
 
         <div className="mt-auto flex flex-wrap gap-x-6 gap-y-3 pt-8">
           {project.caseStudy && (
-            <ArrowLink href={`/projects/${project.slug}`} event="project_case_study_click" className={STRETCHED_LINK}>
+            <ArrowLink href={`/projects/${project.slug}`} tracking={{ name: 'project_click', data: { project: project.slug, action: 'case-study', location: 'project-card' } }} className={STRETCHED_LINK}>
               Read the case study<span className="sr-only">: {project.title}</span>
             </ArrowLink>
           )}
           {/* Raised above the stretched link so it stays independently clickable. */}
           {project.links?.live && (
-            <ArrowLink href={project.links.live} external event="project_live_click" className="relative z-10">
+            <ArrowLink href={project.links.live} external tracking={{ name: 'project_click', data: { project: project.slug, action: 'live', location: 'project-card' } }} className="relative z-10">
               Visit live site<span className="sr-only">: {project.title}</span>
             </ArrowLink>
           )}
           {project.links?.github && (
-            <ArrowLink href={project.links.github} external event="project_github_click" className="relative z-10">
+            <ArrowLink href={project.links.github} external tracking={{ name: 'project_click', data: { project: project.slug, action: 'github', location: 'project-card' } }} className="relative z-10">
               Source<span className="sr-only">: {project.title}</span>
             </ArrowLink>
           )}

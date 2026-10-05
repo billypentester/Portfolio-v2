@@ -3,6 +3,7 @@ import TagList from '@/src/components/ui/TagList'
 import ArrowLink from '@/src/components/ui/ArrowLink'
 import { now } from '@/src/content/now'
 import type { NowItem } from '@/src/content/types'
+import { slugify } from '@/src/utils'
 
 function NowCard({ item, headingLevel }: { item: NowItem; headingLevel: 'h3' | 'h4' }) {
   const Heading = headingLevel
@@ -19,7 +20,11 @@ function NowCard({ item, headingLevel }: { item: NowItem; headingLevel: 'h3' | '
       </div>
       <p className="mt-2 flex-1 text-muted">{item.description}</p>
       {item.stack && <TagList items={item.stack} label={`${item.title} technologies`} className="mt-5" />}
-      {item.href && <ArrowLink href={item.href} className="mt-5">Learn more<span className="sr-only">: {item.title}</span></ArrowLink>}
+      {item.href && (
+        <ArrowLink href={item.href} tracking={{ name: 'cta_click', data: { cta: slugify(item.title), location: 'now' } }} className="mt-5">
+          Learn more<span className="sr-only">: {item.title}</span>
+        </ArrowLink>
+      )}
     </li>
   )
 }

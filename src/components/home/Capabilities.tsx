@@ -2,6 +2,7 @@ import Link from 'next/link'
 import IconBuilder from '@/src/helpers/IconBuilder'
 import Section from '@/src/components/ui/Section'
 import { capabilities } from '@/src/content/skills'
+import { trackingAttributes } from '@/src/lib/analytics'
 
 export default function Capabilities() {
   return (
@@ -22,7 +23,11 @@ export default function Capabilities() {
         ))}
         {/* Sixth cell completes the 2- and 3-column grids and routes to the evidence. */}
         <li className="bg-subtle">
-          <Link href="/projects" className="group flex h-full min-h-48 flex-col justify-between p-6 transition-colors hover:bg-accent-soft sm:p-8">
+          <Link
+            href="/projects"
+            className="group flex h-full min-h-48 flex-col justify-between p-6 transition-colors hover:bg-accent-soft sm:p-8"
+            {...trackingAttributes({ name: 'cta_click', data: { cta: 'case-studies', location: 'capabilities' } })}
+          >
             <span className="font-mono text-xs text-muted">See it in practice</span>
             <span className="mt-6 flex items-end justify-between gap-4">
               <span className="text-lg font-semibold tracking-tight">Read the case studies</span>

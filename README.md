@@ -10,7 +10,7 @@ Built with the Next.js App Router. All site content lives in typed files under `
 - **Home sections**: Hero, Engineering snapshot, What I build, Selected work, Currently building (hidden while `now.ts` is empty), Experience, How I work, Technical expertise, Writing and Education & certifications.
 - **Contact form**: a server action validates the input and sends an HTML email over SMTP (Zoho) using Nodemailer. `POST /api/contact` exposes the same logic as JSON. Inputs are length-limited, HTML-escaped and protected by a honeypot field.
 - **SEO**: a canonical URL and Open Graph/Twitter card per page, generated 1200×630 share images (`opengraph-image.tsx` for the site and for each case study, via `next/og`), one connected JSON-LD `@graph` per page (WebSite, Person, WebPage/ProfilePage/CollectionPage, BreadcrumbList, and CreativeWork for case studies), and a generated `sitemap.xml`, `robots.txt` and web app manifest.
-- **Analytics**: optional [Umami](https://umami.is) integration with a small set of custom events. No personal data is sent.
+- **Analytics**: optional [Umami](https://umami.is) integration, served from the site's own domain, with typed events for every meaningful interaction, scroll depth, section views and Core Web Vitals. No personal data is sent.
 - **Theming**: 5 colour themes, picked in `/admin` (with `SITE_THEME` as the fallback), each with designed light and dark modes that follow the OS setting and a toggle that remembers the choice.
 - **Private admin**: `/admin` lets the site owner switch the theme and the active resume. Settings live in Upstash Redis; the public site falls back to its defaults when Redis is unavailable.
 - **Static by default**: every public page is prerendered and regenerated when settings change. Only `/api/contact`, `/resume` and `/admin` run on demand.
@@ -70,8 +70,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | `SMTP_USER`                    | Yes      | `src/helpers/sendEmail.ts`           | SMTP auth username (server-only)                                 |
 | `SMTP_PASSWORD`                | Yes      | `src/helpers/sendEmail.ts`           | SMTP auth password or app password (server-only)                 |
 | `APP_EMAIL`                    | No       | `src/helpers/sendEmail.ts`           | Sender and recipient for contact emails. Defaults to `SMTP_USER` |
-| `NEXT_PUBLIC_UMAMI_URL`        | No       | `src/components/shared/umami.tsx`    | URL of the Umami tracking script                                 |
-| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | No       | `src/components/shared/umami.tsx`    | Umami website ID                                                 |
+| `NEXT_PUBLIC_UMAMI_URL`        | No       | `src/lib/umami.ts`                   | Absolute URL of the Umami tracking script, e.g. `https://cloud.umami.is/script.js` |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | No       | `src/lib/umami.ts`                   | Umami website ID                                                 |
 | `PORTFOLIO_READ_WRITE_TOKEN`   | Yes      | `src/lib/resume.ts`                  | Vercel Blob store that holds the resume PDF (server-only; `BLOB_READ_WRITE_TOKEN` also works) |
 | `SITE_THEME`                   | No       | `src/lib/admin/settings.ts`          | Fallback colour theme id (see [Theming](#theming))               |
 | `ADMIN_USERNAME`               | For `/admin` | `src/lib/admin/auth.ts`          | Username of the single admin account (server-only)               |
@@ -84,7 +84,7 @@ Open [http://localhost:3000](http://localhost:3000).
 >
 > `NEXT_PUBLIC_HOST` is no longer used: the contact form calls the email service directly.
 >
-> The Umami script only loads when both Umami variables are set.
+> The Umami script only loads when both Umami variables are set. Both are read at build time (the proxy rewrites live in `next.config.ts`), so redeploy after changing them.
 
 ## Project Structure
 
@@ -110,7 +110,7 @@ Open [http://localhost:3000](http://localhost:3000).
     │   ├── home/           # One component per home section
     │   ├── projects/  experience/  writing/  credentials/  contact/
     │   ├── seo/JsonLd.tsx
-    │   └── shared/         # Section observer, Umami
+    │   └── shared/         # Umami script, click, scroll-depth, section and 404 trackers
     ├── config/             # Colour themes, email template, icon registry
     ├── helpers/            # Contact service, validator, email sender, server action, IconBuilder
     ├── lib/                # Constants, SEO helpers, analytics, resume storage, theme builder, global types
@@ -187,14 +187,47 @@ To replace it, run `yarn resume:upload path/to/resume.pdf`. The script uploads t
 
 Set the variables listed under [Environment Variables](#environment-variables), then visit `/admin/login`.
 
-## Analytics Events
+## Analytics
 
-When Umami is enabled, the site sends these events. None of them include form contents or other personal data.
+When both Umami variables are set, the site loads the Umami tracker. Nothing is sent from local or preview deployments.
 
-- `<section-id>_section_view`: a home section was at least 75% visible (once per page view)
-- `contact_form_submit` and `contact_form_error`
-- `resume_download`, `project_case_study_click`, `project_live_click`, `project_github_click`
-- `<platform>_click` for social links and `blog_click_<title>` for articles
+- **Proxy**: the script and collection endpoint are served from `/a/script.js` and `/a/api/send` on the site's own domain (rewrites in `next.config.ts`), so ad blockers that filter `umami.is` don't drop visits. After deploying, check that Umami's Locations report shows visitor countries rather than a single hosting region.
+- **Only the live domain**: `data-domains` limits tracking to the `SITE_URL` host and its `www.` variant.
+- **Owner excluded**: opening `/admin` while signed in sets `localStorage['umami.disabled']`, so your own visits on that browser are not counted. Run `localStorage.removeItem('umami.disabled')` in the console to undo it.
+- **Page views and Web Vitals**: page views are automatic, with `#hash` dropped so `/#contact` counts as `/`. `data-performance` reports LCP, INP, CLS, FCP and TTFB to Umami's Performance view.
+
+### Events
+
+Events are typed in [`src/lib/analytics.ts`](src/lib/analytics.ts). Links and buttons are marked with `trackingAttributes()` (or the `tracking` prop on `ButtonLink` and `ArrowLink`), and one delegated listener sends them, so server components need no client code. Don't use Umami's `data-umami-event`: on same-tab links it cancels the click and reloads the page, which breaks client-side navigation. Event names are snake_case, data values kebab-case, and no event carries personal data such as form contents.
+
+| Event | Data | Sent when |
+| ----- | ---- | --------- |
+| `section_view` | `section` | A section is at least 75% visible, or fills half the screen, for 1 second (home, about, experience and case study sections, and contact on every page) |
+| `scroll_depth` | `depth` (25/50/75/100) | Scrolling comes to rest past that share of the page |
+| `nav_click` | `item`, `location` | Header, mobile menu or footer navigation |
+| `cta_click` | `cta`, `location` | Calls to action such as "View selected work", "Let's talk", the snapshot tiles and the "All …" links |
+| `resume_download` | `location` | Any resume button on the site |
+| `resume_served` | `source` (`site`/`external`/`direct`) | `/resume` is opened, sent by the server, so links shared outside the site are counted too |
+| `social_click` | `platform`, `location` | Email, GitHub, LinkedIn, WhatsApp or Messenger links |
+| `project_click` | `project`, `action` (`case-study`/`live`/`github`), `location` | Project cards, the experience timeline and case study pages |
+| `blog_click` | `article`, `category`, `publisher` | An article card |
+| `blog_topic_filter` | `category` | A topic chip on `/blogs` |
+| `certificate_view` / `certificate_verify` | `certificate` | Opening a certificate image, or its verification link |
+| `company_click` | `company` | A company link on the experience timeline |
+| `theme_toggle` | `theme` | Switching light/dark mode |
+| `mobile_menu_open` | none | Opening the mobile menu |
+| `contact_form_start` | none | First focus in the contact form |
+| `contact_form_submit` | none | The form is submitted |
+| `contact_form_success` | none | The message was sent |
+| `contact_form_error` | `reason` (`invalid`/`error`), `fields` | Validation or delivery failed; `fields` lists the field names only |
+| `page_not_found` | `path`, `referrer` | A 404 page is shown |
+
+### Suggested Umami reports
+
+- **Goals**: `contact_form_success`, `resume_download`, `resume_served`, and `social_click` where `platform` is `linkedin`.
+- **Funnel**: `/` → `/projects` → `/projects/*` → `contact_form_start` → `contact_form_success`.
+- **Breakdowns**: `project_click` by `project`, `resume_download` by `location`, `blog_click` by `article`, `page_not_found` by `path`.
+- **Attribution**: add UTM parameters to links you control (LinkedIn, GitHub profile README, article author bios, the resume PDF), e.g. `?utm_source=linkedin&utm_medium=profile`.
 
 ## Deployment
 
