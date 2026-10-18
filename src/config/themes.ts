@@ -9,12 +9,16 @@ export interface ThemeDefinition {
   label: string
   /** Hue of the light neutrals: light-mode backgrounds and dark-mode text. */
   paperHue: number
+  /** Optional light-mode canvas lightness for palettes with a specific background colour. */
+  canvasLightness?: number
   /** Hue of the dark neutrals: light-mode text and dark-mode backgrounds. */
   inkHue: number
   /** Strength of the neutral tint. 1 is the barely-there tint of the original design, 0 is pure grey. */
   tint: number
   accent: {
     hue: number
+    /** Optional light-mode lightness for a specific primary colour. */
+    lightness?: number
     /** Light-mode chroma; dark mode uses slightly less. Out-of-gamut values are mapped into sRGB. */
     chroma: number
     /** Dark-mode hue, when the accent reads better shifted on dark backgrounds. Defaults to `hue`. */
@@ -24,6 +28,15 @@ export interface ThemeDefinition {
 
 // Each theme pairs its accent with its own neutrals, so the page character changes with it, not just the links.
 export const THEMES = {
+  // Evergreen palette based on #004643 with a #FAFAFA light-mode canvas.
+  evergreen: {
+    label: 'Evergreen',
+    paperHue: 190,
+    canvasLightness: 98.51,
+    inkHue: 190,
+    tint: 0,
+    accent: { hue: 189.91, lightness: 35.56, chroma: 0.0614, darkHue: 190 },
+  },
   // Navy-tinted neutrals (a deep blue-black in dark mode) with a clear azure accent.
   midnight: { label: 'Midnight', paperHue: 245, inkHue: 262, tint: 2.25, accent: { hue: 260, chroma: 0.17, darkHue: 252 } },
   // Cool sea-glass neutrals that keep dark mode slate rather than green, with an emerald accent.
@@ -39,4 +52,4 @@ export const THEMES = {
 export type ThemeId = keyof typeof THEMES
 
 // Fallback when no theme is saved in /admin and SITE_THEME is unset or not a known theme id.
-export const DEFAULT_THEME: ThemeId = 'midnight'
+export const DEFAULT_THEME: ThemeId = 'evergreen'

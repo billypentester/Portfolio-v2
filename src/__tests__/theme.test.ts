@@ -37,8 +37,8 @@ const CONTRAST_PAIRS: [TokenName, TokenName, number][] = [
   ['accent', 'accent-soft', 3],
 ]
 
-test('offers a curated set of five themes', () => {
-  assert.equal(THEME_IDS.length, 5, `found ${THEME_IDS.length}`)
+test('offers a curated set of six themes', () => {
+  assert.equal(THEME_IDS.length, 6, `found ${THEME_IDS.length}`)
   assert.ok(THEME_IDS.includes(DEFAULT_THEME))
 })
 
@@ -86,6 +86,12 @@ test('renders the expected design tokens', () => {
   assert.ok(css.includes('--accent:oklch(54% 0.17 260)'))
   assert.ok(css.includes('--accent:oklch(73% 0.1547 252)'))
   assert.ok(css.includes('--canvas:oklch(16.5% 0.0135 262)'))
+})
+
+test('preserves the Evergreen source colours', () => {
+  const palette = buildTheme('evergreen').light
+  assert.equal(toHex(palette.canvas), '#fafafa')
+  assert.equal(toHex(palette.accent), '#004643')
 })
 
 test('converts OKLCH to hex, mapping out-of-gamut colours into sRGB', () => {

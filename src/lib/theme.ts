@@ -45,12 +45,12 @@ const SHADOWS: Record<ColorMode, string> = {
 
 // The lightness scale below is the original design's; only hue and chroma vary between themes.
 // Form control borders ("control") and focus rings stay at least 3:1 against canvas and surface (WCAG 1.4.11).
-const lightPalette = ({ paperHue, inkHue, tint, accent }: ThemeDefinition): Palette => {
+const lightPalette = ({ paperHue, canvasLightness, inkHue, tint, accent }: ThemeDefinition): Palette => {
   const paper = (l: number, c: number): Oklch => ({ l, c: c * tint, h: paperHue })
   const ink = (l: number, c: number): Oklch => ({ l, c: c * tint, h: inkHue })
-  const accentColor: Oklch = { l: 54, c: accent.chroma, h: accent.hue }
+  const accentColor: Oklch = { l: accent.lightness ?? 54, c: accent.chroma, h: accent.hue }
   return {
-    canvas: paper(98.6, 0.004),
+    canvas: canvasLightness === undefined ? paper(98.6, 0.004) : { l: canvasLightness, c: 0, h: paperHue },
     surface: paper(100, 0),
     subtle: paper(96.2, 0.005),
     line: paper(90.5, 0.006),
