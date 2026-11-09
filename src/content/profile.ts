@@ -13,6 +13,7 @@ export const profile: Profile = {
   timezone: 'UTC+5',
   email: 'contact@billypentester.pk',
   resumeUrl: '/resume',
+  bookingUrl: 'https://calendar.app.google/eGkLTygHHfKDu7hA8',
   photo: Photo,
   headline: 'Software Engineer focused on building modern, reliable and scalable web applications.',
   headlineHighlight: 'modern, reliable and scalable',

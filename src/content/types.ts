@@ -22,6 +22,8 @@ export interface Profile {
   timezone: string
   email: string
   resumeUrl: string
+  // Google Calendar appointment page for booking a call.
+  bookingUrl: string
   photo: StaticImageData
   headline: string
   // Phrase from the headline that the hero emphasises; must appear in it verbatim.

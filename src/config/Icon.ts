@@ -18,6 +18,7 @@ export const icons = {
     arrowRight: { variant: "stroke", viewBox: "0 0 24 24", path: "M5 12h14M13 6l6 6-6 6" },
     arrowUpRight: { variant: "stroke", viewBox: "0 0 24 24", path: "M7 17 17 7M8 7h9v9" },
     arrowLeft: { variant: "stroke", viewBox: "0 0 24 24", path: "M19 12H5M11 18l-6-6 6-6" },
+    calendar: { variant: "stroke", viewBox: "0 0 24 24", path: "M8 3v4M16 3v4M4 10h16M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" },
     download: { variant: "stroke", viewBox: "0 0 24 24", path: "M12 4v11M7 10l5 5 5-5M5 20h14" },
     menu: { variant: "stroke", viewBox: "0 0 24 24", path: "M4 7h16M4 12h16M4 17h16" },
     close: { variant: "stroke", viewBox: "0 0 24 24", path: "M6 6l12 12M18 6 6 18" },

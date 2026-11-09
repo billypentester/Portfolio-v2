@@ -1,5 +1,6 @@
 import Container from '@/src/components/ui/Container'
 import Eyebrow from '@/src/components/ui/Eyebrow'
+import ButtonLink from '@/src/components/ui/ButtonLink'
 import { profile } from '@/src/content/profile'
 import { trackingAttributes } from '@/src/lib/analytics'
 import SectionObserver from '@/src/components/shared/sectionObserver'
@@ -38,6 +39,20 @@ export default function ContactSection() {
                   <dd className="mt-1 text-muted">{profile.location} · {profile.timezone}</dd>
                 </div>
               </dl>
+
+              <div className="mt-10 border-t border-line pt-8">
+                <p className="text-sm text-muted">Prefer to talk it through? Pick a time that suits you.</p>
+                <ButtonLink
+                  href={profile.bookingUrl}
+                  external
+                  variant="secondary"
+                  icon="calendar"
+                  tracking={{ name: 'cta_click', data: { cta: 'book-call', location: 'contact' } }}
+                  className="mt-4"
+                >
+                  Book a call
+                </ButtonLink>
+              </div>
             </div>
 
             <div className="lg:col-span-7">
