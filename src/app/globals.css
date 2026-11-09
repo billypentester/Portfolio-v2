@@ -13,8 +13,13 @@
  *   fg           primary text               muted        secondary text
  *   faint        tertiary text, metadata    accent       links, highlights, selection
  *   accent-fg    text on accent             accent-soft  accent-tinted fill
+ *   brand        signature colour for hovered borders, markers and dots (3:1, never body text)
+ *   spectrum-1…4 decorative hues for the hero glow, gradient name, portrait backing and footer rule
  *   focus        focus rings                success / danger  form status
  * Text pairs meet WCAG AA in every theme; src/__tests__/theme.test.ts enforces it.
+ *
+ * Interaction language: primary actions are solid ink pills that fade on hover; secondary actions,
+ * chips and cards are bordered and pick up the brand colour on hover; links are accent text.
  */
 
 @theme inline {
@@ -30,57 +35,61 @@
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
+  --color-brand: var(--brand);
+  --color-spectrum-1: var(--spectrum-1);
+  --color-spectrum-2: var(--spectrum-2);
+  --color-spectrum-3: var(--spectrum-3);
+  --color-spectrum-4: var(--spectrum-4);
   --color-focus: var(--focus);
   --color-success: var(--success);
   --color-danger: var(--danger);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
 
   --shadow-lift: var(--shadow-lift);
 }
 
 @theme {
   /*
-   * Type scale. Headings are fluid with tight leading; reading text is fixed-size with open leading.
+   * Type scale. Headings are semibold with tight tracking and fluid sizes; reading text is fixed-size with open leading.
    *   display     home and case-study h1         page-title  h1 of inner pages
-   *   title       section h2                     subtitle    compact section h2 (contact panel)
-   *   heading     h3, hero headline              lede        introductory paragraphs
-   *   base        body copy                      sm          secondary copy, labels
-   *   xs          metadata (with font-mono)      eyebrow     uppercase mono label above a heading
-   *   ui          buttons and site name          metric      large figures
+   *   title       section h2                     subtitle    compact h2 (contact panel, page blocks)
+   *   heading     h3 of large cards, hero line   lede        introductory paragraphs
+   *   base        body copy                      sm          secondary copy, eyebrows, buttons
+   *   xs          metadata                       label       small uppercase label (footer columns, field names)
+   *   ui          site name                      metric      large figures
    */
-  --text-display: clamp(2.625rem, 1.4rem + 4.8vw, 5.25rem);
-  --text-display--line-height: 1;
-  --text-display--letter-spacing: -0.04em;
-  --text-page-title: clamp(2rem, 1.25rem + 3.75vw, 4.5rem);
-  --text-page-title--line-height: 1.05;
-  --text-page-title--letter-spacing: -0.035em;
-  --text-title: clamp(2rem, 1.35rem + 2.6vw, 3.5rem);
-  --text-title--line-height: 1.08;
-  --text-title--letter-spacing: -0.03em;
-  --text-subtitle: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
-  --text-subtitle--line-height: 1.15;
+  --text-display: clamp(3rem, 2rem + 4.2vw, 4.5rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.025em;
+  --text-page-title: clamp(2.25rem, 1.8rem + 1.9vw, 3rem);
+  --text-page-title--line-height: 1.1;
+  --text-page-title--letter-spacing: -0.025em;
+  --text-title: clamp(1.875rem, 1.65rem + 0.95vw, 2.25rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.025em;
+  --text-subtitle: clamp(1.5rem, 1.3rem + 0.85vw, 1.875rem);
+  --text-subtitle--line-height: 1.2;
   --text-subtitle--letter-spacing: -0.025em;
-  --text-heading: clamp(1.375rem, 1.15rem + 0.9vw, 1.875rem);
-  --text-heading--line-height: 1.2;
-  --text-heading--letter-spacing: -0.02em;
-  --text-lede: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
-  --text-lede--line-height: 1.6;
+  --text-heading: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --text-heading--line-height: 1.35;
+  --text-heading--letter-spacing: -0.015em;
+  --text-lede: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+  --text-lede--line-height: 1.625;
   --text-base--line-height: 1.625;
   --text-sm--line-height: 1.6;
   --text-xs--line-height: 1.5;
-  --text-eyebrow: 0.75rem;
-  --text-eyebrow--line-height: 1rem;
-  --text-eyebrow--letter-spacing: 0.08em;
-  --text-ui: 0.9375rem;
-  --text-ui--line-height: 1.25rem;
-  --text-metric: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  --text-label: 0.75rem;
+  --text-label--line-height: 1rem;
+  --text-label--letter-spacing: 0.025em;
+  --text-ui: 1rem;
+  --text-ui--line-height: 1.5rem;
+  --text-metric: clamp(2.25rem, 1.9rem + 1.5vw, 3rem);
   --text-metric--line-height: 1;
-  --text-metric--letter-spacing: -0.05em;
+  --text-metric--letter-spacing: -0.03em;
 
-  --radius-card: 0.875rem;
-  --radius-control: 0.625rem;
+  --radius-card: 1rem;
+  --radius-control: 0.75rem;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -168,6 +177,35 @@
 dialog.sheet::backdrop {
   background: oklch(10% 0 0 / 0.5);
   backdrop-filter: blur(2px);
+}
+
+/* Soft warm glow behind the top of every page: brand on the left, orange on the right, yellow between. */
+.bg-mesh {
+  background:
+    radial-gradient(38% 44% at 12% 6%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 70%),
+    radial-gradient(42% 48% at 88% 10%, color-mix(in oklab, var(--spectrum-3) 14%, transparent) 0%, transparent 70%),
+    radial-gradient(34% 40% at 52% 0, color-mix(in oklab, var(--spectrum-2) 13%, transparent) 0%, transparent 70%);
+}
+
+/* Gradient display text. Every stop keeps 3:1 against the canvas (large text), see theme.test.ts. */
+.text-gradient {
+  color: transparent;
+  background-image: linear-gradient(94deg, var(--spectrum-4) 0%, var(--brand) 55%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Forced-colours mode drops background images, which would leave gradient text invisible. */
+@media (forced-colors: active) {
+  .text-gradient {
+    color: CanvasText;
+    background-image: none;
+  }
+}
+
+/* 3px multi-colour rule along the top of the footer (sky, sun, orange, red in Clay). */
+.spectrum-rule {
+  background: linear-gradient(90deg, var(--spectrum-1), var(--spectrum-2), var(--spectrum-3), var(--spectrum-4));
 }
 
 /* Subtle engineering-grid texture for hero and CTA panels. */

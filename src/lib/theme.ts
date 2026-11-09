@@ -1,5 +1,5 @@
-import { DEFAULT_THEME, THEMES, type ThemeDefinition, type ThemeId } from '../config/themes.ts'
-import { toCss, type Oklch } from '../utils/color.ts'
+import { DEFAULT_THEME, THEMES, type ColorOverrides, type ThemeDefinition, type ThemeId } from '../config/themes.ts'
+import { fromHex, toCss, type Oklch } from '../utils/color.ts'
 
 // Relative imports keep this module loadable by the Node test runner, which does not resolve "@/".
 
@@ -19,6 +19,11 @@ export type TokenName =
   | 'accent'
   | 'accent-fg'
   | 'accent-soft'
+  | 'brand'
+  | 'spectrum-1'
+  | 'spectrum-2'
+  | 'spectrum-3'
+  | 'spectrum-4'
   | 'focus'
   | 'success'
   | 'danger'
@@ -38,19 +43,45 @@ const STATUS: Record<ColorMode, Pick<Palette, 'success' | 'danger'>> = {
   dark: { success: { l: 74, c: 0.13, h: 155 }, danger: { l: 71, c: 0.17, h: 25 } },
 }
 
+// A single soft, wide drop for hovered cards and lifted panels.
 const SHADOWS: Record<ColorMode, string> = {
-  light: '0 1px 2px oklch(20% 0.01 260 / 0.04), 0 8px 24px -12px oklch(20% 0.01 260 / 0.14)',
+  light: '0 8px 30px oklch(0% 0 0 / 0.06)',
   dark: '0 1px 2px oklch(0% 0 0 / 0.3), 0 12px 32px -16px oklch(0% 0 0 / 0.6)',
+}
+
+// Decorative spectrum, set around the accent hue like the Clay source palette: a complementary sky,
+// then sun, orange and red stepping down to the accent. spectrum-4 also colours large gradient
+// headings, so it keeps 3:1 against the canvas in both modes.
+const SPECTRUM: { offset: number; l: number; c: number }[] = [
+  { offset: 180, l: 79, c: 0.09 },
+  { offset: 45, l: 83, c: 0.14 },
+  { offset: 15, l: 72, c: 0.14 },
+  { offset: -15, l: 62, c: 0.17 },
+]
+
+const spectrum = (hue: number): Pick<Palette, 'spectrum-1' | 'spectrum-2' | 'spectrum-3' | 'spectrum-4'> => {
+  const [one, two, three, four] = SPECTRUM.map(({ offset, l, c }): Oklch => ({ l, c, h: (hue + offset + 360) % 360 }))
+  return { 'spectrum-1': one, 'spectrum-2': two, 'spectrum-3': three, 'spectrum-4': four }
+}
+
+// Source colours win over derived ones. Focus rings and the brand colour follow the final accent
+// unless they are set explicitly, so overriding the accent alone keeps them consistent.
+const applyOverrides = (derived: Palette, overrides: ColorOverrides = {}): Palette => {
+  const palette = { ...derived }
+  for (const [token, hex] of Object.entries(overrides) as [TokenName, string][]) palette[token] = fromHex(hex)
+  if (overrides.focus === undefined) palette.focus = palette.accent
+  if (overrides.brand === undefined) palette.brand = palette.accent
+  return palette
 }
 
 // The lightness scale below is the original design's; only hue and chroma vary between themes.
 // Form control borders ("control") and focus rings stay at least 3:1 against canvas and surface (WCAG 1.4.11).
-const lightPalette = ({ paperHue, canvasLightness, inkHue, tint, accent }: ThemeDefinition): Palette => {
+const lightPalette = ({ paperHue, inkHue, tint, accent, light }: ThemeDefinition): Palette => {
   const paper = (l: number, c: number): Oklch => ({ l, c: c * tint, h: paperHue })
   const ink = (l: number, c: number): Oklch => ({ l, c: c * tint, h: inkHue })
-  const accentColor: Oklch = { l: accent.lightness ?? 54, c: accent.chroma, h: accent.hue }
-  return {
-    canvas: canvasLightness === undefined ? paper(98.6, 0.004) : { l: canvasLightness, c: 0, h: paperHue },
+  const accentColor: Oklch = { l: 54, c: accent.chroma, h: accent.hue }
+  return applyOverrides({
+    canvas: paper(98.6, 0.004),
     surface: paper(100, 0),
     subtle: paper(96.2, 0.005),
     line: paper(90.5, 0.006),
@@ -62,17 +93,19 @@ const lightPalette = ({ paperHue, canvasLightness, inkHue, tint, accent }: Theme
     accent: accentColor,
     'accent-fg': { l: 99, c: Math.min(accent.chroma, 0.005), h: accent.hue },
     'accent-soft': { l: 94, c: Math.min(accent.chroma * 0.25, 0.035), h: accent.hue },
+    brand: accentColor,
+    ...spectrum(accent.hue),
     focus: accentColor,
     ...STATUS.light,
-  }
+  }, light)
 }
 
-const darkPalette = ({ paperHue, inkHue, tint, accent }: ThemeDefinition): Palette => {
+const darkPalette = ({ paperHue, inkHue, tint, accent, dark }: ThemeDefinition): Palette => {
   const paper = (l: number, c: number): Oklch => ({ l, c: c * tint, h: paperHue })
   const ink = (l: number, c: number): Oklch => ({ l, c: c * tint, h: inkHue })
   const accentHue = accent.darkHue ?? accent.hue
   const accentColor: Oklch = { l: 73, c: accent.chroma * 0.91, h: accentHue }
-  return {
+  return applyOverrides({
     canvas: ink(16.5, 0.006),
     surface: ink(19.5, 0.007),
     subtle: ink(22.5, 0.007),
@@ -85,9 +118,11 @@ const darkPalette = ({ paperHue, inkHue, tint, accent }: ThemeDefinition): Palet
     accent: accentColor,
     'accent-fg': { l: 18, c: Math.min(accent.chroma, 0.02), h: accentHue },
     'accent-soft': { l: 28, c: Math.min(accent.chroma * 0.35, 0.05), h: accentHue },
+    brand: accentColor,
+    ...spectrum(accentHue),
     focus: accentColor,
     ...STATUS.dark,
-  }
+  }, dark)
 }
 
 export const buildTheme = (id: ThemeId): ResolvedTheme => {

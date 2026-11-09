@@ -7,8 +7,10 @@ export const now: NowContent = {
     {
       title: 'Funds Grid',
       description:
-        'A personal investment and portfolio tracking application, designed and built on my own outside client work.',
+        'A portfolio tracker for PSX stocks, ETFs and Pakistani mutual funds, designed and built on my own outside client work.',
       status: 'In progress',
+      stack: ['Next.js', 'NestJS', 'Prisma', 'MySQL'],
+      href: '/projects/funds-grid',
     },
   ],
   learning: [

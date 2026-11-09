@@ -8,12 +8,12 @@ export const metadata: Metadata = { title: 'Page not found' }
 
 export default function NotFound() {
   return (
-    <section aria-labelledby="not-found-heading" className="relative overflow-hidden pt-36 pb-24 sm:pt-44">
+    <section aria-labelledby="not-found-heading" className="relative overflow-hidden pt-32 pb-24 sm:pt-40">
       <NotFoundTracker />
       <div aria-hidden="true" className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
       <Container className="relative">
         <Eyebrow>Error 404</Eyebrow>
-        <h1 id="not-found-heading" className="mt-5 text-title font-semibold">This page doesn&apos;t exist.</h1>
+        <h1 id="not-found-heading" className="mt-3 text-page-title font-semibold">This page doesn&apos;t exist.</h1>
         <p className="mt-5 max-w-xl text-lede text-muted">
           The link may be old or mistyped. The work, experience and writing are all a click away.
         </p>

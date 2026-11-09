@@ -7,7 +7,7 @@ export default function ArchiveGrid({ projects }: { projects: ArchivedProject[] 
       {projects.map((project) => (
         <li key={project.slug} className="reveal">
           <figure>
-            <div className="relative aspect-[16/10] overflow-hidden rounded-control border border-line bg-subtle">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-card border border-line bg-subtle">
               <Image
                 src={project.cover.src}
                 alt={project.cover.alt}

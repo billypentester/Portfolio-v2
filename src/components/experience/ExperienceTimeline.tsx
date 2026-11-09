@@ -29,33 +29,33 @@ export default function ExperienceTimeline({ roles, variant, headingLevel = 'h3'
           <li key={role.id} id={role.id} className="reveal relative scroll-mt-24">
             <span
               aria-hidden="true"
-              className={`absolute top-1.5 -left-[calc(1.5rem+5px)] h-2.5 w-2.5 rounded-full border-2 border-canvas sm:-left-[calc(2.5rem+5px)] ${isCurrent ? 'bg-accent' : 'bg-line-strong'}`}
+              className={`absolute top-1.5 -left-[calc(1.5rem+6px)] h-3 w-3 rounded-full border-2 sm:-left-[calc(2.5rem+6px)] ${isCurrent ? 'border-fg bg-brand' : 'border-line-strong bg-canvas'}`}
             />
             <div className="grid gap-6 lg:grid-cols-12">
               <div className="lg:col-span-4">
-                <p className="font-mono text-xs text-faint">
+                <p className="text-sm text-muted">
                   <time dateTime={role.start}>{formatYearMonth(role.start)}</time>
-                  {' — '}
-                  {role.end ? <time dateTime={role.end}>{formatYearMonth(role.end)}</time> : <span className="text-accent">Present</span>}
+                  {' – '}
+                  {role.end ? <time dateTime={role.end}>{formatYearMonth(role.end)}</time> : <span className="font-medium text-accent">Present</span>}
                 </p>
-                <p className="mt-1 font-mono text-xs text-faint">{formatDuration(monthsBetween(role.start, role.end))} · {role.location}</p>
+                <p className="mt-1 text-sm text-faint">{formatDuration(monthsBetween(role.start, role.end))} · {role.location}</p>
                 <div className="mt-4 flex items-center gap-3">
                   {role.logo ? (
-                    <Image src={role.logo} alt="" width={36} height={36} className="h-9 w-9 rounded-md border border-line bg-surface object-contain" />
+                    <Image src={role.logo} alt="" width={36} height={36} className="h-9 w-9 rounded-full border border-line bg-surface object-contain" />
                   ) : (
-                    <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-line bg-surface font-mono text-xs font-semibold text-muted">
+                    <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-surface text-xs font-semibold text-muted">
                       {getInitials(role.company)}
                     </span>
                   )}
                   <div>
-                    <Heading className="font-semibold leading-tight">{role.role}</Heading>
+                    <Heading className="text-lg font-medium leading-snug">{role.role}</Heading>
                     {role.url ? (
                       <a
                         href={role.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         {...trackingAttributes({ name: 'company_click', data: { company: role.id } })}
-                        className="text-sm text-muted underline decoration-line-strong underline-offset-4 hover:text-fg"
+                        className="text-sm text-muted underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent hover:decoration-brand"
                       >
                         {role.company}
                         <span className="sr-only"> (opens in a new tab)</span>
@@ -71,25 +71,25 @@ export default function ExperienceTimeline({ roles, variant, headingLevel = 'h3'
                 <p className="text-fg">{role.summary}</p>
                 {variant === 'full' && role.ownership && (
                   <p className="mt-4 rounded-control border border-line bg-subtle px-4 py-3 text-sm text-muted">
-                    <span className="font-mono text-xs uppercase text-faint">Ownership · </span>
+                    <span className="text-label font-medium uppercase text-fg">Ownership · </span>
                     {role.ownership}
                   </p>
                 )}
                 <ul className="mt-5 grid gap-3 text-sm text-muted">
                   {highlights.map((highlight) => (
                     <li key={highlight} className="flex gap-3">
-                      <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-line-strong" />
+                      <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand" />
                       <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
                 {hiddenCount > 0 && (
-                  <p className="mt-3 font-mono text-xs text-faint">+{hiddenCount} more on the experience page</p>
+                  <p className="mt-3 text-xs text-faint">+{hiddenCount} more on the experience page</p>
                 )}
                 <TagList items={role.stack} label={`${role.company} technologies`} className="mt-5" />
                 {caseStudies.length > 0 && (
                   <div className="mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-2 border-t border-line pt-5">
-                    <span className="font-mono text-eyebrow uppercase text-faint">Case studies</span>
+                    <span className="text-label font-medium uppercase text-muted">Case studies</span>
                     {caseStudies.map((project) => (
                       <ArrowLink
                         key={project.slug}

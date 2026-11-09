@@ -11,7 +11,7 @@ interface ArrowLinkProps {
 }
 
 export default function ArrowLink({ href, children, external = false, tracking, className = '' }: ArrowLinkProps) {
-  const classes = `group inline-flex items-center gap-1.5 text-sm font-medium text-fg underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-accent ${className}`
+  const classes = `group inline-flex items-center gap-1.5 text-sm font-medium text-accent underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current ${className}`
   const arrow = (
     <IconBuilder
       type={external ? 'arrowUpRight' : 'arrowRight'}

@@ -29,7 +29,7 @@ export const snapshot: SnapshotMetric[] = [
   {
     value: String(professionalCount),
     label: 'Production platforms',
-    detail: 'Ordering, loyalty and healthcare products',
+    detail: 'Ordering and loyalty products',
     href: '/projects',
   },
 ]

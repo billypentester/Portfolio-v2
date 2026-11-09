@@ -20,7 +20,7 @@ export default function Expertise() {
         {skillGroups.map((group) => (
           <div key={group.title} className="reveal grid gap-4 py-6 sm:grid-cols-12 sm:gap-8">
             <dt className="sm:col-span-3">
-              <span className="font-semibold">{group.title}</span>
+              <span className="font-medium">{group.title}</span>
             </dt>
             <dd className="sm:col-span-9">
               <div className="flex flex-wrap gap-1.5">

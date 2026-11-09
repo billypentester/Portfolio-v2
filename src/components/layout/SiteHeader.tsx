@@ -13,12 +13,12 @@ export default function SiteHeader() {
     <HeaderShell>
       <Container className="flex h-16 items-center justify-between gap-4">
         <Link href="/" className="group flex items-baseline gap-2 rounded-sm" {...trackingAttributes({ name: 'nav_click', data: { item: 'home', location: 'header' } })}>
-          <span className="text-ui font-semibold tracking-tight">{fullName}</span>
-          <span className="hidden font-mono text-xs text-faint transition-colors group-hover:text-accent sm:inline">/ {profile.role.toLowerCase()}</span>
+          <span className="text-ui font-medium tracking-tight">{fullName}</span>
+          <span className="hidden text-sm text-faint transition-colors group-hover:text-accent lg:inline">{profile.role}</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden md:block">
-          <NavLinks location="header" className="flex items-center gap-1" linkClassName="rounded-control px-3 py-2 text-sm transition-colors" />
+          <NavLinks location="header" className="flex items-center gap-2 lg:gap-4" linkClassName="rounded-full px-2 py-2 text-sm transition-colors" />
         </nav>
 
         <div className="flex items-center gap-1 sm:gap-2">

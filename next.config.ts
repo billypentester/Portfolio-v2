@@ -4,6 +4,8 @@ import { getUmamiConfig, UMAMI_PROXY_PATH } from "./src/lib/umami";
 const umami = getUmamiConfig();
 
 const nextConfig: NextConfig = {
+  // Retired case studies keep their old links working.
+  redirects: () => Promise.resolve([{ source: "/projects/hospinizer", destination: "/projects", permanent: true }]),
   // Serves the Umami script and collection endpoint from this domain (see src/lib/umami.ts).
   rewrites: () =>
     Promise.resolve(

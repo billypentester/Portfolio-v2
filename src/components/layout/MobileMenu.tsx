@@ -39,7 +39,7 @@ export default function MobileMenu() {
         onClick={open}
         aria-haspopup="dialog"
         aria-controls="mobile-menu"
-        className="inline-flex h-10 w-10 items-center justify-center rounded-control text-fg hover:bg-subtle md:hidden"
+        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-fg transition-colors hover:border-brand hover:text-accent md:hidden"
       >
         <IconBuilder type="menu" paint="h-5 w-5" />
         <span className="sr-only">Open menu</span>
@@ -54,13 +54,13 @@ export default function MobileMenu() {
       >
         <div className="flex h-16 items-center justify-between border-b border-line px-4">
           <div className="flex min-w-0 flex-col">
-            <span className="truncate text-ui font-semibold tracking-tight">{fullName}</span>
-            <span className="truncate font-mono text-xs text-faint">{profile.role.toLowerCase()}</span>
+            <span className="truncate text-ui font-medium tracking-tight">{fullName}</span>
+            <span className="truncate text-xs text-faint">{profile.role}</span>
           </div>
           <button
             type="button"
             onClick={close}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-control hover:bg-subtle"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line transition-colors hover:border-brand hover:text-accent"
           >
             <IconBuilder type="close" paint="h-5 w-5" />
             <span className="sr-only">Close menu</span>
@@ -72,7 +72,7 @@ export default function MobileMenu() {
             location="mobile-menu"
             onNavigate={close}
             className="flex flex-col"
-            linkClassName="flex items-center justify-between border-b border-line py-4 text-2xl font-medium tracking-tight"
+            linkClassName="flex items-center justify-between border-b border-line py-4 text-2xl font-medium tracking-tight transition-colors"
           />
         </nav>
 
@@ -103,7 +103,7 @@ export default function MobileMenu() {
                   href={link.url}
                   {...(link.platform === 'email' ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
                   {...trackingAttributes({ name: 'social_click', data: { platform: link.platform, location: 'mobile-menu' } })}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-control text-muted hover:bg-subtle hover:text-fg"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full text-muted transition-colors hover:bg-subtle hover:text-accent"
                 >
                   <IconBuilder type={link.platform} paint="h-[18px] w-[18px]" />
                   <span className="sr-only">{link.label}{link.platform === 'email' ? '' : ' (opens in a new tab)'}</span>

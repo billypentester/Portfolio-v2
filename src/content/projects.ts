@@ -1,6 +1,7 @@
 import KFC from '@/assets/images/projects/kfc.webp'
 import Dominos from '@/assets/images/projects/dominos.webp'
 import CrustCulture from '@/assets/images/projects/crustculture.webp'
+import FundsGrid from '@/assets/images/projects/funds-grid.webp'
 import TutorHub from '@/assets/images/projects/tutorhub.webp'
 import DEX from '@/assets/images/projects/dex.webp'
 import CarPart from '@/assets/images/projects/carpart.webp'
@@ -25,7 +26,7 @@ export const projects: Project[] = [
     employer: SIMPLEX,
     featured: true,
     stack: ['NestJS', 'Node.js', 'React', 'MySQL', 'Redis'],
-    cover: { src: KFC, alt: 'KFC Pakistan ordering website home page' },
+    cover: { src: KFC, alt: 'KFC Pakistan ordering website menu, showing the Everyday Value category' },
     links: { live: 'https://www.kfcpakistan.com/' },
     highlights: [
       'Configurable loyalty engine with point management, third-party integrations and reporting.',
@@ -80,7 +81,7 @@ export const projects: Project[] = [
     employer: SIMPLEX,
     featured: true,
     stack: ['NestJS', 'Node.js', 'React', 'MySQL', 'GTM'],
-    cover: { src: Dominos, alt: 'Domino\'s Pakistan ordering website home page' },
+    cover: { src: Dominos, alt: 'Domino\'s Pakistan ordering website menu, showing the Favorite Flavors pizzas' },
     links: { live: 'https://www.dominos.com.pk/' },
     highlights: [
       'Digital wallet so customers can pay with wallet credits at checkout.',
@@ -127,46 +128,63 @@ export const projects: Project[] = [
     },
   },
   {
-    kind: 'professional',
-    slug: 'hospinizer',
-    title: 'Hospinizer',
-    summary: 'Patient authentication, appointment reminders and EMR synchronisation across clinics.',
-    domain: 'Healthcare · Integrations',
-    role: 'Backend engineer',
-    employer: SIMPLEX,
+    kind: 'personal',
+    slug: 'funds-grid',
+    title: 'Funds Grid',
+    summary: 'Portfolio tracker for PSX stocks, ETFs and Pakistani mutual funds: cost basis, profit and loss, tax, dividends and a KSE-100 benchmark in one view.',
+    status: 'active',
     featured: true,
-    stack: [],
-    highlights: [
-      'Patient authentication and automated push notifications to improve appointment adherence.',
-      'EMR systems integrated across clinics through an aggregator engine for appointment synchronisation.',
-    ],
+    stack: ['Next.js', 'NestJS', 'Prisma', 'MySQL', 'TanStack Query'],
+    cover: { src: FundsGrid, alt: 'Funds Grid landing page: every stock, fund and dividend in one clear view' },
+    links: { live: 'https://funds-frontend.vercel.app/' },
     caseStudy: {
-      context: 'Hospinizer handles patient appointments across multiple clinics, each running its own EMR system. I built its patient-facing backend features and the EMR integration at Simplex Technology Solutions.',
-      problem: 'Patients book with clinics that each run their own EMR system. Appointments had to stay synchronised across those systems, and patients needed secure sign-in and timely reminders.',
-      role: 'Software Engineer at Simplex. I built patient authentication, appointment reminders and the EMR integration.',
+      context: 'Funds Grid is a multi-user portfolio tracker for Pakistani retail investors, covering PSX-listed stocks, ETFs and mutual funds. I designed and built it end to end on my own time: the Next.js frontend, the NestJS API and the data model behind them.',
+      problem: 'Investors who hold shares through a broker and mutual funds through several fund managers only ever see one statement at a time. None of them shows a combined cost basis, realised and unrealised profit, dividend income after withholding tax, or how the whole portfolio compares with the KSE-100.',
+      role: 'Sole designer and engineer. I own the product, the frontend, the API, the database and the deployment.',
       responsibilities: [
-        'Implemented patient authentication.',
-        'Built automated push notifications for upcoming appointments.',
-        'Integrated clinic EMR systems through an aggregator engine.',
+        'Designed the data model for portfolios, holdings, transactions, cash movements and daily price history, built with Prisma on MySQL.',
+        'Built the NestJS API in controller, service and repository layers, with session auth and ownership guards on every portfolio, asset and transaction.',
+        'Built the Next.js frontend as a backend-for-frontend, so the browser never calls the API directly.',
+        'Integrated a market-data provider for prices, fund NAVs, the KSE-100 index, dividend payouts and corporate announcements.',
+        'Wrote reconciliation tests and a read-only diagnostic that check the portfolio figures against accounting invariants.',
       ],
       features: [
         {
-          title: 'Appointment reminders',
-          description: 'Automated push notifications remind patients about upcoming appointments, which improves adherence.',
+          title: 'Transaction engine',
+          description: 'Buys, sells, dividends and cash movements are replayed in order to derive weighted average cost and realised profit, and a sale can never exceed the quantity held.',
         },
         {
-          title: 'EMR aggregation',
-          description: 'An aggregator engine integrates each clinic\'s EMR system so appointments stay synchronised everywhere.',
+          title: 'Tax by filer status',
+          description: 'Capital gains tax on each sale and withholding tax on each dividend are worked out at the investor\'s filer or non-filer rate.',
+        },
+        {
+          title: 'Dividend Center',
+          description: 'Announced payouts are matched to the shares each investor holds, then confirmed, snoozed or marked as not received.',
+        },
+        {
+          title: 'KSE-100 benchmark',
+          description: 'Time-weighted return, alpha, volatility and maximum drawdown against the KSE-100 for portfolios that hold stocks or ETFs.',
+        },
+        {
+          title: 'Admin console',
+          description: 'User management, data sync triggers and targeted push notifications, with every account action written to an audit log.',
+        },
+        {
+          title: 'Installable app',
+          description: 'A progressive web app that installs on a phone, with web push notifications and an offline fallback page.',
         },
       ],
-      complexity: [
-        'Every clinic runs its own EMR system, so synchronisation goes through an aggregator engine rather than one shared database.',
-        'Reminders are automated and time-based, so they are only as good as the appointment data behind them.',
-        'Patient data is sensitive, which puts authentication at the centre of the patient-facing features.',
+      layers: [
+        { name: 'Frontend (BFF)', items: ['Next.js', 'React', 'TanStack Query'] },
+        { name: 'API', items: ['NestJS', 'better-auth', 'Zod'] },
+        { name: 'Data', items: ['Prisma', 'MySQL'] },
+        { name: 'Integrations', items: ['Market data provider', 'Web Push', 'Google sign-in'] },
       ],
-      outcomes: [
-        'Automated reminders for upcoming appointments, built to improve adherence.',
-        'Appointments synchronised across clinics through the aggregator engine.',
+      complexity: [
+        'Cost basis, realised profit and tax all come from replaying the transaction history, so entries recorded out of order or on the same day must still produce the same result.',
+        'Portfolio totals must satisfy accounting identities, such as total value minus net invested capital equalling unrealised plus realised profit plus dividends, within a defined rounding tolerance.',
+        'Prices for funds, stocks and the index arrive from an external provider and are stored as daily history, so every valuation has to show how fresh its price is.',
+        'No investor may read or change another\'s portfolios, so ownership is checked on every route, including for soft-deleted records.',
       ],
     },
   },

@@ -38,7 +38,7 @@ export default function ExperiencePage() {
           </ButtonLink>
         </div>
       </PageHeader>
-      <section aria-label="Career timeline" className="border-t border-line py-16 sm:py-24">
+      <section aria-label="Career timeline" className="py-8 sm:py-12">
         <Container>
           <ExperienceTimeline roles={experience} variant="full" headingLevel="h2" />
         </Container>

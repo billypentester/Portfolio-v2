@@ -30,7 +30,6 @@ export const publications: Publication[] = [
     category: 'Career',
     tags: ['Frontend', 'JavaScript'],
     cover: FrontendTenStages,
-    featured: true,
   },
   {
     source: 'external',
@@ -41,7 +40,6 @@ export const publications: Publication[] = [
     category: 'Web3',
     tags: ['Blockchain', 'Web3', 'Solidity'],
     cover: Web3Part1,
-    featured: true,
   },
   {
     source: 'external',
@@ -72,6 +70,7 @@ export const publications: Publication[] = [
     category: 'Security',
     tags: ['Cyber Security'],
     cover: CyberSecurity,
+    featured: true,
   },
   {
     source: 'external',
@@ -92,6 +91,7 @@ export const publications: Publication[] = [
     category: 'Machine Learning',
     tags: ['Machine Learning', 'AI'],
     cover: Predict,
+    featured: true,
   },
   {
     source: 'external',

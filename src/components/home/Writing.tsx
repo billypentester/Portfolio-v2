@@ -11,7 +11,7 @@ export default function Writing() {
       id="writing"
       index="06"
       eyebrow="Writing"
-      title="Notes on backend, frontend and Web3."
+      title="Notes on backend, frontend and security."
       action={<ArrowLink href="/blogs" tracking={{ name: 'cta_click', data: { cta: 'all-writing', location: 'writing' } }}>All writing</ArrowLink>}
     >
       <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

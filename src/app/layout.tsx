@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/src/components/layout/SiteHeader";
 import SiteFooter from "@/src/components/layout/SiteFooter";
@@ -17,12 +17,6 @@ import { toHex } from "@/src/utils/color";
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
   display: "swap",
 });
 
@@ -60,15 +54,16 @@ export async function generateViewport(): Promise<Viewport> {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={geistSans.variable} suppressHydrationWarning>
       <head>
         <ThemeStyles />
         <ThemeScript />
       </head>
-      <body className="min-h-dvh overflow-x-clip">
+      <body className="relative min-h-dvh overflow-x-clip">
+        <div aria-hidden="true" className="bg-mesh pointer-events-none absolute inset-x-0 top-0 -z-10 h-[620px]" />
         <a
           href="#main"
-          className="fixed left-4 top-3 z-50 -translate-y-20 rounded-control bg-fg px-4 py-2 text-sm font-medium text-canvas transition-transform focus:translate-y-0"
+          className="fixed left-4 top-3 z-50 -translate-y-20 rounded-full bg-fg px-4 py-2 text-sm font-medium text-canvas transition-transform focus:translate-y-0"
         >
           Skip to content
         </a>

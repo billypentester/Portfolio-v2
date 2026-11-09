@@ -11,7 +11,7 @@ import { buildMetadata, caseStudyNode, pageSchema } from '@/src/lib/seo'
 
 const PAGE = {
   title: 'Work and case studies',
-  description: 'Case studies from production ordering, loyalty and healthcare platforms, including KFC Pakistan, Domino\'s Pakistan and Hospinizer, plus earlier projects.',
+  description: 'Case studies from production ordering and loyalty platforms, including KFC Pakistan and Domino\'s Pakistan, plus Funds Grid, my own portfolio tracker, and earlier projects.',
   path: '/projects',
 }
 
@@ -52,9 +52,9 @@ export default function ProjectsPage() {
       />
 
       {groups.filter((group) => group.projects.length > 0).map((group) => (
-        <section key={group.id} aria-labelledby={`${group.id}-heading`} className="border-t border-line py-16 sm:py-24">
+        <section key={group.id} aria-labelledby={`${group.id}-heading`} className="py-8 sm:py-12">
           <Container>
-            <div className="mb-12 max-w-2xl sm:mb-16">
+            <div className="mb-8 max-w-2xl">
               <Eyebrow as="h2" id={`${group.id}-heading`}>{group.label}</Eyebrow>
               <p className="mt-3 text-muted">{group.description}</p>
             </div>
@@ -68,11 +68,11 @@ export default function ProjectsPage() {
       ))}
 
       {archivedProjects.length > 0 && (
-        <section aria-labelledby="archive-heading" className="border-t border-line py-16 sm:py-24">
+        <section aria-labelledby="archive-heading" className="py-8 sm:py-12">
           <Container>
-            <div className="mb-10 max-w-2xl">
+            <div className="mb-8 max-w-2xl">
               <Eyebrow>Archive</Eyebrow>
-              <h2 id="archive-heading" className="mt-3 text-heading font-semibold">Earlier projects</h2>
+              <h2 id="archive-heading" className="mt-3 text-subtitle font-semibold">Earlier projects</h2>
               <p className="mt-3 text-muted">Earlier work, kept for the record.</p>
             </div>
             <ArchiveGrid projects={archivedProjects} />

@@ -26,38 +26,39 @@ function HighlightedHeadline({ text, highlight }: { text: string; highlight: str
 
 export default function Hero() {
   return (
-    <section id="hero" aria-labelledby="hero-heading" className="relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16">
+    <section id="hero" aria-labelledby="hero-heading" className="relative overflow-hidden pt-32 pb-10 sm:pt-40">
       <div aria-hidden="true" className="grid-texture pointer-events-none absolute inset-0" />
       <Container className="relative">
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-8">
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
+          <div className="lg:col-span-7">
             <div className="flex items-center gap-3">
               <Image src={profile.photo} alt="" width={44} height={44} className="h-11 w-11 rounded-full border border-line object-cover lg:hidden" />
-              {/* Stacked next to the avatar on phones; a single-line chip from sm up. */}
-              <p className="flex flex-col gap-1 font-mono text-eyebrow uppercase sm:flex-row sm:items-center sm:gap-3 sm:rounded-full sm:border sm:border-line sm:bg-surface sm:py-1.5 sm:pr-4 sm:pl-3">
-                <span className="flex items-center gap-2 text-fg">
+              {/* Stacked next to the avatar on phones; a single-line pill from sm up. */}
+              <p className="flex flex-col gap-0.5 text-sm text-muted sm:flex-row sm:items-center sm:gap-3 sm:rounded-full sm:border sm:border-line sm:bg-canvas/70 sm:px-4 sm:py-1.5 sm:backdrop-blur-sm">
+                <span className="flex items-center gap-2 font-medium text-fg">
                   <span aria-hidden="true" className="relative flex size-2">
-                    <span className="absolute inline-flex size-full rounded-full bg-accent opacity-60 motion-safe:animate-ping" />
-                    <span className="relative inline-flex size-2 rounded-full bg-accent" />
+                    <span className="absolute inline-flex size-full rounded-full bg-brand opacity-60 motion-safe:animate-ping" />
+                    <span className="relative inline-flex size-2 rounded-full bg-brand" />
                   </span>
                   {profile.role}
                 </span>
                 <span aria-hidden="true" className="hidden h-3 w-px bg-line-strong sm:block" />
-                <span className="text-muted">
+                <span>
                   <span className="sr-only">, </span>
                   {profile.specialty}
                 </span>
               </p>
             </div>
 
-            <h1 id="hero-heading" className="mt-6 text-display font-semibold">
+            {/* Bottom padding keeps descenders inside the clipped gradient. */}
+            <h1 id="hero-heading" className="text-gradient mt-6 pb-1 text-display font-semibold">
               {fullName}
             </h1>
 
-            <p className="mt-6 max-w-3xl text-heading font-medium text-balance text-fg">
+            <p className="mt-6 max-w-2xl text-heading font-medium text-fg">
               <HighlightedHeadline text={profile.headline} highlight={profile.headlineHighlight} />
             </p>
-            <p className="mt-5 max-w-2xl text-lede text-muted">
+            <p className="mt-5 max-w-xl text-lede text-muted">
               {profile.intro}
             </p>
 
@@ -70,27 +71,31 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="hidden lg:col-span-4 lg:block">
-            <figure className="rounded-card border border-line bg-surface p-2 shadow-lift">
-              {/* Desktop only: the 1px mobile size keeps phones from downloading a hidden portrait. */}
-              <Image
-                src={profile.photo}
-                alt={`Portrait of ${fullName}`}
-                preload
-                sizes="(min-width: 1024px) 360px, 1px"
-                placeholder="blur"
-                className="aspect-square w-full rounded-[calc(var(--radius-card)-0.375rem)] object-cover"
-              />
-              <figcaption className="flex items-center justify-between px-2 pt-3 pb-1">
-                <span className="font-mono text-xs text-faint">@{profile.handle}</span>
-                <ul className="flex gap-1" aria-label="Social links">
+          <div className="hidden lg:col-span-5 lg:flex lg:justify-end">
+            <figure className="w-full max-w-[320px]">
+              {/* A tilted portrait on an offset colour block. */}
+              <div className="relative -rotate-3">
+                <div aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-3 rounded-card bg-spectrum-2" />
+                {/* Desktop only: the 1px mobile size keeps phones from downloading a hidden portrait. */}
+                <Image
+                  src={profile.photo}
+                  alt={`Portrait of ${fullName}`}
+                  preload
+                  sizes="(min-width: 1024px) 320px, 1px"
+                  placeholder="blur"
+                  className="relative aspect-square w-full rounded-card border-[3px] border-fg object-cover"
+                />
+              </div>
+              <figcaption className="mt-8 flex items-center justify-between">
+                <span className="text-sm text-faint">@{profile.handle}</span>
+                <ul className="flex gap-2" aria-label="Social links">
                   {HERO_LINKS.map((link) => (
                     <li key={link.platform}>
                       <a
                         href={link.url}
                         {...(link.platform === 'email' ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
                         {...trackingAttributes({ name: 'social_click', data: { platform: link.platform, location: 'hero' } })}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted hover:bg-subtle hover:text-fg"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-brand hover:text-accent"
                       >
                         <IconBuilder type={link.platform} paint="h-4 w-4" />
                         <span className="sr-only">{link.label}{link.platform === 'email' ? '' : ' (opens in a new tab)'}</span>

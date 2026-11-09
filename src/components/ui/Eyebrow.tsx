@@ -7,12 +7,11 @@ interface EyebrowProps {
   className?: string
 }
 
-// Monospace label used above headings, e.g. "01 / Work".
+// Accent label used above headings, optionally numbered, e.g. "01  Work".
 export default function Eyebrow({ children, index, as: Tag = 'p', id, className = '' }: EyebrowProps) {
   return (
-    <Tag id={id} className={`flex items-center gap-2 font-mono text-eyebrow uppercase text-faint ${className}`}>
-      {index && <span className="text-accent">{index}</span>}
-      {index && <span aria-hidden="true" className="h-px w-6 bg-line-strong" />}
+    <Tag id={id} className={`flex items-center gap-2.5 text-sm font-medium text-accent ${className}`}>
+      {index && <span className="text-faint tabular-nums">{index}</span>}
       <span>{children}</span>
     </Tag>
   )

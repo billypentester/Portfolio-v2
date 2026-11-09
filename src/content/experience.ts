@@ -36,7 +36,6 @@ export const experience: Experience[] = [
       'Designed business-oriented data models, automated database migrations and wrote SQL scripts for analytics, reporting and dashboard integrations.',
     ],
     stack: ['MongoDB', 'Express', 'React', 'Node.js', 'SQL'],
-    projects: ['hospinizer'],
   },
 ]
 

@@ -58,6 +58,28 @@ const clamp01 = (value: number): number => Math.min(1, Math.max(0, value))
 const encodeGamma = (channel: number): number =>
     channel <= 0.0031308 ? 12.92 * channel : 1.055 * channel ** (1 / 2.4) - 0.055
 
+const decodeGamma = (channel: number): number =>
+    channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
+
+// Inverse of toHex, for themes that reproduce exact source colours. Expects #rrggbb.
+export const fromHex = (hex: string): Oklch => {
+    const digits = /^#([0-9a-f]{6})$/i.exec(hex)?.[1]
+    if (digits === undefined) throw new Error(`Expected a #rrggbb colour, received "${hex}"`)
+    const [r, g, b] = [0, 2, 4].map((offset) => decodeGamma(parseInt(digits.slice(offset, offset + 2), 16) / 255))
+
+    const lc = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b)
+    const mc = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b)
+    const sc = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b)
+
+    const lightness = 0.2104542553 * lc + 0.793617785 * mc - 0.0040720468 * sc
+    const a = 1.9779984951 * lc - 2.428592205 * mc + 0.4505937099 * sc
+    const bb = 0.0259040371 * lc + 0.7827717662 * mc - 0.808675766 * sc
+    const c = Math.hypot(a, bb)
+    // Greys have no meaningful hue; 0 keeps the CSS output stable.
+    const h = c < 1e-6 ? 0 : ((Math.atan2(bb, a) * 180) / Math.PI + 360) % 360
+    return { l: lightness * 100, c: c < 1e-6 ? 0 : c, h }
+}
+
 export const toHex = (color: Oklch): string =>
     '#' +
     toGamutLinearRgb(color)

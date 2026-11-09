@@ -36,7 +36,7 @@ function ThemeSwatch({ theme }: { theme: ResolvedTheme }) {
       {[theme.light, theme.dark].map((palette, index) => (
         <span key={index} className="flex flex-1 items-center justify-center gap-1.5" style={{ backgroundColor: toCss(palette.canvas) }}>
           <span className="h-1.5 w-6 rounded-full" style={{ backgroundColor: toCss(palette.fg) }} />
-          <span className="h-3 w-3 rounded-full" style={{ backgroundColor: toCss(palette.accent) }} />
+          <span className="h-3 w-3 rounded-full" style={{ backgroundColor: toCss(palette.brand) }} />
         </span>
       ))}
     </span>
@@ -85,7 +85,7 @@ export default function SettingsForm({ theme, resume, resumes, canSave }: Settin
               <ThemeSwatch theme={option} />
               <span className="flex items-center justify-between gap-2 text-sm font-medium">
                 {option.label}
-                {option.id === theme && <span className="font-mono text-eyebrow uppercase text-faint">Live</span>}
+                {option.id === theme && <span className="text-label font-medium uppercase text-muted">Live</span>}
               </span>
             </label>
           ))}

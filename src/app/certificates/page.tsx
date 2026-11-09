@@ -31,12 +31,12 @@ export default function CertificatesPage() {
         title="Certifications and recognition."
         lede="Security, cloud and engineering credentials. Select a certificate to view it full size."
       />
-      <section aria-label="Certificates" className="border-t border-line py-14 sm:py-20">
+      <section aria-label="Certificates" className="py-8 sm:py-12">
         <Container>
           {ordered.length === 0 ? (
             <p className="text-muted">No certificates yet.</p>
           ) : (
-            <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {ordered.map((certification) => (
                 <li key={certification.id}>
                   <CertificateCard certification={certification} headingLevel="h2" />

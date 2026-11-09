@@ -2,7 +2,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { DEFAULT_THEME, THEMES, type ThemeId } from '../config/themes.ts'
 import { buildTheme, resolveThemeId, themeCss, type ColorMode, type TokenName } from '../lib/theme.ts'
-import { contrastRatio, toHex } from '../utils/color.ts'
+import { contrastRatio, fromHex, toCss, toHex } from '../utils/color.ts'
 
 const THEME_IDS = Object.keys(THEMES) as ThemeId[]
 const MODES: ColorMode[] = ['light', 'dark']
@@ -35,10 +35,15 @@ const CONTRAST_PAIRS: [TokenName, TokenName, number][] = [
   // Accent icons on hover fills (Snapshot, Capabilities).
   ['accent', 'subtle', 3],
   ['accent', 'accent-soft', 3],
+  // Brand colour on hovered card borders, timeline markers and tag dots (non-text UI).
+  ['brand', 'canvas', 3],
+  ['brand', 'surface', 3],
+  // Gradient display headings run from spectrum-4 through brand to accent: large text, 3:1.
+  ['spectrum-4', 'canvas', 3],
 ]
 
-test('offers a curated set of six themes', () => {
-  assert.equal(THEME_IDS.length, 6, `found ${THEME_IDS.length}`)
+test('offers a curated set of seven themes', () => {
+  assert.equal(THEME_IDS.length, 7, `found ${THEME_IDS.length}`)
   assert.ok(THEME_IDS.includes(DEFAULT_THEME))
 })
 
@@ -92,6 +97,42 @@ test('preserves the Evergreen source colours', () => {
   const palette = buildTheme('evergreen').light
   assert.equal(toHex(palette.canvas), '#fafafa')
   assert.equal(toHex(palette.accent), '#004643')
+})
+
+test('preserves the Clay source colours', () => {
+  const { light, dark } = buildTheme('clay')
+  const expected: Partial<Record<TokenName, string>> = {
+    canvas: '#ffffff',
+    surface: '#ffffff',
+    subtle: '#faf9f7',
+    line: '#e5e5e5',
+    fg: '#1d1d1f',
+    muted: '#5c5c61',
+    accent: '#b05f43',
+    brand: '#cc785c',
+    'accent-soft': '#f3e3db',
+    'spectrum-1': '#7cc6e8',
+    'spectrum-4': '#e05252',
+  }
+  for (const [token, hex] of Object.entries(expected) as [TokenName, string][]) {
+    assert.equal(toHex(light[token]), hex, `light ${token}`)
+  }
+  assert.equal(toHex(dark['spectrum-2']), '#f2c34e')
+})
+
+test('overriding the accent carries focus and brand with it', () => {
+  const { light } = buildTheme('evergreen')
+  assert.deepEqual(light.focus, light.accent)
+  assert.deepEqual(light.brand, light.accent)
+})
+
+test('converts hex to OKLCH and back without loss', () => {
+  for (const hex of ['#ffffff', '#000000', '#1d1d1f', '#cc785c', '#004643', '#7cc6e8', '#f2c34e']) {
+    assert.equal(toHex(fromHex(hex)), hex)
+  }
+  assert.equal(toCss(fromHex('#ffffff')), 'oklch(100% 0 0)')
+  assert.throws(() => fromHex('cc785c'), /#rrggbb/)
+  assert.throws(() => fromHex('#fff'), /#rrggbb/)
 })
 
 test('converts OKLCH to hex, mapping out-of-gamut colours into sRGB', () => {

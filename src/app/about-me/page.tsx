@@ -30,7 +30,7 @@ function AboutBlock({ id, label, title, children }: { id: string; label: string;
     <section id={id} aria-labelledby={`${id}-heading`} className="reveal grid gap-6 border-t border-line py-12 sm:py-16 lg:grid-cols-12 lg:gap-12">
       <div className="lg:col-span-4">
         <Eyebrow>{label}</Eyebrow>
-        <h2 id={`${id}-heading`} className="mt-3 text-heading font-semibold">{title}</h2>
+        <h2 id={`${id}-heading`} className="mt-3 text-subtitle font-semibold">{title}</h2>
       </div>
       <div className="lg:col-span-8">{children}</div>
     </section>
@@ -62,7 +62,7 @@ export default function AboutPage() {
               preload
               placeholder="blur"
               sizes="(min-width: 1024px) 360px, 100vw"
-              className="aspect-[4/5] w-full max-w-sm rounded-card border border-line object-cover"
+              className="aspect-[4/5] w-full max-w-sm rounded-card border-[3px] border-fg object-cover"
             />
           </div>
           <div className="grid max-w-prose gap-5 text-lede text-muted lg:col-span-8">
@@ -74,9 +74,9 @@ export default function AboutPage() {
           <ol className="grid gap-0">
             {journey.map((milestone) => (
               <li key={milestone.title} className="grid gap-1 border-b border-line py-5 first:pt-0 last:border-b-0 sm:grid-cols-[9rem_1fr] sm:gap-6">
-                <p className="font-mono text-xs text-faint sm:pt-1">{milestone.period}</p>
+                <p className="text-sm text-muted sm:pt-0.5">{milestone.period}</p>
                 <div>
-                  <h3 className="font-semibold">{milestone.title}</h3>
+                  <h3 className="font-medium">{milestone.title}</h3>
                   <p className="mt-1 text-muted">{milestone.description}</p>
                 </div>
               </li>
@@ -92,7 +92,7 @@ export default function AboutPage() {
           <dl className="grid gap-6 sm:grid-cols-2">
             {principles.map((principle) => (
               <div key={principle.title}>
-                <dt className="font-semibold">{principle.title}</dt>
+                <dt className="font-medium">{principle.title}</dt>
                 <dd className="mt-1 text-sm text-muted">{principle.description}</dd>
               </div>
             ))}
@@ -103,7 +103,7 @@ export default function AboutPage() {
           <dl className="grid gap-5">
             {skillGroups.map((group) => (
               <div key={group.title} className="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-6">
-                <dt className="text-sm font-semibold sm:pt-0.5">{group.title}</dt>
+                <dt className="text-sm font-medium sm:pt-0.5">{group.title}</dt>
                 <dd><TagList items={allSkills(group)} label={`${group.title} skills`} /></dd>
               </div>
             ))}
@@ -119,11 +119,11 @@ export default function AboutPage() {
         <AboutBlock id="outside" label="Outside work" title="Beyond the code">
           <dl className="grid gap-6 sm:grid-cols-2">
             <div>
-              <dt className="font-mono text-eyebrow uppercase text-faint">Languages</dt>
+              <dt className="text-label font-medium uppercase text-muted">Languages</dt>
               <dd className="mt-2">{profile.languages.join(', ')}</dd>
             </div>
             <div>
-              <dt className="font-mono text-eyebrow uppercase text-faint">Interests</dt>
+              <dt className="text-label font-medium uppercase text-muted">Interests</dt>
               <dd className="mt-2">{profile.interests.join(', ')}</dd>
             </div>
           </dl>

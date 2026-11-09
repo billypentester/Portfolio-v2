@@ -12,7 +12,7 @@ import { slugify } from '@/src/utils'
 
 const PAGE = {
   title: 'Writing',
-  description: 'Articles by Bilal Ahmad on backend and frontend development, Web3, security and machine learning.',
+  description: 'Articles by Bilal Ahmad on backend and frontend development and security.',
   path: '/blogs',
 }
 
@@ -40,7 +40,7 @@ export default function BlogsPage() {
       <PageHeader
         eyebrow="Writing"
         title="Articles and notes."
-        lede={`Guides and write-ups on development, Web3, security and machine learning, published on ${PUBLISHERS.join(', ')}.`}
+        lede={`Guides and write-ups on backend, frontend and security, published on ${PUBLISHERS.join(', ')}.`}
       >
         <nav aria-label="Topics" className="mt-8">
           <ul className="flex flex-wrap gap-2">
@@ -48,11 +48,11 @@ export default function BlogsPage() {
               <li key={group.category}>
                 <a
                   href={`#${slugify(group.category)}`}
-                  className="inline-flex h-9 items-center gap-2 rounded-control border border-line bg-surface px-3 text-sm text-muted hover:border-fg hover:text-fg"
+                  className="inline-flex h-9 items-center gap-2 rounded-full border border-line bg-canvas px-4 text-sm text-muted transition-colors hover:border-brand hover:text-accent"
                   {...trackingAttributes({ name: 'blog_topic_filter', data: { category: group.category } })}
                 >
                   {group.category}
-                  <span className="font-mono text-xs text-faint">{group.items.length}</span>
+                  <span className="text-xs text-faint tabular-nums">{group.items.length}</span>
                 </a>
               </li>
             ))}
@@ -61,15 +61,15 @@ export default function BlogsPage() {
       </PageHeader>
 
       {groups.length === 0 ? (
-        <Container className="border-t border-line py-16 text-muted">No articles yet.</Container>
+        <Container className="py-12 text-muted">No articles yet.</Container>
       ) : (
         groups.map((group) => {
           const id = slugify(group.category)
           return (
-            <section key={group.category} id={id} aria-labelledby={`${id}-heading`} className="scroll-mt-20 border-t border-line py-14 sm:py-20">
+            <section key={group.category} id={id} aria-labelledby={`${id}-heading`} className="scroll-mt-20 py-8 sm:py-12">
               <Container>
                 <Eyebrow as="h2" id={`${id}-heading`}>{group.category}</Eyebrow>
-                <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {group.items.map((publication) => (
                     <li key={publication.url}>
                       <PublicationCard publication={publication} />

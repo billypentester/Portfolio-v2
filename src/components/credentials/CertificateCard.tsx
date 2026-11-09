@@ -3,6 +3,7 @@ import type { Certification } from '@/src/content/types'
 import ArrowLink from '@/src/components/ui/ArrowLink'
 import { formatYearMonth } from '@/src/utils'
 import { trackingAttributes } from '@/src/lib/analytics'
+import { interactiveCardStyles } from '@/src/components/ui/card'
 
 interface CertificateCardProps {
   certification: Certification
@@ -14,7 +15,7 @@ export default function CertificateCard({ certification, headingLevel = 'h3' }: 
   const { id, title, image, issuer, issuedAt, credentialId, verifyUrl, topics } = certification
 
   return (
-    <article className="reveal flex h-full flex-col overflow-hidden rounded-card border border-line bg-surface">
+    <article className={`reveal flex h-full flex-col overflow-hidden ${interactiveCardStyles}`}>
       <a
         href={image.src}
         target="_blank"
@@ -32,8 +33,8 @@ export default function CertificateCard({ certification, headingLevel = 'h3' }: 
         />
         <span className="sr-only">View full-size {title} certificate (opens in a new tab)</span>
       </a>
-      <div className="flex flex-1 flex-col p-5">
-        <Heading className="font-semibold leading-snug tracking-tight">{title}</Heading>
+      <div className="flex flex-1 flex-col p-6">
+        <Heading className="text-lg font-medium leading-snug tracking-tight">{title}</Heading>
         {(issuer || issuedAt) && (
           <p className="mt-1 text-sm text-muted">
             {issuer}
@@ -42,9 +43,9 @@ export default function CertificateCard({ certification, headingLevel = 'h3' }: 
           </p>
         )}
         {topics && topics.length > 0 && (
-          <p className="mt-3 font-mono text-xs text-faint">{topics.join(' · ')}</p>
+          <p className="mt-3 text-xs text-faint">{topics.join(' · ')}</p>
         )}
-        {credentialId && <p className="mt-2 font-mono text-xs text-faint">ID {credentialId}</p>}
+        {credentialId && <p className="mt-2 text-xs text-faint tabular-nums">ID {credentialId}</p>}
         {verifyUrl && (
           <ArrowLink href={verifyUrl} external tracking={{ name: 'certificate_verify', data: { certificate: id } }} className="mt-auto pt-4">
             Verify credential
